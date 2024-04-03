@@ -1,6 +1,10 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+
+    // Hilt
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -34,10 +38,21 @@ android {
         jvmTarget = "11"
     }
 }
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
+}
 
 dependencies {
 
     implementation(libs.bundles.androidDefault)
     testImplementation(libs.bundles.test)
     androidTestImplementation(libs.bundles.androidUnitTest)
+
+    // Glide
+    implementation(libs.glide)
+
+    // Hilt
+    implementation(libs.hilt)
+    kapt(libs.hiltKapt)
 }

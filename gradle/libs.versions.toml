@@ -6,6 +6,12 @@ targetSdk = "33"
 appVersion = "1.0"
 versionCode = "1"
 
+# Kotlin
+kotlin = "1.9.0"
+
+# Build Tools and Plugins
+gradleplugin = "8.1.2"
+
 # AndroidX Libraries
 coreKtx = "1.10.0"
 appcompat = "1.6.1"
@@ -18,6 +24,12 @@ material = "1.9.0"
 junit = "4.13.2"
 androidTestJunit = "1.1.5"
 androidxTestEspresso = "3.5.1"
+
+# Glide
+glide = "4.16.0"
+
+# hilt
+hilt = "2.44"
 
 
 [libraries]
@@ -33,6 +45,13 @@ material = { module = "com.google.android.material:material", version.ref = "mat
 androidTestJunit = { module = "androidx.test.ext:junit", version.ref = "androidTestJunit" }
 androidxTestEspresso = { module = "androidx.test.espresso:espresso-core", version.ref = "androidxTestEspresso" }
 junit = { module = "junit:junit", version.ref = "junit" }
+
+# Glide
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+
+# hilt
+hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hiltKapt = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
 
 [bundles]
 androidDefault = ["coreKtx", "appcompat", "constraintlayout", "material"]
