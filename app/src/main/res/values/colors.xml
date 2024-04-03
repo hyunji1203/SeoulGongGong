@@ -2,4 +2,18 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- SeoulGongGong -->
+    <color name="main_teal">#087F5A</color>
+    <color name="sub_teal">#09A778</color>
+    <color name="light_teal">#1EC997</color>
+    <color name="dark_gray">#BCBCBC</color>
+    <color name="deep_gray">#474747</color>
+    <color name="gray">#D0D0DA</color>
+    <color name="medium_gray">#8F8F8F</color>
+    <color name="light_gray">#F6F1F1</color>
+    <color name="red">#DF2E38</color>
+    <color name="main_orange">#FFA41B</color>
+    <color name="sub_orange">#FFC239</color>
+    <color name="light_orange">#FFE057</color>
 </resources>
