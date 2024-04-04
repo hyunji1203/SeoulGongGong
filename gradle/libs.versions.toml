@@ -31,6 +31,11 @@ glide = "4.16.0"
 # hilt
 hilt = "2.44"
 
+# Lifecycle
+lifecycle = "2.7.0"
+
+# activity
+activity = "1.8.2"
 
 [libraries]
 # AndroidX Libraries
@@ -52,6 +57,13 @@ glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 # hilt
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hiltKapt = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+
+# lifecycle
+viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
+
+# activity
+activity = { module = "androidx.activity:activity-ktx", version.ref = "activity"}
 
 [bundles]
 androidDefault = ["coreKtx", "appcompat", "constraintlayout", "material"]

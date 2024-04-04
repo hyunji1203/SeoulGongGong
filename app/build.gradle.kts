@@ -26,7 +26,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -38,7 +38,7 @@ android {
         jvmTarget = "11"
     }
 
-    dataBinding{
+    dataBinding {
         enable = true
     }
 }
@@ -59,4 +59,11 @@ dependencies {
     // Hilt
     implementation(libs.hilt)
     kapt(libs.hiltKapt)
+
+    // lifecycle
+    implementation(libs.viewmodel)
+    implementation(libs.livedata)
+
+    // activity
+    implementation(libs.activity)
 }
