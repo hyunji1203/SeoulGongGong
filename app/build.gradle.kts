@@ -66,4 +66,8 @@ dependencies {
 
     // activity
     implementation(libs.activity)
+
+    // retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter)
 }

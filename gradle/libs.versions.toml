@@ -37,6 +37,9 @@ lifecycle = "2.7.0"
 # activity
 activity = "1.8.2"
 
+# retrofit
+retrofit = "2.9.0"
+
 [libraries]
 # AndroidX Libraries
 coreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
@@ -63,7 +66,11 @@ viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref
 livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
 
 # activity
-activity = { module = "androidx.activity:activity-ktx", version.ref = "activity"}
+activity = { module = "androidx.activity:activity-ktx", version.ref = "activity" }
+
+# retrofit
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+converter = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 
 [bundles]
 androidDefault = ["coreKtx", "appcompat", "constraintlayout", "material"]
