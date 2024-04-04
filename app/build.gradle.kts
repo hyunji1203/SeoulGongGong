@@ -37,6 +37,10 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+    dataBinding{
+        enable = true
+    }
 }
 // Allow references to generated code
 kapt {
