@@ -40,6 +40,10 @@ activity = "1.8.2"
 # retrofit
 retrofit = "2.9.0"
 
+# kotlinx-serialization
+serialization = "1.6.3"
+serialconverter = "1.0.0"
+
 [libraries]
 # AndroidX Libraries
 coreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
@@ -71,6 +75,10 @@ activity = { module = "androidx.activity:activity-ktx", version.ref = "activity"
 # retrofit
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 converter = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+
+# kotlinx-serialization
+serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
+serialconverter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "serialconverter" }
 
 [bundles]
 androidDefault = ["coreKtx", "appcompat", "constraintlayout", "material"]

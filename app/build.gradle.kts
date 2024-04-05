@@ -5,6 +5,9 @@ plugins {
     // Hilt
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+
+    // kotlinx-serializable
+    kotlin("plugin.serialization") version "1.9.22"
 }
 
 android {
@@ -70,4 +73,8 @@ dependencies {
     // retrofit
     implementation(libs.retrofit)
     implementation(libs.converter)
+
+    // kotlinx-serialization
+    implementation(libs.serialization)
+    implementation(libs.serialconverter)
 }
