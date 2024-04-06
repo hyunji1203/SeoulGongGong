@@ -33,6 +33,7 @@ hilt = "2.44"
 
 # naverMap
 naverMap = "3.18.0"
+playServicesLocation = "21.0.1"
 
 
 [libraries]
@@ -58,10 +59,12 @@ hiltKapt = { module = "com.google.dagger:hilt-android-compiler", version.ref = "
 
 # naverMap
 naverMap = { module = "com.naver.maps:map-sdk", version.ref = "naverMap" }
+playServicesLocation = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
 
 [bundles]
 androidDefault = ["coreKtx", "appcompat", "constraintlayout", "material"]
 test = ["junit"]
 androidUnitTest = ["androidTestJunit", "androidxTestEspresso"]
+naverMap = ["naverMap", "playServicesLocation"]
 
 [plugins]

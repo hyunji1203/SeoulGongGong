@@ -6,4 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".facility.PublicSportsFacility">
 
+    <fragment
+        android:id="@+id/map_fragment"
+        android:name="com.naver.maps.map.MapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:navermap_locationButtonEnabled="true"
+        app:navermap_rotateGesturesEnabled="false"
+        app:navermap_scaleBarEnabled="true"
+        app:navermap_tiltGesturesEnabled="false" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

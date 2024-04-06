@@ -64,5 +64,5 @@ dependencies {
     kapt(libs.hiltKapt)
 
     // naverMap
-    implementation(libs.naverMap)
+    implementation(libs.bundles.naverMap)
 }
