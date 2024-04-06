@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -6,10 +9,17 @@ plugins {
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
 }
+val properties = Properties()
+properties.load(FileInputStream(rootProject.file("local.properties")))
 
 android {
     namespace = "com.example.seoulgonggong"
     compileSdk = libs.versions.compileSdk.get().toInt()
+
+    //BuildConfig 클래스 생성
+    buildFeatures {
+        buildConfig = true
+    }
 
     defaultConfig {
         applicationId = "com.example.seoulgonggong"
@@ -19,6 +29,7 @@ android {
         versionName = libs.versions.appVersion.get()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "BASE_URL", "\"http://openAPI.seoul.go.kr:8088/${properties["ACT_KEY"]}/\"")
     }
 
     buildTypes {
@@ -55,4 +66,14 @@ dependencies {
     // Hilt
     implementation(libs.hilt)
     kapt(libs.hiltKapt)
+
+    // Kotlinx-serialization
+    implementation(libs.kotlinx.serialization.json)
+
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.retrofit2.kotlinx.serialization.converter) //Retrofit과 kotlin serialization 을 연동
+
+    // Coroutines
+    implementation(libs.kotlinx.coroutines.core)
 }

@@ -29,8 +29,17 @@ androidxTestEspresso = "3.5.1"
 glide = "4.16.0"
 
 # hilt
-hilt = "2.44"
+hilt = "2.48"
 
+# Kotlinx-serialization
+kotlinxSerializationJson = "1.6.3"
+
+# Retrofit
+retrofit = "2.11.0"
+retrofit2KotlinxSerializationConverter = "0.8.0"
+
+# Coroutines
+kotlinxCoroutinesCore = "1.8.1-Beta"
 
 [libraries]
 # AndroidX Libraries
@@ -39,6 +48,8 @@ appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat"
 constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 
 # Google Libraries
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
 
 # Test Libraries
@@ -52,6 +63,8 @@ glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 # hilt
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hiltKapt = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit2-kotlinx-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofit2KotlinxSerializationConverter" }
 
 [bundles]
 androidDefault = ["coreKtx", "appcompat", "constraintlayout", "material"]
