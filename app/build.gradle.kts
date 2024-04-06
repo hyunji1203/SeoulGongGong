@@ -77,4 +77,12 @@ dependencies {
     // kotlinx-serialization
     implementation(libs.serialization)
     implementation(libs.serialconverter)
+
+    // okhttp3
+    implementation(libs.okhttp3)
+
+    // Coroutine
+    implementation(libs.coroutinecore)
+    implementation(libs.coroutinejdk)
+    testImplementation(libs.coroutinetest)
 }

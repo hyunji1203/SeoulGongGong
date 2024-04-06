@@ -29,20 +29,27 @@ androidxTestEspresso = "3.5.1"
 glide = "4.16.0"
 
 # hilt
-hilt = "2.44"
+hilt = "2.48"
 
 # Lifecycle
-lifecycle = "2.7.0"
+lifecycle = "2.5.1"
 
 # activity
-activity = "1.8.2"
+activity = "1.7.2"
 
 # retrofit
 retrofit = "2.9.0"
 
 # kotlinx-serialization
-serialization = "1.6.3"
+serialization = "1.5.1"
 serialconverter = "1.0.0"
+
+# okhttp3
+okhttp3 = "4.11.0"
+
+# Coroutine
+coroutine = "1.7.1"
+coroutinetest = "1.7.3"
 
 [libraries]
 # AndroidX Libraries
@@ -79,6 +86,14 @@ converter = { module = "com.squareup.retrofit2:converter-gson", version.ref = "r
 # kotlinx-serialization
 serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 serialconverter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "serialconverter" }
+
+# okhttp3
+okhttp3 = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp3" }
+
+# coroutine
+coroutinecore = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutine" }
+coroutinejdk = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "coroutine" }
+coroutinetest = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutinetest" }
 
 [bundles]
 androidDefault = ["coreKtx", "appcompat", "constraintlayout", "material"]
