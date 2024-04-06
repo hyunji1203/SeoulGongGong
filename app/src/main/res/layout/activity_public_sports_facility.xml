@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".facility.PublicSportsFacility">
+    tools:context=".facility.PublicSportsFacilityActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/toolbar"
@@ -47,6 +47,7 @@
             app:layout_constraintTop_toBottomOf="@id/btn_back" />
 
         <ImageView
+            android:id="@+id/iv_et_search_background"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginEnd="@dimen/margin_default"
@@ -78,10 +79,10 @@
             android:id="@+id/btn_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="@dimen/margin_default"
             android:background="@drawable/ic_search"
             app:layout_constraintBottom_toBottomOf="@id/et_search"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/iv_et_search_background"
             app:layout_constraintTop_toTopOf="@id/et_search" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

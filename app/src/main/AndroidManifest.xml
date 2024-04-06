@@ -21,7 +21,7 @@
             android:value="${NAVER_MAP_CLIENT_ID}" />
 
         <activity
-            android:name=".facility.PublicSportsFacility"
+            android:name=".facility.PublicSportsFacilityActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
