@@ -1,53 +1,48 @@
 package com.example.seoulgonggong.data.model
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+@Serializable
 data class WeatherResponse(
-    @SerializedName("response")
+    @SerialName("response")
     val response: WeatherData,
 )
 
+@Serializable
 data class WeatherData(
-    @SerializedName("header")
-    val header: WeatherHeader,
-    @SerializedName("body")
+    @SerialName("body")
     val body: WeatherBody,
 )
 
-data class WeatherHeader(
-    @SerializedName("resultCode")
-    val resultCode: String,
-    @SerializedName("resultMsg")
-    val resultMsg: String,
-)
-
+@Serializable
 data class WeatherBody(
-    @SerializedName("items")
+    @SerialName("items")
     val items: Items,
 )
 
+@Serializable
 data class Items(
-    @SerializedName("item")
+    @SerialName("item")
     val item: List<ForecastResponse>,
 )
 
 @Serializable
 data class ForecastResponse(
-    @SerializedName("baseDate")
+    @SerialName("baseDate")
     val baseDate: String,
-    @SerializedName("baseTime")
+    @SerialName("baseTime")
     val baseTime: String,
-    @SerializedName("category")
+    @SerialName("category")
     val category: String,
-    @SerializedName("fcstDate")
+    @SerialName("fcstDate")
     val forecastDate: String,
-    @SerializedName("fcstTime")
+    @SerialName("fcstTime")
     val forecastTime: String,
-    @SerializedName("fcstValue")
+    @SerialName("fcstValue")
     val forecastValue: String,
-    @SerializedName("nx")
+    @SerialName("nx")
     val nx: Int,
-    @SerializedName("ny")
+    @SerialName("ny")
     val ny: Int,
 )
