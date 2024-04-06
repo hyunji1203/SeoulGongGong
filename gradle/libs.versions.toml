@@ -31,6 +31,9 @@ glide = "4.16.0"
 # hilt
 hilt = "2.44"
 
+# naverMap
+naverMap = "3.18.0"
+
 
 [libraries]
 # AndroidX Libraries
@@ -52,6 +55,9 @@ glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 # hilt
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hiltKapt = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+
+# naverMap
+naverMap = { module = "com.naver.maps:map-sdk", version.ref = "naverMap" }
 
 [bundles]
 androidDefault = ["coreKtx", "appcompat", "constraintlayout", "material"]

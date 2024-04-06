@@ -12,6 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SeoulGongGong"
         tools:targetApi="33">
+
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="${NAVER_MAP_CLIENT_ID}" />
+
+        <activity
+            android:name=".facility.PublicSportsFacility"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
