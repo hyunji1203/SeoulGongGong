@@ -71,8 +71,7 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     // Retrofit
-    implementation(libs.retrofit)
-    implementation(libs.retrofit2.kotlinx.serialization.converter) //Retrofit과 kotlin serialization 을 연동
+    implementation(libs.bundles.retrofit)
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.core)
