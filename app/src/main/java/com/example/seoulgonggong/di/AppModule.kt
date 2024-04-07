@@ -13,15 +13,17 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType
 import javax.inject.Singleton
 
+
 @InstallIn(SingletonComponent::class)
 @Module
 object AppModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(): Retrofit {
+    @SeoulOpenApiRetrofit
+    fun provideSeoulOpenApiRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl(BuildConfig.SEOUL_OPEN_API_BASE_URL)
             .client(OkHttpClient.Builder().build())
             .addConverterFactory(Json.asConverterFactory(MediaType.parse("application/json")!!))
             .build()
