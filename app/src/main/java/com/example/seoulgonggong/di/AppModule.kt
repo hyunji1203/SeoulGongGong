@@ -10,7 +10,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.json.Json
-import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import javax.inject.Singleton
 
 
@@ -25,7 +25,7 @@ object AppModule {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.SEOUL_OPEN_API_BASE_URL)
             .client(OkHttpClient.Builder().build())
-            .addConverterFactory(Json.asConverterFactory(MediaType.parse("application/json")!!))
+            .addConverterFactory(Json.asConverterFactory("application/json".toMediaTypeOrNull()!!))
             .build()
     }
 
