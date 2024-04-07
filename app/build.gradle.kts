@@ -85,4 +85,7 @@ dependencies {
     implementation(libs.coroutinecore)
     implementation(libs.coroutinejdk)
     testImplementation(libs.coroutinetest)
+
+    // location
+    implementation(libs.location)
 }
