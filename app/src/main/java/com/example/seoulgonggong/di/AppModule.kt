@@ -32,7 +32,7 @@ object AppModule {
     // 샘플 서비스 (이런 식으로 작성하면 된다는 예시)
     @Provides
     @Singleton
-    fun provideService(retrofit: Retrofit): Service {
+    fun provideService(@SeoulOpenApiRetrofit retrofit: Retrofit): Service {
         return retrofit.create(Service::class.java)
     }
 }
