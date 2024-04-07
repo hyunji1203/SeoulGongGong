@@ -1,12 +1,14 @@
 package com.example.seoulgonggong.di
 
+import com.example.seoulgonggong.data.ResponseFilterInterceptor
+import com.example.seoulgonggong.data.service.WeatherService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.json.Json
-import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import javax.inject.Qualifier
@@ -19,7 +21,15 @@ annotation class WeatherRetrofit
 @Module
 @InstallIn(SingletonComponent::class)
 class AppModule {
-    private val baseUrlWeather = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0"
+    private val baseUrlWeather = "http://apis.data.go.kr/"
+    private val json = Json { ignoreUnknownKeys = true }
+
+    @Singleton
+    @Provides
+    fun provideOkHttpClient(): OkHttpClient =
+        OkHttpClient.Builder().apply {
+            addInterceptor(ResponseFilterInterceptor())
+        }.build()
 
     @Singleton
     @Provides
@@ -27,6 +37,12 @@ class AppModule {
     fun provideWeatherRetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .baseUrl(baseUrlWeather)
-            .addConverterFactory(Json.asConverterFactory(MediaType.parse("application/json")!!))
+            .addConverterFactory(json.asConverterFactory("application/json".toMediaTypeOrNull()!!))
             .build()
+
+    @Singleton
+    @Provides
+    fun provideWeatherService(
+        @WeatherRetrofit retrofit: Retrofit,
+    ): WeatherService = retrofit.create(WeatherService::class.java)
 }
