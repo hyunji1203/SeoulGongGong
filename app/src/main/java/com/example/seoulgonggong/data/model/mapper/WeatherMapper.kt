@@ -1,13 +1,14 @@
-package com.example.seoulgonggong.domain.model.mapper
+package com.example.seoulgonggong.data.model.mapper
 
 import com.example.seoulgonggong.data.model.ForecastResponse
 import com.example.seoulgonggong.domain.model.Forecast
+import com.example.seoulgonggong.domain.model.WeatherCategory
 
 fun ForecastResponse.toDomain(): Forecast {
     return Forecast(
         baseDate = baseDate,
         baseTime = baseTime,
-        category = category,
+        category = WeatherCategory.findByName(category),
         forecastDate = forecastDate,
         forecastTime = forecastTime,
         forecastValue = forecastValue,

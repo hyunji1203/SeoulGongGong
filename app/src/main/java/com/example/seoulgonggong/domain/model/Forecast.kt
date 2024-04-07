@@ -3,7 +3,7 @@ package com.example.seoulgonggong.domain.model
 data class Forecast(
     val baseDate: String,
     val baseTime: String,
-    val category: String,
+    val category: WeatherCategory,
     val forecastDate: String,
     val forecastTime: String,
     val forecastValue: String,

@@ -2,9 +2,9 @@ package com.example.seoulgonggong.data.repository
 
 import android.accounts.NetworkErrorException
 import android.util.Log
+import com.example.seoulgonggong.data.model.mapper.toDomain
 import com.example.seoulgonggong.data.service.WeatherService
 import com.example.seoulgonggong.domain.model.Forecast
-import com.example.seoulgonggong.domain.model.mapper.toDomain
 import com.example.seoulgonggong.domain.repository.WeatherRepository
 
 class DefaultWeatherRepository(
