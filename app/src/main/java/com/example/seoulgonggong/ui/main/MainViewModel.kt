@@ -21,9 +21,12 @@ class MainViewModel
         private val _temp = MutableLiveData<String>()
         val temp: LiveData<String> = _temp
 
-        fun fetchWeather() {
+        fun fetchWeather(
+            latitude: Double,
+            longitude: Double,
+        ) {
             val baseDateTime = BaseDateTime.getBaseDateTime()
-            val point = GeoPointConverter().convert(37.5532, 127.1906)
+            val point = GeoPointConverter().convert(latitude, longitude)
             viewModelScope.launch {
                 runCatching {
                     weatherRepository.getWeather(
