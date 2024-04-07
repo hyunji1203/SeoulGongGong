@@ -1,4 +1,4 @@
-package com.example.seoulgonggong.facility
+package com.example.seoulgonggong.ui.facility
 
 import android.Manifest
 import androidx.appcompat.app.AppCompatActivity

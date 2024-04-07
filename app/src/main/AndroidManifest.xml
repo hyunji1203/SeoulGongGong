@@ -22,10 +22,10 @@
             android:value="${NAVER_MAP_CLIENT_ID}" />
 
         <activity
-            android:name=".facility.PublicSportsFacilityActivity"
+            android:name=".ui.facility.PublicSportsFacilityActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
