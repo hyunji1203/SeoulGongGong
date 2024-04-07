@@ -1,9 +1,10 @@
 package com.example.seoulgonggong.data.repository
 
 import android.accounts.NetworkErrorException
+import android.util.Log
 import com.example.seoulgonggong.data.service.WeatherService
 import com.example.seoulgonggong.domain.model.Forecast
-import com.example.seoulgonggong.domain.model.mapper.toData
+import com.example.seoulgonggong.domain.model.mapper.toDomain
 import com.example.seoulgonggong.domain.repository.WeatherRepository
 
 class DefaultWeatherRepository(
@@ -18,8 +19,11 @@ class DefaultWeatherRepository(
     ): List<Forecast> {
         val response = weatherService.getForecast(serviceKey, baseDate, baseTime, nx, ny)
         if (response.isSuccessful) {
-            return response.body()?.map { it.toData() } ?: throw NetworkErrorException("network error")
+            Log.d("test", "성공 문")
+            return response.body()?.response?.body?.items?.item?.map { it.toDomain() }
+                ?: throw NetworkErrorException("network error")
         } else {
+            Log.d("test", "else 문")
             throw NetworkErrorException("네트워크 오류")
         }
     }
