@@ -32,7 +32,7 @@ glide = "4.16.0"
 hilt = "2.48"
 
 # Lifecycle
-lifecycle = "2.5.1"
+lifecycle = "2.6.0"
 
 # activity
 activity = "1.7.2"
@@ -41,14 +41,14 @@ activity = "1.7.2"
 retrofit = "2.9.0"
 
 # kotlinx-serialization
-serialization = "1.5.1"
+serialization = "1.6.3"
 serialconverter = "1.0.0"
 
 # okhttp3
 okhttp3 = "4.11.0"
 
 # Coroutine
-coroutine = "1.7.1"
+coroutine = "1.7.3"
 coroutinetest = "1.7.3"
 
 [libraries]
