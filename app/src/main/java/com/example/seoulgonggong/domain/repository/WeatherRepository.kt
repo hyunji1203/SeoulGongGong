@@ -1,6 +1,6 @@
 package com.example.seoulgonggong.domain.repository
 
-import com.example.seoulgonggong.domain.model.Forecast
+import com.example.seoulgonggong.domain.model.Weather
 
 interface WeatherRepository {
     suspend fun getWeather(
@@ -9,5 +9,5 @@ interface WeatherRepository {
         baseTime: String,
         nx: Int,
         ny: Int,
-    ): List<Forecast>
+    ): Weather
 }
