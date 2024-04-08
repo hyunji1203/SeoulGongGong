@@ -1,11 +1,12 @@
 package com.example.seoulgonggong.ui.main
 
+import android.util.Log
 import com.example.seoulgonggong.domain.model.Point
 
 class GeoPointConverter {
     fun convert(
-        lon: Double,
         lat: Double,
+        lon: Double,
     ): Point {
         val RE = 6371.00877 // 지구 반경(km)
         val GRID = 5.0 // 격자 간격(km)
@@ -29,9 +30,9 @@ class GeoPointConverter {
         var ro = Math.tan(Math.PI * 0.25 + olat * 0.5)
         ro = re * sf / Math.pow(ro, sn)
 
-        var ra = Math.tan(Math.PI * 0.25 + (lon) * DEGRAD * 0.5)
+        var ra = Math.tan(Math.PI * 0.25 + (lat) * DEGRAD * 0.5)
         ra = re * sf / Math.pow(ra, sn)
-        var theta = lat * DEGRAD - olon
+        var theta = lon * DEGRAD - olon
         if (theta > Math.PI) theta -= 2.0 * Math.PI
         if (theta < -Math.PI) theta += 2.0 * Math.PI
         theta *= sn
@@ -39,6 +40,7 @@ class GeoPointConverter {
         val x = (ra * Math.sin(theta) + XO + 0.5).toInt()
         val y = (ro - ra * Math.cos(theta) + YO + 0.5).toInt()
 
+        Log.d("test", "$x, $y")
         return Point(x, y)
     }
 }
