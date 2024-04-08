@@ -3,7 +3,8 @@ package com.example.seoulgonggong.di
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import com.example.seoulgonggong.BuildConfig
-import com.example.seoulgonggong.data.Service
+import com.example.seoulgonggong.data.service.PublicSportsFacilityService
+import com.example.seoulgonggong.data.service.Service
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -34,5 +35,11 @@ object AppModule {
     @Singleton
     fun provideService(@SeoulOpenApiRetrofit retrofit: Retrofit): Service {
         return retrofit.create(Service::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSportsFacilityService(@SeoulOpenApiRetrofit retrofit: Retrofit): PublicSportsFacilityService {
+        return retrofit.create(PublicSportsFacilityService::class.java)
     }
 }
