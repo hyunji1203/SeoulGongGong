@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -56,11 +57,25 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         initViewModel()
         checkLocationPermission()
+        subscribe()
     }
 
     private fun initViewModel() {
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
+    }
+
+    private fun subscribe() {
+        viewModel.weatherStatus.observe(this) { status ->
+            Log.d("test", "ss $status")
+            when (status) {
+                "맑음" -> binding.ivMainWeatherIcon.setImageResource(R.drawable.ic_sum)
+                "구름많음" -> binding.ivMainWeatherIcon.setImageResource(R.drawable.ic_little_sunny)
+                "흐림" -> binding.ivMainWeatherIcon.setImageResource(R.drawable.ic_cloud)
+                "비" -> binding.ivMainWeatherIcon.setImageResource(R.drawable.ic_rain)
+                "눈" -> binding.ivMainWeatherIcon.setImageResource(R.drawable.ic_snow)
+            }
+        }
     }
 
     private fun checkLocationPermission() {
@@ -77,6 +92,7 @@ class MainActivity : AppCompatActivity() {
             return
         }
         fusedLocationClient.lastLocation.addOnSuccessListener {
+            Log.d("test", "${it.latitude}, ${it.longitude}")
             viewModel.fetchWeather(it.latitude, it.longitude)
         }
     }
