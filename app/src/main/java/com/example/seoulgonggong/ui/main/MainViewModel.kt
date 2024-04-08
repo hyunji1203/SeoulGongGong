@@ -18,8 +18,11 @@ class MainViewModel
     constructor(
         private val weatherRepository: WeatherRepository,
     ) : ViewModel() {
-        private val _temp = MutableLiveData<String>()
-        val temp: LiveData<String> = _temp
+        private val _temperature = MutableLiveData<Int>()
+        val temperature: LiveData<Int> = _temperature
+
+        private val _weatherStatus = MutableLiveData<String>()
+        val weatherStatus: LiveData<String> = _weatherStatus
 
         fun fetchWeather(
             latitude: Double,
@@ -36,9 +39,10 @@ class MainViewModel
                         nx = point.nx,
                         ny = point.ny,
                     )
-                }.onSuccess { forecasts ->
-                    Log.d("test", forecasts[0].baseTime)
-                    _temp.value = forecasts[0].category.name
+                }.onSuccess { weathers ->
+                    Log.d("test", weathers.getStatus())
+                    _temperature.value = weathers.temperature.toInt()
+                    _weatherStatus.value = weathers.getStatus()
                 }.onFailure {
                     Log.d("test", "${it.message}")
                     throw NetworkErrorException("네트워크 오류에용")
