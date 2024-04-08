@@ -16,6 +16,7 @@ gradleplugin = "8.1.2"
 coreKtx = "1.10.0"
 appcompat = "1.6.1"
 constraintlayout = "2.1.4"
+fragment = "1.6.2"
 
 # Google Libraries
 material = "1.9.0"
@@ -51,6 +52,7 @@ playServicesLocation = "21.2.0"
 coreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment" }
 
 # Google Libraries
 material = { module = "com.google.android.material:material", version.ref = "material" }
@@ -80,7 +82,7 @@ retrofit2-kotlinx-serialization-converter = { module = "com.jakewharton.retrofit
 naverMap = { module = "com.naver.maps:map-sdk", version.ref = "naverMap" }
 
 [bundles]
-androidDefault = ["coreKtx", "appcompat", "constraintlayout", "material"]
+androidDefault = ["coreKtx", "appcompat", "constraintlayout", "material", "fragment"]
 test = ["junit"]
 androidUnitTest = ["androidTestJunit", "androidxTestEspresso"]
 retrofit = ["retrofit", "retrofit2-kotlinx-serialization-converter"]

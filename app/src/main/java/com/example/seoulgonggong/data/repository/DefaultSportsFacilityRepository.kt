@@ -10,8 +10,12 @@ class DefaultSportsFacilityRepository @Inject constructor(
     private val sportsFacilityService: PublicSportsFacilityService,
 ) : SportsFacilityRepository {
 
-    override fun getSportsFacility(): Result<List<SportsFacility>> =
-        sportsFacilityService.getSportsFacility().map { result ->
-            result.toDomain()
-        }
+    override suspend fun getSportsFacility(): Result<List<SportsFacility>> {
+        val a = sportsFacilityService.getSportsFacility()
+        if (a.isSuccessful && a.body() != null) {
+            return Result.success(
+                a.body()!!.toDomain()
+            )
+        } else throw IllegalStateException("네트워크 오류가 발생했습니다")
+    }
 }

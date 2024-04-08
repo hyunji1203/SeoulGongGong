@@ -4,5 +4,5 @@ import com.example.seoulgonggong.domain.model.SportsFacility
 
 interface SportsFacilityRepository {
 
-    fun getSportsFacility(): Result<List<SportsFacility>>
+    suspend fun getSportsFacility(): Result<List<SportsFacility>>
 }
