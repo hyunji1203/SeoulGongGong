@@ -1,7 +1,6 @@
 package com.example.seoulgonggong.domain.model
 
 enum class WeatherCategory {
-    POP,
     PTY,
     SKY,
     TMP,
