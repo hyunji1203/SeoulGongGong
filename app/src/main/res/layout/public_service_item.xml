@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="173dp"
+    android:background="@drawable/rect_public_service_item_bg"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tv_public_service_item_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAppearance="@style/title_3B"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="서울어린이대공원 인조잔디 축구장" />
+
+    <ImageView
+        android:id="@+id/iv_public_service_item_img"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="17dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_public_service_item_title"
+        tools:src="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/tv_public_service_item_place"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="7dp"
+        android:textAppearance="@style/caption_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_public_service_item_img"
+        app:layout_constraintTop_toTopOf="@+id/iv_public_service_item_img"
+        tools:text="반포종합운동장>배드민턴장" />
+
+    <TextView
+        android:id="@+id/tv_public_service_item_operating_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
+        android:textAppearance="@style/body_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_public_service_item_img"
+        app:layout_constraintTop_toBottomOf="@id/tv_public_service_item_place"
+        tools:text="이용시간: 9:00 ~ 18:00" />
+
+    <TextView
+        android:id="@+id/tv_public_service_item_status"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:textAppearance="@style/subtitle_1"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/iv_public_service_item_heart"
+        app:layout_constraintStart_toEndOf="@+id/iv_public_service_item_img"
+        app:layout_constraintTop_toBottomOf="@id/tv_public_service_item_operating_time"
+        tools:text="예약마감" />
+
+    <ImageView
+        android:id="@+id/iv_public_service_item_heart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_heart_filled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
