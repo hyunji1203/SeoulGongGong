@@ -14,16 +14,6 @@
         android:layout_height="match_parent"
         tools:context=".ui.main.MainActivity">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{viewmodel.temp}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_main_weather"
             android:layout_width="match_parent"
@@ -46,6 +36,7 @@
                 android:fontFamily="@font/pretendard_bold"
                 android:textColor="@color/main_teal"
                 android:textSize="36sp"
+                android:text="@{@string/main_temperature(viewmodel.temperature)}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="16℃" />
@@ -59,6 +50,7 @@
                 android:fontFamily="@font/pretendard_bold"
                 android:textColor="@color/main_teal"
                 android:textSize="24sp"
+                android:text="@{viewmodel.weatherStatus}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_main_temperature"
                 tools:text="맑음" />
@@ -78,8 +70,8 @@
 
             <ImageView
                 android:id="@+id/iv_main_weather_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="107dp"
+                android:layout_height="107dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
