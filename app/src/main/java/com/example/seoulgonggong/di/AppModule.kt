@@ -29,7 +29,6 @@ object AppModule {
             .build()
     }
 
-    // 샘플 서비스 (이런 식으로 작성하면 된다는 예시)
     @Provides
     @Singleton
     fun provideService(@SeoulOpenApiRetrofit retrofit: Retrofit): Service {

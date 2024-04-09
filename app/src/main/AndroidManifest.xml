@@ -13,6 +13,9 @@
         android:theme="@style/Theme.SeoulGongGong"
         tools:targetApi="33">
         <activity
+            android:name=".ui.feature.public_service_list.PublicServiceListActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
