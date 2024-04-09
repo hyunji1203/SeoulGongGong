@@ -14,11 +14,11 @@ import com.naver.maps.map.util.FusedLocationSource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class PublicSportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
+class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var naverMap: NaverMap
     private lateinit var locationSource: FusedLocationSource
-    private val viewModel: PublicSportsFacilityViewModel by viewModels()
+    private val viewModel: SportsFacilityViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

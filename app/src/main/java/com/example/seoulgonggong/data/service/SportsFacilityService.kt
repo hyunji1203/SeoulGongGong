@@ -4,7 +4,7 @@ import com.example.seoulgonggong.data.model.SportsFacilityResponse
 import retrofit2.Response
 import retrofit2.http.GET
 
-interface PublicSportsFacilityService {
+interface SportsFacilityService {
 
     @GET("json/facilities/1/5/")
     suspend fun getSportsFacility(): Response<SportsFacilityResponse>

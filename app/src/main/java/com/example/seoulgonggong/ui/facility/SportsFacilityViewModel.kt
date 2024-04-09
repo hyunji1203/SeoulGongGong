@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PublicSportsFacilityViewModel @Inject constructor(
+class SportsFacilityViewModel @Inject constructor(
     private val repository: SportsFacilityRepository,
 ) : ViewModel() {
 
