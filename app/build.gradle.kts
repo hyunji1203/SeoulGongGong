@@ -16,9 +16,9 @@ android {
     namespace = "com.example.seoulgonggong"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
-    //BuildConfig 클래스 생성
     buildFeatures {
         buildConfig = true
+        viewBinding = true
     }
 
     defaultConfig {
