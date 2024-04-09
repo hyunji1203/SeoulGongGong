@@ -3,8 +3,6 @@ package com.example.seoulgonggong.ui.main
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.pm.PackageManager
-import android.location.Geocoder
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
@@ -17,7 +15,6 @@ import com.example.seoulgonggong.util.openSetting
 import com.example.seoulgonggong.util.showToast
 import com.google.android.gms.location.LocationServices
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.Locale
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -71,33 +68,6 @@ class MainActivity : AppCompatActivity() {
         fusedLocationClient.lastLocation.addOnSuccessListener {
             Log.d("test", "${it.latitude}, ${it.longitude}")
             viewModel.fetchWeather(it.latitude, it.longitude)
-//            setTown(it.latitude, it.longitude)
-        }
-    }
-
-    // 수정해야함!!!!!!!!!!
-    private fun setTown(
-        latitude: Double,
-        longitude: Double,
-    ) {
-        val geocoder = Geocoder(applicationContext, Locale.KOREAN)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            geocoder.getFromLocation(
-                latitude,
-                longitude,
-                1,
-            ) { address ->
-                if (address.size != 0) {
-                    Log.d("test", "geocoder ${address[0].thoroughfare}")
-//                    binding.tvMainTown.text = address[0].getAddressLine(0).toString()
-                }
-            }
-        } else {
-            val addresses = geocoder.getFromLocation(latitude, longitude, 1)
-            if (addresses != null) {
-                Log.d("test", "geocoder ${addresses[0].thoroughfare}")
-//                binding.tvMainTown.text = addresses[0].getAddressLine(0).toString()
-            }
         }
     }
 
