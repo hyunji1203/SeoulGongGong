@@ -3,7 +3,8 @@ package com.example.seoulgonggong.di
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import com.example.seoulgonggong.BuildConfig
-import com.example.seoulgonggong.data.Service
+import com.example.seoulgonggong.data.service.PublicServiceService
+import com.example.seoulgonggong.data.service.Service
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -27,6 +28,12 @@ object AppModule {
             .client(OkHttpClient.Builder().build())
             .addConverterFactory(Json.asConverterFactory(MediaType.parse("application/json")!!))
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun providePublicServiceService(@SeoulOpenApiRetrofit retrofit: Retrofit): PublicServiceService {
+        return retrofit.create(PublicServiceService::class.java)
     }
 
     @Provides
