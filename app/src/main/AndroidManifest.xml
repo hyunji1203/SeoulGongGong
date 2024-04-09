@@ -31,6 +31,9 @@
             android:name=".ui.facility.SportsFacilityActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.feature.public_service_list.PublicServiceListActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.main.MainActivity"
             android:exported="true">
             <intent-filter>

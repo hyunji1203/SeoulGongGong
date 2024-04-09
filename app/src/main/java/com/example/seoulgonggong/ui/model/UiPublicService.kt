@@ -1,6 +1,6 @@
 package com.example.seoulgonggong.ui.model
 
-data class PublicServiceUiModel(
+data class UiPublicService(
     val title: String,
     val place: String,
     val operatingTime: String,

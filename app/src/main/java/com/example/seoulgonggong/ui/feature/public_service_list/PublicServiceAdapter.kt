@@ -2,9 +2,9 @@ package com.example.seoulgonggong.ui.feature.public_service_list
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.seoulgonggong.ui.model.PublicServiceUiModel
+import com.example.seoulgonggong.ui.model.UiPublicService
 
-class PublicServiceAdapter(private val dataSet: List<PublicServiceUiModel>) : RecyclerView.Adapter<PublicServiceViewHolder>() {
+class PublicServiceAdapter(private val dataSet: List<UiPublicService>) : RecyclerView.Adapter<PublicServiceViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PublicServiceViewHolder =
         PublicServiceViewHolder.create(parent)
 
