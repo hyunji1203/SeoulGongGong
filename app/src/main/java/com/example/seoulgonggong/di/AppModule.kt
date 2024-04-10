@@ -4,7 +4,6 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import com.example.seoulgonggong.BuildConfig
 import com.example.seoulgonggong.data.service.SportsFacilityService
-import com.example.seoulgonggong.data.service.Service
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -57,7 +56,7 @@ object AppModule {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.GEOCODING_API_BASE_URL)
             .client(client)
-            .addConverterFactory(Json.asConverterFactory(MediaType.parse("application/json")!!))
+            .addConverterFactory(Json.asConverterFactory("application/json".toMediaTypeOrNull()!!))
             .build()
     }
 
@@ -68,7 +67,7 @@ object AppModule {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.REVERSE_GEOCODING_API_BASE_URL)
             .client(client)
-            .addConverterFactory(Json.asConverterFactory(MediaType.parse("application/json")!!))
+            .addConverterFactory(Json.asConverterFactory("application/json".toMediaTypeOrNull()!!))
             .build()
     }
 
