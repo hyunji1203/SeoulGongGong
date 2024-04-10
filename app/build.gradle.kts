@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -10,9 +13,17 @@ plugins {
     kotlin("plugin.serialization") version "1.9.22"
 }
 
+val properties = Properties()
+properties.load(FileInputStream(rootProject.file("local.properties")))
+
 android {
     namespace = "com.example.seoulgonggong"
     compileSdk = libs.versions.compileSdk.get().toInt()
+
+    // BuildConfig 클래스 생성
+    buildFeatures {
+        buildConfig = true
+    }
 
     defaultConfig {
         applicationId = "com.example.seoulgonggong"
@@ -22,6 +33,7 @@ android {
         versionName = libs.versions.appVersion.get()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "SEOUL_OPEN_API_BASE_URL", "\"http://openAPI.seoul.go.kr:8088/${properties["ACT_KEY"]}/\"")
     }
 
     buildTypes {
