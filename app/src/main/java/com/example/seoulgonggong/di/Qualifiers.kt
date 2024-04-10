@@ -12,4 +12,8 @@ annotation class GeocodingRetrofit
 
 @Qualifier
 @Retention
-annotation class GeocodingClient
+annotation class ReverseGeocodingRetrofit
+
+@Qualifier
+@Retention
+annotation class NaverMapClient

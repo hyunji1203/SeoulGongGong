@@ -22,8 +22,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    @GeocodingClient
-    fun provideGeocodingClient(): OkHttpClient {
+    @NaverMapClient
+    fun provideNaverMapClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor { chain ->
                 val request = chain
@@ -51,9 +51,20 @@ object AppModule {
     @Provides
     @Singleton
     @GeocodingRetrofit
-    fun provideGeocodingRetrofit(@GeocodingClient client: OkHttpClient): Retrofit {
+    fun provideGeocodingRetrofit(@NaverMapClient client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BuildConfig.Geocoding_API_BASE_URL)
+            .baseUrl(BuildConfig.GEOCODING_API_BASE_URL)
+            .client(client)
+            .addConverterFactory(Json.asConverterFactory(MediaType.parse("application/json")!!))
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    @ReverseGeocodingRetrofit
+    fun provideReverseGeocodingRetrofit(@NaverMapClient client: OkHttpClient): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BuildConfig.REVERSE_GEOCODING_API_BASE_URL)
             .client(client)
             .addConverterFactory(Json.asConverterFactory(MediaType.parse("application/json")!!))
             .build()
