@@ -1,4 +1,4 @@
-package com.example.seoulgonggong.data
+package com.example.seoulgonggong.data.service
 
 import retrofit2.http.GET
 

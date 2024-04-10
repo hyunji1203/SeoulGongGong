@@ -16,6 +16,7 @@ gradleplugin = "8.1.2"
 coreKtx = "1.10.0"
 appcompat = "1.6.1"
 constraintlayout = "2.1.4"
+fragment = "1.6.2"
 
 # Google Libraries
 material = "1.9.0"
@@ -36,21 +37,30 @@ kotlinxSerializationJson = "1.6.3"
 
 # Retrofit
 retrofit = "2.11.0"
-retrofit2KotlinxSerializationConverter = "0.8.0"
+retrofit2KotlinxSerializationConverter = "1.0.0"
 
 # Coroutines
 kotlinxCoroutinesCore = "1.8.1-Beta"
+
+# naverMap
+naverMap = "3.18.0"
+playServicesLocation = "21.2.0"
+
 
 [libraries]
 # AndroidX Libraries
 coreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment" }
 
 # Google Libraries
+material = { module = "com.google.android.material:material", version.ref = "material" }
+playServicesLocation = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
+
+# kotlinx
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
-material = { module = "com.google.android.material:material", version.ref = "material" }
 
 # Test Libraries
 androidTestJunit = { module = "androidx.test.ext:junit", version.ref = "androidTestJunit" }
@@ -63,13 +73,19 @@ glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 # hilt
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hiltKapt = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+
+# retrofit
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit2-kotlinx-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofit2KotlinxSerializationConverter" }
 
+# naverMap
+naverMap = { module = "com.naver.maps:map-sdk", version.ref = "naverMap" }
+
 [bundles]
-androidDefault = ["coreKtx", "appcompat", "constraintlayout", "material"]
+androidDefault = ["coreKtx", "appcompat", "constraintlayout", "material", "fragment"]
 test = ["junit"]
 androidUnitTest = ["androidTestJunit", "androidxTestEspresso"]
 retrofit = ["retrofit", "retrofit2-kotlinx-serialization-converter"]
+naverMap = ["naverMap", "playServicesLocation"]
 
 [plugins]
