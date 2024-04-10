@@ -29,7 +29,14 @@ android {
         versionName = libs.versions.appVersion.get()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // BASE_URL
         buildConfigField("String", "SEOUL_OPEN_API_BASE_URL", "\"http://openAPI.seoul.go.kr:8088/${properties["ACT_KEY"]}/\"")
+        buildConfigField("String", "Geocoding_API_BASE_URL", "\"https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode/\"")
+
+        // KEY
+        buildConfigField("String", "NAVER_MAP_CLIENT_ID", "\"${properties["NAVER_MAP_CLIENT_ID"]}\"")
+        buildConfigField("String", "NAVER_MAP_CLIENT_SECRET", "\"${properties["NAVER_MAP_CLIENT_SECRET"]}\"")
     }
 
     buildTypes {
