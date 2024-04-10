@@ -9,7 +9,7 @@ data class Facilities(
     @SerialName("list_total_count")
     val listTotalCount: Int,
     @SerialName("RESULT")
-    val rESULT: FacilityRESULT,
+    val result: FacilityResult,
     @SerialName("row")
     val row: List<FacilityRow>
 )

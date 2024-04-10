@@ -5,9 +5,9 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class FacilityRESULT(
+data class FacilityResult(
     @SerialName("CODE")
-    val cODE: String,
+    val code: String,
     @SerialName("MESSAGE")
-    val mESSAGE: String
+    val message: String
 )

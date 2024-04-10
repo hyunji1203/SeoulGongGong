@@ -7,7 +7,7 @@
     tools:context=".ui.facility.SportsFacilityActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbar_sports_facility"
         android:layout_width="0dp"
         android:layout_height="128dp"
         android:background="@color/white"
@@ -95,7 +95,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_sports_facility"
         app:navermap_locationButtonEnabled="true"
         app:navermap_rotateGesturesEnabled="false"
         app:navermap_scaleBarEnabled="true"
