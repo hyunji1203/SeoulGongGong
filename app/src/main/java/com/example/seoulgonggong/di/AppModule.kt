@@ -3,14 +3,15 @@ package com.example.seoulgonggong.di
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import com.example.seoulgonggong.BuildConfig
-import com.example.seoulgonggong.data.Service
+import com.example.seoulgonggong.data.service.SportsFacilityService
+import com.example.seoulgonggong.data.service.Service
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.json.Json
-import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import javax.inject.Singleton
 
 
@@ -25,7 +26,7 @@ object AppModule {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.SEOUL_OPEN_API_BASE_URL)
             .client(OkHttpClient.Builder().build())
-            .addConverterFactory(Json.asConverterFactory(MediaType.parse("application/json")!!))
+            .addConverterFactory(Json.asConverterFactory("application/json".toMediaTypeOrNull()!!))
             .build()
     }
 
@@ -34,5 +35,11 @@ object AppModule {
     @Singleton
     fun provideService(@SeoulOpenApiRetrofit retrofit: Retrofit): Service {
         return retrofit.create(Service::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSportsFacilityService(@SeoulOpenApiRetrofit retrofit: Retrofit): SportsFacilityService {
+        return retrofit.create(SportsFacilityService::class.java)
     }
 }

@@ -8,6 +8,9 @@ plugins {
     // Hilt
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+
+    // kotlinSerializable
+    kotlin("plugin.serialization") version "1.9.22"
 }
 val properties = Properties()
 properties.load(FileInputStream(rootProject.file("local.properties")))
@@ -27,9 +30,11 @@ android {
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = libs.versions.versionCode.get().toInt()
         versionName = libs.versions.appVersion.get()
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "SEOUL_OPEN_API_BASE_URL", "\"http://openAPI.seoul.go.kr:8088/${properties["ACT_KEY"]}/\"")
+
+        manifestPlaceholders["NAVER_MAP_CLIENT_ID"] =
+            properties.getProperty("NAVER_MAP_CLIENT_ID")
     }
 
     buildTypes {
@@ -75,4 +80,7 @@ dependencies {
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.core)
+
+    // naverMap
+    implementation(libs.bundles.naverMap)
 }
