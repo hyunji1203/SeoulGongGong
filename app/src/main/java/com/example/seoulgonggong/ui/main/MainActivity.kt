@@ -51,8 +51,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun subscribe() {
-        viewModel.weatherStatus.observe(this) { status ->
-            when (status) {
+        viewModel.weatherInfo.observe(this) { weather ->
+            when (weather.weatherStatus) {
                 SUN -> binding.ivMainWeatherIcon.setImageResource(R.drawable.ic_sum)
                 LITTLE_SUNNY -> binding.ivMainWeatherIcon.setImageResource(R.drawable.ic_little_sunny)
                 CLOUD -> binding.ivMainWeatherIcon.setImageResource(R.drawable.ic_cloud)

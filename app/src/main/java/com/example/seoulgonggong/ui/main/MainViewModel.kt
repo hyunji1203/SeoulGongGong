@@ -10,6 +10,7 @@ import com.example.seoulgonggong.domain.model.WeatherStatus
 import com.example.seoulgonggong.domain.repository.GeoRepository
 import com.example.seoulgonggong.domain.repository.ParticulateMatterRepository
 import com.example.seoulgonggong.domain.repository.WeatherRepository
+import com.example.seoulgonggong.ui.uimodel.UiWeather
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -22,11 +23,8 @@ class MainViewModel
         private val particulateMatterRepository: ParticulateMatterRepository,
         private val geoRepository: GeoRepository,
     ) : ViewModel() {
-        private val _temperature = MutableLiveData<Int>()
-        val temperature: LiveData<Int> = _temperature
-
-        private val _weatherStatus = MutableLiveData<WeatherStatus>()
-        val weatherStatus: LiveData<WeatherStatus> = _weatherStatus
+        private val _weatherInfo = MutableLiveData<UiWeather>()
+        val weatherInfo: LiveData<UiWeather> = _weatherInfo
 
         private val _particulateMatter = MutableLiveData<Int>()
         val particulateMatter: LiveData<Int> = _particulateMatter
@@ -56,8 +54,11 @@ class MainViewModel
                         ny = point.ny,
                     )
                 }.onSuccess { weathers ->
-                    _temperature.value = weathers.temperature.toInt()
-                    _weatherStatus.value = WeatherStatus.findByName(weathers.getStatus())
+                    _weatherInfo.value =
+                        UiWeather(
+                            temperature = weathers.temperature.toInt(),
+                            weatherStatus = WeatherStatus.findByName(weathers.getStatus()),
+                        )
                 }.onFailure {
                     _throwable.value = it.message
                 }
