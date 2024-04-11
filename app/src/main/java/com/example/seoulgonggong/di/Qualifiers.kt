@@ -3,9 +3,9 @@ package com.example.seoulgonggong.di
 import javax.inject.Qualifier
 
 @Qualifier
-@Retention(AnnotationRetention.BINARY)
+@Retention
 annotation class SeoulOpenApiRetrofit
 
 @Qualifier
-@Retention(AnnotationRetention.BINARY)
+@Retention
 annotation class WeatherRetrofit
