@@ -1,7 +1,6 @@
 package com.example.seoulgonggong.data.repository
 
 import android.accounts.NetworkErrorException
-import android.util.Log
 import com.example.seoulgonggong.data.model.ForecastResponse
 import com.example.seoulgonggong.data.service.WeatherService
 import com.example.seoulgonggong.domain.model.Weather
@@ -22,28 +21,8 @@ class DefaultWeatherRepository(
     ): Weather {
         val response = weatherService.getForecast(serviceKey, baseDate, baseTime, nx, ny)
         if (response.isSuccessful) {
-            Log.d("test", "성공 문")
-            val forecastDateTimeMap = mutableMapOf<String, Weather>()
             val forecasts = response.body()?.response?.body?.items?.item.orEmpty()
-
-            for (forecast in forecasts) {
-                if (forecastDateTimeMap["${forecast.forecastDate}/${forecast.forecastTime}"] == null) {
-                    forecastDateTimeMap["${forecast.forecastDate}/${forecast.forecastTime}"] =
-                        Weather(
-                            forecastDate = forecast.forecastDate,
-                            forecastTime = forecast.forecastTime,
-                        )
-                }
-
-                forecastDateTimeMap["${forecast.forecastDate}/${forecast.forecastTime}"]?.apply {
-                    when (forecast.category) {
-                        PTY.toString() -> precipitationType = transformRainType(forecast)
-                        SKY.toString() -> sky = transformSky(forecast)
-                        TMP.toString() -> temperature = forecast.forecastValue.toDouble()
-                        else -> {}
-                    }
-                }
-            }
+            val forecastDateTimeMap: MutableMap<String, Weather> = sortForecastByTime(forecasts)
 
             val list = forecastDateTimeMap.values.toMutableList()
             list.sortWith { f1, f2 ->
@@ -54,26 +33,27 @@ class DefaultWeatherRepository(
             }
             return list.first()
         } else {
-            Log.d("test", "else 문")
             throw NetworkErrorException("네트워크 오류")
         }
     }
 
-    private fun transformRainType(forecast: ForecastResponse): String {
-        return when (forecast.forecastValue.toInt()) {
-            0 -> "없음"
-            1, 4 -> "비"
-            2, 3 -> "눈"
-            else -> ""
-        }
-    }
+    private fun sortForecastByTime(forecasts: List<ForecastResponse>): MutableMap<String, Weather> {
+        val forecastDateTimeMap = mutableMapOf<String, Weather>()
+        for (forecast in forecasts) {
+            if (forecastDateTimeMap["${forecast.forecastDate}/${forecast.forecastTime}"] == null) {
+                forecastDateTimeMap["${forecast.forecastDate}/${forecast.forecastTime}"] =
+                    Weather(forecast.forecastDate, forecast.forecastTime)
+            }
 
-    private fun transformSky(forecast: ForecastResponse): String {
-        return when (forecast.forecastValue.toInt()) {
-            1 -> "맑음"
-            3 -> "구름많음"
-            4 -> "흐림"
-            else -> ""
+            forecastDateTimeMap["${forecast.forecastDate}/${forecast.forecastTime}"]?.apply {
+                when (forecast.category) {
+                    PTY.toString() -> precipitationType = forecast.transformRainType()
+                    SKY.toString() -> sky = forecast.transformSky()
+                    TMP.toString() -> temperature = forecast.forecastValue.toDouble()
+                    else -> {}
+                }
+            }
         }
+        return forecastDateTimeMap
     }
 }

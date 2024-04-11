@@ -45,4 +45,22 @@ data class ForecastResponse(
     val nx: Int,
     @SerialName("ny")
     val ny: Int,
-)
+) {
+    fun transformRainType(): String {
+        return when (forecastValue.toInt()) {
+            0 -> "없음"
+            1, 4 -> "비"
+            2, 3 -> "눈"
+            else -> ""
+        }
+    }
+
+    fun transformSky(): String {
+        return when (forecastValue.toInt()) {
+            1 -> "맑음"
+            3 -> "구름많음"
+            4 -> "흐림"
+            else -> ""
+        }
+    }
+}
