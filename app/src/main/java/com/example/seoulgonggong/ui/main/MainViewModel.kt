@@ -7,6 +7,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.seoulgonggong.domain.model.BaseDateTime
+import com.example.seoulgonggong.domain.model.Town
+import com.example.seoulgonggong.domain.repository.GeoRepository
 import com.example.seoulgonggong.domain.repository.ParticulateMatterRepository
 import com.example.seoulgonggong.domain.repository.WeatherRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,6 +21,7 @@ class MainViewModel
     constructor(
         private val weatherRepository: WeatherRepository,
         private val particulateMatterRepository: ParticulateMatterRepository,
+        private val geoRepository: GeoRepository,
     ) : ViewModel() {
         private val _temperature = MutableLiveData<Int>()
         val temperature: LiveData<Int> = _temperature
@@ -61,10 +64,15 @@ class MainViewModel
             }
         }
 
-        fun fetchParticulateMatter(town: String) {
+        fun fetchParticulateMatter(
+            latitude: Double,
+            longitude: Double,
+        ) {
+            val fullAddress = getFullAddress(latitude, longitude)
+
             viewModelScope.launch {
                 runCatching {
-                    particulateMatterRepository.getDust(msrsteNm = town)
+                    particulateMatterRepository.getDust(msrsteNm = fullAddress)
                 }.onSuccess { particulateMatterInfo ->
                     _particulateMatter.value = particulateMatterInfo.pm10
                     _particulateMatterStatus.value = particulateMatterInfo.idexNm
@@ -74,5 +82,24 @@ class MainViewModel
                     throw NetworkErrorException("네트워크 오류에용")
                 }
             }
+        }
+
+        private fun getFullAddress(
+            latitude: Double,
+            longitude: Double,
+        ): String {
+            var name = ""
+            viewModelScope.launch {
+                runCatching {
+                    Log.d("test", "지오코딩 성공!")
+                    geoRepository.getFullAddress(latitude, longitude)
+                }.onSuccess { address ->
+                    name = address
+                }.onFailure {
+                    Log.d("test", "지오코딩 실패! ${it.message}")
+                }
+            }
+            Log.d("test", "hohoho ${Town.findTownName(name)}")
+            return Town.findTownName(name)
         }
     }

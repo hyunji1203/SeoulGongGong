@@ -11,8 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.checkSelfPermission
 import com.example.seoulgonggong.R
 import com.example.seoulgonggong.databinding.ActivityMainBinding
-import com.example.seoulgonggong.domain.model.Town
-import com.example.seoulgonggong.ui.common.GoogleGeoCoder
 import com.example.seoulgonggong.util.openSetting
 import com.example.seoulgonggong.util.showToast
 import com.google.android.gms.location.LocationServices
@@ -73,24 +71,8 @@ class MainActivity : AppCompatActivity() {
         fusedLocationClient.lastLocation.addOnSuccessListener {
             Log.d("test", "${it.latitude}, ${it.longitude}")
             viewModel.fetchWeather(it.latitude, it.longitude)
-            viewModel.fetchParticulateMatter(getAddress(it.latitude, it.longitude))
+            viewModel.fetchParticulateMatter(it.latitude, it.longitude)
         }
-    }
-
-    private fun getAddress(
-        latitude: Double,
-        longitude: Double,
-    ): String {
-        var name = ""
-        try {
-            val reverseGeoCoder = GoogleGeoCoder(applicationContext)
-            name = reverseGeoCoder.getAddress(latitude, longitude)
-            Log.d("test", "지오코딩 성공!")
-            binding.tvMainTown.text = name
-        } catch (e: Exception) {
-            Log.d("test", "지오코딩 실패! ${e.message}")
-        }
-        return Town.findTownName(name)
     }
 
     companion object {
