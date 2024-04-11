@@ -72,7 +72,7 @@ class MainViewModel
             val fullAddress = getFullAddress(latitude, longitude)
             viewModelScope.launch {
                 runCatching {
-                    particulateMatterRepository.getDust(msrsteNm = fullAddress)
+                    particulateMatterRepository.getParticulateMatter(fullAddress)
                 }.onSuccess { particulateMatterInfo ->
                     _particulateMatter.value = particulateMatterInfo.pm10
                     _particulateMatterStatus.value = particulateMatterInfo.idexNm

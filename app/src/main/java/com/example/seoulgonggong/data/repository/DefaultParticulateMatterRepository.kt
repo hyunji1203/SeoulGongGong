@@ -10,7 +10,7 @@ import com.example.seoulgonggong.domain.repository.ParticulateMatterRepository
 class DefaultParticulateMatterRepository(
     private val particulateMatterService: ParticulateMatterService,
 ) : ParticulateMatterRepository {
-    override suspend fun getDust(msrsteNm: String): ParticulateMatter {
+    override suspend fun getParticulateMatter(msrsteNm: String): ParticulateMatter {
         val response = particulateMatterService.getParticulateMatter(msrsteNm)
         if (response.isSuccessful) {
             return response.body()!!.toDomain()
