@@ -1,33 +1,35 @@
 package com.example.seoulgonggong.di
 
-import com.example.seoulgonggong.data.datasource.GeoDataSource
 import com.example.seoulgonggong.data.repository.DefaultGeoRepository
 import com.example.seoulgonggong.data.repository.DefaultParticulateMatterRepository
+import com.example.seoulgonggong.data.repository.DefaultSportsFacilityRepository
 import com.example.seoulgonggong.data.repository.DefaultWeatherRepository
-import com.example.seoulgonggong.data.service.ParticulateMatterService
-import com.example.seoulgonggong.data.service.WeatherService
 import com.example.seoulgonggong.domain.repository.GeoRepository
 import com.example.seoulgonggong.domain.repository.ParticulateMatterRepository
+import com.example.seoulgonggong.domain.repository.SportsFacilityRepository
 import com.example.seoulgonggong.domain.repository.WeatherRepository
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class RepositoryModule {
-    @Provides
+interface RepositoryModule {
+    @Binds
     @Singleton
-    fun provideWeatherRepository(weatherService: WeatherService): WeatherRepository = DefaultWeatherRepository(weatherService)
+    fun bindsSportsFacilityRepository(repository: DefaultSportsFacilityRepository): SportsFacilityRepository
 
-    @Provides
+    @Binds
     @Singleton
-    fun provideParticulateMatterRepository(particulateMatterService: ParticulateMatterService): ParticulateMatterRepository =
-        DefaultParticulateMatterRepository(particulateMatterService)
+    fun bindWeatherRepository(repository: DefaultWeatherRepository): WeatherRepository
 
-    @Provides
+    @Binds
     @Singleton
-    fun provideAGeoRepository(geoDataSource: GeoDataSource): GeoRepository = DefaultGeoRepository(geoDataSource)
+    fun bindParticulateMatterRepository(repository: DefaultParticulateMatterRepository): ParticulateMatterRepository
+
+    @Binds
+    @Singleton
+    fun provideAGeoRepository(repository: DefaultGeoRepository): GeoRepository
 }

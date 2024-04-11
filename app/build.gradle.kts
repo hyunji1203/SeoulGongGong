@@ -31,7 +31,6 @@ android {
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = libs.versions.versionCode.get().toInt()
         versionName = libs.versions.appVersion.get()
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "SEOUL_OPEN_API_BASE_URL", "\"http://openAPI.seoul.go.kr:8088/${properties["ACT_KEY"]}/\"")
         buildConfigField("String", "OPEN_DATA_API_BASE_URL", "\"http://apis.data.go.kr/\"")
@@ -40,6 +39,9 @@ android {
             "OPEN_DATA_SERVICE_KEY",
             "\"N4E7Om1Q+ZfsXn5KbolmQMkKGMtW6NKltMv/tBhClqRm/U6UMiSeIamXBI9aD6GNs/GQRR6Maxah3UfAcw16+Q==\"",
         )
+
+        manifestPlaceholders["NAVER_MAP_CLIENT_ID"] =
+            properties.getProperty("NAVER_MAP_CLIENT_ID")
     }
 
     buildTypes {
@@ -81,29 +83,24 @@ dependencies {
     implementation(libs.hilt)
     kapt(libs.hiltKapt)
 
+    // Kotlinx-serialization
+    implementation(libs.kotlinx.serialization.json)
+
     // lifecycle
     implementation(libs.viewmodel)
     implementation(libs.livedata)
 
-    // activity
-    implementation(libs.activity)
-
     // retrofit
-    implementation(libs.retrofit)
-    implementation(libs.converter)
-
-    // kotlinx-serialization
-    implementation(libs.serialization)
-    implementation(libs.serialconverter)
+    implementation(libs.bundles.retrofit)
 
     // okhttp3
     implementation(libs.okhttp3)
 
     // Coroutine
-    implementation(libs.coroutinecore)
+    implementation(libs.kotlinx.coroutines.core)
     implementation(libs.coroutinejdk)
     testImplementation(libs.coroutinetest)
 
-    // location
-    implementation(libs.location)
+    // naverMap
+    implementation(libs.bundles.naverMap)
 }

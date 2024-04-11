@@ -16,6 +16,8 @@ gradleplugin = "8.1.2"
 coreKtx = "1.10.0"
 appcompat = "1.6.1"
 constraintlayout = "2.1.4"
+fragment = "1.6.2"
+activity = "1.7.2"
 
 # Google Libraries
 material = "1.9.0"
@@ -34,34 +36,39 @@ hilt = "2.48"
 # Lifecycle
 lifecycle = "2.6.0"
 
-# activity
-activity = "1.7.2"
-
-# retrofit
+# Retrofit
 retrofit = "2.11.0"
+retrofit2KotlinxSerializationConverter = "1.0.0"
 
 # kotlinx-serialization
-serialization = "1.6.3"
-serialconverter = "1.0.0"
+kotlinxSerializationJson = "1.6.3"
 
 # okhttp3
 okhttp3 = "4.11.0"
 
 # Coroutine
-coroutine = "1.7.3"
+kotlinxCoroutinesCore = "1.8.1-Beta"
 coroutinetest = "1.7.3"
 
-# location
-location = "21.2.0"
+# naverMap
+naverMap = "3.18.0"
+playServicesLocation = "21.2.0"
 
 [libraries]
 # AndroidX Libraries
 coreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment" }
+activity = { module = "androidx.activity:activity-ktx", version.ref = "activity" }
 
 # Google Libraries
 material = { module = "com.google.android.material:material", version.ref = "material" }
+playServicesLocation = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
+
+# kotlinx
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 
 # Test Libraries
 androidTestJunit = { module = "androidx.test.ext:junit", version.ref = "androidTestJunit" }
@@ -75,35 +82,30 @@ glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hiltKapt = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
 
+# retrofit
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit2-kotlinx-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofit2KotlinxSerializationConverter" }
+
+# naverMap
+naverMap = { module = "com.naver.maps:map-sdk", version.ref = "naverMap" }
+
 # lifecycle
 viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
-
-# activity
-activity = { module = "androidx.activity:activity-ktx", version.ref = "activity" }
-
-# retrofit
-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
-converter = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
-
-# kotlinx-serialization
-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
-serialconverter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "serialconverter" }
 
 # okhttp3
 okhttp3 = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp3" }
 
 # coroutine
-coroutinecore = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutine" }
-coroutinejdk = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "coroutine" }
+coroutinejdk = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "kotlinxCoroutinesCore" }
 coroutinetest = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutinetest" }
 
-# location
-location = { module = "com.google.android.gms:play-services-location", version.ref = "location" }
 
 [bundles]
-androidDefault = ["coreKtx", "appcompat", "constraintlayout", "material"]
+androidDefault = ["coreKtx", "appcompat", "constraintlayout", "material", "fragment", "activity"]
 test = ["junit"]
 androidUnitTest = ["androidTestJunit", "androidxTestEspresso"]
+retrofit = ["retrofit", "retrofit2-kotlinx-serialization-converter"]
+naverMap = ["naverMap", "playServicesLocation"]
 
 [plugins]

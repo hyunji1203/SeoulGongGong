@@ -7,6 +7,9 @@
     <string name="main_temperature">%d℃</string>
     <string name="main_particulate_matter">미세먼지 %d㎍/㎥ </string>
 
+    <!--  SportsFacilityActivity  -->
+    <string name="tv_facility_title">공공 체육 시설</string>
+
     <!-- All -->
     <string name="network_errer_message">오류가 발생했어요! 다시 시도해주세요!</string>
 </resources>
