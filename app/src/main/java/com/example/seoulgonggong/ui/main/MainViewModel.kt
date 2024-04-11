@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.seoulgonggong.BuildConfig
 import com.example.seoulgonggong.domain.model.BaseDateTime
+import com.example.seoulgonggong.domain.model.WeatherStatus
 import com.example.seoulgonggong.domain.repository.GeoRepository
 import com.example.seoulgonggong.domain.repository.ParticulateMatterRepository
 import com.example.seoulgonggong.domain.repository.WeatherRepository
@@ -24,8 +25,8 @@ class MainViewModel
         private val _temperature = MutableLiveData<Int>()
         val temperature: LiveData<Int> = _temperature
 
-        private val _weatherStatus = MutableLiveData<String>()
-        val weatherStatus: LiveData<String> = _weatherStatus
+        private val _weatherStatus = MutableLiveData<WeatherStatus>()
+        val weatherStatus: LiveData<WeatherStatus> = _weatherStatus
 
         private val _particulateMatter = MutableLiveData<Int>()
         val particulateMatter: LiveData<Int> = _particulateMatter
@@ -56,7 +57,7 @@ class MainViewModel
                     )
                 }.onSuccess { weathers ->
                     _temperature.value = weathers.temperature.toInt()
-                    _weatherStatus.value = weathers.getStatus()
+                    _weatherStatus.value = WeatherStatus.findByName(weathers.getStatus())
                 }.onFailure {
                     _throwable.value = it.message
                 }

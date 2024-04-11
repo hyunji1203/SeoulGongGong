@@ -4,13 +4,17 @@ import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.checkSelfPermission
 import com.example.seoulgonggong.R
 import com.example.seoulgonggong.databinding.ActivityMainBinding
+import com.example.seoulgonggong.domain.model.WeatherStatus.CLOUD
+import com.example.seoulgonggong.domain.model.WeatherStatus.LITTLE_SUNNY
+import com.example.seoulgonggong.domain.model.WeatherStatus.RAIN
+import com.example.seoulgonggong.domain.model.WeatherStatus.SNOW
+import com.example.seoulgonggong.domain.model.WeatherStatus.SUN
 import com.example.seoulgonggong.util.openSetting
 import com.example.seoulgonggong.util.showToast
 import com.google.android.gms.location.LocationServices
@@ -49,11 +53,11 @@ class MainActivity : AppCompatActivity() {
     private fun subscribe() {
         viewModel.weatherStatus.observe(this) { status ->
             when (status) {
-                "맑음" -> binding.ivMainWeatherIcon.setImageResource(R.drawable.ic_sum)
-                "구름많음" -> binding.ivMainWeatherIcon.setImageResource(R.drawable.ic_little_sunny)
-                "흐림" -> binding.ivMainWeatherIcon.setImageResource(R.drawable.ic_cloud)
-                "비" -> binding.ivMainWeatherIcon.setImageResource(R.drawable.ic_rain)
-                "눈" -> binding.ivMainWeatherIcon.setImageResource(R.drawable.ic_snow)
+                SUN -> binding.ivMainWeatherIcon.setImageResource(R.drawable.ic_sum)
+                LITTLE_SUNNY -> binding.ivMainWeatherIcon.setImageResource(R.drawable.ic_little_sunny)
+                CLOUD -> binding.ivMainWeatherIcon.setImageResource(R.drawable.ic_cloud)
+                RAIN -> binding.ivMainWeatherIcon.setImageResource(R.drawable.ic_rain)
+                SNOW -> binding.ivMainWeatherIcon.setImageResource(R.drawable.ic_snow)
             }
         }
         viewModel.throwable.observe(this) { error ->
@@ -72,7 +76,6 @@ class MainActivity : AppCompatActivity() {
         checkLocationPermission()
         val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         fusedLocationClient.lastLocation.addOnSuccessListener {
-            Log.d("test", "${it.latitude}, ${it.longitude}")
             viewModel.fetchWeather(it.latitude, it.longitude)
             viewModel.fetchParticulateMatter(it.latitude, it.longitude)
         }
