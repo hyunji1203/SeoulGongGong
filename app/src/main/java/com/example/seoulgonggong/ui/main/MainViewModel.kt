@@ -10,7 +10,9 @@ import com.example.seoulgonggong.domain.model.WeatherStatus
 import com.example.seoulgonggong.domain.repository.GeoRepository
 import com.example.seoulgonggong.domain.repository.ParticulateMatterRepository
 import com.example.seoulgonggong.domain.repository.WeatherRepository
+import com.example.seoulgonggong.ui.uimodel.UiParticulateMatter
 import com.example.seoulgonggong.ui.uimodel.UiWeather
+import com.example.seoulgonggong.ui.uimodel.mapper.toUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -26,14 +28,8 @@ class MainViewModel
         private val _weatherInfo = MutableLiveData<UiWeather>()
         val weatherInfo: LiveData<UiWeather> = _weatherInfo
 
-        private val _particulateMatter = MutableLiveData<Int>()
-        val particulateMatter: LiveData<Int> = _particulateMatter
-
-        private val _particulateMatterStatus = MutableLiveData<String>()
-        val particulateMatterStatus: LiveData<String> = _particulateMatterStatus
-
-        private val _observatory = MutableLiveData<String>()
-        val observatory: LiveData<String> = _observatory
+        private val _particulateMatterInfo = MutableLiveData<UiParticulateMatter>()
+        val particulateMatterInfo: LiveData<UiParticulateMatter> = _particulateMatterInfo
 
         private val _throwable = MutableLiveData<String>()
         val throwable: LiveData<String> = _throwable
@@ -74,9 +70,7 @@ class MainViewModel
                     val address = geoRepository.getCityAddress(latitude, longitude)
                     particulateMatterRepository.getParticulateMatter(address)
                 }.onSuccess { particulateMatterInfo ->
-                    _particulateMatter.value = particulateMatterInfo.pm10
-                    _particulateMatterStatus.value = particulateMatterInfo.idexNm
-                    _observatory.value = particulateMatterInfo.msrsteNm
+                    _particulateMatterInfo.value = particulateMatterInfo.toUi()
                 }.onFailure {
                     _throwable.value = it.message
                 }

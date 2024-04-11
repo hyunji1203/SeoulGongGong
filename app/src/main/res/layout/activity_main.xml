@@ -63,7 +63,7 @@
                 android:layout_marginTop="48dp"
                 android:fontFamily="@font/pretendard_medium"
                 android:paddingBottom="20dp"
-                android:text="@{@string/main_particulate_matter(viewmodel.particulateMatter)}"
+                android:text="@{@string/main_particulate_matter(viewmodel.particulateMatterInfo.particulateMatter)}"
                 android:textSize="20sp"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
@@ -80,7 +80,7 @@
                 android:paddingBottom="20dp"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:text="@{viewmodel.particulateMatterStatus}"
+                android:text="@{viewmodel.particulateMatterInfo.particulateMatterStatus}"
                 app:layout_constraintStart_toEndOf="@+id/tv_main_particulate_matter"
                 app:layout_constraintTop_toBottomOf="@+id/tv_main_weather_status"
                 tools:text="좋음" />
@@ -114,7 +114,7 @@
                 android:fontFamily="@font/pretendard_medium"
                 android:textSize="20sp"
                 android:textColor="@color/black"
-                android:text="@{viewmodel.observatory}"
+                android:text="@{viewmodel.particulateMatterInfo.observatory}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:text="상일동" />
