@@ -25,5 +25,13 @@ enum class Town(val townName: String) {
     Eungpyung("은평구"),
     Jongro("종로구"),
     Joong("중구"),
-    Joongrang("중랑구"),
+    Joongrang("중랑구"), ;
+
+    companion object {
+        fun findTownName(address: String): String {
+            return Town.values().find { town ->
+                address.contains(town.townName)
+            }?.townName ?: Joong.townName
+        }
+    }
 }
