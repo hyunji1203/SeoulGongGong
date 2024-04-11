@@ -1,7 +1,7 @@
 package com.example.seoulgonggong.domain.repository
 
 interface GeoRepository {
-    suspend fun getFullAddress(
+    suspend fun getCityAddress(
         latitude: Double,
         longitude: Double,
     ): String
