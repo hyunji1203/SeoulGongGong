@@ -17,7 +17,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class AppModule {
-    private val baseUrlWeather = "http://apis.data.go.kr/"
     private val json = Json { ignoreUnknownKeys = true }
 
     @Provides
@@ -36,7 +35,7 @@ class AppModule {
     @WeatherRetrofit
     fun provideWeatherRetrofit(): Retrofit =
         Retrofit.Builder()
-            .baseUrl(baseUrlWeather)
+            .baseUrl(BuildConfig.OPEN_DATA_API_BASE_URL)
             .client(OkHttpClient.Builder().build())
             .addConverterFactory(json.asConverterFactory("application/json".toMediaTypeOrNull()!!))
             .build()
