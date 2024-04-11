@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.seoulgonggong.BuildConfig
 import com.example.seoulgonggong.domain.model.BaseDateTime
-import com.example.seoulgonggong.domain.model.Town
 import com.example.seoulgonggong.domain.repository.GeoRepository
 import com.example.seoulgonggong.domain.repository.ParticulateMatterRepository
 import com.example.seoulgonggong.domain.repository.WeatherRepository
@@ -55,7 +54,6 @@ class MainViewModel
                         ny = point.ny,
                     )
                 }.onSuccess { weathers ->
-                    Log.d("test", weathers.getStatus())
                     _temperature.value = weathers.temperature.toInt()
                     _weatherStatus.value = weathers.getStatus()
                 }.onFailure {
@@ -69,10 +67,10 @@ class MainViewModel
             latitude: Double,
             longitude: Double,
         ) {
-            val fullAddress = getFullAddress(latitude, longitude)
             viewModelScope.launch {
                 runCatching {
-                    particulateMatterRepository.getParticulateMatter(fullAddress)
+                    val address = geoRepository.getCityAddress(latitude, longitude)
+                    particulateMatterRepository.getParticulateMatter(address)
                 }.onSuccess { particulateMatterInfo ->
                     _particulateMatter.value = particulateMatterInfo.pm10
                     _particulateMatterStatus.value = particulateMatterInfo.idexNm
@@ -82,24 +80,5 @@ class MainViewModel
                     throw NetworkErrorException("네트워크 오류에용")
                 }
             }
-        }
-
-        private fun getFullAddress(
-            latitude: Double,
-            longitude: Double,
-        ): String {
-            var name = ""
-            viewModelScope.launch {
-                runCatching {
-                    Log.d("test", "지오코딩 성공!")
-                    geoRepository.getFullAddress(latitude, longitude)
-                }.onSuccess { address ->
-                    name = address
-                }.onFailure {
-                    Log.d("test", "지오코딩 실패! ${it.message}")
-                }
-            }
-            Log.d("test", "hohoho ${Town.findTownName(name)}")
-            return Town.findTownName(name)
         }
     }
