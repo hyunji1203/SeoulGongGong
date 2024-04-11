@@ -1,7 +1,7 @@
 package com.example.seoulgonggong.di
 
 import com.example.seoulgonggong.BuildConfig
-import com.example.seoulgonggong.data.service.DustService
+import com.example.seoulgonggong.data.service.ParticulateMatterService
 import com.example.seoulgonggong.data.service.WeatherService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
@@ -49,7 +49,7 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideDustService(
+    fun provideParticulateMatterService(
         @SeoulOpenApiRetrofit retrofit: Retrofit,
-    ): DustService = retrofit.create(DustService::class.java)
+    ): ParticulateMatterService = retrofit.create(ParticulateMatterService::class.java)
 }
