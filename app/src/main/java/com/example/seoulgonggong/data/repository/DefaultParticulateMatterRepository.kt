@@ -1,7 +1,6 @@
 package com.example.seoulgonggong.data.repository
 
 import android.accounts.NetworkErrorException
-import android.util.Log
 import com.example.seoulgonggong.data.model.mapper.toDomain
 import com.example.seoulgonggong.data.service.ParticulateMatterService
 import com.example.seoulgonggong.domain.model.ParticulateMatter
@@ -11,11 +10,14 @@ class DefaultParticulateMatterRepository(
     private val particulateMatterService: ParticulateMatterService,
 ) : ParticulateMatterRepository {
     override suspend fun getParticulateMatter(msrsteNm: String): ParticulateMatter {
-        val response = particulateMatterService.getParticulateMatter(msrsteNm)
-        if (response.isSuccessful) {
-            return response.body()!!.toDomain()
+        val responses = particulateMatterService.getParticulateMatter()
+        if (responses.isSuccessful) {
+            val cityAir =
+                responses.body()?.realTimeCityAir?.row?.find {
+                    msrsteNm == it.msrsteNm
+                } ?: responses.body()!!.realTimeCityAir.row[0]
+            return cityAir.toDomain()
         } else {
-            Log.d("test", "else 문")
             throw NetworkErrorException("네트워크 오류")
         }
     }
