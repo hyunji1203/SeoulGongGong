@@ -1,7 +1,5 @@
 package com.example.seoulgonggong.ui.main
 
-import android.accounts.NetworkErrorException
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -38,6 +36,9 @@ class MainViewModel
         private val _observatory = MutableLiveData<String>()
         val observatory: LiveData<String> = _observatory
 
+        private val _throwable = MutableLiveData<String>()
+        val throwable: LiveData<String> = _throwable
+
         fun fetchWeather(
             latitude: Double,
             longitude: Double,
@@ -57,8 +58,7 @@ class MainViewModel
                     _temperature.value = weathers.temperature.toInt()
                     _weatherStatus.value = weathers.getStatus()
                 }.onFailure {
-                    Log.d("test", "${it.message}")
-                    throw NetworkErrorException("네트워크 오류에용")
+                    _throwable.value = it.message
                 }
             }
         }
@@ -76,8 +76,7 @@ class MainViewModel
                     _particulateMatterStatus.value = particulateMatterInfo.idexNm
                     _observatory.value = particulateMatterInfo.msrsteNm
                 }.onFailure {
-                    Log.d("test", "${it.message}")
-                    throw NetworkErrorException("네트워크 오류에용")
+                    _throwable.value = it.message
                 }
             }
         }

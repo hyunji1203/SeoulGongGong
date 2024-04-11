@@ -56,6 +56,9 @@ class MainActivity : AppCompatActivity() {
                 "눈" -> binding.ivMainWeatherIcon.setImageResource(R.drawable.ic_snow)
             }
         }
+        viewModel.throwable.observe(this) { error ->
+            showToast(getString(R.string.network_errer_message))
+        }
     }
 
     private fun checkLocationPermission() {

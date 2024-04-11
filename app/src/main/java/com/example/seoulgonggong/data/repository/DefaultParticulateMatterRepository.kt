@@ -18,7 +18,7 @@ class DefaultParticulateMatterRepository(
                 } ?: responses.body()!!.realTimeCityAir.row[0]
             return cityAir.toDomain()
         } else {
-            throw NetworkErrorException("네트워크 오류")
+            throw NetworkErrorException()
         }
     }
 }

@@ -33,7 +33,7 @@ class DefaultWeatherRepository(
             }
             return list.first()
         } else {
-            throw NetworkErrorException("네트워크 오류")
+            throw NetworkErrorException()
         }
     }
 
