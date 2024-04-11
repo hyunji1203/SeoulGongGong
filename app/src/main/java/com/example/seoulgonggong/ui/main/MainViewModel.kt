@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.seoulgonggong.BuildConfig
 import com.example.seoulgonggong.domain.model.BaseDateTime
 import com.example.seoulgonggong.domain.model.Town
 import com.example.seoulgonggong.domain.repository.GeoRepository
@@ -47,7 +48,7 @@ class MainViewModel
             viewModelScope.launch {
                 runCatching {
                     weatherRepository.getWeather(
-                        serviceKey = "N4E7Om1Q+ZfsXn5KbolmQMkKGMtW6NKltMv/tBhClqRm/U6UMiSeIamXBI9aD6GNs/GQRR6Maxah3UfAcw16+Q==",
+                        serviceKey = BuildConfig.OPEN_DATA_SERVICE_KEY,
                         baseDate = baseDateTime.baseDate,
                         baseTime = baseDateTime.baseTime,
                         nx = point.nx,
@@ -69,7 +70,6 @@ class MainViewModel
             longitude: Double,
         ) {
             val fullAddress = getFullAddress(latitude, longitude)
-
             viewModelScope.launch {
                 runCatching {
                     particulateMatterRepository.getDust(msrsteNm = fullAddress)
