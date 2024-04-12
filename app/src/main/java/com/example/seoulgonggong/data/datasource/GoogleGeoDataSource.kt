@@ -21,11 +21,7 @@ class GoogleGeoDataSource
             return suspendCoroutine { continuation ->
                 val geocoder = Geocoder(context, Locale.KOREAN)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    geocoder.getFromLocation(
-                        latitude,
-                        longitude,
-                        1,
-                    ) { address ->
+                    geocoder.getFromLocation(latitude, longitude, 1) { address ->
                         if (address.size != 0) {
                             continuation.resume(address[0].getAddressLine(0))
                         }
