@@ -28,7 +28,7 @@ object AppModule {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.SEOUL_OPEN_API_BASE_URL)
             .client(OkHttpClient.Builder().build())
-            .addConverterFactory(Json.asConverterFactory("application/json".toMediaTypeOrNull()!!))
+            .addConverterFactory(json.asConverterFactory("application/json".toMediaTypeOrNull()!!))
             .build()
     }
 
