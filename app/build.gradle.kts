@@ -19,7 +19,7 @@ android {
     namespace = "com.example.seoulgonggong"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
-    //BuildConfig 클래스 생성
+    // BuildConfig 클래스 생성
     buildFeatures {
         buildConfig = true
     }
@@ -41,11 +41,7 @@ android {
         // KEY
         buildConfigField("String", "NAVER_MAP_CLIENT_ID", "\"${properties["NAVER_MAP_CLIENT_ID"]}\"")
         buildConfigField("String", "NAVER_MAP_CLIENT_SECRET", "\"${properties["NAVER_MAP_CLIENT_SECRET"]}\"")
-        buildConfigField(
-            "String",
-            "OPEN_DATA_SERVICE_KEY",
-            "\"N4E7Om1Q+ZfsXn5KbolmQMkKGMtW6NKltMv/tBhClqRm/U6UMiSeIamXBI9aD6GNs/GQRR6Maxah3UfAcw16+Q==\"",
-        )
+        buildConfigField("String", "OPEN_DATA_SERVICE_KEY", "\"${properties["OPEN_DATA_SERVICE_KEY"]}\"")
 
         manifestPlaceholders["NAVER_MAP_CLIENT_ID"] =
             properties.getProperty("NAVER_MAP_CLIENT_ID")
@@ -56,7 +52,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
