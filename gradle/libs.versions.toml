@@ -68,6 +68,8 @@ playServicesLocation = { module = "com.google.android.gms:play-services-location
 
 # kotlinx
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
+kotlinx-coroutines-jdk = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "kotlinxCoroutinesCore" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutinetest" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 
 # Test Libraries
@@ -96,16 +98,13 @@ livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref =
 # okhttp3
 okhttp3 = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp3" }
 
-# coroutine
-coroutinejdk = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "kotlinxCoroutinesCore" }
-coroutinetest = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutinetest" }
-
-
 [bundles]
 androidDefault = ["coreKtx", "appcompat", "constraintlayout", "material", "fragment", "activity"]
 test = ["junit"]
 androidUnitTest = ["androidTestJunit", "androidxTestEspresso"]
 retrofit = ["retrofit", "retrofit2-kotlinx-serialization-converter"]
 naverMap = ["naverMap", "playServicesLocation"]
+lifeCycle = ["viewmodel", "livedata"]
+coroutine = ["kotlinx-coroutines-core", "kotlinx-coroutines-jdk"]
 
 [plugins]

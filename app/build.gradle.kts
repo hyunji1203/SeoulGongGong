@@ -87,8 +87,7 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     // lifecycle
-    implementation(libs.viewmodel)
-    implementation(libs.livedata)
+    implementation(libs.bundles.lifeCycle)
 
     // retrofit
     implementation(libs.bundles.retrofit)
@@ -97,9 +96,8 @@ dependencies {
     implementation(libs.okhttp3)
 
     // Coroutine
-    implementation(libs.kotlinx.coroutines.core)
-    implementation(libs.coroutinejdk)
-    testImplementation(libs.coroutinetest)
+    implementation(libs.bundles.coroutine)
+    testImplementation(libs.kotlinx.coroutines.test)
 
     // naverMap
     implementation(libs.bundles.naverMap)
