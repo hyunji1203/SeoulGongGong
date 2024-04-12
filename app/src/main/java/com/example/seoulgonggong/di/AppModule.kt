@@ -1,9 +1,7 @@
 package com.example.seoulgonggong.di
 
 import com.example.seoulgonggong.BuildConfig
-import com.example.seoulgonggong.data.service.SportsFacilityService
 import com.example.seoulgonggong.data.service.ParticulateMatterService
-import com.example.seoulgonggong.data.service.Service
 import com.example.seoulgonggong.data.service.SportsFacilityService
 import com.example.seoulgonggong.data.service.WeatherService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
@@ -16,7 +14,6 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import javax.inject.Singleton
-
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -32,12 +29,13 @@ object AppModule {
     fun provideNaverMapClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor { chain ->
-                val request = chain
-                    .request()
-                    .newBuilder()
-                    .addHeader(HEADER_NAVER_GEOCODING_CLIENT_ID, BuildConfig.NAVER_MAP_CLIENT_ID)
-                    .addHeader(HEADER_NAVER_GEOCODING_CLIENT_SECRET, BuildConfig.NAVER_MAP_CLIENT_SECRET)
-                    .build()
+                val request =
+                    chain
+                        .request()
+                        .newBuilder()
+                        .addHeader(HEADER_NAVER_GEOCODING_CLIENT_ID, BuildConfig.NAVER_MAP_CLIENT_ID)
+                        .addHeader(HEADER_NAVER_GEOCODING_CLIENT_SECRET, BuildConfig.NAVER_MAP_CLIENT_SECRET)
+                        .build()
                 chain.proceed(request)
             }
             .build()
@@ -67,7 +65,9 @@ object AppModule {
     @Provides
     @Singleton
     @GeocodingRetrofit
-    fun provideGeocodingRetrofit(@NaverMapClient client: OkHttpClient): Retrofit {
+    fun provideGeocodingRetrofit(
+        @NaverMapClient client: OkHttpClient,
+    ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.GEOCODING_API_BASE_URL)
             .client(client)
@@ -78,7 +78,9 @@ object AppModule {
     @Provides
     @Singleton
     @ReverseGeocodingRetrofit
-    fun provideReverseGeocodingRetrofit(@NaverMapClient client: OkHttpClient): Retrofit {
+    fun provideReverseGeocodingRetrofit(
+        @NaverMapClient client: OkHttpClient,
+    ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.REVERSE_GEOCODING_API_BASE_URL)
             .client(client)
@@ -86,16 +88,11 @@ object AppModule {
             .build()
     }
 
-
     @Provides
     @Singleton
-    fun provideService(@SeoulOpenApiRetrofit retrofit: Retrofit): Service {
-        return retrofit.create(Service::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideSportsFacilityService(@SeoulOpenApiRetrofit retrofit: Retrofit): SportsFacilityService {
+    fun provideSportsFacilityService(
+        @SeoulOpenApiRetrofit retrofit: Retrofit,
+    ): SportsFacilityService {
         return retrofit.create(SportsFacilityService::class.java)
     }
 
