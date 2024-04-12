@@ -31,7 +31,15 @@ android {
         versionCode = libs.versions.versionCode.get().toInt()
         versionName = libs.versions.appVersion.get()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // BASE_URL
         buildConfigField("String", "SEOUL_OPEN_API_BASE_URL", "\"http://openAPI.seoul.go.kr:8088/${properties["ACT_KEY"]}/\"")
+        buildConfigField("String", "GEOCODING_API_BASE_URL", "\"https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode/\"")
+        buildConfigField("String", "REVERSE_GEOCODING_API_BASE_URL", "\"https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc/\"")
+
+        // KEY
+        buildConfigField("String", "NAVER_MAP_CLIENT_ID", "\"${properties["NAVER_MAP_CLIENT_ID"]}\"")
+        buildConfigField("String", "NAVER_MAP_CLIENT_SECRET", "\"${properties["NAVER_MAP_CLIENT_SECRET"]}\"")
 
         manifestPlaceholders["NAVER_MAP_CLIENT_ID"] =
             properties.getProperty("NAVER_MAP_CLIENT_ID")
