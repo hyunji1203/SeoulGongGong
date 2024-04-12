@@ -31,5 +31,5 @@ interface RepositoryModule {
 
     @Binds
     @Singleton
-    fun provideAGeoRepository(repository: DefaultGeoRepository): GeoRepository
+    fun bindGeoRepository(repository: DefaultGeoRepository): GeoRepository
 }

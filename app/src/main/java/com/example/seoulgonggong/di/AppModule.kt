@@ -18,7 +18,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class AppModule {
+object AppModule {
     private val json = Json { ignoreUnknownKeys = true }
 
     @Provides
@@ -71,7 +71,7 @@ class AppModule {
     @Singleton
     fun provideParticulateMatterService(
         @SeoulOpenApiRetrofit retrofit: Retrofit,
-    ): ParticulateMatterService  {
+    ): ParticulateMatterService {
         return retrofit.create(ParticulateMatterService::class.java)
     }
 }
