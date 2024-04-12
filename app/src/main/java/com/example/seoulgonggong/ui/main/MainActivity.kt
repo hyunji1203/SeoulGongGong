@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
                 SNOW -> binding.ivMainWeatherIcon.setImageResource(R.drawable.ic_snow)
             }
         }
-        viewModel.throwable.observe(this) { error ->
+        viewModel.throwable.observe(this) {
             showToast(getString(R.string.network_errer_message))
         }
     }
