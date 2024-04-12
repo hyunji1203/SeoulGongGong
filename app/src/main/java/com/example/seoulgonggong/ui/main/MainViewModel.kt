@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.seoulgonggong.BuildConfig
 import com.example.seoulgonggong.domain.model.BaseDateTime
-import com.example.seoulgonggong.domain.model.WeatherStatus
 import com.example.seoulgonggong.domain.repository.GeoRepository
 import com.example.seoulgonggong.domain.repository.ParticulateMatterRepository
 import com.example.seoulgonggong.domain.repository.WeatherRepository
@@ -50,11 +49,7 @@ class MainViewModel
                         ny = point.ny,
                     )
                 }.onSuccess { weathers ->
-                    _weatherInfo.value =
-                        UiWeather(
-                            temperature = weathers.temperature.toInt(),
-                            weatherStatus = WeatherStatus.findByName(weathers.getStatus()),
-                        )
+                    _weatherInfo.value = weathers.toUi()
                 }.onFailure {
                     _throwable.value = it.message
                 }
