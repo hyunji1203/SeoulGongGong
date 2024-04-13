@@ -1,6 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+        <variable
+            name="openFacilityEvent"
+            type="kotlin.jvm.functions.Function1" />
+
+        <variable
+            name="facilityItem"
+            type="com.example.seoulgonggong.ui.uimodel.UiSportsFacility" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@drawable/rect_dark_gray_10_stroke"
+        android:onClick="@{(value)->openFacilityEvent.invoke(facilityItem)}">
+
+        <ImageView
+            android:id="@+id/iv_facility_icon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginVertical="24dp"
+            android:layout_marginStart="24dp"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_badminton" />
+
+        <ImageView
+            android:id="@+id/btn_scrap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/ic_heart"
+            android:backgroundTint="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_facility_item_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{facilityItem.facilityName}"
+            android:textAppearance="@style/title_2B"
+            app:layout_constraintEnd_toStartOf="@id/btn_scrap"
+            app:layout_constraintStart_toEndOf="@id/iv_facility_icon"
+            app:layout_constraintTop_toTopOf="@id/iv_facility_icon"
+            tools:text="강서구민 올림픽 문화 체육센터" />
+
+        <TextView
+            android:id="@+id/tv_facility_item_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{facilityItem.address}"
+            android:textAppearance="@style/caption_1"
+            android:textColor="@color/deep_gray"
+            app:layout_constraintBottom_toTopOf="@id/tv_facility_operating_status"
+            app:layout_constraintEnd_toEndOf="@id/tv_facility_item_title"
+            app:layout_constraintStart_toStartOf="@id/tv_facility_item_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_facility_item_title"
+            tools:text="서울특별시 송파구 방이동 439-8" />
+
+        <TextView
+            android:id="@+id/tv_facility_operating_status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@style/subtitle_1"
+            android:textColor="@color/deep_gray"
+            app:layout_constraintBottom_toBottomOf="@id/iv_facility_icon"
+            app:layout_constraintEnd_toEndOf="@id/tv_facility_item_title"
+            app:layout_constraintStart_toStartOf="@id/tv_facility_item_title"
+            tools:text="운영중" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

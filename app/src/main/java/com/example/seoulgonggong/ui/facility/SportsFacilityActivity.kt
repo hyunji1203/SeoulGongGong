@@ -3,7 +3,6 @@ package com.example.seoulgonggong.ui.facility
 import android.Manifest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
@@ -31,6 +30,7 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
+        viewModel.getData()
         val mapFragment: MapFragment =
             supportFragmentManager.findFragmentById(R.id.map_fragment) as MapFragment
         mapFragment.getMapAsync(this)
@@ -44,7 +44,10 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
         viewModel.listOpenEvent.observe(
             this
         ) {
-            Toast.makeText(this, "$it", Toast.LENGTH_SHORT).show()
+            if (it) {
+                val bottomSheet = SportsFacilityBottomSheetFragment()
+                bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+            }
         }
     }
 

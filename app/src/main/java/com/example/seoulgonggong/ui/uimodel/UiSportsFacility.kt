@@ -1,0 +1,19 @@
+package com.example.seoulgonggong.ui.uimodel
+
+data class UiSportsFacility(
+    val idx: Double,
+    val facilityName: String,
+    val facilityCategory: String,
+    val address: String,
+    val addressDetail: String,
+    val phoneNumber: String,
+    val operatingTimeWeekday: String,
+    val operatingTimeWeekend: String,
+    val operatingTimeHoliday: String,
+    val money: String,
+    val parkingInfo: String,
+    val homepageUrl: String,
+    val type: String,
+    val isOperating: String,
+    val convenience: String,
+)
