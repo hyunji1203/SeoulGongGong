@@ -41,8 +41,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initViewModel()
-        setForecast()
         subscribe()
+        setForecast()
     }
 
     private fun initViewModel() {
