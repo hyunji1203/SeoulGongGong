@@ -14,7 +14,7 @@ data class RealtimeCityAir(
     @SerialName("RESULT")
     val result: ResultWithCodeAndMsg,
     @SerialName("row")
-    val row: List<Row>,
+    val particulateMatterRow: List<ParticulateMatterRow>,
 )
 
 @Serializable
@@ -26,7 +26,7 @@ data class ResultWithCodeAndMsg(
 )
 
 @Serializable
-data class Row(
+data class ParticulateMatterRow(
     @SerialName("MSRSTE_NM")
     val msrsteNm: String,
     @SerialName("PM10")

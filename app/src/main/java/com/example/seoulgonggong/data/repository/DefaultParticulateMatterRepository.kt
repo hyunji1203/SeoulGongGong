@@ -16,9 +16,9 @@ class DefaultParticulateMatterRepository
             val responses = particulateMatterService.getParticulateMatter()
             if (responses.isSuccessful) {
                 val cityAir =
-                    responses.body()?.realTimeCityAir?.row?.find {
+                    responses.body()?.realTimeCityAir?.particulateMatterRow?.find {
                         msrsteNm == it.msrsteNm
-                    } ?: responses.body()!!.realTimeCityAir.row[0]
+                    } ?: responses.body()!!.realTimeCityAir.particulateMatterRow[0]
                 return cityAir.toDomain()
             } else {
                 throw NetworkErrorException()
