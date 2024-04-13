@@ -3,9 +3,12 @@ package com.example.seoulgonggong.ui.facility
 import android.Manifest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
+import androidx.databinding.DataBindingUtil
 import com.example.seoulgonggong.R
+import com.example.seoulgonggong.databinding.ActivityPublicSportsFacilityBinding
 import com.naver.maps.map.LocationTrackingMode
 import com.naver.maps.map.MapFragment
 import com.naver.maps.map.NaverMap
@@ -16,19 +19,33 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
 
+    private lateinit var binding: ActivityPublicSportsFacilityBinding
     private lateinit var naverMap: NaverMap
     private lateinit var locationSource: FusedLocationSource
     private val viewModel: SportsFacilityViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_public_sports_facility)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_public_sports_facility)
+
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
 
         val mapFragment: MapFragment =
             supportFragmentManager.findFragmentById(R.id.map_fragment) as MapFragment
         mapFragment.getMapAsync(this)
 
         locationSource = FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
+
+        initOpenListObserve()
+    }
+
+    private fun initOpenListObserve() {
+        viewModel.listOpenEvent.observe(
+            this
+        ) {
+            Toast.makeText(this, "$it", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onRequestPermissionsResult(
