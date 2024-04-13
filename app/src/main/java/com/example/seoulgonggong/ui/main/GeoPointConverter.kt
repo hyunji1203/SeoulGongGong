@@ -1,6 +1,5 @@
 package com.example.seoulgonggong.ui.main
 
-import android.util.Log
 import com.example.seoulgonggong.domain.model.Point
 
 class GeoPointConverter {
@@ -40,7 +39,6 @@ class GeoPointConverter {
         val x = (ra * Math.sin(theta) + XO + 0.5).toInt()
         val y = (ro - ra * Math.cos(theta) + YO + 0.5).toInt()
 
-        Log.d("test", "$x, $y")
         return Point(x, y)
     }
 }
