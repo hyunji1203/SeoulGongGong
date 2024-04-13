@@ -25,7 +25,11 @@ class SportsFacilityViewModel @Inject constructor(
     fun getData() {
         viewModelScope.launch {
             repository.getSportsFacility().onSuccess { facilities ->
-                _sportsFacilities.value = facilities.map { it.toUi() }
+                val uiFacilities = mutableListOf<UiSportsFacility>()
+                facilities.forEach {
+                    if (!it.type.contains(EXCLUDE_WORD)) uiFacilities.add(it.toUi())
+                }
+                _sportsFacilities.value = uiFacilities.toList()
             }
         }
     }
@@ -36,5 +40,9 @@ class SportsFacilityViewModel @Inject constructor(
 
     fun openFacilityDetail(item: UiSportsFacility) {
 
+    }
+
+    companion object {
+        private const val EXCLUDE_WORD = "학교"
     }
 }
