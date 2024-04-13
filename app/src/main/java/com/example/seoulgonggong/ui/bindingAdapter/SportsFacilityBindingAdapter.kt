@@ -1,6 +1,8 @@
 package com.example.seoulgonggong.ui.bindingAdapter
 
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.example.seoulgonggong.R
 
@@ -23,4 +25,14 @@ fun ImageView.loadFacilityIcon(facilityType: String?) {
         else -> R.drawable.ic_etc
     }
     this.setImageResource(iconSrc)
+}
+
+@BindingAdapter("app:setTextColorWithOperatingStatus")
+fun TextView.setTextColorWithOperatingStatus(operatingStatus: String?) {
+    if (operatingStatus == null) return
+    if (operatingStatus.contains("운영")) this.setTextColor(
+        ContextCompat.getColor(this.context, R.color.main_teal)
+    ) else this.setTextColor(
+        ContextCompat.getColor(this.context, R.color.red)
+    )
 }

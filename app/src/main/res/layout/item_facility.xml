@@ -82,12 +82,14 @@
             android:layout_marginBottom="8dp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:text="@{facilityItem.isOperating()}"
             android:textAppearance="@style/subtitle_1"
             android:textColor="@color/deep_gray"
             app:layout_constraintBottom_toBottomOf="@id/iv_facility_icon"
             app:layout_constraintEnd_toEndOf="@id/tv_facility_item_title"
             app:layout_constraintStart_toStartOf="@id/tv_facility_item_title"
-            tools:text="운영중" />
+            app:setTextColorWithOperatingStatus="@{facilityItem.isOperating()}"
+            tools:text="운영" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
