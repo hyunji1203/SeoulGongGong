@@ -27,7 +27,7 @@ class SportsFacilityViewModel @Inject constructor(
             repository.getSportsFacility().onSuccess { facilities ->
                 val uiFacilities = mutableListOf<UiSportsFacility>()
                 facilities.forEach {
-                    if (!it.type.contains(EXCLUDE_WORD)) uiFacilities.add(it.toUi())
+                    if (!it.info.type.contains(EXCLUDE_WORD)) uiFacilities.add(it.toUi())
                 }
                 _sportsFacilities.value = uiFacilities.toList()
             }

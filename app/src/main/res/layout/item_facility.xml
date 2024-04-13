@@ -43,7 +43,8 @@
             android:background="@drawable/ic_heart"
             android:backgroundTint="@color/gray"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:setScrapStatus="@{facilityItem.isScrap}" />
 
         <TextView
             android:id="@+id/tv_facility_item_title"

@@ -27,6 +27,14 @@ fun ImageView.loadFacilityIcon(facilityType: String?) {
     this.setImageResource(iconSrc)
 }
 
+@BindingAdapter("app:setScrapStatus")
+fun ImageView.setScrapStatus(isScrap: Boolean?) {
+    if (isScrap == null) return
+    backgroundTintList = if (isScrap) {
+        ContextCompat.getColorStateList(this.context, R.color.red)
+    } else ContextCompat.getColorStateList(this.context, R.color.gray)
+}
+
 @BindingAdapter("app:setTextColorWithOperatingStatus")
 fun TextView.setTextColorWithOperatingStatus(operatingStatus: String?) {
     if (operatingStatus == null) return

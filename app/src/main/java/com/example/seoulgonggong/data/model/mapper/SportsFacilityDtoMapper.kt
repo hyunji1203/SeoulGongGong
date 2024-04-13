@@ -3,10 +3,12 @@ package com.example.seoulgonggong.data.model.mapper
 import com.example.seoulgonggong.data.model.FacilityRow
 import com.example.seoulgonggong.data.model.SportsFacilityResponse
 import com.example.seoulgonggong.domain.model.SportsFacility
+import com.example.seoulgonggong.domain.model.SportsFacilityInfo
 
-fun SportsFacilityResponse.toDomain() = facilities.row.map { it.toDomain() }
+fun SportsFacilityResponse.toDomain() = facilities.row.map { SportsFacility(it.toDomain()) }
 
-private fun FacilityRow.toDomain() = SportsFacility(
+
+private fun FacilityRow.toDomain() = SportsFacilityInfo(
     idx = idx,
     borough = borough,
     facilityName = facilityName,
