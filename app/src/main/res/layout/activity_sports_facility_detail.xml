@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="facilityItem"
+            type="com.example.seoulgonggong.ui.uimodel.UiSportsFacility" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.facility.detail.SportsFacilityDetailActivity">
+
+        <ImageView
+            android:id="@+id/btn_facility_detail_scrap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="@dimen/margin_default"
+            android:backgroundTint="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:setScrapStatus="@{facilityItem.isScrap}"
+            tools:background="@drawable/ic_heart" />
+
+        <ImageView
+            android:id="@+id/iv_facility_detail_type"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="4dp"
+            android:scaleType="centerInside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_facility_detail_scrap"
+            app:loadFacilityIcon="@{facilityItem.type}"
+            tools:src="@drawable/ic_badminton" />
+
+        <TextView
+            android:id="@+id/tv_facility_detail_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_default"
+            android:text="@{facilityItem.facilityName}"
+            android:textAppearance="@style/title_3B"
+            app:layout_constraintEnd_toStartOf="@id/btn_facility_detail_scrap"
+            app:layout_constraintStart_toEndOf="@id/iv_facility_detail_type"
+            app:layout_constraintTop_toTopOf="@id/iv_facility_detail_type"
+            tools:text="중랑천제1체육공원 인라인스케이트장" />
+
+        <TextView
+            android:id="@+id/tv_facility_detail_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
+            android:text="@{facilityItem.type}"
+            android:textAppearance="@style/caption_1"
+            android:textColor="@color/deep_gray"
+            app:layout_constraintBottom_toTopOf="@id/tv_facility_detail_operating_status"
+            app:layout_constraintEnd_toEndOf="@id/tv_facility_detail_title"
+            app:layout_constraintStart_toStartOf="@id/tv_facility_detail_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_facility_detail_title"
+            tools:text="배드민턴장" />
+
+        <TextView
+            android:id="@+id/tv_facility_detail_operating_status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{facilityItem.isOperating}"
+            android:textAppearance="@style/title_3M"
+            android:textColor="@color/deep_gray"
+            app:layout_constraintBottom_toBottomOf="@id/iv_facility_detail_type"
+            app:layout_constraintEnd_toEndOf="@id/tv_facility_detail_title"
+            app:layout_constraintStart_toStartOf="@id/tv_facility_detail_title"
+            app:setTextColorWithOperatingStatus="@{facilityItem.isOperating}"
+            tools:text="운영"
+            tools:textColor="@color/main_teal" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider_facility_detail"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_facility_detail_type" />
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider_facility_detail">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/margin_default">
+
+                <ImageView
+                    android:id="@+id/iv_facility_detail_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:background="@drawable/ic_location"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_facility_detail_location"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="@{facilityItem.address}"
+                    android:textAppearance="@style/subtitle_1"
+                    android:textColor="@color/link_blue"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_facility_detail_location"
+                    app:layout_constraintStart_toEndOf="@id/iv_facility_detail_location"
+                    app:layout_constraintTop_toTopOf="@id/iv_facility_detail_location"
+                    tools:text="서울특별시 송파구 방이동 439-8" />
+
+                <ImageView
+                    android:id="@+id/iv_facility_detail_link"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:background="@drawable/ic_link"
+                    app:layout_constraintStart_toStartOf="@id/iv_facility_detail_location"
+                    app:layout_constraintTop_toBottomOf="@id/iv_facility_detail_location" />
+
+                <TextView
+                    android:id="@+id/tv_facility_detail_link"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/tv_facility_detail_link"
+                    android:textAppearance="@style/subtitle_1"
+                    android:textColor="@color/link_blue"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_facility_detail_link"
+                    app:layout_constraintStart_toEndOf="@id/iv_facility_detail_link"
+                    app:layout_constraintTop_toTopOf="@id/iv_facility_detail_link" />
+
+                <ImageView
+                    android:id="@+id/iv_facility_detail_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:background="@drawable/ic_call"
+                    app:layout_constraintStart_toStartOf="@id/iv_facility_detail_location"
+                    app:layout_constraintTop_toBottomOf="@id/iv_facility_detail_link" />
+
+                <TextView
+                    android:id="@+id/tv_facility_detail_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="@{facilityItem.phoneNumber}"
+                    android:textAppearance="@style/subtitle_1"
+                    android:textColor="@color/link_blue"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_facility_detail_phone"
+                    app:layout_constraintStart_toEndOf="@id/iv_facility_detail_phone"
+                    app:layout_constraintTop_toTopOf="@id/iv_facility_detail_phone"
+                    tools:text="02-2066-1515" />
+
+                <ImageView
+                    android:id="@+id/iv_facility_detail_operating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:background="@drawable/ic_clock"
+                    app:layout_constraintStart_toStartOf="@id/iv_facility_detail_location"
+                    app:layout_constraintTop_toBottomOf="@id/iv_facility_detail_phone" />
+
+                <TextView
+                    android:id="@+id/tv_facility_detail_operating"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/tv_facility_detail_operating"
+                    android:textAppearance="@style/subtitle_1"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_facility_detail_operating"
+                    app:layout_constraintStart_toEndOf="@id/iv_facility_detail_operating"
+                    app:layout_constraintTop_toTopOf="@id/iv_facility_detail_operating" />
+
+                <TextView
+                    android:id="@+id/tv_facility_detail_operating_wd_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/tv_facility_detail_operating_wd_title"
+                    android:textAppearance="@style/subtitle_1"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@id/tv_facility_detail_operating"
+                    app:layout_constraintTop_toBottomOf="@id/tv_facility_detail_operating" />
+
+                <TextView
+                    android:id="@+id/tv_facility_detail_operating_wd"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="@{facilityItem.operatingTimeWeekday}"
+                    android:textAppearance="@style/body2"
+                    android:textColor="@color/deep_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_facility_detail_operating_wd_title"
+                    app:layout_constraintTop_toTopOf="@id/tv_facility_detail_operating_wd_title"
+                    tools:text="4월~10월 / 06:00~20:0011월~다음 해 3월 / 07:00~17:00" />
+
+                <TextView
+                    android:id="@+id/tv_facility_detail_operating_we_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/tv_facility_detail_operating_we_title"
+                    android:textAppearance="@style/subtitle_1"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@id/tv_facility_detail_operating"
+                    app:layout_constraintTop_toBottomOf="@id/tv_facility_detail_operating_wd" />
+
+                <TextView
+                    android:id="@+id/tv_facility_detail_operating_we"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="@{facilityItem.operatingTimeWeekend}"
+                    android:textAppearance="@style/body2"
+                    android:textColor="@color/deep_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_facility_detail_operating_we_title"
+                    app:layout_constraintTop_toTopOf="@id/tv_facility_detail_operating_we_title"
+                    tools:text="토요일 06:00~19:00 / 둘째 주, 넷째 주, 다섯째 주 일요일 및 공휴일 휴관" />
+
+                <TextView
+                    android:id="@+id/tv_facility_detail_operating_holiday_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/tv_facility_detail_operating_holiday_title"
+                    android:textAppearance="@style/subtitle_1"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@id/tv_facility_detail_operating"
+                    app:layout_constraintTop_toBottomOf="@id/tv_facility_detail_operating_we" />
+
+                <TextView
+                    android:id="@+id/tv_facility_detail_operating_holiday"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="@{facilityItem.operatingTimeHoliday}"
+                    android:textAppearance="@style/body2"
+                    android:textColor="@color/deep_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_facility_detail_operating_holiday_title"
+                    app:layout_constraintTop_toTopOf="@id/tv_facility_detail_operating_holiday_title"
+                    tools:text="21.11.01(월) 단계적 일상 회복 1단계 시행 일부 운영 (수영장, 헬스장)" />
+
+                <ImageView
+                    android:id="@+id/iv_facility_detail_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:background="@drawable/ic_money"
+                    app:layout_constraintStart_toStartOf="@id/iv_facility_detail_location"
+                    app:layout_constraintTop_toBottomOf="@id/tv_facility_detail_operating_holiday" />
+
+                <TextView
+                    android:id="@+id/tv_facility_detail_money_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/tv_facility_detail_money_title"
+                    android:textAppearance="@style/subtitle_1"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_facility_detail_money"
+                    app:layout_constraintStart_toEndOf="@id/iv_facility_detail_money"
+                    app:layout_constraintTop_toTopOf="@id/iv_facility_detail_money" />
+
+                <TextView
+                    android:id="@+id/tv_facility_detail_money"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="@{facilityItem.money}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_facility_detail_money_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_facility_detail_money_title"
+                    tools:text="체육행사 : 55,000원 / 2시간체육 외 행사 : 250,000원 / 3시간족구장 : 4,000원 / 1시간조명탑 : 22,000원 / 2시간" />
+
+                <ImageView
+                    android:id="@+id/iv_facility_detail_convenience"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:background="@drawable/ic_convenience"
+                    app:layout_constraintStart_toStartOf="@id/iv_facility_detail_location"
+                    app:layout_constraintTop_toBottomOf="@id/tv_facility_detail_money" />
+
+                <TextView
+                    android:id="@+id/tv_facility_detail_convenience_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/tv_facility_detail_convenience_title"
+                    android:textAppearance="@style/subtitle_1"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_facility_detail_convenience"
+                    app:layout_constraintStart_toEndOf="@id/iv_facility_detail_convenience"
+                    app:layout_constraintTop_toTopOf="@id/iv_facility_detail_convenience" />
+
+                <TextView
+                    android:id="@+id/tv_facility_detail_convenience"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="@{facilityItem.convenience}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_facility_detail_convenience_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_facility_detail_convenience_title"
+                    tools:text="샤워실, 탈의실, 개인사물함, 휴게실, 체온조절실, 구내식당, 매점, 스포츠용품점" />
+
+                <ImageView
+                    android:id="@+id/iv_facility_detail_parking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:background="@drawable/ic_parking"
+                    app:layout_constraintStart_toStartOf="@id/iv_facility_detail_location"
+                    app:layout_constraintTop_toBottomOf="@id/tv_facility_detail_convenience" />
+
+                <TextView
+                    android:id="@+id/tv_facility_detail_parking_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/tv_facility_detail_parking_title"
+                    android:textAppearance="@style/subtitle_1"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_facility_detail_parking"
+                    app:layout_constraintStart_toEndOf="@id/iv_facility_detail_parking"
+                    app:layout_constraintTop_toTopOf="@id/iv_facility_detail_parking" />
+
+                <TextView
+                    android:id="@+id/tv_facility_detail_parking"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="@{facilityItem.parkingInfo}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_facility_detail_parking_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_facility_detail_parking_title"
+                    tools:text="<월간요금>주간 10만원, 야간 4만원, 종일 14만원- 주간 / 08:30~18:30- 야간 / 18:30~익일08:30<일일요금>- 회원 이용시 2시간 무료- 초과 이용시 5분당 150원" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
