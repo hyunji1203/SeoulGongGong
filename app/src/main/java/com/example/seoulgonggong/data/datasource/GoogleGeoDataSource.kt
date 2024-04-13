@@ -27,11 +27,9 @@ class GoogleGeoDataSource
                         }
                     }
                 } else {
-                    val addresses = geocoder.getFromLocation(latitude, longitude, 1)
-                    if (addresses != null) {
-                        for (address in addresses) {
-                            continuation.resume(addresses[0].getAddressLine(0))
-                        }
+                    val address = geocoder.getFromLocation(latitude, longitude, 1)
+                    if (address != null) {
+                        continuation.resume(address[0].getAddressLine(0))
                     }
                 }
             }
