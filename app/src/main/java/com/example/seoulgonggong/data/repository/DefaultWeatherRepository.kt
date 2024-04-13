@@ -50,13 +50,31 @@ class DefaultWeatherRepository
 
                 forecastDateTimeMap["${forecast.forecastDate}/${forecast.forecastTime}"]?.apply {
                     when (forecast.category) {
-                        PTY.toString() -> precipitationType = forecast.transformRainType()
-                        SKY.toString() -> sky = forecast.transformSky()
+                        PTY.toString() -> precipitationType = transformRainType(forecast)
+                        SKY.toString() -> sky = transformSky(forecast)
                         TMP.toString() -> temperature = forecast.forecastValue.toDouble()
                         else -> {}
                     }
                 }
             }
             return forecastDateTimeMap
+        }
+
+        private fun transformRainType(forecast: ForecastResponse): String {
+            return when (forecast.forecastValue.toInt()) {
+                0 -> "없음"
+                1, 4 -> "비"
+                2, 3 -> "눈"
+                else -> ""
+            }
+        }
+
+        private fun transformSky(forecast: ForecastResponse): String {
+            return when (forecast.forecastValue.toInt()) {
+                1 -> "맑음"
+                3 -> "구름많음"
+                4 -> "흐림"
+                else -> ""
+            }
         }
     }
