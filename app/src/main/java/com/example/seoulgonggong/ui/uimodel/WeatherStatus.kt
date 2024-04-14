@@ -1,4 +1,4 @@
-package com.example.seoulgonggong.domain.model
+package com.example.seoulgonggong.ui.uimodel
 
 enum class WeatherStatus(val currentStatus: String) {
     SUN("맑음"),

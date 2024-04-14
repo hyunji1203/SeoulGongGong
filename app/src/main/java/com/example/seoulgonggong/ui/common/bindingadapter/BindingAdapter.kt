@@ -3,12 +3,12 @@ package com.example.seoulgonggong.ui.common.bindingadapter
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.example.seoulgonggong.R
-import com.example.seoulgonggong.domain.model.WeatherStatus
-import com.example.seoulgonggong.domain.model.WeatherStatus.CLOUD
-import com.example.seoulgonggong.domain.model.WeatherStatus.LITTLE_SUNNY
-import com.example.seoulgonggong.domain.model.WeatherStatus.RAIN
-import com.example.seoulgonggong.domain.model.WeatherStatus.SNOW
-import com.example.seoulgonggong.domain.model.WeatherStatus.SUN
+import com.example.seoulgonggong.ui.uimodel.WeatherStatus
+import com.example.seoulgonggong.ui.uimodel.WeatherStatus.CLOUD
+import com.example.seoulgonggong.ui.uimodel.WeatherStatus.LITTLE_SUNNY
+import com.example.seoulgonggong.ui.uimodel.WeatherStatus.RAIN
+import com.example.seoulgonggong.ui.uimodel.WeatherStatus.SNOW
+import com.example.seoulgonggong.ui.uimodel.WeatherStatus.SUN
 
 @BindingAdapter("app:setWeatherIcon")
 fun ImageView.setWeatherIcon(weatherStatus: WeatherStatus?) {
