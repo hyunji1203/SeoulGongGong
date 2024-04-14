@@ -31,7 +31,7 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun initAdapter() {
         val adapter = SportsFacilityListAdapter(viewModel::openFacilityDetail)
-        adapter.submitList(viewModel.sportsFacilities.value)
+        adapter.submitList(viewModel.listSportsFacilities.value)
         binding.rvFacilityList.adapter = adapter
     }
 

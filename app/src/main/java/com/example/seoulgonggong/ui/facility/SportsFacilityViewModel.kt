@@ -19,6 +19,10 @@ class SportsFacilityViewModel @Inject constructor(
     private val _sportsFacilities: MutableLiveData<List<UiSportsFacility>> = MutableLiveData()
     val sportsFacilities: LiveData<List<UiSportsFacility>> = _sportsFacilities
 
+    val searchWord: MutableLiveData<String> = MutableLiveData("")
+    private val _listSportsFacilities: MutableLiveData<List<UiSportsFacility>> = MutableLiveData()
+    val listSportsFacilities: LiveData<List<UiSportsFacility>> = _listSportsFacilities
+
     private val _listOpenEvent: MutableLiveData<Boolean> = MutableLiveData()
     val listOpenEvent: LiveData<Boolean> = _listOpenEvent
 
@@ -33,8 +37,15 @@ class SportsFacilityViewModel @Inject constructor(
                     if (!it.info.type.contains(EXCLUDE_WORD)) uiFacilities.add(it.toUi())
                 }
                 _sportsFacilities.value = uiFacilities.toList()
+                _listSportsFacilities.value = _sportsFacilities.value
             }
         }
+    }
+
+    fun searchFacility() {
+        _listSportsFacilities.value =
+            _sportsFacilities.value?.filter { it.facilityName.contains(searchWord.value.toString()) }
+        openList()
     }
 
     fun openList() {
