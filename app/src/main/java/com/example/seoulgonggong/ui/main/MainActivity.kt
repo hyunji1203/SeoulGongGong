@@ -10,11 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.checkSelfPermission
 import com.example.seoulgonggong.R
 import com.example.seoulgonggong.databinding.ActivityMainBinding
-import com.example.seoulgonggong.domain.model.WeatherStatus.CLOUD
-import com.example.seoulgonggong.domain.model.WeatherStatus.LITTLE_SUNNY
-import com.example.seoulgonggong.domain.model.WeatherStatus.RAIN
-import com.example.seoulgonggong.domain.model.WeatherStatus.SNOW
-import com.example.seoulgonggong.domain.model.WeatherStatus.SUN
 import com.example.seoulgonggong.util.openSetting
 import com.example.seoulgonggong.util.showToast
 import com.google.android.gms.location.LocationServices
@@ -51,15 +46,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun subscribe() {
-        viewModel.weatherInfo.observe(this) { weather ->
-            when (weather.weatherStatus) {
-                SUN -> binding.ivMainWeatherIcon.setImageResource(R.drawable.ic_sum)
-                LITTLE_SUNNY -> binding.ivMainWeatherIcon.setImageResource(R.drawable.ic_little_sunny)
-                CLOUD -> binding.ivMainWeatherIcon.setImageResource(R.drawable.ic_cloud)
-                RAIN -> binding.ivMainWeatherIcon.setImageResource(R.drawable.ic_rain)
-                SNOW -> binding.ivMainWeatherIcon.setImageResource(R.drawable.ic_snow)
-            }
-        }
         viewModel.throwable.observe(this) {
             showToast(getString(R.string.network_errer_message))
         }
