@@ -5,6 +5,5 @@ data class UiPublicService(
     val place: String,
     val operatingTime: String,
     val img: String,
-    val status: String,
-    val scrapped: Boolean
+    val status: String
 )

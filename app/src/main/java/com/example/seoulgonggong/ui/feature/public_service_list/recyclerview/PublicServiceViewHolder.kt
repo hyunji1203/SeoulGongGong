@@ -1,4 +1,4 @@
-package com.example.seoulgonggong.ui.feature.public_service_list
+package com.example.seoulgonggong.ui.feature.public_service_list.recyclerview
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
