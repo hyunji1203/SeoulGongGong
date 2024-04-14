@@ -1,20 +1,27 @@
 package com.example.seoulgonggong.data.model
 
-import com.example.seoulgonggong.domain.model.PublicService
-import com.example.seoulgonggong.domain.model.PublicServices
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-data class PublicServiceResponse(
-    @SerialName("list_total_count") val listTotalCount: Int,
-    @SerialName("RESULT") val result: DataPublicServiceResult,
-    @SerialName("row") val row: List<DataPublicServiceRow>
+@Serializable
+data class SportsServiceResponse(
+    @SerialName("ListPublicReservationSport") val listPublicReservationSport: ListPublicReservationSport
 )
 
-data class DataPublicServiceResult(
+@Serializable
+data class ListPublicReservationSport(
+    @SerialName("list_total_count") val listTotalCount: Int,
+    @SerialName("RESULT") val result: DataSportsServiceResult,
+    @SerialName("row") val row: List<DataSportsServiceRow>
+)
+
+@Serializable
+data class DataSportsServiceResult(
     @SerialName("CODE") val code: String, @SerialName("MESSAGE") val message: String
 )
 
-data class DataPublicServiceRow(
+@Serializable
+data class DataSportsServiceRow(
     @SerialName("GUBUN") val division: String,
     @SerialName("SVCID") val serviceId: String,
     @SerialName("MAXCLASSNM") val mainCategory: String,
@@ -40,13 +47,3 @@ data class DataPublicServiceRow(
     @SerialName("REVSTDDAYNM") val cancellationCriteria: String,
     @SerialName("REVSTDDAY") val timeLeftForCancellation: Int
 )
-
-fun PublicServiceResponse.toDomain(): PublicServices = PublicServices(services = this.row.map {
-    PublicService(
-        serviceName = it.serviceName,
-        place = it.place,
-        usageStartTime = it.usageStartTime,
-        usageEndTime = it.usageEndTime,
-        serviceStatus = it.serviceStatus
-    )
-})

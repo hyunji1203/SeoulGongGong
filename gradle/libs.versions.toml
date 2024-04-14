@@ -41,6 +41,10 @@ retrofit2KotlinxSerializationConverter = "0.8.0"
 # Coroutines
 kotlinxCoroutinesCore = "1.8.1-Beta"
 
+# ViewModel
+lifecycleViewmodelKtx = "2.6.0"
+activityKtx = "1.7.2"
+
 [libraries]
 # AndroidX Libraries
 coreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
@@ -63,13 +67,20 @@ glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 # hilt
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hiltKapt = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+
+# Retrofit
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit2-kotlinx-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofit2KotlinxSerializationConverter" }
+
+# ViewModel
+lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
+activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
 
 [bundles]
 androidDefault = ["coreKtx", "appcompat", "constraintlayout", "material"]
 test = ["junit"]
 androidUnitTest = ["androidTestJunit", "androidxTestEspresso"]
 retrofit = ["retrofit", "retrofit2-kotlinx-serialization-converter"]
+viewModel = ["lifecycle-viewmodel-ktx", "activity-ktx"]
 
 [plugins]

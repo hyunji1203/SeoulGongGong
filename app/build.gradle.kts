@@ -8,6 +8,9 @@ plugins {
     // Hilt
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+
+    // kotlinSerializable
+    kotlin("plugin.serialization") version "1.9.22"
 }
 val properties = Properties()
 properties.load(FileInputStream(rootProject.file("local.properties")))
@@ -18,7 +21,7 @@ android {
 
     buildFeatures {
         buildConfig = true
-        viewBinding = true
+        dataBinding =  true
     }
 
     defaultConfig {
@@ -75,4 +78,7 @@ dependencies {
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.core)
+
+    // ViewModel
+    implementation(libs.bundles.viewModel)
 }

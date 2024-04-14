@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.INTERNET" />
     <application
+        android:name=".ui.GongGongApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -11,10 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SeoulGongGong"
+        android:usesCleartextTraffic="true"
         tools:targetApi="33">
         <activity
-            android:name=".ui.feature.public_service_list.PublicServiceListActivity"
-            android:exported="false" />
+            android:name=".ui.feature.public_service_list.activity.PublicServiceListActivity"
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
