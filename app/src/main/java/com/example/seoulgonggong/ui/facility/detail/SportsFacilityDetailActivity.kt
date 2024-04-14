@@ -26,8 +26,7 @@ class SportsFacilityDetailActivity : AppCompatActivity() {
         binding.viewModel = viewModel
 
         initIntentData()
-        initOpenNaverMapObserve()
-        initOpenPhoneDialObserve()
+        initObserve()
     }
 
     private fun initIntentData() {
@@ -35,6 +34,12 @@ class SportsFacilityDetailActivity : AppCompatActivity() {
         if (facility != null) {
             viewModel.setFacilityData(facility)
         }
+    }
+
+    private fun initObserve() {
+        initOpenNaverMapObserve()
+        initOpenWebPageObserve()
+        initOpenPhoneDialObserve()
     }
 
     private fun initOpenNaverMapObserve() {
@@ -61,6 +66,14 @@ class SportsFacilityDetailActivity : AppCompatActivity() {
                     Uri.parse(NAVER_MAP_PLAY_STORE_URL)
                 )
             )
+        }
+    }
+
+    private fun initOpenWebPageObserve() {
+        viewModel.openWebPage.observe(this) {
+            if (it != null) {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(it)))
+            }
         }
     }
 

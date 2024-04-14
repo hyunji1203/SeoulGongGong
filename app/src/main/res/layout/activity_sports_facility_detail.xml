@@ -138,6 +138,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
+                    android:onClick="@{()->viewModel.openWebPage()}"
                     android:text="@string/tv_facility_detail_link"
                     android:textAppearance="@style/subtitle_1"
                     android:textColor="@color/link_blue"
