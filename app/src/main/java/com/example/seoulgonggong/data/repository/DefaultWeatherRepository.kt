@@ -52,17 +52,16 @@ class DefaultWeatherRepository
             val forecastDateTimeMap = mutableMapOf<String, Weather>()
             for (forecast in forecasts) {
                 if (forecastDateTimeMap["${forecast.forecastDate}/${forecast.forecastTime}"] == null) {
-                    forecastDateTimeMap["${forecast.forecastDate}/${forecast.forecastTime}"] =
-                        Weather(forecast.forecastDate, forecast.forecastTime)
-                }
-
-                forecastDateTimeMap["${forecast.forecastDate}/${forecast.forecastTime}"]?.apply {
+                    var precipitationType = ""
+                    var sky = ""
+                    var temperature = 0.0
                     when (forecast.category) {
                         PTY.toString() -> precipitationType = transformRainType(forecast)
                         SKY.toString() -> sky = transformSky(forecast)
                         TMP.toString() -> temperature = forecast.forecastValue.toDouble()
-                        else -> {}
                     }
+                    forecastDateTimeMap["${forecast.forecastDate}/${forecast.forecastTime}"] =
+                        Weather(forecast.forecastDate, forecast.forecastTime, temperature, sky, precipitationType)
                 }
             }
             return forecastDateTimeMap
