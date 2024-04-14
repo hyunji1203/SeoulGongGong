@@ -1,8 +1,11 @@
 package com.example.seoulgonggong.data.repository
 
 import android.accounts.NetworkErrorException
+import com.example.seoulgonggong.BuildConfig.OPEN_DATA_SERVICE_KEY
 import com.example.seoulgonggong.data.model.ForecastResponse
 import com.example.seoulgonggong.data.service.WeatherService
+import com.example.seoulgonggong.domain.model.BaseDateTime
+import com.example.seoulgonggong.domain.model.Point
 import com.example.seoulgonggong.domain.model.Weather
 import com.example.seoulgonggong.domain.model.WeatherCategory.PTY
 import com.example.seoulgonggong.domain.model.WeatherCategory.SKY
@@ -16,13 +19,18 @@ class DefaultWeatherRepository
         private val weatherService: WeatherService,
     ) : WeatherRepository {
         override suspend fun getWeather(
-            serviceKey: String,
-            baseDate: String,
-            baseTime: String,
-            nx: Int,
-            ny: Int,
+            baseDateTime: BaseDateTime,
+            point: Point,
         ): Weather {
-            val response = weatherService.getForecast(serviceKey, baseDate, baseTime, nx, ny)
+            val response =
+                weatherService.getForecast(
+                    serviceKey = OPEN_DATA_SERVICE_KEY,
+                    baseDate = baseDateTime.baseDate,
+                    baseTime = baseDateTime.baseTime,
+                    nx = point.nx,
+                    ny = point.ny,
+                )
+
             if (response.isSuccessful) {
                 val forecasts = response.body()?.response?.body?.items?.item.orEmpty()
                 val forecastDateTimeMap: MutableMap<String, Weather> = sortForecastByTime(forecasts)
