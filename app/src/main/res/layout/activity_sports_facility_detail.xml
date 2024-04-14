@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="facilityItem"
-            type="com.example.seoulgonggong.ui.uimodel.UiSportsFacility" />
+            name="viewModel"
+            type="com.example.seoulgonggong.ui.facility.detail.SportsFacilityDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +25,7 @@
             android:backgroundTint="@color/gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:setScrapStatus="@{facilityItem.isScrap}" />
+            app:setScrapStatus="@{viewModel.facility.isScrap}" />
 
         <ImageView
             android:id="@+id/iv_facility_detail_type"
@@ -36,7 +36,7 @@
             android:scaleType="centerInside"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_facility_detail_scrap"
-            app:loadFacilityIcon="@{facilityItem.type}"
+            app:loadFacilityIcon="@{viewModel.facility.type}"
             tools:src="@drawable/ic_badminton" />
 
         <TextView
@@ -44,7 +44,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_default"
-            android:text="@{facilityItem.facilityName}"
+            android:text="@{viewModel.facility.facilityName}"
             android:textAppearance="@style/title_2B"
             app:layout_constraintEnd_toStartOf="@id/btn_facility_detail_scrap"
             app:layout_constraintStart_toEndOf="@id/iv_facility_detail_type"
@@ -56,7 +56,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="4dp"
-            android:text="@{facilityItem.type}"
+            android:text="@{viewModel.facility.type}"
             android:textAppearance="@style/caption_1"
             android:textColor="@color/deep_gray"
             app:layout_constraintBottom_toTopOf="@id/tv_facility_detail_operating_status"
@@ -69,13 +69,13 @@
             android:id="@+id/tv_facility_detail_operating_status"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{facilityItem.isOperating}"
+            android:text="@{viewModel.facility.isOperating}"
             android:textAppearance="@style/title_3M"
             android:textColor="@color/deep_gray"
             app:layout_constraintBottom_toBottomOf="@id/iv_facility_detail_type"
             app:layout_constraintEnd_toEndOf="@id/tv_facility_detail_title"
             app:layout_constraintStart_toStartOf="@id/tv_facility_detail_title"
-            app:setTextColorWithOperatingStatus="@{facilityItem.isOperating}"
+            app:setTextColorWithOperatingStatus="@{viewModel.facility.isOperating}"
             tools:text="운영"
             tools:textColor="@color/main_teal" />
 
@@ -115,7 +115,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
-                    android:text="@{facilityItem.address}"
+                    android:text="@{viewModel.facility.address}"
+                    android:onClick="@{() -> viewModel.openNaverMap()}"
                     android:textAppearance="@style/subtitle_1"
                     android:textColor="@color/link_blue"
                     app:layout_constraintBottom_toBottomOf="@id/iv_facility_detail_location"
@@ -158,7 +159,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
-                    android:text="@{facilityItem.phoneNumber}"
+                    android:text="@{viewModel.facility.phoneNumber}"
                     android:textAppearance="@style/subtitle_1"
                     android:textColor="@color/link_blue"
                     app:layout_constraintBottom_toBottomOf="@id/iv_facility_detail_phone"
@@ -204,7 +205,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="20dp"
-                    android:text="@{facilityItem.operatingTimeWeekday}"
+                    android:text="@{viewModel.facility.operatingTimeWeekday}"
                     android:textAppearance="@style/body2"
                     android:textColor="@color/deep_gray"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -229,7 +230,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="20dp"
-                    android:text="@{facilityItem.operatingTimeWeekend}"
+                    android:text="@{viewModel.facility.operatingTimeWeekend}"
                     android:textAppearance="@style/body2"
                     android:textColor="@color/deep_gray"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -254,7 +255,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="20dp"
-                    android:text="@{facilityItem.operatingTimeHoliday}"
+                    android:text="@{viewModel.facility.operatingTimeHoliday}"
                     android:textAppearance="@style/body2"
                     android:textColor="@color/deep_gray"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -289,7 +290,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="20dp"
-                    android:text="@{facilityItem.money}"
+                    android:text="@{viewModel.facility.money}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/tv_facility_detail_money_title"
                     app:layout_constraintTop_toBottomOf="@id/tv_facility_detail_money_title"
@@ -322,7 +323,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="20dp"
-                    android:text="@{facilityItem.convenience}"
+                    android:text="@{viewModel.facility.convenience}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/tv_facility_detail_convenience_title"
                     app:layout_constraintTop_toBottomOf="@id/tv_facility_detail_convenience_title"
@@ -355,7 +356,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="20dp"
-                    android:text="@{facilityItem.parkingInfo}"
+                    android:text="@{viewModel.facility.parkingInfo}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/tv_facility_detail_parking_title"
                     app:layout_constraintTop_toBottomOf="@id/tv_facility_detail_parking_title"
