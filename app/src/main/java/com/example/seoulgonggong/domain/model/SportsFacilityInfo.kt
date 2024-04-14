@@ -22,4 +22,12 @@ data class SportsFacilityInfo(
     val isOperating: String,
     val convenience: String,
     val note: String,
-)
+) {
+    companion object {
+        fun getPhoneNumber(phoneNumber: String): String? {
+            if (phoneNumber.length < 3) return null
+            val phone = phoneNumber.filter { Character.isDigit(it) }
+            return "tel:$phone"
+        }
+    }
+}

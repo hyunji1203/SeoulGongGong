@@ -27,6 +27,7 @@ class SportsFacilityDetailActivity : AppCompatActivity() {
 
         initIntentData()
         initOpenNaverMapObserve()
+        initOpenPhoneDialObserve()
     }
 
     private fun initIntentData() {
@@ -60,6 +61,14 @@ class SportsFacilityDetailActivity : AppCompatActivity() {
                     Uri.parse(NAVER_MAP_PLAY_STORE_URL)
                 )
             )
+        }
+    }
+
+    private fun initOpenPhoneDialObserve() {
+        viewModel.openPhoneDial.observe(this) {
+            if (it != null) {
+                startActivity(Intent(Intent.ACTION_DIAL, Uri.parse(it)))
+            }
         }
     }
 

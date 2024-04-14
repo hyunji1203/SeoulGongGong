@@ -115,8 +115,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
-                    android:text="@{viewModel.facility.address}"
                     android:onClick="@{() -> viewModel.openNaverMap()}"
+                    android:text="@{viewModel.facility.address}"
                     android:textAppearance="@style/subtitle_1"
                     android:textColor="@color/link_blue"
                     app:layout_constraintBottom_toBottomOf="@id/iv_facility_detail_location"
@@ -159,12 +159,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
+                    android:onClick="@{()->viewModel.openPhoneDial()}"
                     android:text="@{viewModel.facility.phoneNumber}"
                     android:textAppearance="@style/subtitle_1"
                     android:textColor="@color/link_blue"
                     app:layout_constraintBottom_toBottomOf="@id/iv_facility_detail_phone"
                     app:layout_constraintStart_toEndOf="@id/iv_facility_detail_phone"
                     app:layout_constraintTop_toTopOf="@id/iv_facility_detail_phone"
+                    app:setNoNumberText="@{viewModel.facility.phoneNumber}"
                     tools:text="02-2066-1515" />
 
                 <ImageView

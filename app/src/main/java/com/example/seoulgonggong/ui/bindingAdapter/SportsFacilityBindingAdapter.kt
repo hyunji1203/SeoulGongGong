@@ -44,3 +44,14 @@ fun TextView.setTextColorWithOperatingStatus(operatingStatus: String?) {
         ContextCompat.getColor(this.context, R.color.red)
     )
 }
+
+@BindingAdapter("app:setNoNumberText")
+fun TextView.setNoNumberText(phoneNumber: String?) {
+    if (phoneNumber == null) return
+    if (phoneNumber.length < 3) {
+        text = "홈페이지 참조"
+        setTextColor(
+            ContextCompat.getColor(this.context, R.color.black)
+        )
+    }
+}
