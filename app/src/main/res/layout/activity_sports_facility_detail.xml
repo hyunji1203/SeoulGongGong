@@ -21,11 +21,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="@dimen/margin_default"
+            android:background="@drawable/ic_heart"
             android:backgroundTint="@color/gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:setScrapStatus="@{facilityItem.isScrap}"
-            tools:background="@drawable/ic_heart" />
+            app:setScrapStatus="@{facilityItem.isScrap}" />
 
         <ImageView
             android:id="@+id/iv_facility_detail_type"
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_default"
             android:text="@{facilityItem.facilityName}"
-            android:textAppearance="@style/title_3B"
+            android:textAppearance="@style/title_2B"
             app:layout_constraintEnd_toStartOf="@id/btn_facility_detail_scrap"
             app:layout_constraintStart_toEndOf="@id/iv_facility_detail_type"
             app:layout_constraintTop_toTopOf="@id/iv_facility_detail_type"
@@ -359,7 +359,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/tv_facility_detail_parking_title"
                     app:layout_constraintTop_toBottomOf="@id/tv_facility_detail_parking_title"
-                    tools:text="<월간요금>주간 10만원, 야간 4만원, 종일 14만원- 주간 / 08:30~18:30- 야간 / 18:30~익일08:30<일일요금>- 회원 이용시 2시간 무료- 초과 이용시 5분당 150원" />
+                    tools:text="주간 10만원, 야간 4만원, 종일 14만원- 주간 / 08:30~18:30- 야간 / 18:30~익일08:30 - 회원 이용시 2시간 무료- 초과 이용시 5분당 150원" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,9 @@
 package com.example.seoulgonggong.ui.uimodel
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class UiSportsFacility(
     val isScrap: Boolean,
     val idx: Double,
@@ -17,4 +21,4 @@ data class UiSportsFacility(
     val type: String,
     val isOperating: String,
     val convenience: String,
-)
+) : Parcelable

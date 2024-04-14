@@ -22,6 +22,9 @@ class SportsFacilityViewModel @Inject constructor(
     private val _listOpenEvent: MutableLiveData<Boolean> = MutableLiveData()
     val listOpenEvent: LiveData<Boolean> = _listOpenEvent
 
+    private val _detailOpenEvent: MutableLiveData<UiSportsFacility> = MutableLiveData()
+    val detailOpenEvent: LiveData<UiSportsFacility> = _detailOpenEvent
+
     fun getData() {
         viewModelScope.launch {
             repository.getSportsFacility().onSuccess { facilities ->
@@ -39,7 +42,7 @@ class SportsFacilityViewModel @Inject constructor(
     }
 
     fun openFacilityDetail(item: UiSportsFacility) {
-
+        _detailOpenEvent.value = item
     }
 
     companion object {

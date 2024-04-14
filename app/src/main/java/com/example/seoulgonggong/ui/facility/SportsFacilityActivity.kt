@@ -8,6 +8,7 @@ import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import com.example.seoulgonggong.R
 import com.example.seoulgonggong.databinding.ActivityPublicSportsFacilityBinding
+import com.example.seoulgonggong.ui.facility.detail.SportsFacilityDetailActivity
 import com.naver.maps.map.LocationTrackingMode
 import com.naver.maps.map.MapFragment
 import com.naver.maps.map.NaverMap
@@ -38,6 +39,7 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
         locationSource = FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
 
         initOpenListObserve()
+        initOpenDetailObserve()
     }
 
     private fun initOpenListObserve() {
@@ -47,6 +49,16 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
             if (it) {
                 val bottomSheet = SportsFacilityBottomSheetFragment()
                 bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+            }
+        }
+    }
+
+    private fun initOpenDetailObserve() {
+        viewModel.detailOpenEvent.observe(
+            this
+        ) {
+            if (it != null) {
+                startActivity(SportsFacilityDetailActivity.getIntent(this, it))
             }
         }
     }
