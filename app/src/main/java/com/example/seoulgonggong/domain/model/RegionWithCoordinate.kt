@@ -2,7 +2,7 @@ package com.example.seoulgonggong.domain.model
 
 import kotlinx.serialization.Serializable
 
-data class Region(
+data class RegionWithCoordinate(
     val area0: Area,
     val area1: Area,
     val area2: Area,

@@ -3,8 +3,8 @@ package com.example.seoulgonggong.data.model.response
 import com.example.seoulgonggong.data.utils.DomainConvertible
 import com.example.seoulgonggong.domain.model.Area
 import com.example.seoulgonggong.domain.model.Coords
-import com.example.seoulgonggong.domain.model.Region
-import com.example.seoulgonggong.domain.model.Regions
+import com.example.seoulgonggong.domain.model.RegionWithCoordinate
+import com.example.seoulgonggong.domain.model.RegionsWithCoordinate
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -15,11 +15,11 @@ data class ReverseGeocodeResponse(
     val status: ReverseGeocodeStatus,
     @SerialName("results")
     val results: List<ReverseGeocodeResult>,
-): DomainConvertible<Regions> {
-    override fun toDomain(): Regions {
-        return Regions(
+): DomainConvertible<RegionsWithCoordinate> {
+    override fun toDomain(): RegionsWithCoordinate {
+        return RegionsWithCoordinate(
             values = this.results.map {
-                Region(
+                RegionWithCoordinate(
                     area0 = Area(
                         name = it.region.area0.name,
                         coords = Coords(
