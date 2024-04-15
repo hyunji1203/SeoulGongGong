@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun subscribe() {
         viewModel.throwable.observe(this) {
-            showToast(getString(R.string.network_errer_message))
+            showToast(getString(R.string.network_error_message))
         }
     }
 
