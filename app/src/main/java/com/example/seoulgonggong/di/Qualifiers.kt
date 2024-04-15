@@ -8,6 +8,10 @@ annotation class SeoulOpenApiRetrofit
 
 @Qualifier
 @Retention
+annotation class WeatherRetrofit
+
+@Qualifier
+@Retention
 annotation class GeocodingRetrofit
 
 @Qualifier
