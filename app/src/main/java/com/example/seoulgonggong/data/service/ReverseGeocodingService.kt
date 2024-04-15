@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ReverseGeocodingService {
-    @GET
+    @GET("./")
     fun reverseGeocode(
         @Query("coords") coords: String,
         @Query("output") output: String = "json"
