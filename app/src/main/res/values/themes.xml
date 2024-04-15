@@ -9,56 +9,56 @@
 
 
     <!-- text theme -->
-    <style name="title_1B">
+    <style name="title_0B">
         <item name="android:fontFamily">@font/pretendard_bold</item>
         <item name="android:textSize">36sp</item>
         <item name="android:lineSpacingExtra">7.2sp</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 
-    <style name="title_1M">
+    <style name="title_0M">
         <item name="android:fontFamily">@font/pretendard_bold</item>
         <item name="android:textSize">36sp</item>
+        <item name="android:lineSpacingExtra">7.2sp</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="title_1B">
+        <item name="android:fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:lineSpacingExtra">7.2sp</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="title_1M">
+        <item name="android:fontFamily">@font/pretendard_medium</item>
+        <item name="android:textSize">24sp</item>
         <item name="android:lineSpacingExtra">7.2sp</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 
     <style name="title_2B">
         <item name="android:fontFamily">@font/pretendard_bold</item>
-        <item name="android:textSize">24sp</item>
-        <item name="android:lineSpacingExtra">7.2sp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:lineSpacingExtra">6sp</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 
     <style name="title_2M">
         <item name="android:fontFamily">@font/pretendard_medium</item>
-        <item name="android:textSize">24sp</item>
-        <item name="android:lineSpacingExtra">7.2sp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:lineSpacingExtra">6sp</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 
     <style name="title_3B">
-        <item name="android:fontFamily">@font/pretendard_bold</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:lineSpacingExtra">6sp</item>
-        <item name="android:includeFontPadding">false</item>
-    </style>
-
-    <style name="title_3M">
-        <item name="android:fontFamily">@font/pretendard_medium</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:lineSpacingExtra">6sp</item>
-        <item name="android:includeFontPadding">false</item>
-    </style>
-
-    <style name="title_4B">
         <item name="android:fontFamily">@font/pretendard_bold</item>
         <item name="android:textSize">18sp</item>
         <item name="android:lineSpacingExtra">5.4sp</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 
-    <style name="title_4M">
+    <style name="title_3M">
         <item name="android:fontFamily">@font/pretendard_medium</item>
         <item name="android:textSize">18sp</item>
         <item name="android:lineSpacingExtra">5.4sp</item>
