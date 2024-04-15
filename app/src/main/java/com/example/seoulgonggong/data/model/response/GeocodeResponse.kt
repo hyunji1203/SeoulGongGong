@@ -9,8 +9,8 @@ data class GeocodeResponse(
     val status: String,
     @SerialName("meta")
     val meta: GeocodeMeta,
-    @SerialName("address")
-    val address: List<GeocodeAddress>,
+    @SerialName("addresses")
+    val addresses: List<GeocodeAddress>,
     @SerialName("errorMessage")
     val errorMessage:String
 )

@@ -1,9 +1,9 @@
 package com.example.seoulgonggong.domain.repository
 
-import com.example.seoulgonggong.data.model.response.GeocodeResponse
-import com.example.seoulgonggong.data.model.response.ReverseGeocodeResponse
+import com.example.seoulgonggong.domain.model.Addresses
+import com.example.seoulgonggong.domain.model.Regions
 
-interface GeocodingRepository{
-    fun geocode(query:String):Result<GeocodeResponse>
-    fun reverseGeocode(coords:String):Result<ReverseGeocodeResponse>
+interface GeocodingRepository {
+    fun geocode(query: String): Result<Addresses>
+    fun reverseGeocode(coords: String): Result<Regions>
 }
