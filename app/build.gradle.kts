@@ -22,7 +22,7 @@ android {
     namespace = "com.example.seoulgonggong"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
-    //BuildConfig 클래스 생성
+    // BuildConfig 클래스 생성
     buildFeatures {
         buildConfig = true
     }
@@ -39,10 +39,12 @@ android {
         buildConfigField("String", "SEOUL_OPEN_API_BASE_URL", "\"http://openAPI.seoul.go.kr:8088/${properties["ACT_KEY"]}/\"")
         buildConfigField("String", "GEOCODING_API_BASE_URL", "\"https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode/\"")
         buildConfigField("String", "REVERSE_GEOCODING_API_BASE_URL", "\"https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc/\"")
+        buildConfigField("String", "OPEN_DATA_API_BASE_URL", "\"http://apis.data.go.kr/\"")
 
         // KEY
         buildConfigField("String", "NAVER_MAP_CLIENT_ID", "\"${properties["NAVER_MAP_CLIENT_ID"]}\"")
         buildConfigField("String", "NAVER_MAP_CLIENT_SECRET", "\"${properties["NAVER_MAP_CLIENT_SECRET"]}\"")
+        buildConfigField("String", "OPEN_DATA_SERVICE_KEY", "\"${properties["OPEN_DATA_SERVICE_KEY"]}\"")
 
         manifestPlaceholders["NAVER_MAP_CLIENT_ID"] =
             properties.getProperty("NAVER_MAP_CLIENT_ID")
@@ -53,7 +55,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -90,11 +92,18 @@ dependencies {
     // Kotlinx-serialization
     implementation(libs.kotlinx.serialization.json)
 
-    // Retrofit
+    // lifecycle
+    implementation(libs.bundles.lifeCycle)
+
+    // retrofit
     implementation(libs.bundles.retrofit)
 
-    // Coroutines
-    implementation(libs.kotlinx.coroutines.core)
+    // okhttp3
+    implementation(libs.okhttp3)
+
+    // Coroutine
+    implementation(libs.bundles.coroutine)
+    testImplementation(libs.kotlinx.coroutines.test)
 
     // naverMap
     implementation(libs.bundles.naverMap)
