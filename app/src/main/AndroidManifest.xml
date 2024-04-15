@@ -18,9 +18,6 @@
         android:theme="@style/Theme.SeoulGongGong"
         android:usesCleartextTraffic="true"
         tools:targetApi="33">
-        <activity
-            android:name=".ui.filter.FilterActivity"
-            android:exported="false" />
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
@@ -29,6 +26,11 @@
         <activity
             android:name=".ui.facility.SportsFacilityActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".ui.filter.FilterActivity"
+            android:exported="false" />
+
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true">
