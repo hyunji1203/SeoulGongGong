@@ -8,10 +8,10 @@ import retrofit2.http.Query
 
 interface GeocoderService {
     @GET("map-geocode/v2/geocode")
-    suspend fun geocode(@Query("query") query:String):Response<GeocodeResponse>
+    suspend fun getGeocode(@Query("query") query:String):Response<GeocodeResponse>
 
     @GET("map-reversegeocode/v2/gc")
-    suspend fun reverseGeocode(
+    suspend fun getReverseGeocode(
         @Query("coords") coords: String,
         @Query("output") output: String = "json"
     ): Response<ReverseGeocodeResponse>

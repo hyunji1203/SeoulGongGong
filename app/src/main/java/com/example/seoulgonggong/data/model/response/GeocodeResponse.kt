@@ -1,5 +1,10 @@
 package com.example.seoulgonggong.data.model.response
 
+import com.example.seoulgonggong.data.utils.DomainConvertible
+import com.example.seoulgonggong.domain.model.Address
+import com.example.seoulgonggong.domain.model.AddressElement
+import com.example.seoulgonggong.domain.model.Addresses
+import com.example.seoulgonggong.domain.model.Coordinate
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -12,8 +17,30 @@ data class GeocodeResponse(
     @SerialName("addresses")
     val addresses: List<GeocodeAddress>,
     @SerialName("errorMessage")
-    val errorMessage:String
-)
+    val errorMessage: String
+) : DomainConvertible<Addresses> {
+    override fun toDomain(): Addresses {
+        return Addresses(
+            values = this.addresses.map { address ->
+                Address(
+                    roadAddress = address.roadAddress,
+                    jibunAddress = address.jibunAddress,
+                    englishAddress = address.englishAddress,
+                    addressElements = address.addressElements.map {
+                        AddressElement(
+                            types = it.types,
+                            longName = it.longName,
+                            shortName = it.shortName,
+                            code = it.code
+                        )
+                    },
+                    coordinate = Coordinate(address.x.toDouble(), address.y.toDouble()),
+                    distance = address.distance
+                )
+            }
+        )
+    }
+}
 
 @Serializable
 data class GeocodeMeta(
@@ -34,23 +61,23 @@ data class GeocodeAddress(
     @SerialName("englishAddress")
     val englishAddress: String,
     @SerialName("addressElements")
-    val addressElements:List<GeocodeAddressElement>,
+    val addressElements: List<GeocodeAddressElement>,
     @SerialName("x")
-    val x:String,
+    val x: String,
     @SerialName("y")
-    val y:String,
+    val y: String,
     @SerialName("distance")
-    val distance:Double
+    val distance: Double
 )
 
 @Serializable
 data class GeocodeAddressElement(
     @SerialName("types")
-    val types:List<String>,
+    val types: List<String>,
     @SerialName("longName")
-    val longName:String,
+    val longName: String,
     @SerialName("shortName")
-    val shortName:String,
+    val shortName: String,
     @SerialName("code")
-    val code:String
+    val code: String
 )
