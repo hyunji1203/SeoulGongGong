@@ -1,5 +1,6 @@
 package com.example.seoulgonggong.ui.bindingAdapter
 
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -53,5 +54,14 @@ fun TextView.setNoNumberText(phoneNumber: String?) {
         setTextColor(
             ContextCompat.getColor(this.context, R.color.black)
         )
+    }
+}
+
+@BindingAdapter("app:setNoItemsMessageVisibility")
+fun TextView.setNoItemsMessageVisibility(isVisible: Boolean) {
+    if (isVisible) {
+        this.visibility = View.VISIBLE
+    } else {
+        this.visibility = View.GONE
     }
 }

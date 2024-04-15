@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.seoulgonggong.domain.repository.SportsFacilityRepository
 import com.example.seoulgonggong.ui.uimodel.UiSportsFacility
+import com.example.seoulgonggong.ui.uimodel.UiSportsFacilityList
 import com.example.seoulgonggong.ui.uimodel.mapper.toUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -20,8 +21,8 @@ class SportsFacilityViewModel @Inject constructor(
     val sportsFacilities: LiveData<List<UiSportsFacility>> = _sportsFacilities
 
     val searchWord: MutableLiveData<String> = MutableLiveData("")
-    private val _listSportsFacilities: MutableLiveData<List<UiSportsFacility>> = MutableLiveData()
-    val listSportsFacilities: LiveData<List<UiSportsFacility>> = _listSportsFacilities
+    private val _listSportsFacilities: MutableLiveData<UiSportsFacilityList> = MutableLiveData()
+    val listSportsFacilities: LiveData<UiSportsFacilityList> = _listSportsFacilities
 
     private val _listOpenEvent: MutableLiveData<Boolean> = MutableLiveData()
     val listOpenEvent: LiveData<Boolean> = _listOpenEvent
@@ -37,19 +38,25 @@ class SportsFacilityViewModel @Inject constructor(
                     if (!it.info.type.contains(EXCLUDE_WORD)) uiFacilities.add(it.toUi())
                 }
                 _sportsFacilities.value = uiFacilities.toList()
-                _listSportsFacilities.value = _sportsFacilities.value
+                _listSportsFacilities.value =
+                    UiSportsFacilityList(_sportsFacilities.value ?: emptyList())
             }
         }
     }
 
     fun searchFacility() {
         _listSportsFacilities.value =
-            _sportsFacilities.value?.filter { it.facilityName.contains(searchWord.value.toString()) }
-        openList()
+            UiSportsFacilityList(_sportsFacilities.value?.filter {
+                it.facilityName.contains(
+                    searchWord.value.toString()
+                )
+            } ?: emptyList())
+        _listOpenEvent.value = true
     }
 
     fun openList() {
         _listOpenEvent.value = true
+        _listSportsFacilities.value = UiSportsFacilityList(_sportsFacilities.value ?: emptyList())
     }
 
     fun openFacilityDetail(item: UiSportsFacility) {

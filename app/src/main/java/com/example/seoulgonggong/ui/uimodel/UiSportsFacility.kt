@@ -22,3 +22,8 @@ data class UiSportsFacility(
     val isOperating: String,
     val convenience: String,
 ) : Parcelable
+
+data class UiSportsFacilityList(
+    val items: List<UiSportsFacility>,
+    val isEmpty: Boolean = items.isEmpty(),
+)

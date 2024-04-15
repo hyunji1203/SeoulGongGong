@@ -23,6 +23,7 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
         super.onCreateView(inflater, container, savedInstanceState)
         _binding = FragmentSportsFacilityBottomSheetBinding.inflate(inflater)
         binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
 
         initAdapter()
 
@@ -31,7 +32,7 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun initAdapter() {
         val adapter = SportsFacilityListAdapter(viewModel::openFacilityDetail)
-        adapter.submitList(viewModel.listSportsFacilities.value)
+        adapter.submitList(viewModel.listSportsFacilities.value?.items)
         binding.rvFacilityList.adapter = adapter
     }
 

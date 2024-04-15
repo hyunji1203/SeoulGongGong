@@ -13,4 +13,7 @@
     <string name="tv_facility_detail_money_title">시설 사용료</string>
     <string name="tv_facility_detail_convenience_title">편의시설</string>
     <string name="tv_facility_detail_parking_title">주차정보</string>
+
+    <!--    SportsFacilityBottomSheetFragment-->
+    <string name="tv_facility_list_blank_message">검색 결과가 없습니다</string>
 </resources>

@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.example.seoulgonggong.ui.facility.SportsFacilityViewModel" />
     </data>
 
     <LinearLayout
@@ -21,6 +24,17 @@
             android:layout_marginTop="@dimen/margin_default"
             android:layout_marginEnd="@dimen/margin_default"
             android:background="@drawable/ic_filter" />
+
+        <TextView
+            android:id="@+id/tv_facility_list_blank_message"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:gravity="center"
+            android:text="@string/tv_facility_list_blank_message"
+            android:textAppearance="@style/title_3M"
+            android:textColor="@color/medium_gray"
+            android:visibility="gone"
+            app:setNoItemsMessageVisibility="@{viewModel.listSportsFacilities.empty}" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_facility_list"
