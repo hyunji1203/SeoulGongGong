@@ -14,7 +14,7 @@ import javax.inject.Inject
 class DefaultGeocodingRepository @Inject constructor(
     private val geocodingService: GeocodingService, private val reverseGeocodingService: ReverseGeocodingService
 ) : GeocodingRepository {
-    override fun geocode(address: String): Result<Addresses> {
+    override suspend fun geocode(address: String): Result<Addresses> {
         val result = geocodingService.geocode(address)
         if (result.isSuccessful) {
             val body = result.body() ?: return Result.failure(IllegalStateException(ERROR_MESSAGE_NO_BODY))
@@ -24,7 +24,7 @@ class DefaultGeocodingRepository @Inject constructor(
         }
     }
 
-    override fun reverseGeocode(coordinate: Coordinate): Result<Regions> {
+    override suspend fun reverseGeocode(coordinate: Coordinate): Result<Regions> {
         val coords = "${coordinate.x},${coordinate.y}"
         val result = reverseGeocodingService.reverseGeocode(coords)
         if (result.isSuccessful) {

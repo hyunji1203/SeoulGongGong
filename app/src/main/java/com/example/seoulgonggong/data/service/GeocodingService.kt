@@ -7,5 +7,5 @@ import retrofit2.http.Query
 
 interface GeocodingService {
     @GET("./")
-    fun geocode(@Query("query") query:String):Response<GeocodeResponse>
+    suspend fun geocode(@Query("query") query:String):Response<GeocodeResponse>
 }

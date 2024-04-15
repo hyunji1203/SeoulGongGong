@@ -12,7 +12,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.json.Json
+import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.logging.HttpLoggingInterceptor
 import javax.inject.Singleton
 
 
@@ -28,49 +30,39 @@ object AppModule {
     @NaverMapClient
     fun provideNaverMapClient(): OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor { chain ->
-                val request = chain
-                    .request()
-                    .newBuilder()
+            .addInterceptor(Interceptor { chain ->
+                val request = chain.request().newBuilder()
                     .addHeader(HEADER_NAVER_GEOCODING_CLIENT_ID, BuildConfig.NAVER_MAP_CLIENT_ID)
-                    .addHeader(HEADER_NAVER_GEOCODING_CLIENT_SECRET, BuildConfig.NAVER_MAP_CLIENT_SECRET)
-                    .build()
+                    .addHeader(HEADER_NAVER_GEOCODING_CLIENT_SECRET, BuildConfig.NAVER_MAP_CLIENT_SECRET).build()
                 chain.proceed(request)
-            }
-            .build()
+            })
+            .addInterceptor(HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            }).build()
     }
 
     @Provides
     @Singleton
     @SeoulOpenApiRetrofit
     fun provideSeoulOpenApiRetrofit(): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(BuildConfig.SEOUL_OPEN_API_BASE_URL)
-            .client(OkHttpClient.Builder().build())
-            .addConverterFactory(Json.asConverterFactory("application/json".toMediaTypeOrNull()!!))
-            .build()
+        return Retrofit.Builder().baseUrl(BuildConfig.SEOUL_OPEN_API_BASE_URL).client(OkHttpClient.Builder().build())
+            .addConverterFactory(Json.asConverterFactory("application/json".toMediaTypeOrNull()!!)).build()
     }
 
     @Provides
     @Singleton
     @GeocodingRetrofit
     fun provideGeocodingRetrofit(@NaverMapClient client: OkHttpClient): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(BuildConfig.GEOCODING_API_BASE_URL)
-            .client(client)
-            .addConverterFactory(Json.asConverterFactory("application/json".toMediaTypeOrNull()!!))
-            .build()
+        return Retrofit.Builder().baseUrl(BuildConfig.GEOCODING_API_BASE_URL).client(client)
+            .addConverterFactory(Json.asConverterFactory("application/json".toMediaTypeOrNull()!!)).build()
     }
 
     @Provides
     @Singleton
     @ReverseGeocodingRetrofit
     fun provideReverseGeocodingRetrofit(@NaverMapClient client: OkHttpClient): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(BuildConfig.REVERSE_GEOCODING_API_BASE_URL)
-            .client(client)
-            .addConverterFactory(Json.asConverterFactory("application/json".toMediaTypeOrNull()!!))
-            .build()
+        return Retrofit.Builder().baseUrl(BuildConfig.REVERSE_GEOCODING_API_BASE_URL).client(client)
+            .addConverterFactory(Json.asConverterFactory("application/json".toMediaTypeOrNull()!!)).build()
     }
 
     @Provides
@@ -84,6 +76,7 @@ object AppModule {
     fun provideGeocodingService(@GeocodingRetrofit retrofit: Retrofit): GeocodingService {
         return retrofit.create(GeocodingService::class.java)
     }
+
     @Provides
     @Singleton
     fun provideReverseGeocodingService(@ReverseGeocodingRetrofit retrofit: Retrofit): ReverseGeocodingService {

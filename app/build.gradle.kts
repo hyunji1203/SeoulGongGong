@@ -91,4 +91,7 @@ dependencies {
 
     // naverMap
     implementation(libs.bundles.naverMap)
+
+    // OkHttp3 logging interceptor
+    implementation(libs.logging.interceptor)
 }
