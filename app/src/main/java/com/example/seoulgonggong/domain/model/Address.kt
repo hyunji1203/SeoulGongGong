@@ -5,8 +5,7 @@ data class Address (
     val jibunAddress: String,
     val englishAddress: String,
     val addressElements:List<AddressElement>,
-    val x:String,
-    val y:String,
+    val coordinate: Coordinate,
     val distance:Double
 )
 

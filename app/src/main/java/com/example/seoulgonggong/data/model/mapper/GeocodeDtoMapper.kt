@@ -4,6 +4,7 @@ import com.example.seoulgonggong.data.model.response.GeocodeResponse
 import com.example.seoulgonggong.domain.model.Address
 import com.example.seoulgonggong.domain.model.AddressElement
 import com.example.seoulgonggong.domain.model.Addresses
+import com.example.seoulgonggong.domain.model.Coordinate
 
 fun GeocodeResponse.toDomain() = Addresses(
     values = this.addresses.map { address ->
@@ -19,8 +20,7 @@ fun GeocodeResponse.toDomain() = Addresses(
                     code = it.code
                 )
             },
-            x = address.x,
-            y = address.y,
+            coordinate = Coordinate(address.x.toDouble(), address.y.toDouble()),
             distance = address.distance
         )
     }
