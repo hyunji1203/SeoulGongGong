@@ -8,11 +8,7 @@ annotation class SeoulOpenApiRetrofit
 
 @Qualifier
 @Retention
-annotation class GeocodingRetrofit
-
-@Qualifier
-@Retention
-annotation class ReverseGeocodingRetrofit
+annotation class GeocoderRetrofit
 
 @Qualifier
 @Retention

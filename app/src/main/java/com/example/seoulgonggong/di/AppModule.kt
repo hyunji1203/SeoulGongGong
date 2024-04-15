@@ -3,8 +3,7 @@ package com.example.seoulgonggong.di
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import com.example.seoulgonggong.BuildConfig
-import com.example.seoulgonggong.data.service.GeocodingService
-import com.example.seoulgonggong.data.service.ReverseGeocodingService
+import com.example.seoulgonggong.data.service.GeocoderService
 import com.example.seoulgonggong.data.service.SportsFacilityService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
@@ -51,17 +50,9 @@ object AppModule {
 
     @Provides
     @Singleton
-    @GeocodingRetrofit
-    fun provideGeocodingRetrofit(@NaverMapClient client: OkHttpClient): Retrofit {
-        return Retrofit.Builder().baseUrl(BuildConfig.GEOCODING_API_BASE_URL).client(client)
-            .addConverterFactory(Json.asConverterFactory("application/json".toMediaTypeOrNull()!!)).build()
-    }
-
-    @Provides
-    @Singleton
-    @ReverseGeocodingRetrofit
-    fun provideReverseGeocodingRetrofit(@NaverMapClient client: OkHttpClient): Retrofit {
-        return Retrofit.Builder().baseUrl(BuildConfig.REVERSE_GEOCODING_API_BASE_URL).client(client)
+    @GeocoderRetrofit
+    fun provideGeocoderRetrofit(@NaverMapClient client: OkHttpClient): Retrofit {
+        return Retrofit.Builder().baseUrl(BuildConfig.GEOCODER_API_BASE_URL).client(client)
             .addConverterFactory(Json.asConverterFactory("application/json".toMediaTypeOrNull()!!)).build()
     }
 
@@ -73,13 +64,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideGeocodingService(@GeocodingRetrofit retrofit: Retrofit): GeocodingService {
-        return retrofit.create(GeocodingService::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideReverseGeocodingService(@ReverseGeocodingRetrofit retrofit: Retrofit): ReverseGeocodingService {
-        return retrofit.create(ReverseGeocodingService::class.java)
+    fun provideGeocoderService(@GeocoderRetrofit retrofit: Retrofit): GeocoderService {
+        return retrofit.create(GeocoderService::class.java)
     }
 }
