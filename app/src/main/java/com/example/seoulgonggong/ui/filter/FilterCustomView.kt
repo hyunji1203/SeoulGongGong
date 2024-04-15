@@ -26,8 +26,14 @@ class FilterCustomView(context: Context, attr: AttributeSet? = null) :
         binding.tvFilterTitle.text = title
     }
 
+    fun addFilterOptionGroup(group: List<String>) {
+        group.forEach {
+            addFilterOption(it)
+        }
+    }
+
     // 필터 옵션 추가
-    fun addFilterOption(option: String) {
+    private fun addFilterOption(option: String) {
         val chip = Chip(context)
         chip.text = option
         chip.isCheckable = true
