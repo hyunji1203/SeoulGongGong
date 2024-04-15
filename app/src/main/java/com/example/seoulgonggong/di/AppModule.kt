@@ -3,6 +3,8 @@ package com.example.seoulgonggong.di
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import com.example.seoulgonggong.BuildConfig
+import com.example.seoulgonggong.data.service.GeocodingService
+import com.example.seoulgonggong.data.service.ReverseGeocodingService
 import com.example.seoulgonggong.data.service.SportsFacilityService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
@@ -75,5 +77,16 @@ object AppModule {
     @Singleton
     fun provideSportsFacilityService(@SeoulOpenApiRetrofit retrofit: Retrofit): SportsFacilityService {
         return retrofit.create(SportsFacilityService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGeocodingService(@GeocodingRetrofit retrofit: Retrofit): GeocodingService {
+        return retrofit.create(GeocodingService::class.java)
+    }
+    @Provides
+    @Singleton
+    fun provideReverseGeocodingService(@ReverseGeocodingRetrofit retrofit: Retrofit): ReverseGeocodingService {
+        return retrofit.create(ReverseGeocodingService::class.java)
     }
 }

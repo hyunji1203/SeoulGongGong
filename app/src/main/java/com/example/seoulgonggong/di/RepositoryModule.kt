@@ -1,6 +1,8 @@
 package com.example.seoulgonggong.di
 
+import com.example.seoulgonggong.data.repository.DefaultGeocodingRepository
 import com.example.seoulgonggong.data.repository.DefaultSportsFacilityRepository
+import com.example.seoulgonggong.domain.repository.GeocodingRepository
 import com.example.seoulgonggong.domain.repository.SportsFacilityRepository
 import dagger.Binds
 import dagger.Module
@@ -15,4 +17,8 @@ interface RepositoryModule {
     @Binds
     @Singleton
     fun bindsSportsFacilityRepository(repository: DefaultSportsFacilityRepository): SportsFacilityRepository
+
+    @Binds
+    @Singleton
+    fun bindsGeocodingRepository(repository: DefaultGeocodingRepository): GeocodingRepository
 }
