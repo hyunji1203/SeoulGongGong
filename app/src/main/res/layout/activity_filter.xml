@@ -78,7 +78,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="@dimen/margin_default"
                 android:layout_marginBottom="24dp"
-                android:background="@drawable/rect_radius"
+                android:background="@drawable/rect_radius_small"
                 android:backgroundTint="@color/main_teal"
                 android:padding="@dimen/margin_default"
                 android:text="@string/filter_go_list"
