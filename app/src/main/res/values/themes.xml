@@ -7,16 +7,6 @@
 
     <style name="Theme.SeoulGongGong" parent="Base.Theme.SeoulGongGong" />
 
-    <!-- Filter Custom Chip -->
-    <style name="CustomChipChoice" parent="Widget.MaterialComponents.Chip.Filter" >
-        <item name="chipBackgroundColor">
-            @color/chip_bg_color
-        </item>
-        <item name="android:textColor">
-            @color/chip_text_color
-        </item>
-    </style>
-
     <!-- text theme -->
     <style name="title_0B">
         <item name="android:fontFamily">@font/pretendard_bold</item>
