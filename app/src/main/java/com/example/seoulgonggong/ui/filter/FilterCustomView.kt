@@ -7,7 +7,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.seoulgonggong.R
 import com.example.seoulgonggong.databinding.CustomFilterBinding
 import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipDrawable
 import com.google.android.material.chip.ChipGroup
 
 class FilterCustomView(context: Context, attr: AttributeSet? = null) :
@@ -35,6 +34,7 @@ class FilterCustomView(context: Context, attr: AttributeSet? = null) :
     // 필터 옵션 추가
     private fun addFilterOption(option: String) {
         val chip = Chip(context)
+        setChipSize(chip)
         chip.text = option
         chip.isCheckable = true
         setChipStyle(chip)
@@ -42,11 +42,15 @@ class FilterCustomView(context: Context, attr: AttributeSet? = null) :
         chips.add(chip)
     }
 
+    private fun setChipSize(chip: Chip) {
+        chip.setPadding(16, 8, 16, 8)
+    }
+
     private fun setChipStyle(chip: Chip) {
-        chip.setChipDrawable(
-            ChipDrawable.createFromAttributes(context, null, 0, R.style.CustomChipChoice),
-        )
-        chip.setTextAppearance(R.style.subtitle_1)
+        chip.setChipBackgroundColorResource(R.color.chip_bg_color)
+        chip.setTextColor(resources.getColorStateList(R.color.chip_text_color, null))
+        chip.setTextAppearance(R.style.subtitle_2)
+        chip.chipIcon = null
     }
 
     // 선택된 옵션 확인
