@@ -22,7 +22,8 @@
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <com.example.seoulgonggong.ui.filter.FilterCustomView
                     android:id="@+id/cv_filter_city"
@@ -80,7 +81,7 @@
                 android:background="@drawable/rect_radius"
                 android:backgroundTint="@color/main_teal"
                 android:padding="@dimen/margin_default"
-                android:text="목록 보기"
+                android:text="@string/filter_go_list"
                 android:textAppearance="@style/title_2B"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -102,7 +103,7 @@
                 android:id="@+id/tv_filter_reset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="초기화"
+                android:text="@string/filter_reset"
                 android:textAppearance="@style/body2"
                 app:layout_constraintEnd_toEndOf="@+id/iv_filter_reset"
                 app:layout_constraintStart_toStartOf="@+id/iv_filter_reset"
