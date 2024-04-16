@@ -7,8 +7,8 @@ import com.example.seoulgonggong.domain.repository.PublicServiceRepository
 import javax.inject.Inject
 
 class DefaultPublicServiceRepository @Inject constructor(private val sportsServiceService: SportsServiceService):PublicServiceRepository {
-    override suspend fun getData():Result<PublicServices>{
-        val result = sportsServiceService.getData()
+    override suspend fun getServices():Result<PublicServices>{
+        val result = sportsServiceService.getServices()
         if (result.isSuccessful){
             val body = result.body()?.toDomain()
                 ?: return Result.failure(IllegalStateException(ERROR_EMPTY_BODY_MESSAGE))
