@@ -34,4 +34,8 @@ interface RepositoryModule {
     @Binds
     @Singleton
     fun bindsGeocodingRepository(repository: DefaultGeocodingRepository): GeocodingRepository
+
+    @Binds
+    @Singleton
+    fun bindGeoRepository(repository: DefaultGeoRepository): GeoRepository
 }

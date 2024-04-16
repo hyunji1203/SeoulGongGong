@@ -65,19 +65,6 @@ object AppModule {
 
     @Provides
     @Singleton
-    @GeocodingRetrofit
-    fun provideGeocodingRetrofit(
-        @NaverMapClient client: OkHttpClient,
-    ): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(BuildConfig.GEOCODING_API_BASE_URL)
-            .client(client)
-            .addConverterFactory(Json.asConverterFactory("application/json".toMediaTypeOrNull()!!))
-            .build()
-    }
-
-    @Provides
-    @Singleton
     @GeocoderRetrofit
     fun provideGeocoderRetrofit(@NaverMapClient client: OkHttpClient): Retrofit {
         return Retrofit.Builder().baseUrl(BuildConfig.GEOCODER_API_BASE_URL).client(client)
