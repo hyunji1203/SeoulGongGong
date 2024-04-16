@@ -31,7 +31,6 @@ class FilterCustomView(context: Context, attr: AttributeSet? = null) :
         }
     }
 
-    // 필터 옵션 추가
     private fun addFilterOption(option: String) {
         val chip = Chip(context)
         setChipSize(chip)
@@ -53,7 +52,6 @@ class FilterCustomView(context: Context, attr: AttributeSet? = null) :
         chip.chipIcon = null
     }
 
-    // 선택된 옵션 확인
     fun getSelectedOptions(): List<String> {
         val selectedOptions = mutableListOf<String>()
         chips.forEach {
@@ -64,7 +62,6 @@ class FilterCustomView(context: Context, attr: AttributeSet? = null) :
         return selectedOptions
     }
 
-    // 모든 옵션 해제
     fun clearSelection() {
         chips.forEach { it.isChecked = false }
     }
