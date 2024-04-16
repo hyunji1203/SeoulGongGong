@@ -9,6 +9,14 @@
         android:layout_marginHorizontal="@dimen/margin_default"
         tools:context=".ui.feature.public_service_list.activity.PublicServiceListActivity">
 
+        <EditText
+            android:id="@+id/et_search_service_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_public_service_list"
             android:layout_width="0dp"
@@ -17,7 +25,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_search_service_list"
             tools:itemCount="10"
             tools:listitem="@layout/public_service_item" />
     </androidx.constraintlayout.widget.ConstraintLayout>
