@@ -10,7 +10,7 @@ fun PublicServices.toUi(): List<UiPublicService> =
 fun PublicService.toUi(): UiPublicService = UiPublicService(
     title = serviceName,
     place = place,
-    operatingTime = usageStartTime + usageEndTime,
+    operatingTime = "$usageStartTime ~ $usageEndTime",
     img = imgUrl,
     status = serviceStatus,
 )
