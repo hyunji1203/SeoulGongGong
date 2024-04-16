@@ -17,6 +17,7 @@ coreKtx = "1.10.0"
 appcompat = "1.6.1"
 constraintlayout = "2.1.4"
 fragment = "1.6.2"
+activity = "1.7.2"
 
 # Google Libraries
 material = "1.9.0"
@@ -32,15 +33,22 @@ glide = "4.16.0"
 # hilt
 hilt = "2.48"
 
-# Kotlinx-serialization
-kotlinxSerializationJson = "1.6.3"
+# Lifecycle
+lifecycle = "2.6.0"
 
 # Retrofit
 retrofit = "2.11.0"
 retrofit2KotlinxSerializationConverter = "1.0.0"
 
-# Coroutines
+# kotlinx-serialization
+kotlinxSerializationJson = "1.6.3"
+
+# okhttp3
+okhttp3 = "4.11.0"
+
+# Coroutine
 kotlinxCoroutinesCore = "1.8.1-Beta"
+coroutinetest = "1.7.3"
 
 # naverMap
 naverMap = "3.18.0"
@@ -56,6 +64,7 @@ coreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment" }
+activity = { module = "androidx.activity:activity-ktx", version.ref = "activity" }
 
 # Google Libraries
 material = { module = "com.google.android.material:material", version.ref = "material" }
@@ -63,6 +72,8 @@ playServicesLocation = { module = "com.google.android.gms:play-services-location
 
 # kotlinx
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
+kotlinx-coroutines-jdk = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "kotlinxCoroutinesCore" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutinetest" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 
 # Test Libraries
@@ -84,14 +95,23 @@ retrofit2-kotlinx-serialization-converter = { module = "com.jakewharton.retrofit
 # naverMap
 naverMap = { module = "com.naver.maps:map-sdk", version.ref = "naverMap" }
 
+# lifecycle
+viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
+
+# okhttp3
+okhttp3 = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp3" }
+
 # OkHttp3 logging interceptor
 logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "loggingInterceptor" }
 
 [bundles]
-androidDefault = ["coreKtx", "appcompat", "constraintlayout", "material", "fragment"]
+androidDefault = ["coreKtx", "appcompat", "constraintlayout", "material", "fragment", "activity"]
 test = ["junit"]
 androidUnitTest = ["androidTestJunit", "androidxTestEspresso"]
 retrofit = ["retrofit", "retrofit2-kotlinx-serialization-converter"]
 naverMap = ["naverMap", "playServicesLocation"]
+lifeCycle = ["viewmodel", "livedata"]
+coroutine = ["kotlinx-coroutines-core", "kotlinx-coroutines-jdk"]
 
 [plugins]
