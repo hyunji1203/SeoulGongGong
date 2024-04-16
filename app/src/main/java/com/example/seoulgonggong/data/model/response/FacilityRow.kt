@@ -1,4 +1,4 @@
-package com.example.seoulgonggong.data.model
+package com.example.seoulgonggong.data.model.response
 
 
 import kotlinx.serialization.SerialName
