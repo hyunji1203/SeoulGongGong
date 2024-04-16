@@ -1,11 +1,14 @@
 package com.example.seoulgonggong.ui.facility
 
 import android.Manifest
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.example.seoulgonggong.R
+import com.example.seoulgonggong.ui.filter.SelectedOptions
 import com.naver.maps.map.LocationTrackingMode
 import com.naver.maps.map.MapFragment
 import com.naver.maps.map.NaverMap
@@ -15,7 +18,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
-
     private lateinit var naverMap: NaverMap
     private lateinit var locationSource: FusedLocationSource
     private val viewModel: SportsFacilityViewModel by viewModels()
@@ -34,9 +36,8 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
-        grantResults: IntArray
+        grantResults: IntArray,
     ) {
-
         if (locationSource.onRequestPermissionsResult(requestCode, permissions, grantResults)) {
             if (!locationSource.isActivated) { // 권한 거부
                 naverMap.locationTrackingMode = LocationTrackingMode.None
@@ -59,10 +60,21 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
+        private const val FILTER_KEY = "filter"
 
-        private val PERMISSIONS = arrayOf(
-            Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.ACCESS_COARSE_LOCATION
-        )
+        private val PERMISSIONS =
+            arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+            )
+
+        fun getIntent(
+            context: Context,
+            selectedOptions: SelectedOptions,
+        ): Intent {
+            return Intent(context, SportsFacilityActivity::class.java).apply {
+                putExtra(FILTER_KEY, selectedOptions)
+            }
+        }
     }
 }
