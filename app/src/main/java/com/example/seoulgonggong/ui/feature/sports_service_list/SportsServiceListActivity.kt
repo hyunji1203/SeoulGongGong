@@ -1,4 +1,4 @@
-package com.example.seoulgonggong.ui.feature.sports_service_list.activity
+package com.example.seoulgonggong.ui.feature.sports_service_list
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,7 +7,6 @@ import androidx.activity.viewModels
 import androidx.core.widget.doOnTextChanged
 import com.example.seoulgonggong.databinding.ActivitySportsServiceListBinding
 import com.example.seoulgonggong.ui.feature.sports_service_detail.SportsServiceDetailActivity
-import com.example.seoulgonggong.ui.feature.sports_service_list.recyclerview.SportsServiceAdapter
 import com.example.seoulgonggong.ui.feature.sports_service_list.viewmodel.SportsServiceListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

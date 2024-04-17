@@ -31,7 +31,7 @@
             android:name=".ui.facility.SportsFacilityActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.feature.sports_service_list.activity.SportsServiceListActivity"
+            android:name=".ui.feature.sports_service_list.SportsServiceListActivity"
             android:exported="false" />
         <activity
             android:name=".ui.feature.sports_service_detail.SportsServiceDetailActivity"

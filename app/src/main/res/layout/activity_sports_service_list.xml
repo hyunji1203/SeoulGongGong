@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="@dimen/margin_default"
-        tools:context=".ui.feature.sports_service_list.activity.SportsServiceListActivity">
+        tools:context=".ui.feature.sports_service_list.SportsServiceListActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/toolbar_sports_service"
