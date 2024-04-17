@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.seoulgonggong.ui.facility.SportsFacilityViewModel" />
+            type="com.seoulfitu.android.ui.facility.SportsFacilityViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -5,6 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.seoulfitu.android.domain.repository.SportsFacilityRepository
+import com.seoulfitu.android.ui.uimodel.UiSportsFacility
+import com.seoulfitu.android.ui.uimodel.UiSportsFacilityList
+import com.seoulfitu.android.ui.uimodel.mapper.toUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

@@ -1,8 +1,8 @@
 package com.seoulfitu.android.data.model.mapper
 
 import com.seoulfitu.android.data.model.response.FacilityRow
-import com.seoulfitu.android.data.model.response.SportsFacilityResponse
-import com.seoulfitu.android.domain.model.SportsFacility
+import com.seoulfitu.android.domain.model.SportsFacilityInfo
+import com.seoulfitu.android.domain.model.SportsFacilityType
 
 fun FacilityRow.toDomain() = SportsFacilityInfo(
     idx = idx,

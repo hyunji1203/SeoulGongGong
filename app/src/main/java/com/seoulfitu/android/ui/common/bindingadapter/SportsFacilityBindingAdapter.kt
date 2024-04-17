@@ -1,12 +1,12 @@
-package com.example.seoulgonggong.ui.bindingAdapter
+package com.seoulfitu.android.ui.common.bindingadapter
 
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
-import com.example.seoulgonggong.R
-import com.example.seoulgonggong.ui.uimodel.UiSportsFacilityType
+import com.seoulfitu.android.R
+import com.seoulfitu.android.ui.uimodel.UiSportsFacilityType
 
 @BindingAdapter("app:loadFacilityIcon")
 fun ImageView.loadFacilityIcon(facilityType: UiSportsFacilityType) {

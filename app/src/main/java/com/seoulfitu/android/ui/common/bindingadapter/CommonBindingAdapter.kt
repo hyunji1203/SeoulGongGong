@@ -1,9 +1,9 @@
-package com.example.seoulgonggong.ui.bindingAdapter
+package com.seoulfitu.android.ui.common.bindingadapter
 
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
-import com.example.seoulgonggong.R
+import com.seoulfitu.android.R
 
 @BindingAdapter("app:setScrapStatus")
 fun ImageView.setScrapStatus(isScrap: Boolean) {

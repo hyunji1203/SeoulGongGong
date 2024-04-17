@@ -1,5 +1,7 @@
 package com.seoulfitu.android.data.repository
 
+import com.seoulfitu.android.data.ERROR_MESSAGE_FAIL_RESULT
+import com.seoulfitu.android.data.ERROR_MESSAGE_NO_BODY
 import com.seoulfitu.android.data.service.SportsFacilityService
 import com.seoulfitu.android.data.model.mapper.toDomain
 import com.seoulfitu.android.domain.model.SportsFacility
