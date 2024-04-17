@@ -17,7 +17,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/cl_sports_service_item"
         android:layout_width="match_parent"
-        android:layout_height="173dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_default"
         android:background="@drawable/rect_public_service_item_bg"
         android:onClick="@{(item) -> onItemClick.invoke(sportsService)}"
