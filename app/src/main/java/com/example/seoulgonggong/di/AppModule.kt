@@ -4,7 +4,6 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import com.example.seoulgonggong.BuildConfig
 import com.example.seoulgonggong.data.service.SportsServiceService
-import com.example.seoulgonggong.data.service.Service
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides

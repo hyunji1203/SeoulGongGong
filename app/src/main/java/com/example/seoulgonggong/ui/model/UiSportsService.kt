@@ -17,5 +17,7 @@ data class UiSportsService(
     val registrationEndDate:String,
     val user:String,
     val payment:String,
-    val details:String
+    val details:String,
+    val xCoordinate: Double,
+    val yCoordinate: Double,
 ): Serializable
