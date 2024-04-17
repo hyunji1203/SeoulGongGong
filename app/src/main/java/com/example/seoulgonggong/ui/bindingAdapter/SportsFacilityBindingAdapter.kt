@@ -28,17 +28,8 @@ fun ImageView.loadFacilityIcon(facilityType: UiSportsFacilityType) {
     this.setImageResource(iconSrc)
 }
 
-@BindingAdapter("app:setScrapStatus")
-fun ImageView.setScrapStatus(isScrap: Boolean?) {
-    if (isScrap == null) return
-    backgroundTintList = if (isScrap) {
-        ContextCompat.getColorStateList(this.context, R.color.red)
-    } else ContextCompat.getColorStateList(this.context, R.color.gray)
-}
-
 @BindingAdapter("app:setTextColorWithOperatingStatus")
-fun TextView.setTextColorWithOperatingStatus(operatingStatus: String?) {
-    if (operatingStatus == null) return
+fun TextView.setTextColorWithOperatingStatus(operatingStatus: String) {
     if (operatingStatus.contains("운영")) this.setTextColor(
         ContextCompat.getColor(this.context, R.color.main_teal)
     ) else this.setTextColor(
@@ -47,8 +38,7 @@ fun TextView.setTextColorWithOperatingStatus(operatingStatus: String?) {
 }
 
 @BindingAdapter("app:setNoNumberText")
-fun TextView.setNoNumberText(phoneNumber: String?) {
-    if (phoneNumber == null) return
+fun TextView.setNoNumberText(phoneNumber: String) {
     if (phoneNumber.length < 3) {
         text = "홈페이지 참조"
         setTextColor(
