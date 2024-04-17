@@ -40,6 +40,7 @@ android {
         buildConfigField("String", "GEOCODING_API_BASE_URL", "\"https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode/\"")
         buildConfigField("String", "REVERSE_GEOCODING_API_BASE_URL", "\"https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc/\"")
         buildConfigField("String", "OPEN_DATA_API_BASE_URL", "\"http://apis.data.go.kr/\"")
+        buildConfigField("String", "GEOCODER_API_BASE_URL", "\"https://naveropenapi.apigw.ntruss.com/\"")
 
         // KEY
         buildConfigField("String", "NAVER_MAP_CLIENT_ID", "\"${properties["NAVER_MAP_CLIENT_ID"]}\"")
@@ -107,4 +108,7 @@ dependencies {
 
     // naverMap
     implementation(libs.bundles.naverMap)
+
+    // OkHttp3 logging interceptor
+    implementation(libs.logging.interceptor)
 }

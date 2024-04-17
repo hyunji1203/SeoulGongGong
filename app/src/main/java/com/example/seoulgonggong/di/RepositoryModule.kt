@@ -2,10 +2,12 @@ package com.example.seoulgonggong.di
 
 import com.example.seoulgonggong.data.repository.DefaultGeoRepository
 import com.example.seoulgonggong.data.repository.DefaultParticulateMatterRepository
+import com.example.seoulgonggong.data.repository.DefaultGeocodingRepository
 import com.example.seoulgonggong.data.repository.DefaultSportsFacilityRepository
 import com.example.seoulgonggong.data.repository.DefaultWeatherRepository
 import com.example.seoulgonggong.domain.repository.GeoRepository
 import com.example.seoulgonggong.domain.repository.ParticulateMatterRepository
+import com.example.seoulgonggong.domain.repository.GeocodingRepository
 import com.example.seoulgonggong.domain.repository.SportsFacilityRepository
 import com.example.seoulgonggong.domain.repository.WeatherRepository
 import dagger.Binds
@@ -28,6 +30,10 @@ interface RepositoryModule {
     @Binds
     @Singleton
     fun bindParticulateMatterRepository(repository: DefaultParticulateMatterRepository): ParticulateMatterRepository
+
+    @Binds
+    @Singleton
+    fun bindsGeocodingRepository(repository: DefaultGeocodingRepository): GeocodingRepository
 
     @Binds
     @Singleton
