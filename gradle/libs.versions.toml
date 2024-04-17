@@ -61,6 +61,7 @@ loggingInterceptor = "4.11.0"
 # ViewModel
 lifecycleViewmodelKtx = "2.6.0"
 activityKtx = "1.7.2"
+org-jetbrains-kotlin-android = "1.9.0"
 
 [libraries]
 # AndroidX Libraries
@@ -124,3 +125,4 @@ coroutine = ["kotlinx-coroutines-core", "kotlinx-coroutines-jdk"]
 viewModel = ["lifecycle-viewmodel-ktx", "activity-ktx"]
 
 [plugins]
+org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }

@@ -1,16 +1,25 @@
 package com.example.seoulgonggong.ui.model
 
-import com.example.seoulgonggong.domain.model.PublicService
-import com.example.seoulgonggong.domain.model.PublicServices
+import com.example.seoulgonggong.domain.model.SportsService
+import com.example.seoulgonggong.domain.model.SportsServices
 
 
-fun PublicServices.toUi(): List<UiPublicService> =
+fun SportsServices.toUi(): List<UiSportsService> =
     this.services.map { it.toUi() }
 
-fun PublicService.toUi(): UiPublicService = UiPublicService(
+fun SportsService.toUi(): UiSportsService = UiSportsService(
     title = serviceName,
     place = place,
-    operatingTime = "$usageStartTime ~ $usageEndTime",
+    usageStartTime = usageStartTime,
+    usageEndTime = usageEndTime,
     img = imgUrl,
     status = serviceStatus,
+    subCategory = subCategory,
+    url = url,
+    phoneNumber = phoneNumber,
+    registrationStartDate = registrationStartDate,
+    registrationEndDate = registrationEndDate,
+    user = user,
+    payment = payment,
+    details = details
 )
