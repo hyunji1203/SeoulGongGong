@@ -2,6 +2,8 @@ package com.example.seoulgonggong.ui.main
 
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
@@ -10,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.checkSelfPermission
 import com.example.seoulgonggong.R
 import com.example.seoulgonggong.databinding.ActivityMainBinding
+import com.example.seoulgonggong.ui.facility.SportsFacilityActivity
 import com.example.seoulgonggong.util.openSetting
 import com.example.seoulgonggong.util.showToast
 import com.google.android.gms.location.LocationServices
@@ -37,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         initViewModel()
         subscribe()
+        setClickListeners()
         setForecast()
     }
 
@@ -48,6 +52,15 @@ class MainActivity : AppCompatActivity() {
     private fun subscribe() {
         viewModel.throwable.observe(this) {
             showToast(getString(R.string.network_errer_message))
+        }
+    }
+
+    private fun setClickListeners() {
+        binding.clMainPublicFacility.setOnClickListener {
+            startActivity(SportsFacilityActivity.getIntent(this))
+        }
+        binding.clMainPublicService.setOnClickListener {
+            // 공공 서비스 이동 intent 넣으면 됨
         }
     }
 
@@ -73,5 +86,9 @@ class MainActivity : AppCompatActivity() {
                 ACCESS_FINE_LOCATION,
                 ACCESS_COARSE_LOCATION,
             )
+
+        fun getIntent(context: Context): Intent {
+            return Intent(context, MainActivity::class.java)
+        }
     }
 }
