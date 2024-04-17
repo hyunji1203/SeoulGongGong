@@ -31,15 +31,19 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        viewModel.getData()
-        val mapFragment: MapFragment =
-            supportFragmentManager.findFragmentById(R.id.fragment_map) as MapFragment
-        mapFragment.getMapAsync(this)
+        viewModel.getAllFacilities()
+        initMap()
 
         locationSource = FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
 
         initOpenListObserve()
         initOpenDetailObserve()
+    }
+
+    private fun initMap() {
+        val mapFragment: MapFragment =
+            supportFragmentManager.findFragmentById(R.id.fragment_map) as MapFragment
+        mapFragment.getMapAsync(this)
     }
 
     private fun initOpenListObserve() {
@@ -57,9 +61,7 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
         viewModel.detailOpenEvent.observe(
             this
         ) {
-            if (it != null) {
-                startActivity(SportsFacilityDetailActivity.getIntent(this, it))
-            }
+            startActivity(SportsFacilityDetailActivity.getIntent(this, it))
         }
     }
 

@@ -30,7 +30,7 @@ class SportsFacilityViewModel @Inject constructor(
     private val _detailOpenEvent: MutableLiveData<UiSportsFacility> = MutableLiveData()
     val detailOpenEvent: LiveData<UiSportsFacility> = _detailOpenEvent
 
-    fun getData() {
+    fun getAllFacilities() {
         viewModelScope.launch {
             repository.getSportsFacility().onSuccess { facilities ->
                 _sportsFacilities.value = facilities.map { it.toUi() }
