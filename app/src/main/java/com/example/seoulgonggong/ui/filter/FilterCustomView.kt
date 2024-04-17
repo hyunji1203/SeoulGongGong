@@ -3,11 +3,14 @@ package com.example.seoulgonggong.ui.filter
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.seoulgonggong.R
 import com.example.seoulgonggong.databinding.CustomFilterBinding
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.google.android.material.shape.CornerFamily.ROUNDED
+import com.google.android.material.shape.ShapeAppearanceModel
 
 class FilterCustomView(context: Context, attr: AttributeSet? = null) :
     ConstraintLayout(context, attr) {
@@ -43,11 +46,23 @@ class FilterCustomView(context: Context, attr: AttributeSet? = null) :
 
     private fun setChipSize(chip: Chip) {
         chip.setPadding(16, 8, 16, 8)
+        val layoutParams =
+            ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+            )
+        chip.layoutParams = layoutParams
     }
 
     private fun setChipStyle(chip: Chip) {
         chip.setChipBackgroundColorResource(R.color.chip_bg_color)
         chip.setTextColor(resources.getColorStateList(R.color.chip_text_color, null))
+        chip.setChipStrokeColorResource(R.color.main_teal)
+        chip.chipStrokeWidth = 5F
+        chip.shapeAppearanceModel =
+            ShapeAppearanceModel.builder()
+                .setAllCorners(ROUNDED, 50F)
+                .build()
         chip.setTextAppearance(R.style.subtitle_2)
         chip.chipIcon = null
     }
