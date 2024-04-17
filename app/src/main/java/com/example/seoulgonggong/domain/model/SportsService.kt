@@ -25,8 +25,8 @@ data class SportsService(
     val imgUrl: String,
     val details: String,
     val phoneNumber: String,
-    val usageStartTime: String,
-    val usageEndTime: String,
+    val operatingStartTime: String,
+    val operatingEndTime: String,
     val cancellationCriteria: String,
     val timeLeftForCancellation: Int
 )

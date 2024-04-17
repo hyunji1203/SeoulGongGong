@@ -27,8 +27,8 @@ fun SportsServiceResponse.toDomain(): SportsServices = SportsServices(
           imgUrl = it.imgUrl,
           details = it.details,
           phoneNumber = it.phoneNumber,
-          usageStartTime = it.usageStartTime,
-          usageEndTime = it.usageEndTime,
+          operatingStartTime = it.operatingStartTime,
+          operatingEndTime = it.operatingEndTime,
           cancellationCriteria = it.cancellationCriteria,
           timeLeftForCancellation = it.timeLeftForCancellation
       )

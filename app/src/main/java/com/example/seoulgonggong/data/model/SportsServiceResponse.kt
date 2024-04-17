@@ -42,8 +42,8 @@ data class DataSportsServiceRow(
     @SerialName("IMGURL") val imgUrl: String,
     @SerialName("DTLCONT") val details: String,
     @SerialName("TELNO") val phoneNumber: String,
-    @SerialName("V_MIN") val usageStartTime: String,
-    @SerialName("V_MAX") val usageEndTime: String,
+    @SerialName("V_MIN") val operatingStartTime: String,
+    @SerialName("V_MAX") val operatingEndTime: String,
     @SerialName("REVSTDDAYNM") val cancellationCriteria: String,
     @SerialName("REVSTDDAY") val timeLeftForCancellation: Int
 )

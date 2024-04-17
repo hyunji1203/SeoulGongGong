@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SeoulGongGong</string>
+    <string name="sports_service_rv_item_operating_time">이용시간: %1$s ~ %2$s</string>
+    <string name="sports_service_detail_operating_time">서비스 이용시간\n%1$s ~ %2$s</string>
 </resources>
