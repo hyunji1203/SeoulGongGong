@@ -10,272 +10,290 @@
             type="com.example.seoulgonggong.ui.model.UiSportsService" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.feature.sports_service_detail.SportsServiceDetailActivity">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="@dimen/margin_default"
-            android:src="@drawable/ic_heart_filled"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:context=".ui.feature.sports_service_detail.SportsServiceDetailActivity">
 
-        <ImageView
-            android:id="@+id/iv_sports_service_detail_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_default"
-            app:serviceImg="@{sportsService.img}"
-            android:src="@drawable/ic_launcher_background"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:src="@drawable/ic_heart_filled"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_sports_service_detail_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="@dimen/margin_default"
-            android:text="@{sportsService.title}"
-            android:textAppearance="@style/subtitle_1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_sports_service_detail_img"
-            app:layout_constraintTop_toTopOf="@id/iv_sports_service_detail_img"
-            tools:text="반포종합운동장 배드민턴 / 1번 코트 / 24년 4월 / 주말, 공휴일(주간) / 07시~18시" />
+            <ImageView
+                android:id="@+id/iv_sports_service_detail_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                app:serviceImg="@{sportsService.img}" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="@dimen/margin_default"
-            android:text="@{sportsService.subCategory}"
-            android:textAppearance="@style/caption_1"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_sports_service_detail_img"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_sports_service_detail_img"
-            tools:text="축구장" />
+            <TextView
+                android:id="@+id/tv_sports_service_detail_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:text="@{sportsService.title}"
+                android:textAppearance="@style/subtitle_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_sports_service_detail_img"
+                app:layout_constraintTop_toTopOf="@id/iv_sports_service_detail_img"
+                tools:text="반포종합운동장 배드민턴 / 1번 코트 / 24년 4월 / 주말, 공휴일(주간) / 07시~18시" />
 
-        <TextView
-            android:id="@+id/tv_sports_service_detail_place"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_default"
-            android:layout_marginTop="27dp"
-            android:layout_marginEnd="@dimen/margin_default"
-            android:text="@{sportsService.place}"
-            android:textAppearance="@style/caption_1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/tv_sports_service_detail_status"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_sports_service_detail_img"
-            tools:text="서울특별시 산악문화체험센터>난지천인조잔디축구장" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:text="@{sportsService.subCategory}"
+                android:textAppearance="@style/caption_1"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_sports_service_detail_img"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_sports_service_detail_img"
+                tools:text="축구장" />
 
-        <TextView
-            android:id="@+id/tv_sports_service_detail_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_default"
-            app:serviceStatusColorForStatus="@{sportsService.status}"
-            android:textAppearance="@style/title_3B"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_sports_service_detail_place"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_sports_service_detail_place"
-            app:layout_constraintTop_toTopOf="@+id/tv_sports_service_detail_place"
-            tools:text="접수중" />
+            <TextView
+                android:id="@+id/tv_sports_service_detail_place"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="27dp"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:text="@{sportsService.place}"
+                android:textAppearance="@style/caption_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_sports_service_detail_status"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_sports_service_detail_img"
+                tools:text="서울특별시 산악문화체험센터>난지천인조잔디축구장" />
 
-        <LinearLayout
-            android:id="@+id/ll_sports_service_detail_divider"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="17dp"
-            android:background="@color/dark_gray"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_sports_service_detail_status" />
+            <TextView
+                android:id="@+id/tv_sports_service_detail_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:text="@{sportsService.status}"
+                android:textAppearance="@style/title_3B"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_sports_service_detail_place"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_sports_service_detail_place"
+                app:layout_constraintTop_toTopOf="@+id/tv_sports_service_detail_place"
+                app:serviceStatusColorForStatus="@{sportsService.status}"
+                tools:text="접수중" />
 
-        <ImageView
-            android:id="@+id/iv_sports_service_detail_location"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginStart="@dimen/margin_default"
-            android:layout_marginTop="12dp"
-            android:src="@drawable/ic_launcher_background"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ll_sports_service_detail_divider" />
+            <LinearLayout
+                android:id="@+id/ll_sports_service_detail_divider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="17dp"
+                android:background="@color/dark_gray"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_sports_service_detail_status" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="@dimen/margin_default"
-            android:text="@{sportsService.address}"
-            android:textAppearance="@style/subtitle_1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_sports_service_detail_location"
-            app:layout_constraintTop_toTopOf="@id/iv_sports_service_detail_location"
-            tools:text="서울특별시 송파구 방이동 439-8" />
+            <ImageView
+                android:id="@+id/iv_sports_service_detail_location"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_sports_service_detail_divider" />
 
-        <ImageView
-            android:id="@+id/iv_sports_service_detail_link"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginStart="@dimen/margin_default"
-            android:layout_marginTop="12dp"
-            android:src="@drawable/ic_launcher_background"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_sports_service_detail_location" />
+            <TextView
+                android:id="@+id/tv_sports_service_detail_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:text="@{sportsService.address}"
+                android:textAppearance="@style/subtitle_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_sports_service_detail_location"
+                app:layout_constraintTop_toTopOf="@id/iv_sports_service_detail_location"
+                tools:text="서울특별시 송파구 방이동 439-8" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="@dimen/margin_default"
-            android:text="@{sportsService.url}"
-            android:textAppearance="@style/subtitle_1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_sports_service_detail_link"
-            app:layout_constraintTop_toTopOf="@id/iv_sports_service_detail_link"
-            tools:text="바로가기 링" />
+            <ImageView
+                android:id="@+id/iv_sports_service_detail_link"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_sports_service_detail_location" />
 
-        <ImageView
-            android:id="@+id/iv_sports_service_detail_phone_number"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginStart="@dimen/margin_default"
-            android:layout_marginTop="12dp"
-            android:src="@drawable/ic_launcher_background"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_sports_service_detail_link" />
+            <TextView
+                android:id="@+id/tv_sports_service_detail_link"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:text="@string/sports_service_detail_link"
+                app:onClickServiceLink="@{sportsService.url}"
+                android:textAppearance="@style/subtitle_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_sports_service_detail_link"
+                app:layout_constraintTop_toTopOf="@id/iv_sports_service_detail_link"
+                tools:text="바로가기 링크" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="@dimen/margin_default"
-            android:text="@{sportsService.phoneNumber}"
-            android:textAppearance="@style/subtitle_1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_sports_service_detail_phone_number"
-            app:layout_constraintTop_toTopOf="@id/iv_sports_service_detail_phone_number"
-            tools:text="02-2066-1515" />
+            <ImageView
+                android:id="@+id/iv_sports_service_detail_phone_number"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_sports_service_detail_link" />
 
-        <ImageView
-            android:id="@+id/iv_sports_service_detail_operating_time"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginStart="@dimen/margin_default"
-            android:layout_marginTop="12dp"
-            android:src="@drawable/ic_launcher_background"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_sports_service_detail_phone_number" />
+            <TextView
+                android:id="@+id/tv_sports_service_detail_phone_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="@dimen/margin_default"
+                app:onClickServicePhoneNumber="@{sportsService.phoneNumber}"
+                android:text="@{sportsService.phoneNumber}"
+                android:textAppearance="@style/subtitle_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_sports_service_detail_phone_number"
+                app:layout_constraintTop_toTopOf="@id/iv_sports_service_detail_phone_number"
+                tools:text="02-2066-1515" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="@dimen/margin_default"
-            app:serviceDetailOperatingStartTime="@{sportsService.operatingStartTime}"
-            app:serviceDetailOperatingEndTime="@{sportsService.operatingEndTime}"
-            android:textAppearance="@style/subtitle_1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_sports_service_detail_operating_time"
-            app:layout_constraintTop_toTopOf="@id/iv_sports_service_detail_operating_time"
-            tools:text="서비스 이용시간\n18:00 ~ 22:00" />
+            <ImageView
+                android:id="@+id/iv_sports_service_detail_operating_time"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_sports_service_detail_phone_number" />
 
-        <ImageView
-            android:id="@+id/iv_sports_service_detail_registration_date"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginStart="@dimen/margin_default"
-            android:layout_marginTop="12dp"
-            android:src="@drawable/ic_launcher_background"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_sports_service_detail_operating_time" />
+            <TextView
+                android:id="@+id/tv_sports_service_detail_operating_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:textAppearance="@style/subtitle_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_sports_service_detail_operating_time"
+                app:layout_constraintTop_toTopOf="@id/iv_sports_service_detail_operating_time"
+                app:serviceDetailOperatingEndTime="@{sportsService.operatingEndTime}"
+                app:serviceDetailOperatingStartTime="@{sportsService.operatingStartTime}"
+                tools:text="서비스 이용시간\n18:00 ~ 22:00" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="@dimen/margin_default"
-            android:text="@{sportsService.registrationStartDate + sportsService.registrationEndDate}"
-            android:textAppearance="@style/subtitle_1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_sports_service_detail_registration_date"
-            app:layout_constraintTop_toTopOf="@id/iv_sports_service_detail_registration_date"
-            tools:text="접수 일시\n2024.03.22 10:00 ~ 2024.04.26 11:04" />
+            <ImageView
+                android:id="@+id/iv_sports_service_detail_registration_date"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_sports_service_detail_operating_time" />
 
-        <ImageView
-            android:id="@+id/iv_sports_service_detail_user"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginStart="@dimen/margin_default"
-            android:layout_marginTop="12dp"
-            android:src="@drawable/ic_launcher_background"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_sports_service_detail_registration_date" />
+            <TextView
+                android:id="@+id/tv_sports_service_detail_registration_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="@dimen/margin_default"
+                app:serviceDetailRegistrationStartTime="@{sportsService.registrationStartDate}"
+                app:serviceDetailRegistrationEndTime="@{sportsService.registrationEndDate}"
+                android:textAppearance="@style/subtitle_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_sports_service_detail_registration_date"
+                app:layout_constraintTop_toTopOf="@id/iv_sports_service_detail_registration_date"
+                tools:text="접수 일시\n2024.03.22 10:00 ~ 2024.04.26 11:04" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="@dimen/margin_default"
-            android:text="@{sportsService.user}"
-            android:textAppearance="@style/subtitle_1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_sports_service_detail_user"
-            app:layout_constraintTop_toTopOf="@id/iv_sports_service_detail_user"
-            tools:text="서비스 대상\n제한없음((동작구 주민/수강생/재학생/재직자/사업자))" />
+            <ImageView
+                android:id="@+id/iv_sports_service_detail_user"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_sports_service_detail_registration_date" />
 
-        <ImageView
-            android:id="@+id/iv_sports_service_detail_payment"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginStart="@dimen/margin_default"
-            android:layout_marginTop="12dp"
-            android:src="@drawable/ic_launcher_background"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_sports_service_detail_user" />
+            <TextView
+                android:id="@+id/tv_sports_service_detail_user"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:text="@{sportsService.user}"
+                android:textAppearance="@style/subtitle_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_sports_service_detail_user"
+                app:layout_constraintTop_toTopOf="@id/iv_sports_service_detail_user"
+                tools:text="서비스 대상\n제한없음((동작구 주민/수강생/재학생/재직자/사업자))" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="@dimen/margin_default"
-            android:text="@{sportsService.payment}"
-            android:textAppearance="@style/subtitle_1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_sports_service_detail_payment"
-            app:layout_constraintTop_toTopOf="@id/iv_sports_service_detail_payment"
-            tools:text="유료(요금안내문의)" />
+            <ImageView
+                android:id="@+id/iv_sports_service_detail_payment"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_sports_service_detail_user" />
 
-        <ImageView
-            android:id="@+id/iv_sports_service_detail_details"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginStart="@dimen/margin_default"
-            android:layout_marginTop="12dp"
-            android:src="@drawable/ic_launcher_background"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_sports_service_detail_payment" />
+            <TextView
+                android:id="@+id/tv_sports_service_detail_payment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:text="@{sportsService.payment}"
+                android:textAppearance="@style/subtitle_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_sports_service_detail_payment"
+                app:layout_constraintTop_toTopOf="@id/iv_sports_service_detail_payment"
+                tools:text="유료(요금안내문의)" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="@dimen/margin_default"
-            android:text="@{sportsService.details}"
-            android:textAppearance="@style/subtitle_1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_sports_service_detail_details"
-            app:layout_constraintTop_toTopOf="@id/iv_sports_service_detail_details"
-            tools:text="세부 설명 어쩌구" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/iv_sports_service_detail_details"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_sports_service_detail_payment" />
+
+            <TextView
+                android:id="@+id/tv_sports_service_detail_details"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:text="@{sportsService.details}"
+                android:textAppearance="@style/subtitle_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_sports_service_detail_details"
+                app:layout_constraintTop_toTopOf="@id/iv_sports_service_detail_details"
+                tools:text="세부 설명 어쩌구" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 
 </layout>

@@ -29,4 +29,6 @@
     <string name="main_public_service">공공\n대관 서비스</string>
     <string name="sports_service_rv_item_operating_time">이용시간: %1$s ~ %2$s</string>
     <string name="sports_service_detail_operating_time">서비스 이용시간\n%1$s ~ %2$s</string>
+    <string name="sports_service_detail_link">바로가기 링크</string>
+    <string name="sports_service_detail_registration_time">접수일시\n%1$s ~ %2$s</string>
 </resources>
