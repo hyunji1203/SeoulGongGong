@@ -6,7 +6,6 @@ import com.example.seoulgonggong.data.service.GeocoderService
 import com.example.seoulgonggong.data.service.SportsFacilityService
 import com.example.seoulgonggong.data.service.WeatherService
 import com.example.seoulgonggong.data.service.SportsServiceService
-import com.example.seoulgonggong.data.service.Service
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides

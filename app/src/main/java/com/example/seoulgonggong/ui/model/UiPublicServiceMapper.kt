@@ -21,5 +21,7 @@ fun SportsService.toUi(): UiSportsService = UiSportsService(
     registrationEndDate = registrationEndDate,
     user = user,
     payment = payment,
-    details = details
+    details = details,
+    xCoordinate = xCoordinate,
+    yCoordinate = yCoordinate
 )

@@ -5,22 +5,41 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.example.seoulgonggong.databinding.ActivitySportsServiceDetailBinding
+import com.example.seoulgonggong.ui.feature.sports_service_detail.viewmodel.SportsServiceDetailViewModel
 import com.example.seoulgonggong.ui.model.UiSportsService
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SportsServiceDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySportsServiceDetailBinding
+    private val viewModel: SportsServiceDetailViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySportsServiceDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        getIntentExtra()
+        observeSportsService()
+    }
+
+    @Suppress("DEPRECATION")
+    private fun getIntentExtra() {
         val sportsService = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent.getSerializableExtra(EXTRA_KEY_SPORTS_SERVICE, UiSportsService::class.java) as UiSportsService
         } else {
             intent.getSerializableExtra(EXTRA_KEY_SPORTS_SERVICE) as UiSportsService
         }
-        binding.sportsService = sportsService
+        viewModel.setSportsService(sportsService)
+        viewModel.reverseGeocode()
+    }
+
+    private fun observeSportsService() {
+        viewModel.sportsService.observe(this) {
+            binding.sportsService = it
+        }
     }
 
     companion object {
