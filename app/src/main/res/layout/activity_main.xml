@@ -1,18 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.example.seoulgonggong.ui.main.MainViewModel" />
+    </data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.main.MainActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_main_weather"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:elevation="7dp"
+            android:background="@drawable/rect_white_radius"
+            android:layout_marginStart="@dimen/margin_default"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="@dimen/margin_default"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_main_greeting_msg">
+
+            <TextView
+                android:id="@+id/tv_main_temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/main_teal"
+                android:textAppearance="@style/title_0B"
+                android:text="@{@string/main_temperature(viewmodel.weatherInfo.temperature)}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="16℃" />
+
+            <TextView
+                android:id="@+id/tv_main_weather_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:textColor="@color/main_teal"
+                android:textAppearance="@style/title_1B"
+                android:text="@{viewmodel.weatherInfo.weatherStatus.currentStatus}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_main_temperature"
+                tools:text="맑음" />
+
+            <TextView
+                android:id="@+id/tv_main_particulate_matter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="48dp"
+                android:paddingBottom="20dp"
+                android:text="@{@string/main_particulate_matter(viewmodel.particulateMatterInfo.particulateMatter)}"
+                android:textAppearance="@style/title_2M"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_main_weather_status"
+                tools:text="미세먼지 25㎍/㎥" />
+
+            <TextView
+                android:id="@+id/tv_main_particulate_matter_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="48dp"
+                android:paddingBottom="20dp"
+                android:textColor="@color/black"
+                android:textAppearance="@style/title_2M"
+                android:text="@{viewmodel.particulateMatterInfo.particulateMatterStatus}"
+                app:layout_constraintStart_toEndOf="@id/tv_main_particulate_matter"
+                app:layout_constraintTop_toBottomOf="@id/tv_main_weather_status"
+                tools:text="좋음" />
+
+            <ImageView
+                android:id="@+id/iv_main_weather_icon"
+                android:layout_width="107dp"
+                android:layout_height="107dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:setWeatherIcon="@{viewmodel.weatherInfo.weatherStatus}"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_main_town"
+                app:layout_constraintEnd_toStartOf="@id/tv_main_town"
+                app:layout_constraintTop_toTopOf="@id/tv_main_town"
+                app:srcCompat="@drawable/ic_town" />
+
+            <TextView
+                android:id="@+id/tv_main_town"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/black"
+                android:textAppearance="@style/title_2M"
+                android:text="@{viewmodel.particulateMatterInfo.observatory}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="상일동" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_main_greeting_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="28dp"
+            android:text="@string/main_greeting_message"
+            android:textColor="@color/black"
+            android:textAppearance="@style/title_1M"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

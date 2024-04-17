@@ -9,6 +9,20 @@
 
 
     <!-- text theme -->
+    <style name="title_0B">
+        <item name="android:fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">36sp</item>
+        <item name="android:lineSpacingExtra">7.2sp</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="title_0M">
+        <item name="android:fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">36sp</item>
+        <item name="android:lineSpacingExtra">7.2sp</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
     <style name="title_1B">
         <item name="android:fontFamily">@font/pretendard_bold</item>
         <item name="android:textSize">24sp</item>

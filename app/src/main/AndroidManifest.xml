@@ -2,15 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
-        android:name=".ui.GongGongApplication"
+        android:name=".SeoulGongGongApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -21,6 +26,11 @@
         android:theme="@style/Theme.SeoulGongGong"
         android:usesCleartextTraffic="true"
         tools:targetApi="33">
+
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="${NAVER_MAP_CLIENT_ID}" />
+
         <activity
             android:name=".ui.feature.sports_service_detail.SportsServiceDetailActivity"
             android:exported="true" />
@@ -28,7 +38,10 @@
             android:name=".ui.feature.sports_service_list.SportsServiceListActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.facility.SportsFacilityActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,7 +1,20 @@
 <resources>
     <string name="app_name">SeoulGongGong</string>
+
+    <!-- MainActivity -->
+    <string name="main_location_access">위치 권한이 필요합니다</string>
+    <string name="main_greeting_message">안녕하세요\n오늘도 건강한 하루 되세요!</string>
+    <string name="main_temperature">%d℃</string>
+    <string name="main_particulate_matter">미세먼지 %d㎍/㎥ </string>
+
+    <!--  SportsFacilityActivity  -->
+    <string name="tv_facility_title">공공 체육 시설</string>
+
     <string name="sports_service_rv_item_operating_time">이용시간: %1$s ~ %2$s</string>
     <string name="sports_service_detail_operating_time">서비스 이용시간\n%1$s ~ %2$s</string>
     <string name="sports_service_detail_link">바로가기 링크</string>
     <string name="sports_service_detail_registration_time">접수일시\n%1$s ~ %2$s</string>
+
+    <!-- All -->
+    <string name="network_errer_message">오류가 발생했어요! 다시 시도해주세요!</string>
 </resources>
