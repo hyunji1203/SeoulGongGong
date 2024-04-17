@@ -1,15 +1,10 @@
 package com.example.seoulgonggong.data.model.mapper
 
 import com.example.seoulgonggong.data.model.response.FacilityRow
-import com.example.seoulgonggong.data.model.response.SportsFacilityResponse
-import com.example.seoulgonggong.domain.model.SportsFacility
 import com.example.seoulgonggong.domain.model.SportsFacilityInfo
 import com.example.seoulgonggong.domain.model.SportsFacilityType
 
-fun SportsFacilityResponse.toDomain() = facilities.row.map { SportsFacility(it.toDomain()) }
-
-
-private fun FacilityRow.toDomain() = SportsFacilityInfo(
+fun FacilityRow.toDomain() = SportsFacilityInfo(
     idx = idx,
     borough = borough,
     facilityName = facilityName,
