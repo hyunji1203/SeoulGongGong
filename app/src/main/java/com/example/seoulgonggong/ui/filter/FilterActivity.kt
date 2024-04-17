@@ -1,7 +1,10 @@
 package com.example.seoulgonggong.ui.filter
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.seoulgonggong.R
 import com.example.seoulgonggong.databinding.ActivityFilterBinding
 import com.example.seoulgonggong.domain.model.Town
 import com.example.seoulgonggong.ui.facility.SportsFacilityActivity
@@ -40,19 +43,19 @@ class FilterActivity : AppCompatActivity() {
 
     private fun initFilterOption() {
         binding.cvFilterCity.apply {
-            setFilterTitle("자치구")
+            setFilterTitle(getString(R.string.filter_city_option_title))
             addFilterOptionGroup(Town.values().map { it.townName })
         }
         binding.cvFilterFacility.apply {
-            setFilterTitle("시설 종류")
+            setFilterTitle(getString(R.string.filter_facility_option_title))
             addFilterOptionGroup(temp_facilities)
         }
         binding.cvFilterRent.apply {
-            setFilterTitle("대관")
+            setFilterTitle(getString(R.string.filter_rent_option_title))
             addFilterOptionGroup(listOf("가능", "불가능"))
         }
         binding.cvFilterParking.apply {
-            setFilterTitle("주차")
+            setFilterTitle(getString(R.string.filter_parking_option_title))
             addFilterOptionGroup(listOf("가능", "불가능"))
         }
     }
@@ -67,6 +70,24 @@ class FilterActivity : AppCompatActivity() {
     }
 
     companion object {
-        private val temp_facilities = listOf("풋살", "테니스장", "축구장", "족구장", "야구장", "수영장")
+        private val temp_facilities =
+            listOf(
+                "풋살",
+                "테니스장",
+                "축구장",
+                "족구장",
+                "야구장",
+                "수영장",
+                "생활체육관",
+                "배드민턴장",
+                "농구장",
+                "골프연습장",
+                "게이트볼장",
+                "기타",
+            )
+
+        fun getIntent(context: Context): Intent {
+            return Intent(context, FilterActivity::class.java)
+        }
     }
 }
