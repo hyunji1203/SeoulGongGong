@@ -45,13 +45,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
-            app:layout_constraintBottom_toTopOf="@id/rv_public_service_list"
+            app:layout_constraintBottom_toTopOf="@id/rv_sports_service_list"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar_sports_service" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_public_service_list"
+            android:id="@+id/rv_sports_service_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

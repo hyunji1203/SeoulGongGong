@@ -3,10 +3,10 @@ package com.example.seoulgonggong.data.repository
 import com.example.seoulgonggong.data.model.toDomain
 import com.example.seoulgonggong.data.service.SportsServiceService
 import com.example.seoulgonggong.domain.model.SportsServices
-import com.example.seoulgonggong.domain.repository.PublicServiceRepository
+import com.example.seoulgonggong.domain.repository.SportsServiceRepository
 import javax.inject.Inject
 
-class DefaultPublicServiceRepository @Inject constructor(private val sportsServiceService: SportsServiceService):PublicServiceRepository {
+class DefaultSportsServiceRepository @Inject constructor(private val sportsServiceService: SportsServiceService):SportsServiceRepository {
     override suspend fun getServices():Result<SportsServices>{
         val result = sportsServiceService.getServices()
         if (result.isSuccessful){
