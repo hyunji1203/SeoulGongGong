@@ -8,20 +8,20 @@
     <string name="main_particulate_matter">미세먼지 %d㎍/㎥ </string>
 
     <!--  SportsFacilityActivity  -->
-    <string name="tv_facility_title">공공 체육 시설</string>
+    <string name="facility_title">공공 체육 시설</string>
 
     <!--  SportsFacilityDetailActivity  -->
-    <string name="tv_facility_detail_link">홈페이지 링크</string>
-    <string name="tv_facility_detail_operating">운영시간</string>
-    <string name="tv_facility_detail_operating_wd_title">평일</string>
-    <string name="tv_facility_detail_operating_we_title">주말</string>
-    <string name="tv_facility_detail_operating_holiday_title">공휴일</string>
-    <string name="tv_facility_detail_money_title">시설 사용료</string>
-    <string name="tv_facility_detail_convenience_title">편의시설</string>
-    <string name="tv_facility_detail_parking_title">주차정보</string>
+    <string name="facility_detail_link">홈페이지 링크</string>
+    <string name="facility_detail_operating">운영시간</string>
+    <string name="facility_detail_operating_wd_title">평일</string>
+    <string name="facility_detail_operating_we_title">주말</string>
+    <string name="facility_detail_operating_holiday_title">공휴일</string>
+    <string name="facility_detail_money_title">시설 사용료</string>
+    <string name="facility_detail_convenience_title">편의시설</string>
+    <string name="facility_detail_parking_title">주차정보</string>
 
     <!--    SportsFacilityBottomSheetFragment-->
-    <string name="tv_facility_list_blank_message">검색 결과가 없습니다</string>
+    <string name="facility_list_blank_message">검색 결과가 없습니다</string>
 
     <!-- All -->
     <string name="network_errer_message">오류가 발생했어요! 다시 시도해주세요!</string>

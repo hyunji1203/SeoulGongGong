@@ -50,7 +50,7 @@ class SportsFacilityViewModel @Inject constructor(
         _listOpenEvent.value = true
     }
 
-    fun openList() {
+    fun openFacilityList() {
         _listOpenEvent.value = true
         _listSportsFacilities.value = UiSportsFacilityList(_sportsFacilities.value ?: emptyList())
     }

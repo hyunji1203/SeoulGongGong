@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:gravity="center"
-            android:text="@string/tv_facility_list_blank_message"
+            android:text="@string/facility_list_blank_message"
             android:textAppearance="@style/title_3M"
             android:textColor="@color/medium_gray"
             android:visibility="gone"

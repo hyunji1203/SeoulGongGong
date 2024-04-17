@@ -33,7 +33,7 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
 
         viewModel.getData()
         val mapFragment: MapFragment =
-            supportFragmentManager.findFragmentById(R.id.map_fragment) as MapFragment
+            supportFragmentManager.findFragmentById(R.id.fragment_map) as MapFragment
         mapFragment.getMapAsync(this)
 
         locationSource = FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)

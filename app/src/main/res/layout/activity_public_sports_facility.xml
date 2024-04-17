@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/btn_back"
+                android:id="@+id/iv_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -39,22 +39,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_default"
-                android:text="@string/tv_facility_title"
+                android:text="@string/facility_title"
                 android:textAppearance="@style/title_3M"
                 android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@id/btn_back"
-                app:layout_constraintStart_toEndOf="@id/btn_back"
-                app:layout_constraintTop_toTopOf="@id/btn_back" />
+                app:layout_constraintBottom_toBottomOf="@id/iv_back"
+                app:layout_constraintStart_toEndOf="@id/iv_back"
+                app:layout_constraintTop_toTopOf="@id/iv_back" />
 
             <ImageView
-                android:id="@+id/btn_list"
+                android:id="@+id/iv_list"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:background="@drawable/ic_list"
-                android:onClick="@{() -> viewModel.openList()}"
-                app:layout_constraintStart_toStartOf="@id/btn_back"
-                app:layout_constraintTop_toBottomOf="@id/btn_back" />
+                android:onClick="@{() -> viewModel.openFacilityList()}"
+                app:layout_constraintStart_toStartOf="@id/iv_back"
+                app:layout_constraintTop_toBottomOf="@id/iv_back" />
 
             <ImageView
                 android:id="@+id/iv_et_search_background"
@@ -80,14 +80,14 @@
                 android:padding="@dimen/margin_default"
                 android:text="@={viewModel.searchWord}"
                 android:textAppearance="@style/body_1"
-                app:layout_constraintBottom_toBottomOf="@id/btn_list"
-                app:layout_constraintEnd_toStartOf="@id/btn_search"
-                app:layout_constraintStart_toEndOf="@id/btn_list"
-                app:layout_constraintTop_toTopOf="@id/btn_list"
+                app:layout_constraintBottom_toBottomOf="@id/iv_list"
+                app:layout_constraintEnd_toStartOf="@id/iv_search"
+                app:layout_constraintStart_toEndOf="@id/iv_list"
+                app:layout_constraintTop_toTopOf="@id/iv_list"
                 tools:text="검색" />
 
             <ImageView
-                android:id="@+id/btn_search"
+                android:id="@+id/iv_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_default"
@@ -100,7 +100,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/map_fragment"
+            android:id="@+id/fragment_map"
             android:name="com.naver.maps.map.MapFragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
