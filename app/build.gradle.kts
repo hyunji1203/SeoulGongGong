@@ -19,7 +19,7 @@ val properties = Properties()
 properties.load(FileInputStream(rootProject.file("local.properties")))
 
 android {
-    namespace = "com.example.seoulgonggong"
+    namespace = "com.seoulfitu.android"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     // BuildConfig 클래스 생성
@@ -28,7 +28,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.seoulgonggong"
+        applicationId = "com.seoulfitu.android"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = libs.versions.versionCode.get().toInt()
@@ -45,6 +45,8 @@ android {
         // KEY
         buildConfigField("String", "NAVER_MAP_CLIENT_ID", "\"${properties["NAVER_MAP_CLIENT_ID"]}\"")
         buildConfigField("String", "NAVER_MAP_CLIENT_SECRET", "\"${properties["NAVER_MAP_CLIENT_SECRET"]}\"")
+        buildConfigField("String", "NAVER_GEOCODE_CLIENT_ID", "\"${properties["NAVER_GEOCODE_CLIENT_ID"]}\"")
+        buildConfigField("String", "NAVER_GEOCODE_CLIENT_SECRET", "\"${properties["NAVER_GEOCODE_CLIENT_SECRET"]}\"")
         buildConfigField("String", "OPEN_DATA_SERVICE_KEY", "\"${properties["OPEN_DATA_SERVICE_KEY"]}\"")
 
         manifestPlaceholders["NAVER_MAP_CLIENT_ID"] =

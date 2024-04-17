@@ -25,4 +25,6 @@
 
     <!-- All -->
     <string name="network_errer_message">오류가 발생했어요! 다시 시도해주세요!</string>
+    <string name="main_public_facility">공공\n체육시설</string>
+    <string name="main_public_service">공공\n대관 서비스</string>
 </resources>
