@@ -5,8 +5,8 @@ import java.io.Serializable
 data class UiSportsService(
     val title: String,
     val place: String,
-    val usageStartTime:String,
-    val usageEndTime:String,
+    val operatingStartTime:String,
+    val operatingEndTime:String,
     val img: String,
     val status: String,
     val subCategory:String,

@@ -6,10 +6,10 @@ import com.example.seoulgonggong.ui.model.UiSportsService
 
 class SportsServiceAdapter(
     private val dataSet: List<UiSportsService>,
-    private val onClickItem:(UiSportsService) -> Unit
+    private val onItemClick:(UiSportsService) -> Unit
     ) : RecyclerView.Adapter<SportsServiceViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SportsServiceViewHolder =
-        SportsServiceViewHolder.create(parent, dataSet, onClickItem)
+        SportsServiceViewHolder.create(parent, onItemClick)
 
     override fun getItemCount(): Int = dataSet.size
 

@@ -6,16 +6,21 @@
         <variable
             name="sportsService"
             type="com.example.seoulgonggong.ui.model.UiSportsService" />
+
+        <variable
+            name="onItemClick"
+            type="kotlin.jvm.functions.Function1" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/cl_sports_service_item"
         android:layout_width="match_parent"
         android:layout_height="173dp"
-        android:id="@+id/cl_sports_service_item"
         android:layout_marginBottom="@dimen/margin_default"
         android:background="@drawable/rect_public_service_item_bg"
+        android:onClick="@{(item) -> onItemClick.invoke(sportsService)}"
         android:padding="@dimen/margin_default">
 
         <TextView
@@ -38,6 +43,7 @@
             android:layout_marginTop="17dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_public_service_item_title"
+            app:serviceImg="@{sportsService.img}"
             tools:src="@drawable/ic_launcher_background" />
 
         <TextView
@@ -59,11 +65,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="5dp"
-            android:text="@{sportsService.usageStartTime + sportsService.usageEndTime}"
             android:textAppearance="@style/body_1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_sports_service_item_img"
             app:layout_constraintTop_toBottomOf="@id/tv_public_service_item_place"
+            app:serviceRvItemOperatingStartTime="@{sportsService.operatingEndTime}"
+            app:serviceRvItemOperatingEndTime="@{sportsService.operatingStartTime}"
             tools:text="이용시간: 9:00 ~ 18:00" />
 
         <TextView
@@ -78,6 +85,7 @@
             app:layout_constraintEnd_toStartOf="@+id/iv_public_service_item_heart"
             app:layout_constraintStart_toEndOf="@+id/iv_sports_service_item_img"
             app:layout_constraintTop_toBottomOf="@id/tv_public_service_item_operating_time"
+            app:serviceStatusColorForStatus="@{sportsService.status}"
             tools:text="예약마감" />
 
         <ImageView
