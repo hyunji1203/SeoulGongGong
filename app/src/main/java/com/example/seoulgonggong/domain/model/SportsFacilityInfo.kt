@@ -24,10 +24,12 @@ data class SportsFacilityInfo(
     val note: String,
 ) {
     companion object {
+        private const val PREFIX_OF_TELEPHONE_NUMBER = "tel:"
+
         fun getPhoneNumber(phoneNumber: String): String? {
             if (phoneNumber.length < 3) return null
             val phone = phoneNumber.filter { Character.isDigit(it) }
-            return "tel:$phone"
+            return "$PREFIX_OF_TELEPHONE_NUMBER$phone"
         }
     }
 }
