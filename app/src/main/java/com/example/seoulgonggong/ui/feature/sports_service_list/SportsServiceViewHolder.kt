@@ -1,4 +1,4 @@
-package com.example.seoulgonggong.ui.feature.sports_service_list.recyclerview
+package com.example.seoulgonggong.ui.feature.sports_service_list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

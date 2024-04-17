@@ -25,7 +25,7 @@
             android:name=".ui.feature.sports_service_detail.SportsServiceDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.feature.sports_service_list.activity.SportsServiceListActivity"
+            android:name=".ui.feature.sports_service_list.SportsServiceListActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
