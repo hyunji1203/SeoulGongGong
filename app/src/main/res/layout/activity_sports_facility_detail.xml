@@ -57,7 +57,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="4dp"
-            android:text="@{viewModel.facility.type}"
+            android:text="@{viewModel.facility.type.typeName}"
             android:textAppearance="@style/caption_1"
             android:textColor="@color/deep_gray"
             app:layout_constraintBottom_toTopOf="@id/tv_facility_detail_operating_status"

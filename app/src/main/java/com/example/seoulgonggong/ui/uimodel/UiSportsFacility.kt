@@ -18,7 +18,7 @@ data class UiSportsFacility(
     val money: String,
     val parkingInfo: String,
     val homepageUrl: String,
-    val type: String,
+    val type: UiSportsFacilityType,
     val isOperating: String,
     val convenience: String,
 ) : Parcelable

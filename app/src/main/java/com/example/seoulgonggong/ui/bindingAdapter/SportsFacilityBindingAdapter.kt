@@ -6,23 +6,23 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.example.seoulgonggong.R
+import com.example.seoulgonggong.ui.uimodel.UiSportsFacilityType
 
 @BindingAdapter("app:loadFacilityIcon")
-fun ImageView.loadFacilityIcon(facilityType: String?) {
-    if (facilityType == null) return
+fun ImageView.loadFacilityIcon(facilityType: UiSportsFacilityType) {
     val iconSrc = when (facilityType) {
-        "수영장" -> R.drawable.ic_swimming
-        "야구장" -> R.drawable.ic_baseball
-        "축구장" -> R.drawable.ic_soccer
-        "농구장" -> R.drawable.ic_basketball
-        "테니스장" -> R.drawable.ic_tennis
-        "배트민턴장" -> R.drawable.ic_badminton
-        "골프연습장" -> R.drawable.ic_golf
-        "빙상장" -> R.drawable.ic_ice_rink
-        "게이트볼" -> R.drawable.ic_gateball
-        "족구장" -> R.drawable.ic_foot_volleyball
-        "풋살장" -> R.drawable.ic_futsal
-        "생활체육관" -> R.drawable.ic_gym
+        UiSportsFacilityType.SWIMMING -> R.drawable.ic_swimming
+        UiSportsFacilityType.BASEBALL -> R.drawable.ic_baseball
+        UiSportsFacilityType.SOCCER -> R.drawable.ic_soccer
+        UiSportsFacilityType.BASKETBALL -> R.drawable.ic_basketball
+        UiSportsFacilityType.TENNIS -> R.drawable.ic_tennis
+        UiSportsFacilityType.BADMINTON -> R.drawable.ic_badminton
+        UiSportsFacilityType.GOLF -> R.drawable.ic_golf
+        UiSportsFacilityType.ICE_RINK -> R.drawable.ic_ice_rink
+        UiSportsFacilityType.GATEBALL -> R.drawable.ic_gateball
+        UiSportsFacilityType.FOOT_VOLLEYBALL -> R.drawable.ic_foot_volleyball
+        UiSportsFacilityType.FUTSAL -> R.drawable.ic_futsal
+        UiSportsFacilityType.GYM -> R.drawable.ic_gym
         else -> R.drawable.ic_etc
     }
     this.setImageResource(iconSrc)

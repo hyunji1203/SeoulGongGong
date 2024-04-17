@@ -18,7 +18,7 @@ data class SportsFacilityInfo(
     val money: String,
     val parkingInfo: String,
     val homepageUrl: String,
-    val type: String,
+    val type: SportsFacilityType,
     val isOperating: String,
     val convenience: String,
     val note: String,
