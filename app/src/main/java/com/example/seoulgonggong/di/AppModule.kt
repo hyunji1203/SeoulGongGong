@@ -32,7 +32,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providePublicServiceService(@SeoulOpenApiRetrofit retrofit: Retrofit): SportsServiceService {
+    fun provideSportsServiceService(@SeoulOpenApiRetrofit retrofit: Retrofit): SportsServiceService {
         return retrofit.create(SportsServiceService::class.java)
     }
 

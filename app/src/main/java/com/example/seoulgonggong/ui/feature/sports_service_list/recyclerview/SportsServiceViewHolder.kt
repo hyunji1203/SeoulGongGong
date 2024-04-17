@@ -22,10 +22,10 @@ class SportsServiceViewHolder private constructor(
     }
 
     fun bind(data: UiSportsService) {
-        binding.uiPublicService = data
+        binding.sportsService = data
         Glide.with(binding.root).load(data.img).into(object : CustomTarget<Drawable>() {
             override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
-                binding.ivPublicServiceItemImg.setImageDrawable(resource)
+                binding.ivSportsServiceItemImg.setImageDrawable(resource)
             }
 
             override fun onLoadCleared(placeholder: Drawable?) {

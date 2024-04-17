@@ -8,14 +8,14 @@ import androidx.core.widget.doOnTextChanged
 import com.example.seoulgonggong.databinding.ActivitySportsServiceListBinding
 import com.example.seoulgonggong.ui.feature.sports_service_detail.SportsServiceDetailActivity
 import com.example.seoulgonggong.ui.feature.sports_service_list.recyclerview.SportsServiceAdapter
-import com.example.seoulgonggong.ui.feature.sports_service_list.viewmodel.PublicServiceListViewModel
+import com.example.seoulgonggong.ui.feature.sports_service_list.viewmodel.SportsServiceListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SportsServiceListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySportsServiceListBinding
-    private val viewModel: PublicServiceListViewModel by viewModels()
+    private val viewModel: SportsServiceListViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +34,7 @@ class SportsServiceListActivity : AppCompatActivity() {
         viewModel.uiState.observe(this) {
             when (it.isSuccess) {
                 true -> {
-                    binding.rvPublicServiceList.apply {
+                    binding.rvSportsServiceList.apply {
                         adapter = SportsServiceAdapter(it.result) { sportsService ->
                             SportsServiceDetailActivity.start(context, sportsService)
                         }
