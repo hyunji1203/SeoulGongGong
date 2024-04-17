@@ -1,10 +1,10 @@
 package com.example.seoulgonggong.domain.model
 
-data class PublicServices(
-   val services:List<PublicService>
+data class SportsServices(
+   val services:List<SportsService>
 )
 
-data class PublicService(
+data class SportsService(
     val division: String,
     val serviceId: String,
     val mainCategory: String,

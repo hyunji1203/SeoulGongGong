@@ -44,6 +44,7 @@ kotlinxCoroutinesCore = "1.8.1-Beta"
 # ViewModel
 lifecycleViewmodelKtx = "2.6.0"
 activityKtx = "1.7.2"
+org-jetbrains-kotlin-android = "1.9.0"
 
 [libraries]
 # AndroidX Libraries
@@ -84,3 +85,4 @@ retrofit = ["retrofit", "retrofit2-kotlinx-serialization-converter"]
 viewModel = ["lifecycle-viewmodel-ktx", "activity-ktx"]
 
 [plugins]
+org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }

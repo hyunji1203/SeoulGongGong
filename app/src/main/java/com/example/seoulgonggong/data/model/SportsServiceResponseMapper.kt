@@ -1,12 +1,12 @@
 package com.example.seoulgonggong.data.model
 
-import com.example.seoulgonggong.domain.model.PublicService
-import com.example.seoulgonggong.domain.model.PublicServices
+import com.example.seoulgonggong.domain.model.SportsService
+import com.example.seoulgonggong.domain.model.SportsServices
 
 
-fun SportsServiceResponse.toDomain(): PublicServices = PublicServices(
+fun SportsServiceResponse.toDomain(): SportsServices = SportsServices(
     services = this.listPublicReservationSport.row.map {
-      PublicService(
+      SportsService(
           division = it.division,
           serviceId = it.serviceId,
           mainCategory = it.mainCategory,

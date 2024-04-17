@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".ui.GongGongApplication"
         android:allowBackup="true"
@@ -15,7 +17,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="33">
         <activity
-            android:name=".ui.feature.public_service_list.activity.PublicServiceListActivity"
+            android:name=".ui.feature.sports_service_detail.SportsServiceDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.feature.sports_service_list.activity.SportsServiceListActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

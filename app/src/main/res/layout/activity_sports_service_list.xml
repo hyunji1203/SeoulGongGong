@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="@dimen/margin_default"
-        tools:context=".ui.feature.public_service_list.activity.PublicServiceListActivity">
+        tools:context=".ui.feature.sports_service_list.activity.SportsServiceListActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/toolbar_sports_service"
@@ -60,7 +60,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_sports_service_list_search"
             tools:itemCount="10"
-            tools:listitem="@layout/public_service_item" />
+            tools:listitem="@layout/sports_service_item" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
