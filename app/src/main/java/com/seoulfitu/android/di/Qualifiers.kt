@@ -16,4 +16,4 @@ annotation class GeocoderRetrofit
 
 @Qualifier
 @Retention
-annotation class NaverMapClient
+annotation class NaverGeocodeClient

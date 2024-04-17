@@ -28,13 +28,13 @@ object AppModule {
 
     @Provides
     @Singleton
-    @NaverMapClient
-    fun provideNaverMapClient(): OkHttpClient {
+    @NaverGeocodeClient
+    fun provideNaverGeocodeClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(Interceptor { chain ->
                 val request = chain.request().newBuilder()
-                    .addHeader(HEADER_NAVER_GEOCODING_CLIENT_ID, BuildConfig.NAVER_MAP_CLIENT_ID)
-                    .addHeader(HEADER_NAVER_GEOCODING_CLIENT_SECRET, BuildConfig.NAVER_MAP_CLIENT_SECRET).build()
+                    .addHeader(HEADER_NAVER_GEOCODING_CLIENT_ID, BuildConfig.NAVER_GEOCODE_CLIENT_ID)
+                    .addHeader(HEADER_NAVER_GEOCODING_CLIENT_SECRET, BuildConfig.NAVER_GEOCODE_CLIENT_SECRET).build()
                 chain.proceed(request)
             })
             .addInterceptor(HttpLoggingInterceptor().apply {
@@ -66,7 +66,7 @@ object AppModule {
     @Provides
     @Singleton
     @GeocoderRetrofit
-    fun provideGeocoderRetrofit(@NaverMapClient client: OkHttpClient): Retrofit {
+    fun provideGeocoderRetrofit(@NaverGeocodeClient client: OkHttpClient): Retrofit {
         return Retrofit.Builder().baseUrl(BuildConfig.GEOCODER_API_BASE_URL).client(client)
             .addConverterFactory(Json.asConverterFactory("application/json".toMediaTypeOrNull()!!)).build()
     }
