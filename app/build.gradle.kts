@@ -11,6 +11,9 @@ plugins {
 
     // kotlinSerializable
     kotlin("plugin.serialization") version "1.9.22"
+
+    // parcelize
+    id("kotlin-parcelize")
 }
 val properties = Properties()
 properties.load(FileInputStream(rootProject.file("local.properties")))

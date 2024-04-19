@@ -16,4 +16,5 @@
     <color name="main_orange">#FFA41B</color>
     <color name="sub_orange">#FFC239</color>
     <color name="light_orange">#FFE057</color>
+    <color name="link_blue">#4185CC</color>
 </resources>

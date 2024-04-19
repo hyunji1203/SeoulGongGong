@@ -4,8 +4,8 @@
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.DIAL_PHONE" />
 
     <application
         android:name="com.seoulfitu.android.SeoulGongGongApplication"
@@ -19,6 +19,9 @@
         android:theme="@style/Theme.SeoulGongGong"
         android:usesCleartextTraffic="true"
         tools:targetApi="33">
+        <activity
+            android:name=".ui.facility.detail.SportsFacilityDetailActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"

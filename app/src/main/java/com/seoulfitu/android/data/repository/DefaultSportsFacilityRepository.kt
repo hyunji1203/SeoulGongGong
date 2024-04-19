@@ -1,5 +1,7 @@
 package com.seoulfitu.android.data.repository
 
+import com.seoulfitu.android.data.ERROR_MESSAGE_FAIL_RESULT
+import com.seoulfitu.android.data.ERROR_MESSAGE_NO_BODY
 import com.seoulfitu.android.data.service.SportsFacilityService
 import com.seoulfitu.android.data.model.mapper.toDomain
 import com.seoulfitu.android.domain.model.SportsFacility
@@ -12,17 +14,18 @@ class DefaultSportsFacilityRepository @Inject constructor(
 
     override suspend fun getSportsFacility(): Result<List<SportsFacility>> {
         val response = sportsFacilityService.getSportsFacility()
-        return if (response.isSuccessful && response.body() != null) {
-            Result.success(response.body()!!.toDomain())
-        } else if (response.body() == null) {
-            Result.failure(IllegalStateException(NULL_BODY_ERROR_MESSAGE))
+        return if (response.isSuccessful) {
+            val body = response.body()
+                ?: return Result.failure(IllegalStateException(ERROR_MESSAGE_NO_BODY))
+            val result = body.facilities.row.filter { !it.facilityCategory.contains(EXCLUDE_WORD) }
+                .map { SportsFacility(it.toDomain()) }
+            Result.success(result)
         } else {
-            Result.failure(IllegalStateException(NETWORK_ERROR_MESSAGE))
+            Result.failure(IllegalStateException(ERROR_MESSAGE_FAIL_RESULT))
         }
     }
 
     companion object {
-        private const val NULL_BODY_ERROR_MESSAGE = "응답 바디가 존재하지 않습니다"
-        private const val NETWORK_ERROR_MESSAGE = "네트워크 오류가 발생했습니다"
+        private const val EXCLUDE_WORD = "학교"
     }
 }
