@@ -25,7 +25,7 @@
 
     <!-- FilterActivity -->
     <string name="filter_reset">초기화</string>
-    <string name="filter_go_list">목록 보가</string>
+    <string name="filter_go_list">목록 보기</string>
     <string name="filter_city_option_title">자치구</string>
     <string name="filter_facility_option_title">시설 종류</string>
     <string name="filter_rent_option_title">대관</string>
