@@ -5,32 +5,32 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.seoulfitu.android.R
-import com.seoulfitu.android.databinding.ActivityFilterBinding
+import com.seoulfitu.android.databinding.ActivitySportsFacilityFilterBinding
 import com.seoulfitu.android.domain.model.Town
 import com.seoulfitu.android.ui.facility.SportsFacilityBottomSheetFragment.Companion.FILTER_KEY
 import com.seoulfitu.android.ui.uimodel.UiSelectedOptions
 import com.seoulfitu.android.ui.uimodel.UiSportsFacilityType
 
 class SportsFacilityFilterActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityFilterBinding
+    private lateinit var binding: ActivitySportsFacilityFilterBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityFilterBinding.inflate(layoutInflater)
+        binding = ActivitySportsFacilityFilterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setClickListeners()
         initFilterOption()
     }
 
     private fun setClickListeners() {
-        binding.ivFilterReset.setOnClickListener {
+        binding.ivFacilityFilterReset.setOnClickListener {
             resetFilter()
         }
-        binding.btnFilterList.setOnClickListener {
-            val cityOptions = binding.cvFilterCity.getSelectedOptions()
-            val facilityOptions = binding.cvFilterFacility.getSelectedOptions()
-            val rentOptions = binding.cvFilterRent.getSelectedOptions()
-            val parkingOptions = binding.cvFilterParking.getSelectedOptions()
+        binding.btnFacilityFilterList.setOnClickListener {
+            val cityOptions = binding.cvFacilityFilterCity.getSelectedOptions()
+            val facilityOptions = binding.cvFacilityFilterFacility.getSelectedOptions()
+            val rentOptions = binding.cvFacilityFilterRent.getSelectedOptions()
+            val parkingOptions = binding.cvFacilityFilterParking.getSelectedOptions()
             val uiSelectedOptions =
                 UiSelectedOptions(
                     cities = cityOptions,
@@ -44,19 +44,19 @@ class SportsFacilityFilterActivity : AppCompatActivity() {
     }
 
     private fun initFilterOption() {
-        binding.cvFilterCity.apply {
+        binding.cvFacilityFilterCity.apply {
             setFilterTitle(getString(R.string.filter_city_option_title))
             addFilterOptionGroup(Town.entries.map { it.townName })
         }
-        binding.cvFilterFacility.apply {
+        binding.cvFacilityFilterFacility.apply {
             setFilterTitle(getString(R.string.filter_facility_option_title))
             addFilterOptionGroup(UiSportsFacilityType.entries.map { it.typeName })
         }
-        binding.cvFilterRent.apply {
+        binding.cvFacilityFilterRent.apply {
             setFilterTitle(getString(R.string.filter_rent_option_title))
             addFilterOptionGroup(options)
         }
-        binding.cvFilterParking.apply {
+        binding.cvFacilityFilterParking.apply {
             setFilterTitle(getString(R.string.filter_parking_option_title))
             addFilterOptionGroup(options)
         }
@@ -64,10 +64,10 @@ class SportsFacilityFilterActivity : AppCompatActivity() {
 
     private fun resetFilter() {
         with(binding) {
-            cvFilterCity.clearSelection()
-            cvFilterFacility.clearSelection()
-            cvFilterRent.clearSelection()
-            cvFilterParking.clearSelection()
+            cvFacilityFilterCity.clearSelection()
+            cvFacilityFilterFacility.clearSelection()
+            cvFacilityFilterRent.clearSelection()
+            cvFacilityFilterParking.clearSelection()
         }
     }
 

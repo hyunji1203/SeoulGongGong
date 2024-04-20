@@ -15,7 +15,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+            app:layout_constraintBottom_toTopOf="@+id/cl_facility_filter_bottom"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -26,7 +26,7 @@
                 android:orientation="vertical">
 
                 <com.seoulfitu.android.ui.filter.FilterCustomView
-                    android:id="@+id/cv_filter_city"
+                    android:id="@+id/cv_facility_filter_city"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -34,7 +34,7 @@
                     android:layout_marginEnd="24dp"/>
 
                 <com.seoulfitu.android.ui.filter.FilterCustomView
-                    android:id="@+id/cv_filter_facility"
+                    android:id="@+id/cv_facility_filter_facility"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -42,7 +42,7 @@
                     android:layout_marginEnd="24dp" />
 
                 <com.seoulfitu.android.ui.filter.FilterCustomView
-                    android:id="@+id/cv_filter_rent"
+                    android:id="@+id/cv_facility_filter_rent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -50,7 +50,7 @@
                     android:layout_marginEnd="24dp" />
 
                 <com.seoulfitu.android.ui.filter.FilterCustomView
-                    android:id="@+id/cv_filter_parking"
+                    android:id="@+id/cv_facility_filter_parking"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -62,7 +62,7 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout2"
+            android:id="@+id/cl_facility_filter_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -71,7 +71,7 @@
 
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_filter_list"
+                android:id="@+id/btn_facility_filter_list"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -86,11 +86,11 @@
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/iv_filter_reset"
+                app:layout_constraintStart_toEndOf="@id/iv_facility_filter_reset"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/iv_filter_reset"
+                android:id="@+id/iv_facility_filter_reset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -100,14 +100,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_filter_reset"
+                android:id="@+id/tv_facility_filter_reset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/filter_reset"
                 android:textAppearance="@style/body2"
-                app:layout_constraintEnd_toEndOf="@+id/iv_filter_reset"
-                app:layout_constraintStart_toStartOf="@+id/iv_filter_reset"
-                app:layout_constraintTop_toBottomOf="@id/iv_filter_reset" />
+                app:layout_constraintEnd_toEndOf="@id/iv_facility_filter_reset"
+                app:layout_constraintStart_toStartOf="@id/iv_facility_filter_reset"
+                app:layout_constraintTop_toBottomOf="@id/iv_facility_filter_reset" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
