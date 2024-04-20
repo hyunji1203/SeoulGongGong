@@ -9,8 +9,10 @@ import com.seoulfitu.android.databinding.ActivitySportsServiceFilterBinding
 import com.seoulfitu.android.domain.model.Town
 import com.seoulfitu.android.ui.facility.SportsFacilityBottomSheetFragment.Companion.FILTER_KEY
 import com.seoulfitu.android.ui.filter.facility.SportsFacilityFilterActivity
+import com.seoulfitu.android.ui.filter.facility.SportsFacilityFilterActivity.Companion.emptySelectedOptions
 import com.seoulfitu.android.ui.uimodel.UiSelectedOptions
 import com.seoulfitu.android.ui.uimodel.UiSportsFacilityType
+import com.seoulfitu.android.util.getParcelableExtraCompat
 
 class SportsServiceFilterActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySportsServiceFilterBinding
@@ -36,7 +38,7 @@ class SportsServiceFilterActivity : AppCompatActivity() {
             val uiSelectedOptions =
                 UiSelectedOptions(
                     cities = cityOptions,
-                    facilities = typeOptions,
+                    services = typeOptions,
                     price = priceOptions,
                     parking = parkingOptions,
                     serviceStatus = statusOptions,
@@ -47,25 +49,27 @@ class SportsServiceFilterActivity : AppCompatActivity() {
     }
 
     private fun initFilterOption() {
+        val selected =
+            intent.getParcelableExtraCompat<UiSelectedOptions>(FILTER_KEY) ?: emptySelectedOptions
         binding.cvServiceFilterCity.apply {
             setFilterTitle(getString(R.string.filter_city_option_title))
-            addFilterOptionGroup(Town.entries.map { it.townName })
+            addFilterOptionGroup(Town.entries.map { it.townName }, selected.cities)
         }
         binding.cvServiceFilterType.apply {
             setFilterTitle(getString(R.string.filter_service_option_title))
-            addFilterOptionGroup(UiSportsFacilityType.entries.map { it.typeName })
+            addFilterOptionGroup(UiSportsFacilityType.entries.map { it.typeName }, selected.services)
         }
         binding.cvServiceFilterPrice.apply {
             setFilterTitle(getString(R.string.filter_price_option_title))
-            addFilterOptionGroup(options)
+            addFilterOptionGroup(options, selected.price)
         }
         binding.cvServiceFilterParking.apply {
             setFilterTitle(getString(R.string.filter_parking_option_title))
-            addFilterOptionGroup(options)
+            addFilterOptionGroup(options, selected.parking)
         }
         binding.cvServiceFilterStatus.apply {
             setFilterTitle(getString(R.string.filter_status_option_title))
-            addFilterOptionGroup(options)
+            addFilterOptionGroup(options, selected.serviceStatus)
         }
     }
 
@@ -81,10 +85,6 @@ class SportsServiceFilterActivity : AppCompatActivity() {
 
     companion object {
         private val options = listOf("가능", "불가능")
-
-        fun getIntent(context: Context): Intent {
-            return Intent(context, SportsFacilityFilterActivity::class.java)
-        }
 
         fun getIntent(
             context: Context,

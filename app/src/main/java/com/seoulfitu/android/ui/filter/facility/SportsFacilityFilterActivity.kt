@@ -10,6 +10,7 @@ import com.seoulfitu.android.domain.model.Town
 import com.seoulfitu.android.ui.facility.SportsFacilityBottomSheetFragment.Companion.FILTER_KEY
 import com.seoulfitu.android.ui.uimodel.UiSelectedOptions
 import com.seoulfitu.android.ui.uimodel.UiSportsFacilityType
+import com.seoulfitu.android.util.getParcelableExtraCompat
 
 class SportsFacilityFilterActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySportsFacilityFilterBinding
@@ -44,21 +45,23 @@ class SportsFacilityFilterActivity : AppCompatActivity() {
     }
 
     private fun initFilterOption() {
+        val selected =
+            intent.getParcelableExtraCompat<UiSelectedOptions>(FILTER_KEY) ?: emptySelectedOptions
         binding.cvFacilityFilterCity.apply {
             setFilterTitle(getString(R.string.filter_city_option_title))
-            addFilterOptionGroup(Town.entries.map { it.townName })
+            addFilterOptionGroup(Town.entries.map { it.townName }, selected.cities)
         }
         binding.cvFacilityFilterType.apply {
             setFilterTitle(getString(R.string.filter_facility_option_title))
-            addFilterOptionGroup(UiSportsFacilityType.entries.map { it.typeName })
+            addFilterOptionGroup(UiSportsFacilityType.entries.map { it.typeName }, selected.facilities)
         }
         binding.cvFacilityFilterRent.apply {
             setFilterTitle(getString(R.string.filter_rent_option_title))
-            addFilterOptionGroup(options)
+            addFilterOptionGroup(options, selected.rent)
         }
         binding.cvFacilityFilterParking.apply {
             setFilterTitle(getString(R.string.filter_parking_option_title))
-            addFilterOptionGroup(options)
+            addFilterOptionGroup(options, selected.parking)
         }
     }
 
@@ -73,10 +76,8 @@ class SportsFacilityFilterActivity : AppCompatActivity() {
 
     companion object {
         private val options = listOf("가능", "불가능")
-
-        fun getIntent(context: Context): Intent {
-            return Intent(context, SportsFacilityFilterActivity::class.java)
-        }
+        val emptySelectedOptions =
+            UiSelectedOptions(cities = emptyList(), parking = emptyList())
 
         fun getIntent(
             context: Context,
