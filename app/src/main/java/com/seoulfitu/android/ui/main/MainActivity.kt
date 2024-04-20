@@ -10,9 +10,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.checkSelfPermission
+import com.google.android.gms.location.LocationServices
 import com.seoulfitu.android.R
 import com.seoulfitu.android.databinding.ActivityMainBinding
-import com.google.android.gms.location.LocationServices
 import com.seoulfitu.android.ui.facility.SportsFacilityActivity
 import com.seoulfitu.android.util.openSetting
 import com.seoulfitu.android.util.showToast
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun subscribe() {
         viewModel.throwable.observe(this) {
-            showToast(getString(R.string.network_error_message))
+            showToast(getString(R.string.network_errer_message))
         }
     }
 

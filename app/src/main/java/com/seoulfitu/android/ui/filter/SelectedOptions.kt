@@ -1,4 +1,4 @@
-package com.example.seoulgonggong.ui.filter
+package com.seoulfitu.android.ui.filter
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

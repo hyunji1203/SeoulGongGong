@@ -1,16 +1,16 @@
-package com.example.seoulgonggong.ui.filter
+package com.seoulfitu.android.ui.filter
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.seoulgonggong.R
-import com.example.seoulgonggong.databinding.CustomFilterBinding
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.shape.CornerFamily.ROUNDED
 import com.google.android.material.shape.ShapeAppearanceModel
+import com.seoulfitu.android.R
+import com.seoulfitu.android.databinding.CustomFilterBinding
 
 class FilterCustomView(context: Context, attr: AttributeSet? = null) :
     ConstraintLayout(context, attr) {

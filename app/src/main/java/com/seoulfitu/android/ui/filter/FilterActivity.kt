@@ -1,13 +1,13 @@
-package com.example.seoulgonggong.ui.filter
+package com.seoulfitu.android.ui.filter
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.seoulgonggong.R
-import com.example.seoulgonggong.databinding.ActivityFilterBinding
-import com.example.seoulgonggong.domain.model.Town
-import com.example.seoulgonggong.ui.facility.SportsFacilityActivity
+import com.seoulfitu.android.R
+import com.seoulfitu.android.databinding.ActivityFilterBinding
+import com.seoulfitu.android.domain.model.Town
+import com.seoulfitu.android.ui.facility.SportsFacilityActivity
 
 class FilterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFilterBinding
@@ -44,7 +44,7 @@ class FilterActivity : AppCompatActivity() {
     private fun initFilterOption() {
         binding.cvFilterCity.apply {
             setFilterTitle(getString(R.string.filter_city_option_title))
-            addFilterOptionGroup(Town.values().map { it.townName })
+            addFilterOptionGroup(Town.entries.map { it.townName })
         }
         binding.cvFilterFacility.apply {
             setFilterTitle(getString(R.string.filter_facility_option_title))
