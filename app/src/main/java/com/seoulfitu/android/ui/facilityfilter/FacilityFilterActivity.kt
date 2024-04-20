@@ -9,6 +9,7 @@ import com.seoulfitu.android.databinding.ActivityFilterBinding
 import com.seoulfitu.android.domain.model.Town
 import com.seoulfitu.android.ui.facility.SportsFacilityBottomSheetFragment.Companion.FILTER_KEY
 import com.seoulfitu.android.ui.uimodel.UiSelectedOptions
+import com.seoulfitu.android.ui.uimodel.UiSportsFacilityType
 
 class FacilityFilterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFilterBinding
@@ -49,15 +50,15 @@ class FacilityFilterActivity : AppCompatActivity() {
         }
         binding.cvFilterFacility.apply {
             setFilterTitle(getString(R.string.filter_facility_option_title))
-            addFilterOptionGroup(temp_facilities)
+            addFilterOptionGroup(UiSportsFacilityType.entries.map { it.typeName })
         }
         binding.cvFilterRent.apply {
             setFilterTitle(getString(R.string.filter_rent_option_title))
-            addFilterOptionGroup(listOf("가능", "불가능"))
+            addFilterOptionGroup(options)
         }
         binding.cvFilterParking.apply {
             setFilterTitle(getString(R.string.filter_parking_option_title))
-            addFilterOptionGroup(listOf("가능", "불가능"))
+            addFilterOptionGroup(options)
         }
     }
 
@@ -71,21 +72,7 @@ class FacilityFilterActivity : AppCompatActivity() {
     }
 
     companion object {
-        private val temp_facilities =
-            listOf(
-                "풋살",
-                "테니스장",
-                "축구장",
-                "족구장",
-                "야구장",
-                "수영장",
-                "생활체육관",
-                "배드민턴장",
-                "농구장",
-                "골프연습장",
-                "게이트볼장",
-                "기타",
-            )
+        private val options = listOf("가능", "불가능")
 
         fun getIntent(context: Context): Intent {
             return Intent(context, FacilityFilterActivity::class.java)
