@@ -68,13 +68,7 @@ class FilterCustomView(context: Context, attr: AttributeSet? = null) :
     }
 
     fun getSelectedOptions(): List<String> {
-        val selectedOptions = mutableListOf<String>()
-        chips.forEach {
-            if (it.isChecked) {
-                selectedOptions.add(it.text.toString())
-            }
-        }
-        return selectedOptions
+        return chips.filter { it.isChecked }.map { it.text.toString() }
     }
 
     fun clearSelection() {
