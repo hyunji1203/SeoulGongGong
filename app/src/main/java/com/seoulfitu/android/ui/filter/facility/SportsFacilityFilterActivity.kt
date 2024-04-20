@@ -11,7 +11,7 @@ import com.seoulfitu.android.ui.facility.SportsFacilityBottomSheetFragment.Compa
 import com.seoulfitu.android.ui.uimodel.UiSelectedOptions
 import com.seoulfitu.android.ui.uimodel.UiSportsFacilityType
 
-class FacilityFilterActivity : AppCompatActivity() {
+class SportsFacilityFilterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFilterBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,14 +75,14 @@ class FacilityFilterActivity : AppCompatActivity() {
         private val options = listOf("가능", "불가능")
 
         fun getIntent(context: Context): Intent {
-            return Intent(context, FacilityFilterActivity::class.java)
+            return Intent(context, SportsFacilityFilterActivity::class.java)
         }
 
         fun getIntent(
             context: Context,
             uiSelectedOptions: UiSelectedOptions,
         ): Intent {
-            return Intent(context, FacilityFilterActivity::class.java).apply {
+            return Intent(context, SportsFacilityFilterActivity::class.java).apply {
                 putExtra(FILTER_KEY, uiSelectedOptions)
             }
         }

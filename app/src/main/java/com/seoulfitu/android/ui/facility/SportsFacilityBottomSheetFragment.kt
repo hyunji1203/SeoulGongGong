@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.seoulfitu.android.databinding.FragmentSportsFacilityBottomSheetBinding
-import com.seoulfitu.android.ui.filter.facility.FacilityFilterActivity
+import com.seoulfitu.android.ui.filter.facility.SportsFacilityFilterActivity
 import com.seoulfitu.android.ui.uimodel.UiSelectedOptions
 import com.seoulfitu.android.util.getParcelableExtraCompat
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,7 +52,7 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun setClickListeners() {
         binding.btnFacilityFilter.setOnClickListener {
-            val intent = FacilityFilterActivity.getIntent(requireContext())
+            val intent = SportsFacilityFilterActivity.getIntent(requireContext())
             sportsFacilityActivityLauncher.launch(intent)
         }
     }
