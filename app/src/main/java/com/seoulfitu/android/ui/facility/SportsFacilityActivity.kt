@@ -16,7 +16,6 @@ import com.naver.maps.map.util.FusedLocationSource
 import com.seoulfitu.android.R
 import com.seoulfitu.android.databinding.ActivityPublicSportsFacilityBinding
 import com.seoulfitu.android.ui.facility.detail.SportsFacilityDetailActivity
-import com.seoulfitu.android.ui.filter.SelectedOptions
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -90,7 +89,6 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
-        private const val FILTER_KEY = "filter"
 
         private val PERMISSIONS =
             arrayOf(
@@ -100,15 +98,6 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
 
         fun getIntent(context: Context): Intent {
             return Intent(context, SportsFacilityActivity::class.java)
-        }
-
-        fun getIntent(
-            context: Context,
-            selectedOptions: SelectedOptions,
-        ): Intent {
-            return Intent(context, SportsFacilityActivity::class.java).apply {
-                putExtra(FILTER_KEY, selectedOptions)
-            }
         }
     }
 }

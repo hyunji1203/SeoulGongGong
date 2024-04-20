@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.seoulfitu.android.R
 import com.seoulfitu.android.databinding.ActivityFilterBinding
 import com.seoulfitu.android.domain.model.Town
-import com.seoulfitu.android.ui.facility.SportsFacilityActivity
+import com.seoulfitu.android.ui.facility.SportsFacilityBottomSheetFragment.Companion.FILTER_KEY
 
 class FilterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFilterBinding
@@ -36,7 +36,7 @@ class FilterActivity : AppCompatActivity() {
                     rent = rentOptions,
                     parking = parkingOptions,
                 )
-            setResult(RESULT_OK, SportsFacilityActivity.getIntent(this, selectedOptions))
+            setResult(RESULT_OK, getIntent(this, selectedOptions))
             finish()
         }
     }
@@ -88,6 +88,15 @@ class FilterActivity : AppCompatActivity() {
 
         fun getIntent(context: Context): Intent {
             return Intent(context, FilterActivity::class.java)
+        }
+
+        fun getIntent(
+            context: Context,
+            selectedOptions: SelectedOptions,
+        ): Intent {
+            return Intent(context, FilterActivity::class.java).apply {
+                putExtra(FILTER_KEY, selectedOptions)
+            }
         }
     }
 }
