@@ -8,16 +8,31 @@
     <string name="main_particulate_matter">미세먼지 %d㎍/㎥ </string>
 
     <!--  SportsFacilityActivity  -->
-    <string name="tv_facility_title">공공 체육 시설</string>
+    <string name="facility_title">공공 체육 시설</string>
+
+    <!--  SportsFacilityDetailActivity  -->
+    <string name="facility_detail_link">홈페이지 링크</string>
+    <string name="facility_detail_operating">운영시간</string>
+    <string name="facility_detail_operating_wd_title">평일</string>
+    <string name="facility_detail_operating_we_title">주말</string>
+    <string name="facility_detail_operating_holiday_title">공휴일</string>
+    <string name="facility_detail_money_title">시설 사용료</string>
+    <string name="facility_detail_convenience_title">편의시설</string>
+    <string name="facility_detail_parking_title">주차정보</string>
+
+    <!--    SportsFacilityBottomSheetFragment-->
+    <string name="facility_list_blank_message">검색 결과가 없습니다</string>
 
     <!-- FilterActivity -->
     <string name="filter_reset">초기화</string>
     <string name="filter_go_list">목록 보가</string>
-
-    <!-- All -->
-    <string name="network_error_message">오류가 발생했어요! 다시 시도해주세요!</string>
     <string name="filter_city_option_title">자치구</string>
     <string name="filter_facility_option_title">시설 종류</string>
     <string name="filter_rent_option_title">대관</string>
     <string name="filter_parking_option_title">주차</string>
+
+    <!-- All -->
+    <string name="network_errer_message">오류가 발생했어요! 다시 시도해주세요!</string>
+    <string name="main_public_facility">공공\n체육시설</string>
+    <string name="main_public_service">공공\n대관 서비스</string>
 </resources>
