@@ -32,7 +32,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".ui.filter.FilterActivity"
+            android:name="com.seoulfitu.android.ui.facilityfilter.FacilityFilterActivity"
             android:exported="false" />
 
         <activity

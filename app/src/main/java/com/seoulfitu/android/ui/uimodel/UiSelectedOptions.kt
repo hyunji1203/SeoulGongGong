@@ -1,10 +1,10 @@
-package com.seoulfitu.android.ui.filter
+package com.seoulfitu.android.ui.uimodel
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class SelectedOptions(
+data class UiSelectedOptions(
     val cities: List<String>,
     val facilities: List<String> = listOf(),
     val services: List<String> = listOf(),

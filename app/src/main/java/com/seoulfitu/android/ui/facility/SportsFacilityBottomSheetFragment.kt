@@ -9,8 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.seoulfitu.android.databinding.FragmentSportsFacilityBottomSheetBinding
-import com.seoulfitu.android.ui.filter.FilterActivity
-import com.seoulfitu.android.ui.filter.SelectedOptions
+import com.seoulfitu.android.ui.facilityfilter.FacilityFilterActivity
+import com.seoulfitu.android.ui.uimodel.UiSelectedOptions
 import com.seoulfitu.android.util.getParcelableExtraCompat
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,8 +23,8 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
     private val sportsFacilityActivityLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == AppCompatActivity.RESULT_OK) {
-                val selectedOptions =
-                    it.data?.getParcelableExtraCompat<SelectedOptions>(FILTER_KEY) ?: ""
+                val uiSelectedOptions =
+                    it.data?.getParcelableExtraCompat<UiSelectedOptions>(FILTER_KEY) ?: ""
             }
         }
 
@@ -52,7 +52,7 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun setClickListeners() {
         binding.btnFacilityFilter.setOnClickListener {
-            val intent = FilterActivity.getIntent(requireContext())
+            val intent = FacilityFilterActivity.getIntent(requireContext())
             sportsFacilityActivityLauncher.launch(intent)
         }
     }

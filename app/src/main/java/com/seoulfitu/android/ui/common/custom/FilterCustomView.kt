@@ -1,4 +1,4 @@
-package com.seoulfitu.android.ui.filter
+package com.seoulfitu.android.ui.common.custom
 
 import android.content.Context
 import android.util.AttributeSet

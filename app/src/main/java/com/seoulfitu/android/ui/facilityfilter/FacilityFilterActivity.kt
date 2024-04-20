@@ -1,4 +1,4 @@
-package com.seoulfitu.android.ui.filter
+package com.seoulfitu.android.ui.facilityfilter
 
 import android.content.Context
 import android.content.Intent
@@ -8,8 +8,9 @@ import com.seoulfitu.android.R
 import com.seoulfitu.android.databinding.ActivityFilterBinding
 import com.seoulfitu.android.domain.model.Town
 import com.seoulfitu.android.ui.facility.SportsFacilityBottomSheetFragment.Companion.FILTER_KEY
+import com.seoulfitu.android.ui.uimodel.UiSelectedOptions
 
-class FilterActivity : AppCompatActivity() {
+class FacilityFilterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFilterBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,14 +30,14 @@ class FilterActivity : AppCompatActivity() {
             val facilityOptions = binding.cvFilterFacility.getSelectedOptions()
             val rentOptions = binding.cvFilterRent.getSelectedOptions()
             val parkingOptions = binding.cvFilterParking.getSelectedOptions()
-            val selectedOptions =
-                SelectedOptions(
+            val uiSelectedOptions =
+                UiSelectedOptions(
                     cities = cityOptions,
                     facilities = facilityOptions,
                     rent = rentOptions,
                     parking = parkingOptions,
                 )
-            setResult(RESULT_OK, getIntent(this, selectedOptions))
+            setResult(RESULT_OK, getIntent(this, uiSelectedOptions))
             finish()
         }
     }
@@ -87,15 +88,15 @@ class FilterActivity : AppCompatActivity() {
             )
 
         fun getIntent(context: Context): Intent {
-            return Intent(context, FilterActivity::class.java)
+            return Intent(context, FacilityFilterActivity::class.java)
         }
 
         fun getIntent(
             context: Context,
-            selectedOptions: SelectedOptions,
+            uiSelectedOptions: UiSelectedOptions,
         ): Intent {
-            return Intent(context, FilterActivity::class.java).apply {
-                putExtra(FILTER_KEY, selectedOptions)
+            return Intent(context, FacilityFilterActivity::class.java).apply {
+                putExtra(FILTER_KEY, uiSelectedOptions)
             }
         }
     }
