@@ -1,4 +1,4 @@
-package com.seoulfitu.android.ui.facilityfilter
+package com.seoulfitu.android.ui.filter.facility
 
 import android.content.Context
 import android.content.Intent
