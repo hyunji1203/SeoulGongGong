@@ -28,13 +28,13 @@ class SportsFacilityFilterActivity : AppCompatActivity() {
         }
         binding.btnFacilityFilterList.setOnClickListener {
             val cityOptions = binding.cvFacilityFilterCity.getSelectedOptions()
-            val facilityOptions = binding.cvFacilityFilterFacility.getSelectedOptions()
+            val typeOptions = binding.cvFacilityFilterType.getSelectedOptions()
             val rentOptions = binding.cvFacilityFilterRent.getSelectedOptions()
             val parkingOptions = binding.cvFacilityFilterParking.getSelectedOptions()
             val uiSelectedOptions =
                 UiSelectedOptions(
                     cities = cityOptions,
-                    facilities = facilityOptions,
+                    facilities = typeOptions,
                     rent = rentOptions,
                     parking = parkingOptions,
                 )
@@ -48,7 +48,7 @@ class SportsFacilityFilterActivity : AppCompatActivity() {
             setFilterTitle(getString(R.string.filter_city_option_title))
             addFilterOptionGroup(Town.entries.map { it.townName })
         }
-        binding.cvFacilityFilterFacility.apply {
+        binding.cvFacilityFilterType.apply {
             setFilterTitle(getString(R.string.filter_facility_option_title))
             addFilterOptionGroup(UiSportsFacilityType.entries.map { it.typeName })
         }
@@ -65,7 +65,7 @@ class SportsFacilityFilterActivity : AppCompatActivity() {
     private fun resetFilter() {
         with(binding) {
             cvFacilityFilterCity.clearSelection()
-            cvFacilityFilterFacility.clearSelection()
+            cvFacilityFilterType.clearSelection()
             cvFacilityFilterRent.clearSelection()
             cvFacilityFilterParking.clearSelection()
         }

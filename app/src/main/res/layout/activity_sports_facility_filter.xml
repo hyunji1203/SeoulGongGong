@@ -34,7 +34,7 @@
                     android:layout_marginEnd="24dp"/>
 
                 <com.seoulfitu.android.ui.filter.FilterCustomView
-                    android:id="@+id/cv_facility_filter_facility"
+                    android:id="@+id/cv_facility_filter_type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
