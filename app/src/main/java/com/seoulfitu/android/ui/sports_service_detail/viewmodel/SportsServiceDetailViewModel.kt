@@ -1,12 +1,12 @@
-package com.example.seoulgonggong.ui.feature.sports_service_detail.viewmodel
+package com.seoulfitu.android.ui.sports_service_detail.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.seoulgonggong.domain.model.Coordinate
-import com.example.seoulgonggong.domain.repository.GeocodingRepository
-import com.example.seoulgonggong.ui.model.UiSportsService
+import com.seoulfitu.android.domain.model.Coordinate
+import com.seoulfitu.android.domain.repository.GeocodingRepository
+import com.seoulfitu.android.ui.uimodel.UiSportsService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

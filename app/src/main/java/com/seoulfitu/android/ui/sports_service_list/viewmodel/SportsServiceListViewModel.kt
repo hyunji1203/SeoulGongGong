@@ -1,13 +1,13 @@
-package com.example.seoulgonggong.ui.feature.sports_service_list.viewmodel
+package com.seoulfitu.android.ui.sports_service_list.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.seoulgonggong.domain.repository.SportsServiceRepository
-import com.example.seoulgonggong.ui.feature.sports_service_list.uistate.SportsServiceListUiState
-import com.example.seoulgonggong.ui.model.UiSportsService
-import com.example.seoulgonggong.ui.model.toUi
+import com.seoulfitu.android.domain.repository.SportsServiceRepository
+import com.seoulfitu.android.ui.sports_service_list.uistate.SportsServiceListUiState
+import com.seoulfitu.android.ui.uimodel.UiSportsService
+import com.seoulfitu.android.ui.uimodel.mapper.toUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

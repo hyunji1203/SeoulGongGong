@@ -5,6 +5,7 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import com.seoulfitu.android.data.service.GeocoderService
 import com.seoulfitu.android.data.service.ParticulateMatterService
 import com.seoulfitu.android.data.service.SportsFacilityService
+import com.seoulfitu.android.data.service.SportsServiceService
 import com.seoulfitu.android.data.service.WeatherService
 import dagger.Module
 import dagger.Provides
@@ -99,5 +100,11 @@ object AppModule {
         @SeoulOpenApiRetrofit retrofit: Retrofit,
     ): ParticulateMatterService {
         return retrofit.create(ParticulateMatterService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSportsServiceService(@SeoulOpenApiRetrofit retrofit: Retrofit): SportsServiceService {
+        return retrofit.create(SportsServiceService::class.java)
     }
 }

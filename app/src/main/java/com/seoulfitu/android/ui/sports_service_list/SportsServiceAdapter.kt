@@ -1,8 +1,8 @@
-package com.example.seoulgonggong.ui.feature.sports_service_list
+package com.seoulfitu.android.ui.sports_service_list
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.seoulgonggong.ui.model.UiSportsService
+import com.seoulfitu.android.ui.uimodel.UiSportsService
 
 class SportsServiceAdapter(
     private val dataSet: List<UiSportsService>,

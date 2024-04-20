@@ -1,13 +1,13 @@
-package com.example.seoulgonggong.ui.feature.sports_service_list
+package com.seoulfitu.android.ui.sports_service_list
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.widget.doOnTextChanged
-import com.example.seoulgonggong.databinding.ActivitySportsServiceListBinding
-import com.example.seoulgonggong.ui.feature.sports_service_detail.SportsServiceDetailActivity
-import com.example.seoulgonggong.ui.feature.sports_service_list.viewmodel.SportsServiceListViewModel
+import com.seoulfitu.android.databinding.ActivitySportsServiceListBinding
+import com.seoulfitu.android.ui.sports_service_detail.SportsServiceDetailActivity
+import com.seoulfitu.android.ui.sports_service_list.viewmodel.SportsServiceListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

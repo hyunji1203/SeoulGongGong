@@ -1,7 +1,8 @@
-package com.example.seoulgonggong.ui.model
+package com.seoulfitu.android.ui.uimodel.mapper
 
-import com.example.seoulgonggong.domain.model.SportsService
-import com.example.seoulgonggong.domain.model.SportsServices
+import com.seoulfitu.android.domain.model.SportsService
+import com.seoulfitu.android.domain.model.SportsServices
+import com.seoulfitu.android.ui.uimodel.UiSportsService
 
 
 fun SportsServices.toUi(): List<UiSportsService> =

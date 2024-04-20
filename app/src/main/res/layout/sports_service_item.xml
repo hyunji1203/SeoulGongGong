@@ -5,7 +5,7 @@
 
         <variable
             name="sportsService"
-            type="com.example.seoulgonggong.ui.model.UiSportsService" />
+            type="com.seoulfitu.android.ui.uimodel.UiSportsService" />
 
         <variable
             name="onItemClick"

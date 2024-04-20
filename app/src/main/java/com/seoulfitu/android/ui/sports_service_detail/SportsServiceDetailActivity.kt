@@ -1,4 +1,4 @@
-package com.example.seoulgonggong.ui.feature.sports_service_detail
+package com.seoulfitu.android.ui.sports_service_detail
 
 import android.content.Context
 import android.content.Intent
@@ -6,9 +6,9 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import com.example.seoulgonggong.databinding.ActivitySportsServiceDetailBinding
-import com.example.seoulgonggong.ui.feature.sports_service_detail.viewmodel.SportsServiceDetailViewModel
-import com.example.seoulgonggong.ui.model.UiSportsService
+import com.seoulfitu.android.databinding.ActivitySportsServiceDetailBinding
+import com.seoulfitu.android.ui.sports_service_detail.viewmodel.SportsServiceDetailViewModel
+import com.seoulfitu.android.ui.uimodel.UiSportsService
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

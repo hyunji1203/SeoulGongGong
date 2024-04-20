@@ -1,6 +1,6 @@
-package com.example.seoulgonggong.data.service
+package com.seoulfitu.android.data.service
 
-import com.example.seoulgonggong.data.model.SportsServiceResponse
+import com.seoulfitu.android.data.model.response.SportsServiceResponse
 import retrofit2.Response
 import retrofit2.http.GET
 

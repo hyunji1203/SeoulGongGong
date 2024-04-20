@@ -1,4 +1,4 @@
-package com.example.seoulgonggong.ui.model
+package com.seoulfitu.android.ui.uimodel
 
 import java.io.Serializable
 

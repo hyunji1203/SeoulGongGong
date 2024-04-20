@@ -1,4 +1,4 @@
-package com.example.seoulgonggong.domain.model
+package com.seoulfitu.android.domain.model
 
 data class SportsServices(
    val services:List<SportsService>

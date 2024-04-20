@@ -1,7 +1,8 @@
-package com.example.seoulgonggong.data.model
+package com.seoulfitu.android.data.model.mapper
 
-import com.example.seoulgonggong.domain.model.SportsService
-import com.example.seoulgonggong.domain.model.SportsServices
+import com.seoulfitu.android.data.model.response.SportsServiceResponse
+import com.seoulfitu.android.domain.model.SportsService
+import com.seoulfitu.android.domain.model.SportsServices
 
 
 fun SportsServiceResponse.toDomain(): SportsServices = SportsServices(

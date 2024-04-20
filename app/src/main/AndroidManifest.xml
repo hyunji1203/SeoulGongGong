@@ -2,10 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.DIAL_PHONE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:name="com.seoulfitu.android.SeoulGongGongApplication"
@@ -31,10 +35,10 @@
             android:name=".ui.facility.SportsFacilityActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.feature.sports_service_list.SportsServiceListActivity"
-            android:exported="false" />
+            android:name="com.seoulfitu.android.ui.sports_service_list.SportsServiceListActivity"
+            android:exported="true" />
         <activity
-            android:name=".ui.feature.sports_service_detail.SportsServiceDetailActivity"
+            android:name="com.seoulfitu.android.ui.sports_service_detail.SportsServiceDetailActivity"
             android:exported="true" />
         <activity
             android:name=".ui.main.MainActivity"

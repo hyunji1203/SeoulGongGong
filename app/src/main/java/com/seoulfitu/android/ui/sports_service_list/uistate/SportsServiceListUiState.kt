@@ -1,6 +1,7 @@
-package com.example.seoulgonggong.ui.feature.sports_service_list.uistate
+package com.seoulfitu.android.ui.sports_service_list.uistate
 
-import com.example.seoulgonggong.ui.model.UiSportsService
+import com.seoulfitu.android.ui.uimodel.UiSportsService
+
 
 data class SportsServiceListUiState(
     val isSuccess: Boolean? = null,

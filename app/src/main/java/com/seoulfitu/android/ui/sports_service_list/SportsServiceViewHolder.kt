@@ -1,10 +1,10 @@
-package com.example.seoulgonggong.ui.feature.sports_service_list
+package com.seoulfitu.android.ui.sports_service_list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.seoulgonggong.databinding.SportsServiceItemBinding
-import com.example.seoulgonggong.ui.model.UiSportsService
+import com.seoulfitu.android.databinding.SportsServiceItemBinding
+import com.seoulfitu.android.ui.uimodel.UiSportsService
 
 class SportsServiceViewHolder private constructor(
     private val binding: SportsServiceItemBinding,

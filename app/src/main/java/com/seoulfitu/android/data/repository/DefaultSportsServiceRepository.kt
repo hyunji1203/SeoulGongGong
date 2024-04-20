@@ -1,12 +1,13 @@
-package com.example.seoulgonggong.data.repository
+package com.seoulfitu.android.data.repository
 
-import com.example.seoulgonggong.data.model.toDomain
-import com.example.seoulgonggong.data.service.SportsServiceService
-import com.example.seoulgonggong.domain.model.SportsServices
-import com.example.seoulgonggong.domain.repository.SportsServiceRepository
+import com.seoulfitu.android.data.model.mapper.toDomain
+import com.seoulfitu.android.data.service.SportsServiceService
+import com.seoulfitu.android.domain.model.SportsServices
+import com.seoulfitu.android.domain.repository.SportsServiceRepository
 import javax.inject.Inject
 
-class DefaultSportsServiceRepository @Inject constructor(private val sportsServiceService: SportsServiceService):SportsServiceRepository {
+class DefaultSportsServiceRepository @Inject constructor(private val sportsServiceService: SportsServiceService):
+    SportsServiceRepository {
     override suspend fun getServices():Result<SportsServices>{
         val result = sportsServiceService.getServices()
         if (result.isSuccessful){

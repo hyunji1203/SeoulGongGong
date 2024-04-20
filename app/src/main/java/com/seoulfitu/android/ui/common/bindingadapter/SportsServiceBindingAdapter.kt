@@ -1,16 +1,12 @@
-package com.example.seoulgonggong.ui
+package com.seoulfitu.android.ui.common.bindingadapter
 
 import android.content.Intent
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
-import com.example.seoulgonggong.R
+import com.seoulfitu.android.R
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
