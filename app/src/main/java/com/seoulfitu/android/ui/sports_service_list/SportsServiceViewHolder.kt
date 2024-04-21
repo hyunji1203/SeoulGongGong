@@ -15,7 +15,7 @@ class SportsServiceViewHolder private constructor(
     }
 
     fun bind(data: UiSportsService) {
-        binding.sportsService = data
+        binding.service = data
     }
 
     companion object {

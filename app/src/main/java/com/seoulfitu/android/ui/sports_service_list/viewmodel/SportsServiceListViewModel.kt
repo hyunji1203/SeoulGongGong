@@ -35,7 +35,7 @@ class SportsServiceListViewModel @Inject constructor(private val sportsServiceRe
     }
 
     fun searchData(text: String) {
-        val results = services.filter { it.title.contains(text) }
+        val results = services.filter { it.info.title.contains(text) }
         _uiState.value = SportsServiceListUiState(
             isSuccess = true, result = results
         )

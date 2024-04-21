@@ -25,15 +25,18 @@ class SportsServiceDetailViewModel @Inject constructor(
     fun setSportsService(service: UiSportsService) {
         viewModelScope.launch {
             val result = geocodingRepository.reverseGeocode(
-                Coordinate(service.xCoordinate, service.yCoordinate)
+                Coordinate(service.info.xCoordinate, service.info.yCoordinate)
             )
             result.onSuccess {
                 val regionWithCoordinate = it.values[0]
                 _sportService.value = _sportService.value?.copy(
-                    isSuccess = true, result = service.copy(
-                        registrationStartDate = formatRegistrationDate(service.registrationStartDate),
-                        registrationEndDate = formatRegistrationDate(service.registrationEndDate),
-                        address = formatRegion(regionWithCoordinate)
+                    isSuccess = true,
+                    result = service.copy(
+                        info = service.info.copy(
+                            registrationStartDate = formatRegistrationDate(service.info.registrationStartDate),
+                            registrationEndDate = formatRegistrationDate(service.info.registrationEndDate),
+                            address = formatRegion(regionWithCoordinate)
+                        )
                     )
                 )
             }.onFailure {
@@ -45,7 +48,9 @@ class SportsServiceDetailViewModel @Inject constructor(
     }
 
     private fun formatRegion(regionWithCoordinate: RegionWithCoordinate): String {
-        return "${regionWithCoordinate.area1.name} ${regionWithCoordinate.area2.name} ${regionWithCoordinate.area3.name} ${regionWithCoordinate.area4.name}"
+        regionWithCoordinate.apply {
+            return "${area1.name} ${area2.name} ${area3.name} ${area4.name}"
+        }
     }
 
     private fun formatRegistrationDate(date: String): String {

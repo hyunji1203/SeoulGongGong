@@ -3,6 +3,11 @@ package com.seoulfitu.android.ui.uimodel
 import java.io.Serializable
 
 data class UiSportsService(
+    val info: UiSportsServiceInfo = UiSportsServiceInfo(),
+    val scrapped: Boolean = false
+):Serializable
+
+data class UiSportsServiceInfo(
     val title: String = "",
     val place: String = "",
     val operatingStartTime: String = "",

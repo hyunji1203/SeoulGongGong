@@ -40,7 +40,7 @@ class SportsServiceDetailActivity : AppCompatActivity() {
         viewModel.sportsService.observe(this) {
             when (it.isSuccess) {
                 true -> {
-                    binding.sportsService = it.result
+                    binding.service = it.result
                 }
                 false -> {
                     showToast(it.errorMessage)

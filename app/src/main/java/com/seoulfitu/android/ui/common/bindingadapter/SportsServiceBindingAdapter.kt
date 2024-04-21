@@ -6,9 +6,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import com.seoulfitu.android.BuildConfig
 import com.seoulfitu.android.R
 
-@BindingAdapter("serviceImg")
+@BindingAdapter("app:serviceImg")
 fun ImageView.serviceImg(url: String?) {
 //    Glide.with(this).load(url).into(object : CustomTarget<Drawable>() {
 //        override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
@@ -22,7 +23,19 @@ fun ImageView.serviceImg(url: String?) {
 //    })
 }
 
-@BindingAdapter("serviceStatusColorForStatus")
+@BindingAdapter("app:onClickServiceLocation")
+fun TextView.onClickServiceLocation(location: String?) {
+    this.setOnClickListener {
+        val url = "nmap://search?query=%s&%s".format(
+            location, BuildConfig.APPLICATION_ID
+        )
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        intent.addCategory(Intent.CATEGORY_BROWSABLE)
+        context.startActivity(intent)
+    }
+}
+
+@BindingAdapter("app:serviceStatusColorForStatus")
 fun TextView.serviceStatusColorForStatus(status: String?) {
     if (status?.contains("중") == true) {
         setTextColor(ContextCompat.getColor(this.context, R.color.main_teal))
@@ -31,7 +44,7 @@ fun TextView.serviceStatusColorForStatus(status: String?) {
     }
 }
 
-@BindingAdapter("onClickServiceLink")
+@BindingAdapter("app:onClickServiceLink")
 fun TextView.onClickServiceLink(url: String?) {
     this.setOnClickListener {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
@@ -39,13 +52,12 @@ fun TextView.onClickServiceLink(url: String?) {
     }
 }
 
-@BindingAdapter("onClickServicePhoneNumber")
+@BindingAdapter("app:onClickServicePhoneNumber")
 fun TextView.onClickServicePhoneNumber(phoneNumber: String?) {
-    val prefixTel = "tel:"
-    val formattedPhoneNumber = phoneNumber?.replace("-", "")
-    val tel = "$prefixTel$formattedPhoneNumber"
     this.setOnClickListener {
-        val intent = Intent(Intent.ACTION_DIAL, Uri.parse(tel))
+        val formattedPhoneNumber = phoneNumber?.replace("-", "")
+        val telUri = "tel:%s".format(formattedPhoneNumber)
+        val intent = Intent(Intent.ACTION_DIAL, Uri.parse(telUri))
         context.startActivity(intent)
     }
 }

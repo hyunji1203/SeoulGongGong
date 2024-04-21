@@ -4,7 +4,7 @@
     <data>
 
         <variable
-            name="sportsService"
+            name="service"
             type="com.seoulfitu.android.ui.uimodel.UiSportsService" />
 
         <variable
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_default"
             android:background="@drawable/rect_public_service_item_bg"
-            android:onClick="@{(item) -> onItemClick.invoke(sportsService)}"
+            android:onClick="@{(item) -> onItemClick.invoke(service)}"
             android:padding="@dimen/margin_default">
 
             <TextView
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@{sportsService.title}"
+                android:text="@{service.info.title}"
                 android:textAppearance="@style/title_3B"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +46,7 @@
                 android:layout_marginTop="17dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_public_service_item_title"
-                app:serviceImg="@{sportsService.img}"
+                app:serviceImg="@{service.info.img}"
                 tools:src="@drawable/ic_launcher_background" />
 
             <TextView
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="7dp"
-                android:text="@{sportsService.place}"
+                android:text="@{service.info.place}"
                 android:textAppearance="@style/caption_1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/iv_sports_service_item_img"
@@ -70,7 +70,7 @@
                 android:layout_marginTop="5dp"
                 android:textAppearance="@style/body_1"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:text="@{@string/sports_service_rv_item_operating_time(sportsService.operatingStartTime, sportsService.operatingEndTime)}"
+                android:text="@{@string/sports_service_rv_item_operating_time(service.info.operatingStartTime, service.info.operatingEndTime)}"
                 app:layout_constraintStart_toEndOf="@+id/iv_sports_service_item_img"
                 app:layout_constraintTop_toBottomOf="@id/tv_public_service_item_place"
                 tools:text="이용시간: 9:00 ~ 18:00" />
@@ -82,12 +82,12 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="16dp"
-                android:text="@{sportsService.status}"
+                android:text="@{service.info.status}"
                 android:textAppearance="@style/subtitle_1"
                 app:layout_constraintEnd_toStartOf="@+id/iv_public_service_item_heart"
                 app:layout_constraintStart_toEndOf="@+id/iv_sports_service_item_img"
                 app:layout_constraintTop_toBottomOf="@id/tv_public_service_item_operating_time"
-                app:serviceStatusColorForStatus="@{sportsService.status}"
+                app:serviceStatusColorForStatus="@{service.info.status}"
                 tools:text="예약마감" />
 
             <ImageView
