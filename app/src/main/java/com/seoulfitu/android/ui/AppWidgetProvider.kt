@@ -8,6 +8,8 @@ import android.content.Intent
 import android.widget.RemoteViews
 import com.seoulfitu.android.R
 import com.seoulfitu.android.ui.facility.SportsFacilityActivity
+import com.seoulfitu.android.ui.main.MainActivity
+
 
 class AppWidgetProvider : AppWidgetProvider() {
 
@@ -16,29 +18,39 @@ class AppWidgetProvider : AppWidgetProvider() {
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray
     ) {
-        // Perform this loop procedure for each widget that belongs to this
-        // provider.
-        appWidgetIds.forEach { appWidgetId ->
-            // Create an Intent to launch ExampleActivity.
-            val pendingIntent: PendingIntent = PendingIntent.getActivity(
-                    /* context = */ context,
-                    /* requestCode = */  0,
-                    /* intent = */ Intent(context, SportsFacilityActivity::class.java),
-                    /* flags = */ PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        val views = RemoteViews(context.packageName, R.layout.layout_appwidget)
+
+        setBtnClickListener(
+            views,
+            context,
+            R.id.btn_go_sports_facility_activity,
+            SportsFacilityActivity.getIntent(context),
+        )
+
+        setBtnClickListener(
+            views,
+            context,
+            R.id.btn_go_service_activity,
+            MainActivity.getIntent(context),
+        )
+
+        appWidgetManager.updateAppWidget(appWidgetIds, views)
+    }
+
+    private fun setBtnClickListener(
+        views: RemoteViews,
+        context: Context,
+        btnId: Int,
+        intent: Intent,
+    ) {
+        views.setOnClickPendingIntent(
+            btnId,
+            PendingIntent.getActivity(
+                context,
+                0,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
             )
-
-            // Get the layout for the widget and attach an onClick listener to
-            // the button.
-            val views: RemoteViews = RemoteViews(
-                    context.packageName,
-                    R.layout.layout_appwidget
-            ).apply {
-                setOnClickPendingIntent(R.id.btn_test, pendingIntent)
-            }
-
-            // Tell the AppWidgetManager to perform an update on the current
-            // widget.
-            appWidgetManager.updateAppWidget(appWidgetId, views)
-        }
+        )
     }
 }
