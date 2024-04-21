@@ -36,7 +36,7 @@
             android:exported="false" />
         <activity
             android:name="com.seoulfitu.android.ui.sports_service_list.SportsServiceListActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name="com.seoulfitu.android.ui.sports_service_detail.SportsServiceDetailActivity"
             android:exported="false" />

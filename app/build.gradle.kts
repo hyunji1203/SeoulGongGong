@@ -113,10 +113,4 @@ dependencies {
 
     // OkHttp3 logging interceptor
     implementation(libs.logging.interceptor)
-
-    // Coroutines
-    implementation(libs.kotlinx.coroutines.core)
-
-    // ViewModel
-    implementation(libs.bundles.viewModel)
 }
