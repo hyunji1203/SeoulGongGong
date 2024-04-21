@@ -10,9 +10,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.checkSelfPermission
+import com.google.android.gms.location.LocationServices
 import com.seoulfitu.android.R
 import com.seoulfitu.android.databinding.ActivityMainBinding
-import com.google.android.gms.location.LocationServices
 import com.seoulfitu.android.ui.facility.SportsFacilityActivity
 import com.seoulfitu.android.util.openSetting
 import com.seoulfitu.android.util.showToast
@@ -73,10 +73,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun setForecast() {
         checkLocationPermission()
-        val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        fusedLocationClient.lastLocation.addOnSuccessListener {
-            viewModel.fetchWeather(it.latitude, it.longitude)
-            viewModel.fetchParticulateMatter(it.latitude, it.longitude)
+        try {
+            val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+            fusedLocationClient.lastLocation.addOnSuccessListener {
+                viewModel.fetchWeather(it.latitude, it.longitude)
+                viewModel.fetchParticulateMatter(it.latitude, it.longitude)
+            }
+        } catch (e: Exception) {
+            showToast(getString(R.string.main_none_location_info_message))
         }
     }
 
