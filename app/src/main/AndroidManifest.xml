@@ -36,10 +36,10 @@
             android:exported="false" />
         <activity
             android:name="com.seoulfitu.android.ui.sports_service_list.SportsServiceListActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name="com.seoulfitu.android.ui.sports_service_detail.SportsServiceDetailActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true">
