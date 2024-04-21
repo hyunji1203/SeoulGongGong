@@ -37,7 +37,7 @@
                 android:src="@drawable/ic_launcher_background"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView"
-                app:serviceImg="@{sportsService.img}" />
+                app:serviceImg='@{sportsService.img}' />
 
             <TextView
                 android:id="@+id/tv_sports_service_detail_title"
@@ -196,8 +196,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/iv_sports_service_detail_operating_time"
                 app:layout_constraintTop_toTopOf="@id/iv_sports_service_detail_operating_time"
-                app:serviceDetailOperatingEndTime="@{sportsService.operatingEndTime}"
-                app:serviceDetailOperatingStartTime="@{sportsService.operatingStartTime}"
+                android:text="@{@string/sports_service_detail_operating_time(sportsService.operatingStartTime, sportsService.operatingEndTime)}"
                 tools:text="서비스 이용시간\n18:00 ~ 22:00" />
 
             <ImageView
@@ -216,10 +215,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="@dimen/margin_default"
-                app:serviceDetailRegistrationStartTime="@{sportsService.registrationStartDate}"
-                app:serviceDetailRegistrationEndTime="@{sportsService.registrationEndDate}"
                 android:textAppearance="@style/subtitle_1"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:text="@{@string/sports_service_detail_registration_time(sportsService.registrationStartDate,sportsService.registrationEndDate)}"
                 app:layout_constraintStart_toEndOf="@id/iv_sports_service_detail_registration_date"
                 app:layout_constraintTop_toTopOf="@id/iv_sports_service_detail_registration_date"
                 tools:text="접수 일시\n2024.03.22 10:00 ~ 2024.04.26 11:04" />

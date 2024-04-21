@@ -45,7 +45,7 @@ class SportsServiceListActivity : AppCompatActivity() {
                 }
 
                 else -> {
-                    // todo 로딩 화면
+                    // todo: 로딩 화면
                 }
             }
         }

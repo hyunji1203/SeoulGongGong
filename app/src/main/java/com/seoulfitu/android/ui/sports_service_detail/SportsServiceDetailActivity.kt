@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import com.seoulfitu.android.databinding.ActivitySportsServiceDetailBinding
 import com.seoulfitu.android.ui.sports_service_detail.viewmodel.SportsServiceDetailViewModel
 import com.seoulfitu.android.ui.uimodel.UiSportsService
+import com.seoulfitu.android.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,12 +34,21 @@ class SportsServiceDetailActivity : AppCompatActivity() {
             intent.getSerializableExtra(EXTRA_KEY_SPORTS_SERVICE) as UiSportsService
         }
         viewModel.setSportsService(sportsService)
-        viewModel.reverseGeocode()
     }
 
     private fun observeSportsService() {
         viewModel.sportsService.observe(this) {
-            binding.sportsService = it
+            when (it.isSuccess) {
+                true -> {
+                    binding.sportsService = it.result
+                }
+                false -> {
+                    showToast(it.errorMessage)
+                }
+                else -> {
+                    // todo: 로딩화면
+                }
+            }
         }
     }
 

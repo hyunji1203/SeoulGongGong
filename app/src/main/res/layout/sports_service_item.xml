@@ -17,8 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_sports_service_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,10 +70,9 @@
                 android:layout_marginTop="5dp"
                 android:textAppearance="@style/body_1"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:text="@{@string/sports_service_rv_item_operating_time(sportsService.operatingStartTime, sportsService.operatingEndTime)}"
                 app:layout_constraintStart_toEndOf="@+id/iv_sports_service_item_img"
                 app:layout_constraintTop_toBottomOf="@id/tv_public_service_item_place"
-                app:serviceRvItemOperatingEndTime="@{sportsService.operatingStartTime}"
-                app:serviceRvItemOperatingStartTime="@{sportsService.operatingEndTime}"
                 tools:text="이용시간: 9:00 ~ 18:00" />
 
             <TextView
