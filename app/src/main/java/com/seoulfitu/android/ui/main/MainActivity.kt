@@ -5,11 +5,14 @@ import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.checkSelfPermission
+import androidx.core.content.ContextCompat
 import com.google.android.gms.location.LocationServices
 import com.seoulfitu.android.R
 import com.seoulfitu.android.databinding.ActivityMainBinding
@@ -73,14 +76,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun setForecast() {
         checkLocationPermission()
-        try {
-            val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-            fusedLocationClient.lastLocation.addOnSuccessListener {
-                viewModel.fetchWeather(it.latitude, it.longitude)
-                viewModel.fetchParticulateMatter(it.latitude, it.longitude)
-            }
-        } catch (e: Exception) {
-            showToast(getString(R.string.main_none_location_info_message))
+        val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        Log.d("test", "estsetsesetetsets")
+        if (ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location: Location? ->
+                    location?.let { viewModel.fetchWeather(it.latitude, location.longitude) }
+                    location?.let { viewModel.fetchParticulateMatter(it.latitude, location.longitude) }
+                }
         }
     }
 
