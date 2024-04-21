@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -12,89 +12,95 @@
             type="kotlin.jvm.functions.Function1" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.appcompat.widget.LinearLayoutCompat xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/cl_sports_service_item"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_default"
-        android:background="@drawable/rect_public_service_item_bg"
-        android:onClick="@{(item) -> onItemClick.invoke(sportsService)}"
-        android:padding="@dimen/margin_default">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tv_public_service_item_title"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+            android:id="@+id/cl_sports_service_item"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="@{sportsService.title}"
-            android:textAppearance="@style/title_3B"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="서울어린이대공원 인조잔디 축구장" />
+            android:layout_marginBottom="@dimen/margin_default"
+            android:background="@drawable/rect_public_service_item_bg"
+            android:onClick="@{(item) -> onItemClick.invoke(sportsService)}"
+            android:padding="@dimen/margin_default">
 
-        <ImageView
-            android:id="@+id/iv_sports_service_item_img"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="17dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_public_service_item_title"
-            app:serviceImg="@{sportsService.img}"
-            tools:src="@drawable/ic_launcher_background" />
+            <TextView
+                android:id="@+id/tv_public_service_item_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{sportsService.title}"
+                android:textAppearance="@style/title_3B"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="서울어린이대공원 인조잔디 축구장" />
 
-        <TextView
-            android:id="@+id/tv_public_service_item_place"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="7dp"
-            android:text="@{sportsService.place}"
-            android:textAppearance="@style/caption_1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_sports_service_item_img"
-            app:layout_constraintTop_toTopOf="@+id/iv_sports_service_item_img"
-            tools:text="반포종합운동장>배드민턴장" />
+            <ImageView
+                android:id="@+id/iv_sports_service_item_img"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="17dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_public_service_item_title"
+                app:serviceImg="@{sportsService.img}"
+                tools:src="@drawable/ic_launcher_background" />
 
-        <TextView
-            android:id="@+id/tv_public_service_item_operating_time"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="5dp"
-            android:textAppearance="@style/body_1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_sports_service_item_img"
-            app:layout_constraintTop_toBottomOf="@id/tv_public_service_item_place"
-            app:serviceRvItemOperatingStartTime="@{sportsService.operatingEndTime}"
-            app:serviceRvItemOperatingEndTime="@{sportsService.operatingStartTime}"
-            tools:text="이용시간: 9:00 ~ 18:00" />
+            <TextView
+                android:id="@+id/tv_public_service_item_place"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="7dp"
+                android:text="@{sportsService.place}"
+                android:textAppearance="@style/caption_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_sports_service_item_img"
+                app:layout_constraintTop_toTopOf="@+id/iv_sports_service_item_img"
+                tools:text="반포종합운동장>배드민턴장" />
 
-        <TextView
-            android:id="@+id/tv_public_service_item_status"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="16dp"
-            android:text="@{sportsService.status}"
-            android:textAppearance="@style/subtitle_1"
-            app:layout_constraintEnd_toStartOf="@+id/iv_public_service_item_heart"
-            app:layout_constraintStart_toEndOf="@+id/iv_sports_service_item_img"
-            app:layout_constraintTop_toBottomOf="@id/tv_public_service_item_operating_time"
-            app:serviceStatusColorForStatus="@{sportsService.status}"
-            tools:text="예약마감" />
+            <TextView
+                android:id="@+id/tv_public_service_item_operating_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:textAppearance="@style/body_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_sports_service_item_img"
+                app:layout_constraintTop_toBottomOf="@id/tv_public_service_item_place"
+                app:serviceRvItemOperatingEndTime="@{sportsService.operatingStartTime}"
+                app:serviceRvItemOperatingStartTime="@{sportsService.operatingEndTime}"
+                tools:text="이용시간: 9:00 ~ 18:00" />
 
-        <ImageView
-            android:id="@+id/iv_public_service_item_heart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_heart_filled"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <TextView
+                android:id="@+id/tv_public_service_item_status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:text="@{sportsService.status}"
+                android:textAppearance="@style/subtitle_1"
+                app:layout_constraintEnd_toStartOf="@+id/iv_public_service_item_heart"
+                app:layout_constraintStart_toEndOf="@+id/iv_sports_service_item_img"
+                app:layout_constraintTop_toBottomOf="@id/tv_public_service_item_operating_time"
+                app:serviceStatusColorForStatus="@{sportsService.status}"
+                tools:text="예약마감" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/iv_public_service_item_heart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_heart_filled"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

@@ -6,14 +6,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="@dimen/margin_default"
         tools:context="com.seoulfitu.android.ui.sports_service_list.SportsServiceListActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/toolbar_sports_service"
             android:layout_width="0dp"
             android:layout_height="56dp"
-            app:layout_constraintBottom_toTopOf="@+id/et_sports_service_list_search"
+            app:layout_constraintBottom_toTopOf="@+id/cl_sports_service_list_search"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -23,42 +22,85 @@
                 android:layout_width="14dp"
                 android:layout_height="14dp"
                 android:layout_marginStart="23dp"
-                android:src="@drawable/ic_launcher_background"
+                android:src="@drawable/ic_back"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/tv_sports_service_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="27dp"
-                android:text="공공 대관 서비스"
+                android:text="@string/sports_service_list_toolbar_title"
                 android:textAppearance="@style/title_3M"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/iv_sports_service_back"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <EditText
-            android:id="@+id/et_sports_service_list_search"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_sports_service_list_search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_default"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="32dp"
+            android:background="@drawable/rect_main_teal_12_stroke"
             app:layout_constraintBottom_toTopOf="@id/rv_sports_service_list"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_sports_service_list_filter"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_sports_service" />
+            app:layout_constraintTop_toBottomOf="@id/toolbar_sports_service">
+
+            <EditText
+                android:id="@+id/et_sports_service_list_search"
+                android:layout_width="0dp"
+                android:layout_height="41dp"
+                android:autofillHints=""
+                android:background="@android:color/transparent"
+                android:inputType="text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/iv_sports_service_list_search"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="LabelFor" />
+
+            <ImageView
+                android:id="@+id/iv_sports_service_list_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_search"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/et_sports_service_list_search"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/iv_sports_service_list_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_default"
+            android:src="@drawable/ic_filter"
+            app:layout_constraintBottom_toBottomOf="@+id/cl_sports_service_list_search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cl_sports_service_list_search"
+            app:layout_constraintTop_toTopOf="@+id/cl_sports_service_list_search"
+            app:tint="@color/main_teal" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_sports_service_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/margin_default"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_sports_service_list_search"
+            app:layout_constraintTop_toBottomOf="@+id/cl_sports_service_list_search"
             tools:itemCount="10"
             tools:listitem="@layout/sports_service_item" />
     </androidx.constraintlayout.widget.ConstraintLayout>
