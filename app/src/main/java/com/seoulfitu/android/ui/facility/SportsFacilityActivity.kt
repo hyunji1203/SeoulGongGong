@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -29,6 +30,7 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var naverMap: NaverMap
     private lateinit var locationSource: FusedLocationSource
     private val viewModel: SportsFacilityViewModel by viewModels()
+    private var selectedMarker: Marker? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,7 +87,7 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
                 marker.apply {
                     position = LatLng(data.y, data.x)
                     icon = MarkerIcons.BLACK
-                    iconTintColor = getColor(R.color.main_teal)
+                    setMarkerColor()
                     isHideCollidedMarkers = true
                     map = naverMap
                 }
@@ -98,7 +100,9 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
         data: UiSportsFacilityWithCoordinate
     ) {
         marker.setOnClickListener {
-            marker.iconTintColor = getColor(R.color.red)
+            selectedMarker?.setMarkerColor(isClicked = false)
+            selectedMarker = marker
+            marker.setMarkerColor(isClicked = true)
             binding.bottomFacilityInfo.apply {
                 setInfoItem(data.facility)
                 setClickEvent(viewModel::openFacilityDetail)
@@ -128,8 +132,22 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
 
         naverMap.uiSettings.isLocationButtonEnabled = true
         naverMap.locationSource = locationSource
+        naverMap.setOnMapClickListener { _, _ -> clearMarkerClick() }
 
         ActivityCompat.requestPermissions(this, PERMISSIONS, LOCATION_PERMISSION_REQUEST_CODE)
+    }
+
+    private fun clearMarkerClick() {
+        if (selectedMarker != null) {
+            selectedMarker?.setMarkerColor(isClicked = false)
+            binding.bottomFacilityInfo.visibility = View.GONE
+            selectedMarker = null
+        }
+    }
+
+    private fun Marker.setMarkerColor(isClicked: Boolean = false) {
+        if (isClicked) this.iconTintColor = getColor(R.color.red)
+        else this.iconTintColor = getColor(R.color.main_teal)
     }
 
     companion object {
