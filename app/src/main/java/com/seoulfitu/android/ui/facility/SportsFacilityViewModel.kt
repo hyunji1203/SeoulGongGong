@@ -24,9 +24,9 @@ class SportsFacilityViewModel @Inject constructor(
     private val _sportsFacilities: MutableLiveData<List<UiSportsFacility>> = MutableLiveData()
     val sportsFacilities: LiveData<List<UiSportsFacility>> = _sportsFacilities
 
-    private val _facilityWithCoordinate: MutableLiveData<UiSportsFacilityWithCoordinate> =
+    private val _facilityWithCoordinate: MutableLiveData<UiSportsFacilityWithCoordinate?> =
         MutableLiveData()
-    val facilityWithCoordinate: MutableLiveData<UiSportsFacilityWithCoordinate> =
+    val facilityWithCoordinate: MutableLiveData<UiSportsFacilityWithCoordinate?> =
         _facilityWithCoordinate
 
     val searchWord: MutableLiveData<String> = MutableLiveData("")
@@ -42,14 +42,12 @@ class SportsFacilityViewModel @Inject constructor(
     fun getAllFacilities() {
         viewModelScope.launch {
             facilityRepository.getSportsFacility().onSuccess { facilities ->
-
-                // todo 로딩 띄우기
                 _sportsFacilities.value = facilities.map { it.toUi() }
                 _listSportsFacilities.value =
                     UiSportsFacilityList(_sportsFacilities.value ?: emptyList())
 
                 facilities.forEach { searchPosition(it) }
-                // todo 로딩 끝내기
+                _facilityWithCoordinate.value = null
             }
         }
     }

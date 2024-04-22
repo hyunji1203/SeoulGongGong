@@ -113,4 +113,7 @@ dependencies {
 
     // OkHttp3 logging interceptor
     implementation(libs.logging.interceptor)
+
+    // lottie
+    implementation(libs.lottie)
 }

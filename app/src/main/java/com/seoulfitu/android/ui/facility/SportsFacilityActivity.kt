@@ -88,9 +88,10 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
                     position = LatLng(data.y, data.x)
                     icon = MarkerIcons.BLACK
                     setMarkerColor()
-                    isHideCollidedMarkers = true
                     map = naverMap
                 }
+            } else {
+                binding.icLoadingFacility.visibility = View.GONE
             }
         }
     }

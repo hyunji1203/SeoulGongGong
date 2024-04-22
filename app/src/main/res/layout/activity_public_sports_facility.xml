@@ -114,6 +114,18 @@
             app:navermap_tiltGesturesEnabled="false"
             tools:background="@color/main_orange" />
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/ic_loading_facility"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/fragment_map"
+            app:lottie_autoPlay="true"
+            app:lottie_colorFilter="@color/main_teal"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading" />
+
         <com.seoulfitu.android.ui.facility.SportsFacilityInfoView
             android:id="@+id/bottom_facility_info"
             android:layout_width="0dp"
