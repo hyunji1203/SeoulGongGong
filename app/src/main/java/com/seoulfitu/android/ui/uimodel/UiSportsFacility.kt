@@ -21,11 +21,17 @@ data class UiSportsFacility(
     val type: UiSportsFacilityType,
     val isOperating: String,
     val convenience: String,
-    var x: Double = 37.5670135,
-    var y: Double = 126.9783740,
 ) : Parcelable
 
 data class UiSportsFacilityList(
     val items: List<UiSportsFacility>,
     val isEmpty: Boolean = items.isEmpty(),
+)
+
+data class UiSportsFacilityWithCoordinate(
+    val facility: UiSportsFacility,
+
+    // 디폴트 좌표 : 서울 시청
+    var x: Double = 37.5670135,
+    var y: Double = 126.9783740,
 )

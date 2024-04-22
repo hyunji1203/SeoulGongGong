@@ -32,32 +32,32 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_public_sports_facility)
 
+        initBinding()
+        initSetting()
+        initMap()
+        initObserver()
+    }
+
+    private fun initBinding() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+    }
 
+    private fun initSetting() {
         viewModel.getAllFacilities()
-        initMap()
-
-        viewModel.test.observe(this) { test ->
-            if (test) {
-                viewModel.sportsFacilities.value?.forEach {
-                    val marker = Marker()
-                    marker.position = LatLng(it.y, it.x)
-                    marker.map = naverMap
-                }
-            }
-        }
-
         locationSource = FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
-
-        initOpenListObserve()
-        initOpenDetailObserve()
     }
 
     private fun initMap() {
         val mapFragment: MapFragment =
             supportFragmentManager.findFragmentById(R.id.fragment_map) as MapFragment
         mapFragment.getMapAsync(this)
+    }
+
+    private fun initObserver() {
+        initMarker()
+        initOpenListObserve()
+        initOpenDetailObserve()
     }
 
     private fun initOpenListObserve() {
@@ -72,6 +72,19 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun initOpenDetailObserve() {
         viewModel.detailOpenEvent.observe(this) {
             startActivity(SportsFacilityDetailActivity.getIntent(this, it))
+        }
+    }
+
+    private fun initMarker() {
+        viewModel.facilityWithCoordinate.observe(this) { data ->
+            if (data != null) {
+                val marker = Marker()
+                marker.setOnClickListener {
+                    true
+                }
+                marker.position = LatLng(data.y, data.x)
+                marker.map = naverMap
+            }
         }
     }
 

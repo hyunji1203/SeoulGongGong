@@ -1,14 +1,15 @@
 package com.seoulfitu.android.ui.facility
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.seoulfitu.android.domain.model.SportsFacility
 import com.seoulfitu.android.domain.repository.GeocodingRepository
 import com.seoulfitu.android.domain.repository.SportsFacilityRepository
 import com.seoulfitu.android.ui.uimodel.UiSportsFacility
 import com.seoulfitu.android.ui.uimodel.UiSportsFacilityList
+import com.seoulfitu.android.ui.uimodel.UiSportsFacilityWithCoordinate
 import com.seoulfitu.android.ui.uimodel.mapper.toUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -23,6 +24,11 @@ class SportsFacilityViewModel @Inject constructor(
     private val _sportsFacilities: MutableLiveData<List<UiSportsFacility>> = MutableLiveData()
     val sportsFacilities: LiveData<List<UiSportsFacility>> = _sportsFacilities
 
+    private val _facilityWithCoordinate: MutableLiveData<UiSportsFacilityWithCoordinate> =
+        MutableLiveData()
+    val facilityWithCoordinate: MutableLiveData<UiSportsFacilityWithCoordinate> =
+        _facilityWithCoordinate
+
     val searchWord: MutableLiveData<String> = MutableLiveData("")
     private val _listSportsFacilities: MutableLiveData<UiSportsFacilityList> = MutableLiveData()
     val listSportsFacilities: LiveData<UiSportsFacilityList> = _listSportsFacilities
@@ -33,37 +39,30 @@ class SportsFacilityViewModel @Inject constructor(
     private val _detailOpenEvent: MutableLiveData<UiSportsFacility> = MutableLiveData()
     val detailOpenEvent: LiveData<UiSportsFacility> = _detailOpenEvent
 
-    private val _test: MutableLiveData<Boolean> = MutableLiveData()
-    val test: LiveData<Boolean> = _test
-
     fun getAllFacilities() {
         viewModelScope.launch {
             facilityRepository.getSportsFacility().onSuccess { facilities ->
-                _sportsFacilities.value = facilities.map { it.toUi() }
 
-                searchPosition()
+                // todo 로딩 띄우기
+                _sportsFacilities.value = facilities.map {
+                    searchPosition(it)
+                    it.toUi()
+                }
+                // todo 로딩 끝내기
 
                 _listSportsFacilities.value =
                     UiSportsFacilityList(_sportsFacilities.value ?: emptyList())
-
-                _test.value = true
             }
         }
     }
 
-    private suspend fun searchPosition() {
-        _sportsFacilities.value?.forEach { facility ->
-            geocodingRepository.geocode(facility.address).onSuccess {
-                if (it.values.isNotEmpty()) {
-                    val cor = it.values.first().coordinate
-                    facility.x = cor.x
-                    facility.y = cor.y
-                }
+    private suspend fun searchPosition(sportsFacility: SportsFacility) {
+        geocodingRepository.geocode(sportsFacility.info.address).onSuccess {
+            if (it.values.isNotEmpty()) {
+                val cor = it.values.first().coordinate
+                _facilityWithCoordinate.value =
+                    UiSportsFacilityWithCoordinate(sportsFacility.toUi(), cor.x, cor.y)
             }
-            Log.d(
-                "checkCoordinate",
-                "${facility.facilityName} : ${facility.x} , ${facility.y}"
-            )
         }
     }
 
