@@ -61,9 +61,7 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun initOpenListObserve() {
-        viewModel.listOpenEvent.observe(
-            this
-        ) {
+        viewModel.listOpenEvent.observe(this) {
             if (it) {
                 val bottomSheet = SportsFacilityBottomSheetFragment()
                 bottomSheet.show(supportFragmentManager, bottomSheet.tag)
@@ -72,9 +70,7 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun initOpenDetailObserve() {
-        viewModel.detailOpenEvent.observe(
-            this
-        ) {
+        viewModel.detailOpenEvent.observe(this) {
             startActivity(SportsFacilityDetailActivity.getIntent(this, it))
         }
     }
@@ -102,8 +98,6 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
         naverMap.locationSource = locationSource
 
         ActivityCompat.requestPermissions(this, PERMISSIONS, LOCATION_PERMISSION_REQUEST_CODE)
-
-
     }
 
     companion object {

@@ -23,8 +23,20 @@
     <!--    SportsFacilityBottomSheetFragment-->
     <string name="facility_list_blank_message">검색 결과가 없습니다</string>
 
+    <!-- FilterActivity -->
+    <string name="filter_reset">초기화</string>
+    <string name="filter_go_list">목록 보기</string>
+    <string name="filter_city_option_title">자치구</string>
+    <string name="filter_facility_option_title">시설 종류</string>
+    <string name="filter_service_option_title">서비스 종류</string>
+    <string name="filter_rent_option_title">대관</string>
+    <string name="filter_price_option_title">가격</string>
+    <string name="filter_parking_option_title">주차</string>
+    <string name="filter_status_option_title">서비스 상태</string>
+
     <!-- All -->
     <string name="network_errer_message">오류가 발생했어요! 다시 시도해주세요!</string>
     <string name="main_public_facility">공공\n체육시설</string>
     <string name="main_public_service">공공\n대관 서비스</string>
+    <string name="main_none_location_info_message">현재 기기에 저장된 위치 정보가 없습니다</string>
 </resources>

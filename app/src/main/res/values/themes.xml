@@ -7,7 +7,6 @@
 
     <style name="Theme.SeoulGongGong" parent="Base.Theme.SeoulGongGong" />
 
-
     <!-- text theme -->
     <style name="title_0B">
         <item name="android:fontFamily">@font/pretendard_bold</item>
