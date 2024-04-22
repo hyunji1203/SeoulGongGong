@@ -114,5 +114,15 @@
             app:navermap_tiltGesturesEnabled="false"
             tools:background="@color/main_orange" />
 
+        <com.seoulfitu.android.ui.facility.SportsFacilityInfoView
+            android:id="@+id/bottom_facility_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_default"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

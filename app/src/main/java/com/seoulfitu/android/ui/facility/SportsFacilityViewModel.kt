@@ -44,14 +44,12 @@ class SportsFacilityViewModel @Inject constructor(
             facilityRepository.getSportsFacility().onSuccess { facilities ->
 
                 // todo 로딩 띄우기
-                _sportsFacilities.value = facilities.map {
-                    searchPosition(it)
-                    it.toUi()
-                }
-                // todo 로딩 끝내기
-
+                _sportsFacilities.value = facilities.map { it.toUi() }
                 _listSportsFacilities.value =
                     UiSportsFacilityList(_sportsFacilities.value ?: emptyList())
+
+                facilities.forEach { searchPosition(it) }
+                // todo 로딩 끝내기
             }
         }
     }
