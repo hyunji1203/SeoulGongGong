@@ -15,6 +15,7 @@ import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.util.FusedLocationSource
+import com.naver.maps.map.util.MarkerIcons
 import com.seoulfitu.android.R
 import com.seoulfitu.android.databinding.ActivityPublicSportsFacilityBinding
 import com.seoulfitu.android.ui.facility.detail.SportsFacilityDetailActivity
@@ -81,8 +82,13 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
             if (data != null) {
                 val marker = Marker()
                 setMarkerClickListener(marker, data)
-                marker.position = LatLng(data.y, data.x)
-                marker.map = naverMap
+                marker.apply {
+                    position = LatLng(data.y, data.x)
+                    icon = MarkerIcons.BLACK
+                    iconTintColor = getColor(R.color.main_teal)
+                    isHideCollidedMarkers = true
+                    map = naverMap
+                }
             }
         }
     }
@@ -92,6 +98,7 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
         data: UiSportsFacilityWithCoordinate
     ) {
         marker.setOnClickListener {
+            marker.iconTintColor = getColor(R.color.red)
             binding.bottomFacilityInfo.apply {
                 setInfoItem(data.facility)
                 setClickEvent(viewModel::openFacilityDetail)
