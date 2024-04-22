@@ -13,8 +13,8 @@ interface SportsFacilityScrapDao {
     fun getAll(): List<SportsFacilityScrapEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun saveScrap(sportsFacilityScrapEntity: SportsFacilityScrapEntity)
+    fun insertScrap(sportsFacility: SportsFacilityScrapEntity)
 
     @Delete
-    fun deleteScrap(sportsFacilityScrapEntity: SportsFacilityScrapEntity)
+    fun deleteScrap(sportsFacility: SportsFacilityScrapEntity)
 }
