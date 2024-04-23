@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import com.seoulfitu.android.BuildConfig
 import com.seoulfitu.android.R
 import com.seoulfitu.android.databinding.ActivitySportsFacilityDetailBinding
+import com.seoulfitu.android.ui.common.bindingadapter.setScrapStatus
 import com.seoulfitu.android.ui.uimodel.UiSportsFacility
 import com.seoulfitu.android.util.getParcelableExtraCompat
 import dagger.hilt.android.AndroidEntryPoint
@@ -86,6 +87,8 @@ class SportsFacilityDetailActivity : AppCompatActivity() {
     private fun setClickListeners(){
         binding.btnFacilityDetailScrap.setOnClickListener {
             viewModel.scrapFacility()
+            if (viewModel.scrapStatue.value == true) binding.btnFacilityDetailScrap.setScrapStatus(false)
+            else binding.btnFacilityDetailScrap.setScrapStatus(true)
         }
     }
 
