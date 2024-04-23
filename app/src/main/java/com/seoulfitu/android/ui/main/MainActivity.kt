@@ -44,6 +44,10 @@ class MainActivity : AppCompatActivity() {
         subscribe()
         setClickListeners()
         setForecast()
+    }
+
+    override fun onStart() {
+        super.onStart()
         setScrapList()
     }
 
@@ -94,7 +98,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setScrapList()  {
+    private fun setScrapList() {
         viewModel.fetchSportsFacilityScrap()
     }
 

@@ -81,7 +81,7 @@ class MainViewModel
                 runCatching {
                     facilityScrapRepository.getAll()
                 }.onSuccess { facilities ->
-                    _scrapedFacilities.postValue(facilities.map { it.toUi() })
+                    _scrapedFacilities.postValue(facilities.map { it.toUi(true) })
                 }.onFailure {
                     _throwable.value = it.message
                 }
