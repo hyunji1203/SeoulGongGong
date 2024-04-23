@@ -12,7 +12,9 @@ import com.seoulfitu.android.R
 import com.seoulfitu.android.databinding.ActivitySportsFacilityDetailBinding
 import com.seoulfitu.android.ui.uimodel.UiSportsFacility
 import com.seoulfitu.android.util.getParcelableExtraCompat
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SportsFacilityDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySportsFacilityDetailBinding
@@ -27,6 +29,7 @@ class SportsFacilityDetailActivity : AppCompatActivity() {
 
         initIntentData()
         initObserve()
+        setClickListeners()
     }
 
     private fun initIntentData() {
@@ -60,12 +63,7 @@ class SportsFacilityDetailActivity : AppCompatActivity() {
         runCatching {
             startActivity(intent)
         }.onFailure {
-            startActivity(
-                Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse(NAVER_MAP_PLAY_STORE_URL)
-                )
-            )
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(NAVER_MAP_PLAY_STORE_URL)))
         }
     }
 
@@ -82,6 +80,12 @@ class SportsFacilityDetailActivity : AppCompatActivity() {
             if (it != null) {
                 startActivity(Intent(Intent.ACTION_DIAL, Uri.parse(it)))
             }
+        }
+    }
+
+    private fun setClickListeners(){
+        binding.btnFacilityDetailScrap.setOnClickListener {
+            viewModel.scrapFacility()
         }
     }
 

@@ -1,6 +1,7 @@
 package com.seoulfitu.android.ui.uimodel.mapper
 
 import com.seoulfitu.android.domain.model.SportsFacility
+import com.seoulfitu.android.domain.model.SportsFacilityInfo
 import com.seoulfitu.android.domain.model.SportsFacilityType
 import com.seoulfitu.android.ui.uimodel.UiSportsFacility
 import com.seoulfitu.android.ui.uimodel.UiSportsFacilityType
@@ -25,6 +26,34 @@ fun SportsFacility.toUi(isScraped: Boolean) =
         convenience = info.convenience,
     )
 
+fun UiSportsFacility.toDomain(isScraped: Boolean) =
+    SportsFacility(
+        SportsFacilityInfo(
+            idx = idx,
+            borough = "",
+            facilityName = facilityName,
+            facilityCategory = facilityCategory,
+            postNumber = "",
+            address = address,
+            addressDetail = addressDetail,
+            facilitySize = "",
+            operatingOrganization = "",
+            phoneNumber = phoneNumber,
+            operatingTimeWeekday = operatingTimeWeekday,
+            operatingTimeWeekend = operatingTimeWeekend,
+            operatingTimeHoliday = operatingTimeHoliday,
+            canRental = "",
+            money = money,
+            parkingInfo = parkingInfo,
+            homepageUrl = homepageUrl,
+            type = type.toDomain(),
+            isOperating = isOperating,
+            convenience = convenience,
+            note = "",
+        ),
+        isScraped,
+    )
+
 private fun SportsFacilityType.toUi(): UiSportsFacilityType {
     return when (this) {
         SportsFacilityType.SWIMMING -> UiSportsFacilityType.SWIMMING
@@ -40,5 +69,23 @@ private fun SportsFacilityType.toUi(): UiSportsFacilityType {
         SportsFacilityType.FUTSAL -> UiSportsFacilityType.FUTSAL
         SportsFacilityType.GYM -> UiSportsFacilityType.GYM
         SportsFacilityType.ETC -> UiSportsFacilityType.ETC
+    }
+}
+
+private fun UiSportsFacilityType.toDomain(): SportsFacilityType {
+    return when (this) {
+        UiSportsFacilityType.SWIMMING -> SportsFacilityType.SWIMMING
+        UiSportsFacilityType.BASEBALL -> SportsFacilityType.BASEBALL
+        UiSportsFacilityType.SOCCER -> SportsFacilityType.SOCCER
+        UiSportsFacilityType.BASKETBALL -> SportsFacilityType.BASKETBALL
+        UiSportsFacilityType.TENNIS -> SportsFacilityType.TENNIS
+        UiSportsFacilityType.BADMINTON -> SportsFacilityType.BADMINTON
+        UiSportsFacilityType.GOLF -> SportsFacilityType.GOLF
+        UiSportsFacilityType.ICE_RINK -> SportsFacilityType.ICE_RINK
+        UiSportsFacilityType.GATEBALL -> SportsFacilityType.GATEBALL
+        UiSportsFacilityType.FOOT_VOLLEYBALL -> SportsFacilityType.FOOT_VOLLEYBALL
+        UiSportsFacilityType.FUTSAL -> SportsFacilityType.FUTSAL
+        UiSportsFacilityType.GYM -> SportsFacilityType.GYM
+        UiSportsFacilityType.ETC -> SportsFacilityType.ETC
     }
 }
