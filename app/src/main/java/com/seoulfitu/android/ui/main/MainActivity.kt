@@ -52,6 +52,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun subscribe() {
+        viewModel.scrapedFacilities.observe(this) {
+        }
         viewModel.throwable.observe(this) {
             showToast(getString(R.string.network_errer_message))
         }
