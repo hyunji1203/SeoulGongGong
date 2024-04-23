@@ -35,6 +35,9 @@ class MainViewModel
         private val _scrapedFacilities = MutableLiveData<List<UiSportsFacility>>()
         val scrapedFacilities: LiveData<List<UiSportsFacility>> = _scrapedFacilities
 
+        private val _detailOpenEvent: MutableLiveData<UiSportsFacility> = MutableLiveData()
+        val detailOpenEvent: LiveData<UiSportsFacility> = _detailOpenEvent
+
         private val _throwable = MutableLiveData<String>()
         val throwable: LiveData<String> = _throwable
 
@@ -82,5 +85,9 @@ class MainViewModel
                     _throwable.value = it.message
                 }
             }
+        }
+
+        fun openFacilityDetail(item: UiSportsFacility) {
+            _detailOpenEvent.value = item
         }
     }

@@ -2,8 +2,6 @@ package com.seoulfitu.android.ui.main
 
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
-import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
@@ -16,6 +14,8 @@ import com.google.android.gms.location.LocationServices
 import com.seoulfitu.android.R
 import com.seoulfitu.android.databinding.ActivityMainBinding
 import com.seoulfitu.android.ui.facility.SportsFacilityActivity
+import com.seoulfitu.android.ui.facility.detail.SportsFacilityDetailActivity.Companion.getIntent
+import com.seoulfitu.android.ui.main.scrap.facility.SportsFacilityScrapAdapter
 import com.seoulfitu.android.util.openSetting
 import com.seoulfitu.android.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,7 +52,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun subscribe() {
-        viewModel.scrapedFacilities.observe(this) {
+        viewModel.scrapedFacilities.observe(this) { scrapedFacilities ->
+            val adapter = SportsFacilityScrapAdapter(viewModel::openFacilityDetail)
+            adapter.submitList(viewModel.scrapedFacilities.value)
+            binding.cvFacilityScrap.setAdapter(scrapedFacilities.isEmpty(), adapter)
+        }
+        viewModel.detailOpenEvent.observe(this) {
+            startActivity(getIntent(this, it))
         }
         viewModel.throwable.observe(this) {
             showToast(getString(R.string.network_errer_message))
@@ -93,9 +99,5 @@ class MainActivity : AppCompatActivity() {
                 ACCESS_FINE_LOCATION,
                 ACCESS_COARSE_LOCATION,
             )
-
-        fun getIntent(context: Context): Intent {
-            return Intent(context, MainActivity::class.java)
-        }
     }
 }
