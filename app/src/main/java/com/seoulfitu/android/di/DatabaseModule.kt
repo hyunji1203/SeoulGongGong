@@ -21,6 +21,6 @@ object DatabaseModule {
         Room.databaseBuilder(
             context,
             SportFacilityScrapDatabase::class.java,
-            "SportsFacilityScrap.db",
+            "SportsFacilityScrap",
         ).build()
 }

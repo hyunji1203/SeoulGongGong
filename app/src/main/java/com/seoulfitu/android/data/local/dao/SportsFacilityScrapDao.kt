@@ -9,7 +9,7 @@ import com.seoulfitu.android.data.local.entity.SportsFacilityScrapEntity
 
 @Dao
 interface SportsFacilityScrapDao {
-    @Query("SELECT * FROM SCRAP_FACILITY_TABLE")
+    @Query("SELECT * FROM SportsFacilityScrap")
     fun getAll(): List<SportsFacilityScrapEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
