@@ -26,6 +26,7 @@
             app:tint="#80000000"
             android:tintMode="src_over"
             app:loadFacilityIcon="@{facilityItem.type}"
+            android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_basketball" />

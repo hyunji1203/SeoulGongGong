@@ -23,10 +23,8 @@ class ScrapCustomView(context: Context, attr: AttributeSet? = null) :
         emptyBinding = CustomScrapEmptyBinding.inflate(inflater, this, true)
     }
 
-    fun setAdapter(
-        isEmpty: Boolean,
-        adapter: ListAdapter<*, *>,
-    ) {
+    fun setAdapter(isEmpty: Boolean, adapter: ListAdapter<*, *>) {
+        removeAllViews()
         if (isEmpty) {
             initEmpty()
         } else {

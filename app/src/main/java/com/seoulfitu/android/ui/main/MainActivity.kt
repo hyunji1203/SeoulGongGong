@@ -46,8 +46,8 @@ class MainActivity : AppCompatActivity() {
         setForecast()
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onResume() {
+        super.onResume()
         setScrapList()
     }
 
@@ -59,8 +59,8 @@ class MainActivity : AppCompatActivity() {
     private fun subscribe() {
         viewModel.scrapedFacilities.observe(this) { scrapedFacilities ->
             val adapter = SportsFacilityScrapAdapter(viewModel::openFacilityDetail)
-            adapter.submitList(viewModel.scrapedFacilities.value)
             binding.cvFacilityScrap.setAdapter(scrapedFacilities.isEmpty(), adapter)
+            adapter.submitList(scrapedFacilities)
         }
         viewModel.detailOpenEvent.observe(this) {
             startActivity(getIntent(this, it))
