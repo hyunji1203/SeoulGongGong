@@ -3,32 +3,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="openFacilityEvent"
+            type="kotlin.jvm.functions.Function1" />
+
+        <variable
+            name="facilityItem"
+            type="com.seoulfitu.android.ui.uimodel.UiSportsFacility" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/margin_default">
+        android:layout_marginEnd="@dimen/margin_default"
+        android:onClick="@{(value)->openFacilityEvent.invoke(facilityItem)}" >
 
         <ImageView
-            android:id="@+id/iv_scrap_item_icon"
+            android:id="@+id/iv_facility_scrap_item_icon"
             android:layout_width="115dp"
             android:layout_height="115dp"
             app:tint="#80000000"
             android:tintMode="src_over"
+            app:loadFacilityIcon="@{facilityItem.type}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_basketball" />
 
         <TextView
-            android:id="@+id/tv_scrap_item_name"
+            android:id="@+id/tv_facility_scrap_item_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textAppearance="@style/title_3B"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_scrap_item_icon"
-            app:layout_constraintEnd_toEndOf="@+id/iv_scrap_item_icon"
-            app:layout_constraintStart_toStartOf="@+id/iv_scrap_item_icon"
-            app:layout_constraintTop_toTopOf="@+id/iv_scrap_item_icon"
+            android:text="@{facilityItem.facilityName}"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_facility_scrap_item_icon"
+            app:layout_constraintEnd_toEndOf="@+id/iv_facility_scrap_item_icon"
+            app:layout_constraintStart_toStartOf="@+id/iv_facility_scrap_item_icon"
+            app:layout_constraintTop_toTopOf="@+id/iv_facility_scrap_item_icon"
             tools:text="송파\n청소년\n수련센터" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
