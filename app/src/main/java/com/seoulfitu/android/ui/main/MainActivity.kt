@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         subscribe()
         setClickListeners()
         setForecast()
+        setScrapList()
     }
 
     private fun initViewModel() {
@@ -91,6 +92,10 @@ class MainActivity : AppCompatActivity() {
                     location?.let { viewModel.fetchParticulateMatter(it.latitude, location.longitude) }
                 }
         }
+    }
+
+    private fun setScrapList()  {
+        viewModel.fetchSportsFacilityScrap()
     }
 
     companion object {

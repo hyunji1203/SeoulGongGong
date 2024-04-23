@@ -14,6 +14,7 @@ import com.seoulfitu.android.ui.uimodel.UiSportsFacility
 import com.seoulfitu.android.ui.uimodel.UiWeather
 import com.seoulfitu.android.ui.uimodel.mapper.toUi
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -76,11 +77,11 @@ class MainViewModel
         }
 
         fun fetchSportsFacilityScrap() {
-            viewModelScope.launch {
+            viewModelScope.launch(Dispatchers.IO) {
                 runCatching {
                     facilityScrapRepository.getAll()
-                }.onSuccess { scrapedFacilities ->
-                    _scrapedFacilities.value = scrapedFacilities.map { it.toUi() }
+                }.onSuccess { facilities ->
+                    _scrapedFacilities.postValue(facilities.map { it.toUi() })
                 }.onFailure {
                     _throwable.value = it.message
                 }
