@@ -57,7 +57,7 @@ fun SportsFacility.toEntity(): SportsFacilityScrapEntity {
     )
 }
 
-fun changeFacilityTypeToEntity(type: SportsFacilityType): String {
+private fun changeFacilityTypeToEntity(type: SportsFacilityType): String {
     return when (type) {
         SportsFacilityType.SWIMMING -> "수영장"
         SportsFacilityType.BASEBALL -> "야구장"
