@@ -8,15 +8,13 @@ import com.seoulfitu.android.ui.uimodel.UiSportsFacility
 class SportsFacilityScrapAdapter(
     private val openFacility: (UiSportsFacility) -> Unit,
 ) : ListAdapter<UiSportsFacility, SportsFacilityScrapViewHolder>(diffUtil) {
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
     ): SportsFacilityScrapViewHolder = SportsFacilityScrapViewHolder.of(parent, openFacility)
 
-    override fun onBindViewHolder(
-        holder: SportsFacilityScrapViewHolder,
-        position: Int,
-    ) {
+    override fun onBindViewHolder(holder: SportsFacilityScrapViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 

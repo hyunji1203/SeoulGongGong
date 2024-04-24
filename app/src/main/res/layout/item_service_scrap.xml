@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="openServiceEvent"
+            type="kotlin.jvm.functions.Function1" />
+
+        <variable
+            name="serviceItem"
+            type="com.seoulfitu.android.ui.uimodel.UiSportsService" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:onClick="@{(value)->openServiceEvent.invoke(serviceItem)}" >
+
+        <ImageView
+            android:id="@+id/iv_service_scrap_item_icon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_basketball" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/rect_radius_large"
+            android:backgroundTint="#80000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_service_scrap_item_name"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:maxLines="3"
+            android:textAppearance="@style/title_3B"
+            android:textColor="@color/white"
+            android:text="@{serviceItem.info.title}"
+            app:layout_constraintBottom_toBottomOf="@id/iv_service_scrap_item_icon"
+            app:layout_constraintEnd_toEndOf="@id/iv_service_scrap_item_icon"
+            app:layout_constraintStart_toStartOf="@id/iv_service_scrap_item_icon"
+            app:layout_constraintTop_toTopOf="@id/iv_service_scrap_item_icon"
+            tools:text="송파\n청소년\n수련센터" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
