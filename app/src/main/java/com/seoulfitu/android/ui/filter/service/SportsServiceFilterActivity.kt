@@ -33,14 +33,12 @@ class SportsServiceFilterActivity : AppCompatActivity() {
             val cityOptions = binding.cvServiceFilterCity.getSelectedOptions()
             val typeOptions = binding.cvServiceFilterType.getSelectedOptions()
             val priceOptions = binding.cvServiceFilterPrice.getSelectedOptions()
-            val parkingOptions = binding.cvServiceFilterParking.getSelectedOptions()
             val statusOptions = binding.cvServiceFilterStatus.getSelectedOptions()
             val uiSelectedOptions =
                 UiSelectedOptions(
                     cities = cityOptions,
                     services = typeOptions,
                     price = priceOptions,
-                    parking = parkingOptions,
                     serviceStatus = statusOptions,
                 )
             setResult(RESULT_OK, getIntent(this, uiSelectedOptions))
@@ -61,15 +59,11 @@ class SportsServiceFilterActivity : AppCompatActivity() {
         }
         binding.cvServiceFilterPrice.apply {
             setFilterTitle(getString(R.string.filter_price_option_title))
-            addFilterOptionGroup(options, selected.price)
-        }
-        binding.cvServiceFilterParking.apply {
-            setFilterTitle(getString(R.string.filter_parking_option_title))
-            addFilterOptionGroup(options, selected.parking)
+            addFilterOptionGroup(priceOptions, selected.price)
         }
         binding.cvServiceFilterStatus.apply {
             setFilterTitle(getString(R.string.filter_status_option_title))
-            addFilterOptionGroup(options, selected.serviceStatus)
+            addFilterOptionGroup(statusOptions, selected.serviceStatus)
         }
     }
 
@@ -78,13 +72,13 @@ class SportsServiceFilterActivity : AppCompatActivity() {
             cvServiceFilterCity.clearSelection()
             cvServiceFilterType.clearSelection()
             cvServiceFilterPrice.clearSelection()
-            cvServiceFilterParking.clearSelection()
             cvServiceFilterStatus.clearSelection()
         }
     }
 
     companion object {
-        private val options = listOf("가능", "불가능")
+        private val priceOptions = listOf("유료", "무료")
+        private val statusOptions = listOf("접수중", "접수 종료", "예약 마감", "예약 일시중지", "안내중")
 
         fun getIntent(
             context: Context,

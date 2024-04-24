@@ -38,7 +38,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.sports_service_list.SportsServiceListActivity"
-            android:exported="false"
+            android:exported="true"
             />
         <activity
             android:name=".ui.sports_service_detail.SportsServiceDetailActivity"
