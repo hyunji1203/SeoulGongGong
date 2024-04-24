@@ -2,7 +2,8 @@ package com.seoulfitu.android.di
 
 import android.content.Context
 import androidx.room.Room
-import com.seoulfitu.android.data.local.database.SportFacilityScrapDatabase
+import com.seoulfitu.android.data.local.database.SportsFacilityScrapDatabase
+import com.seoulfitu.android.data.local.database.SportsServiceScrapDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,10 +18,21 @@ object DatabaseModule {
     @Singleton
     fun providesFacilityScrapDatabase(
         @ApplicationContext context: Context,
-    ): SportFacilityScrapDatabase =
+    ): SportsFacilityScrapDatabase =
         Room.databaseBuilder(
             context,
-            SportFacilityScrapDatabase::class.java,
+            SportsFacilityScrapDatabase::class.java,
             "SportsFacilityScrap",
+        ).build()
+
+    @Provides
+    @Singleton
+    fun providesServiceScrapDatabase(
+        @ApplicationContext context: Context,
+    ): SportsServiceScrapDatabase =
+        Room.databaseBuilder(
+            context,
+            SportsServiceScrapDatabase::class.java,
+            "SportsServiceScrap",
         ).build()
 }
