@@ -29,12 +29,8 @@ class SportsFacilityDetailViewModel @Inject constructor(
     private val _openPhoneDial: MutableLiveData<String> = MutableLiveData()
     val openPhoneDial: LiveData<String> = _openPhoneDial
 
-    private val _scrapStatus: MutableLiveData<Boolean> = MutableLiveData()
-    val scrapStatue: LiveData<Boolean> = _scrapStatus
-
     fun setFacilityData(facility: UiSportsFacility) {
         _facility.value = facility
-        _scrapStatus.value = facility.isScrap
     }
 
     fun openNaverMap() {
@@ -54,12 +50,14 @@ class SportsFacilityDetailViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             if (facility.value?.isScrap == true) {
                 facilityScrapRepository.deleteScrap(facility.value!!.toDomain(true))
-                _facility.value?.isScrap = false
-                _scrapStatus.postValue(false)
+                _facility.postValue(
+                    _facility.value?.copy(isScrap = false)
+                )
             } else {
                 facilityScrapRepository.scrap(facility.value!!.toDomain(false))
-                _facility.value?.isScrap = true
-                _scrapStatus.postValue(true)
+                _facility.postValue(
+                    _facility.value?.copy(isScrap = true)
+                )
             }
         }
     }

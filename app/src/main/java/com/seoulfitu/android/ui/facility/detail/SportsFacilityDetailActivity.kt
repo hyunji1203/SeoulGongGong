@@ -44,6 +44,7 @@ class SportsFacilityDetailActivity : AppCompatActivity() {
         initOpenNaverMapObserve()
         initOpenWebPageObserve()
         initOpenPhoneDialObserve()
+        initOpenFacilityObserve()
     }
 
     private fun initOpenNaverMapObserve() {
@@ -84,11 +85,16 @@ class SportsFacilityDetailActivity : AppCompatActivity() {
         }
     }
 
+    private fun initOpenFacilityObserve() {
+        viewModel.facility.observe(this) {
+            if (it.isScrap) binding.btnFacilityDetailScrap.setScrapStatus(true)
+            else binding.btnFacilityDetailScrap.setScrapStatus(false)
+        }
+    }
+
     private fun setClickListeners(){
         binding.btnFacilityDetailScrap.setOnClickListener {
             viewModel.scrapFacility()
-            if (viewModel.scrapStatue.value == true) binding.btnFacilityDetailScrap.setScrapStatus(false)
-            else binding.btnFacilityDetailScrap.setScrapStatus(true)
         }
     }
 

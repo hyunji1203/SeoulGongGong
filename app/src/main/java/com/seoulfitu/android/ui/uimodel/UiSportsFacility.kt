@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class UiSportsFacility(
-    var isScrap: Boolean,
+    val isScrap: Boolean,
     val idx: Double,
     val facilityName: String,
     val facilityCategory: String,
