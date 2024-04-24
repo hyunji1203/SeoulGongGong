@@ -30,6 +30,8 @@ class SportsServiceDetailViewModel @Inject constructor(
     private val _scrapStatus: MutableLiveData<Boolean> = MutableLiveData()
     val scrapStatue: LiveData<Boolean> = _scrapStatus
 
+    private lateinit var originalServiceInfo: UiSportsService
+
     fun setSportsService(service: UiSportsService) {
         viewModelScope.launch {
             val result = geocodingRepository.reverseGeocode(
@@ -47,6 +49,7 @@ class SportsServiceDetailViewModel @Inject constructor(
                         )
                     )
                 )
+                originalServiceInfo = service
             }.onFailure {
                 _sportService.value = _sportService.value?.copy(
                     errorMessage = it.message.toString()
@@ -58,11 +61,11 @@ class SportsServiceDetailViewModel @Inject constructor(
     fun scrapService() {
         viewModelScope.launch(Dispatchers.IO) {
             if (sportsService.value?.result?.scrapped == true) {
-                scrapRepository.deleteScrap(sportsService.value!!.result.toDomain() )
+                scrapRepository.deleteScrap(originalServiceInfo.toDomain())
                 sportsService.value?.result!!.scrapped = false
                 _scrapStatus.postValue(false)
             } else {
-                scrapRepository.scrap(sportsService.value!!.result.toDomain())
+                scrapRepository.scrap(originalServiceInfo.toDomain())
                 sportsService.value?.result!!.scrapped = true
                 _scrapStatus.postValue(true)
             }

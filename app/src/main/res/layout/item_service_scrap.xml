@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/margin_default"
-        android:onClick="@{(value)->openServiceEvent.invoke(serviceItem)}" >
+        android:onClick="@{(item)->openServiceEvent.invoke(serviceItem)}" >
 
         <ImageView
             android:id="@+id/iv_service_scrap_item_icon"
