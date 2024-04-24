@@ -16,6 +16,7 @@ import com.seoulfitu.android.databinding.ActivityMainBinding
 import com.seoulfitu.android.ui.facility.SportsFacilityActivity
 import com.seoulfitu.android.ui.facility.detail.SportsFacilityDetailActivity.Companion.getIntent
 import com.seoulfitu.android.ui.main.scrap.facility.SportsFacilityScrapAdapter
+import com.seoulfitu.android.ui.sports_service_list.SportsServiceListActivity
 import com.seoulfitu.android.util.openSetting
 import com.seoulfitu.android.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
@@ -75,7 +76,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(SportsFacilityActivity.getIntent(this))
         }
         binding.clMainPublicService.setOnClickListener {
-            // 공공 서비스 이동 intent 넣으면 됨
+            startActivity(SportsServiceListActivity.getIntent(this))
         }
     }
 

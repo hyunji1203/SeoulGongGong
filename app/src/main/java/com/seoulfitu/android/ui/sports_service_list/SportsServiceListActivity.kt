@@ -1,8 +1,10 @@
 package com.seoulfitu.android.ui.sports_service_list
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import com.seoulfitu.android.data.ERROR_MESSAGE_FAIL_RESULT
 import com.seoulfitu.android.databinding.ActivitySportsServiceListBinding
@@ -53,6 +55,12 @@ class SportsServiceListActivity : AppCompatActivity() {
     private fun setUpView() {
         binding.etSportsServiceListSearch.doOnTextChanged { text, _, _, _ ->
             viewModel.searchData(text.toString())
+        }
+    }
+
+    companion object {
+        fun getIntent(context: Context): Intent {
+            return Intent(context, SportsServiceListActivity::class.java)
         }
     }
 }
