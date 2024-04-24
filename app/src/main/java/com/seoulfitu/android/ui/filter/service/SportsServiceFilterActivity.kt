@@ -8,7 +8,6 @@ import com.seoulfitu.android.R
 import com.seoulfitu.android.databinding.ActivitySportsServiceFilterBinding
 import com.seoulfitu.android.domain.model.Town
 import com.seoulfitu.android.ui.facility.SportsFacilityBottomSheetFragment.Companion.FILTER_KEY
-import com.seoulfitu.android.ui.filter.facility.SportsFacilityFilterActivity
 import com.seoulfitu.android.ui.filter.facility.SportsFacilityFilterActivity.Companion.emptySelectedOptions
 import com.seoulfitu.android.ui.uimodel.UiSelectedOptions
 import com.seoulfitu.android.ui.uimodel.UiSportsFacilityType
@@ -40,6 +39,7 @@ class SportsServiceFilterActivity : AppCompatActivity() {
                     services = typeOptions,
                     price = priceOptions,
                     serviceStatus = statusOptions,
+                    parking = listOf()
                 )
             setResult(RESULT_OK, getIntent(this, uiSelectedOptions))
             finish()
@@ -48,7 +48,7 @@ class SportsServiceFilterActivity : AppCompatActivity() {
 
     private fun initFilterOption() {
         val selected =
-            intent.getParcelableExtraCompat<UiSelectedOptions>(FILTER_KEY) ?: emptySelectedOptions
+            intent.getParcelableExtraCompat(FILTER_KEY) ?: emptySelectedOptions
         binding.cvServiceFilterCity.apply {
             setFilterTitle(getString(R.string.filter_city_option_title))
             addFilterOptionGroup(Town.entries.map { it.townName }, selected.cities)
@@ -84,7 +84,7 @@ class SportsServiceFilterActivity : AppCompatActivity() {
             context: Context,
             uiSelectedOptions: UiSelectedOptions,
         ): Intent {
-            return Intent(context, SportsFacilityFilterActivity::class.java).apply {
+            return Intent(context, SportsServiceFilterActivity::class.java).apply {
                 putExtra(FILTER_KEY, uiSelectedOptions)
             }
         }

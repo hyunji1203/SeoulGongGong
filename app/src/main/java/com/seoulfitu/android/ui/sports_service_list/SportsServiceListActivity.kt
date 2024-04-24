@@ -1,6 +1,5 @@
 package com.seoulfitu.android.ui.sports_service_list
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
@@ -68,12 +67,12 @@ class SportsServiceListActivity : AppCompatActivity() {
         }
         binding.onClickSearch = { viewModel.searchData() }
         binding.onClickFilter = {
-            val intent = Intent(this, SportsServiceFilterActivity::class.java)
+            val intent = SportsServiceFilterActivity.getIntent(this, viewModel.uiState.value?.selectedOptions!!)
             getFilterOptions.launch(intent)
         }
     }
 
     companion object {
-        private val FILTER_KEY = "filter"
+        private const val FILTER_KEY = "filter"
     }
 }

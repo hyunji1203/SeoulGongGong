@@ -24,6 +24,7 @@ class SportsServiceListViewModel @Inject constructor(
     ViewModel() {
     // 전체 서비스
     private var services: List<UiSportsService> = listOf()
+
     // 검색 결과
     private var searchedServices: List<UiSportsService> = listOf()
     private var searchKeyword: String = ""
@@ -98,7 +99,7 @@ class SportsServiceListViewModel @Inject constructor(
             cityFit and serviceFit and priceFit and serviceStatusFit /*and priceFit and serviceStatusFit*/
         }
         _uiState.value = SportsServiceListUiState(
-            isSuccess = true, result = results
+            isSuccess = true, result = results, selectedOptions = options
         )
     }
 }
