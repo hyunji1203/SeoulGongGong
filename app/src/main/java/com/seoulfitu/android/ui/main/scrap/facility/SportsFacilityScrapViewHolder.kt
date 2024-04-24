@@ -1,5 +1,6 @@
 package com.seoulfitu.android.ui.main.scrap.facility
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -23,12 +24,11 @@ class SportsFacilityScrapViewHolder(
             parent: ViewGroup,
             openFacility: (UiSportsFacility) -> Unit,
         ): SportsFacilityScrapViewHolder {
-            val binding =
-                ItemFacilityScrapBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false,
-                )
+            val binding = ItemFacilityScrapBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false,
+            )
             return SportsFacilityScrapViewHolder(binding, openFacility)
         }
     }
