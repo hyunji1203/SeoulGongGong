@@ -18,7 +18,7 @@ data class UiSportsServiceInfo(
     val img: String = "",
     val status: String = "",
     val subCategory: String = "",
-    val address: String = "",
+    var address: String = "",
     val url: String = "",
     val phoneNumber: String = "",
     val registrationStartDate: String = "",

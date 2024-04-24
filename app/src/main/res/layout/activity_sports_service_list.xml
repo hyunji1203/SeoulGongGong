@@ -3,6 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="onClickFilter"
+            type="kotlin.jvm.functions.Function0" />
+        <variable
+            name="onClickSearch"
+            type="kotlin.jvm.functions.Function0" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -72,6 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:src="@drawable/ic_search"
+                android:onClick="@{()->onClickSearch.invoke()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/et_sports_service_list_search"
@@ -85,6 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_default"
             android:src="@drawable/ic_filter"
+            android:onClick="@{()->onClickFilter.invoke()}"
             app:layout_constraintBottom_toBottomOf="@+id/cl_sports_service_list_search"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cl_sports_service_list_search"
