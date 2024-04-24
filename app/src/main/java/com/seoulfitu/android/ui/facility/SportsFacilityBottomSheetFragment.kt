@@ -27,7 +27,9 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
                 val uiSelectedOptions =
                     it.data?.getParcelableExtraCompat<UiSelectedOptions>(FILTER_KEY) ?: ""
                 viewModel.setSelectedOption(uiSelectedOptions as UiSelectedOptions)
-                adapter.submitList(viewModel.listSportsFacilities.value?.items)
+                adapter.submitList(viewModel.listSportsFacilities.value?.items) {
+                    binding.rvFacilityList.scrollToPosition(INITIAL_POSITION)
+                }
             }
         }
 
@@ -70,5 +72,6 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
 
     companion object {
         const val FILTER_KEY = "filter"
+        private const val INITIAL_POSITION = 0
     }
 }
