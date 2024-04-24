@@ -1,19 +1,37 @@
 package com.seoulfitu.android.ui.sports_service_list
 
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import com.seoulfitu.android.ui.uimodel.UiSportsService
 
 class SportsServiceAdapter(
-    private val dataSet: List<UiSportsService>,
     private val onItemClick:(UiSportsService) -> Unit
-    ) : RecyclerView.Adapter<SportsServiceViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SportsServiceViewHolder =
-        SportsServiceViewHolder.create(parent, onItemClick)
+) : ListAdapter<UiSportsService, SportsServiceViewHolder>(SportsServiceAdapter.diffUtil) {
 
-    override fun getItemCount(): Int = dataSet.size
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): SportsServiceViewHolder = SportsServiceViewHolder.of(parent, onItemClick)
 
     override fun onBindViewHolder(holder: SportsServiceViewHolder, position: Int) {
-        holder.bind(dataSet[position])
+        holder.bind(getItem(position))
+    }
+
+    companion object {
+
+        val diffUtil = object : DiffUtil.ItemCallback<UiSportsService>() {
+            override fun areItemsTheSame(
+                oldItem: UiSportsService,
+                newItem: UiSportsService,
+            ): Boolean {
+                return oldItem.info.title == newItem.info.title
+            }
+
+            override fun areContentsTheSame(
+                oldItem: UiSportsService,
+                newItem: UiSportsService,
+            ): Boolean = oldItem == newItem
+        }
     }
 }

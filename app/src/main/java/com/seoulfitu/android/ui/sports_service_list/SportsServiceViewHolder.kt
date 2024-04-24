@@ -2,14 +2,14 @@ package com.seoulfitu.android.ui.sports_service_list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import androidx.recyclerview.widget.RecyclerView
 import com.seoulfitu.android.databinding.SportsServiceItemBinding
 import com.seoulfitu.android.ui.uimodel.UiSportsService
 
-class SportsServiceViewHolder private constructor(
+class SportsServiceViewHolder(
     private val binding: SportsServiceItemBinding,
     onItemClick: (UiSportsService) -> Unit,
-) : ViewHolder(binding.root) {
+) : RecyclerView.ViewHolder(binding.root) {
     init {
         binding.onItemClick = onItemClick
     }
@@ -19,9 +19,16 @@ class SportsServiceViewHolder private constructor(
     }
 
     companion object {
-        fun create(parent: ViewGroup, onClickItem: (UiSportsService) -> Unit): SportsServiceViewHolder {
-            val binding = SportsServiceItemBinding.inflate(LayoutInflater.from(parent.context))
-            return SportsServiceViewHolder(binding, onClickItem)
+        fun of(
+            parent: ViewGroup,
+            onItemClick: (UiSportsService) -> Unit,
+        ): SportsServiceViewHolder {
+            val binding = SportsServiceItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false,
+            )
+            return SportsServiceViewHolder(binding, onItemClick)
         }
     }
 }

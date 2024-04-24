@@ -18,12 +18,14 @@ class SportsServiceListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySportsServiceListBinding
     private val viewModel: SportsServiceListViewModel by viewModels()
+    private lateinit var adapter: SportsServiceAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initBinding()
         observeUiState()
         setUpView()
+        initServiceList()
     }
 
     override fun onStart() {
@@ -34,21 +36,25 @@ class SportsServiceListActivity : AppCompatActivity() {
     private fun initBinding() {
         binding = ActivitySportsServiceListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.lifecycleOwner = this
+    }
+
+    private fun initServiceList() {
+        adapter = SportsServiceAdapter { sportsService ->
+            SportsServiceDetailActivity.start(this, sportsService)
+        }
+        binding.rvSportsServiceList.adapter = adapter
     }
 
     private fun observeUiState() {
         viewModel.uiState.observe(this) {
             when (it.isSuccess) {
                 true -> {
-                    binding.rvSportsServiceList.adapter = SportsServiceAdapter(it.result) { sportsService ->
-                        SportsServiceDetailActivity.start(this, sportsService)
-                    }
+                    adapter.submitList(it.result)
                 }
-
                 false -> {
                     showToast(it.errorMessage ?: ERROR_MESSAGE_FAIL_RESULT)
                 }
-
                 else -> {
                     // todo: 로딩 화면
                 }
