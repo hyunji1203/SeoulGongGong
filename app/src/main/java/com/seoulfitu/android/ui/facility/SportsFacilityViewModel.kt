@@ -31,8 +31,8 @@ class SportsFacilityViewModel @Inject constructor(
     private val _detailOpenEvent: MutableLiveData<UiSportsFacility> = MutableLiveData()
     val detailOpenEvent: LiveData<UiSportsFacility> = _detailOpenEvent
 
-    private val _selectedOptions: MutableLiveData<UiSelectedOptions> = MutableLiveData()
-    val selectedOptions: LiveData<UiSelectedOptions> = _selectedOptions
+    private val _selectedOptions: MutableLiveData<UiSelectedOptions?> = MutableLiveData()
+    val selectedOptions: LiveData<UiSelectedOptions?> = _selectedOptions
 
     fun getAllFacilities() {
         viewModelScope.launch {
@@ -55,6 +55,8 @@ class SportsFacilityViewModel @Inject constructor(
     }
 
     fun openFacilityList() {
+        _listSportsFacilities.value =
+            UiSportsFacilityList(searchFacilityWithOptions(_selectedOptions.value))
         _listOpenEvent.value = true
     }
 
@@ -67,61 +69,66 @@ class SportsFacilityViewModel @Inject constructor(
         _listSportsFacilities.value = UiSportsFacilityList(searchFacilityWithOptions(options))
     }
 
-    private fun searchFacilityWithOptions(options: UiSelectedOptions): List<UiSportsFacility> {
+    private fun searchFacilityWithOptions(options: UiSelectedOptions?): List<UiSportsFacility> {
         var selectedAnswer: List<UiSportsFacility> = _sportsFacilities.value ?: emptyList()
 
+        if (options == null) return selectedAnswer
         // 자치구
-        options.cities.forEach { city ->
-            selectedAnswer = selectedAnswer.filter {
-                it.address.contains(city)
+        if (options.cities.isNotEmpty()) {
+            selectedAnswer = selectedAnswer.filter { facility ->
+                options.cities.any { city ->
+                    facility.address.contains(city)
+                }
             }
         }
 
         // 시설 종류
-        options.facilities.forEach { facility ->
-            selectedAnswer = selectedAnswer.filter {
-                it.type.typeName.contains(facility)
+        if (options.facilities.isNotEmpty()) {
+            selectedAnswer = selectedAnswer.filter { facility ->
+                options.facilities.any {
+                    facility.type.typeName == it
+                }
             }
         }
 
         // 대관 -> 가능 / 불가능
-        options.rent.forEach { rent ->
-            selectedAnswer = selectedAnswer.filter {
-                it.canRental.contains(rent)
-            }
-        }
-        when (options.rent) {
-            "가능" -> {
-                selectedAnswer = selectedAnswer.filter {
-                    it.canRental.contains("가능")
+        if (options.rent.isNotEmpty()) {
+            when (options.rent) {
+                "가능" -> {
+                    selectedAnswer = selectedAnswer.filter {
+                        it.canRental == "가능"
+                    }
                 }
-            }
 
-            "불가능" -> {
-                selectedAnswer = selectedAnswer.filter {
-                    it.canRental.contains("불가능")
+                "불가능" -> {
+                    selectedAnswer = selectedAnswer.filter {
+                        it.canRental == "불가능"
+                    }
                 }
             }
         }
 
         // 주차 -> 주차 불가 / 없음
-        when (options.parking) {
-            "가능" -> {
-                selectedAnswer = selectedAnswer.filter {
-                    it.parkingInfo.run {
-                        !(contains("주차 불가") || contains("없음"))
+        if (options.parking.isNotEmpty()) {
+            when (options.parking) {
+                "가능" -> {
+                    selectedAnswer = selectedAnswer.filter {
+                        it.parkingInfo.run {
+                            !(contains("주차 불가") || contains("없음"))
+                        }
                     }
                 }
-            }
 
-            "불가능" -> {
-                selectedAnswer = selectedAnswer.filter {
-                    it.parkingInfo.run {
-                        (contains("주차 불가") || contains("없음"))
+                "불가능" -> {
+                    selectedAnswer = selectedAnswer.filter {
+                        it.parkingInfo.run {
+                            (contains("주차 불가") || contains("없음"))
+                        }
                     }
                 }
             }
         }
+
         return selectedAnswer
     }
 }
