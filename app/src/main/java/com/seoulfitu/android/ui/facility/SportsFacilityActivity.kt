@@ -31,6 +31,7 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+        binding.onBackClick = { finish() }
 
         viewModel.getAllFacilities()
         initMap()
