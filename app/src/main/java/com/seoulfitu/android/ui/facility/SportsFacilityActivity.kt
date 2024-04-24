@@ -8,19 +8,18 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
-import com.seoulfitu.android.R
 import com.naver.maps.map.LocationTrackingMode
 import com.naver.maps.map.MapFragment
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.util.FusedLocationSource
+import com.seoulfitu.android.R
 import com.seoulfitu.android.databinding.ActivityPublicSportsFacilityBinding
 import com.seoulfitu.android.ui.facility.detail.SportsFacilityDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
-
     private lateinit var binding: ActivityPublicSportsFacilityBinding
     private lateinit var naverMap: NaverMap
     private lateinit var locationSource: FusedLocationSource
@@ -49,9 +48,7 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun initOpenListObserve() {
-        viewModel.listOpenEvent.observe(
-            this
-        ) {
+        viewModel.listOpenEvent.observe(this) {
             if (it) {
                 val bottomSheet = SportsFacilityBottomSheetFragment()
                 bottomSheet.show(supportFragmentManager, bottomSheet.tag)
@@ -60,9 +57,7 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun initOpenDetailObserve() {
-        viewModel.detailOpenEvent.observe(
-            this
-        ) {
+        viewModel.detailOpenEvent.observe(this) {
             startActivity(SportsFacilityDetailActivity.getIntent(this, it))
         }
     }

@@ -2,13 +2,13 @@ package com.seoulfitu.android.ui.sports_service_detail
 
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.seoulfitu.android.databinding.ActivitySportsServiceDetailBinding
 import com.seoulfitu.android.ui.sports_service_detail.viewmodel.SportsServiceDetailViewModel
 import com.seoulfitu.android.ui.uimodel.UiSportsService
+import com.seoulfitu.android.util.getParcelableExtraCompat
 import com.seoulfitu.android.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,11 +28,7 @@ class SportsServiceDetailActivity : AppCompatActivity() {
 
     @Suppress("DEPRECATION")
     private fun getIntentExtra() {
-        val sportsService = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            intent.getSerializableExtra(EXTRA_KEY_SPORTS_SERVICE, UiSportsService::class.java) as UiSportsService
-        } else {
-            intent.getSerializableExtra(EXTRA_KEY_SPORTS_SERVICE) as UiSportsService
-        }
+        val sportsService = intent.getParcelableExtraCompat(EXTRA_KEY_SPORTS_SERVICE) ?: UiSportsService()
         viewModel.setSportsService(sportsService)
     }
 

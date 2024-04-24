@@ -1,5 +1,8 @@
 package com.seoulfitu.android.data.repository
 
+import android.util.Log
+import com.seoulfitu.android.data.ERROR_MESSAGE_FAIL_RESULT
+import com.seoulfitu.android.data.ERROR_MESSAGE_NO_BODY
 import com.seoulfitu.android.data.model.mapper.toDomain
 import com.seoulfitu.android.data.service.SportsServiceService
 import com.seoulfitu.android.domain.model.SportsServices
@@ -10,17 +13,13 @@ class DefaultSportsServiceRepository @Inject constructor(private val sportsServi
     SportsServiceRepository {
     override suspend fun getServices():Result<SportsServices>{
         val result = sportsServiceService.getServices()
+        Log.d("hkhk", "getServices: $result")
         if (result.isSuccessful){
             val body = result.body()?.toDomain()
-                ?: return Result.failure(IllegalStateException(ERROR_EMPTY_BODY_MESSAGE))
+                ?: return Result.failure(IllegalStateException(ERROR_MESSAGE_NO_BODY))
             return Result.success(body)
         }else{
-            return Result.failure(IllegalStateException(ERROR_RESPONSE_FAIL_MESSAGE))
+            return Result.failure(IllegalStateException(ERROR_MESSAGE_FAIL_RESULT))
         }
-    }
-
-    companion object{
-        private const val ERROR_EMPTY_BODY_MESSAGE = "응답 바디가 존재하지 않습니다."
-        private const val ERROR_RESPONSE_FAIL_MESSAGE = "통신에 실패했습니다."
     }
 }

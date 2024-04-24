@@ -3,8 +3,8 @@
 compileSdk = "33"
 minSdk = "28"
 targetSdk = "33"
-appVersion = "1.0"
-versionCode = "1"
+appVersion = "1.0.3"
+versionCode = "4"
 
 # Kotlin
 kotlin = "1.9.0"
@@ -56,8 +56,6 @@ playServicesLocation = "21.2.0"
 
 # OkHttp3 logging interceptor
 loggingInterceptor = "4.11.0"
-
-org-jetbrains-kotlin-android = "1.9.0"
 
 [libraries]
 # AndroidX Libraries
@@ -116,4 +114,3 @@ lifeCycle = ["viewmodel", "livedata"]
 coroutine = ["kotlinx-coroutines-core", "kotlinx-coroutines-jdk"]
 
 [plugins]
-org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }

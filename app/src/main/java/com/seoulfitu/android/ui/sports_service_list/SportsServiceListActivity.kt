@@ -2,12 +2,13 @@ package com.seoulfitu.android.ui.sports_service_list
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.widget.doOnTextChanged
+import com.seoulfitu.android.data.ERROR_MESSAGE_FAIL_RESULT
 import com.seoulfitu.android.databinding.ActivitySportsServiceListBinding
 import com.seoulfitu.android.ui.sports_service_detail.SportsServiceDetailActivity
 import com.seoulfitu.android.ui.sports_service_list.viewmodel.SportsServiceListViewModel
+import com.seoulfitu.android.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,15 +34,13 @@ class SportsServiceListActivity : AppCompatActivity() {
         viewModel.uiState.observe(this) {
             when (it.isSuccess) {
                 true -> {
-                    binding.rvSportsServiceList.apply {
-                        adapter = SportsServiceAdapter(it.result) { sportsService ->
-                            SportsServiceDetailActivity.start(context, sportsService)
-                        }
+                    binding.rvSportsServiceList.adapter = SportsServiceAdapter(it.result) { sportsService ->
+                        SportsServiceDetailActivity.start(this, sportsService)
                     }
                 }
 
                 false -> {
-                    Toast.makeText(this, it.errorMessage, Toast.LENGTH_SHORT).show()
+                    showToast(it.errorMessage ?: ERROR_MESSAGE_FAIL_RESULT)
                 }
 
                 else -> {

@@ -56,9 +56,14 @@ class SportsServiceDetailViewModel @Inject constructor(
     private fun formatRegistrationDate(date: String): String {
         // 자릿수 통일을 위해 밀리초 제거
         val dateWithoutMills = date.split(".")[0]
-        val dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+        val dateTimeFormatter = DateTimeFormatter.ofPattern(DATE_TIME_PARSING_PATTERN)
         val dateTime = LocalDateTime.parse(dateWithoutMills, dateTimeFormatter)
-        val stringFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm")
+        val stringFormatter = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT_PATTERN)
         return dateTime.format(stringFormatter)
+    }
+
+    companion object{
+        private const val DATE_TIME_PARSING_PATTERN = "yyyy-MM-dd HH:mm:ss"
+        private const val DATE_TIME_FORMAT_PATTERN = "yyyy.MM.dd HH:mm"
     }
 }

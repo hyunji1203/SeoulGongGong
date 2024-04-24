@@ -10,7 +10,7 @@ import com.seoulfitu.android.BuildConfig
 import com.seoulfitu.android.R
 
 @BindingAdapter("app:serviceImg")
-fun ImageView.serviceImg(url: String?) {
+fun ImageView.setServiceImg(url: String?) {
 //    Glide.with(this).load(url).into(object : CustomTarget<Drawable>() {
 //        override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
 //            this@serviceImg.setImageDrawable(resource)
@@ -24,7 +24,7 @@ fun ImageView.serviceImg(url: String?) {
 }
 
 @BindingAdapter("app:onClickServiceLocation")
-fun TextView.onClickServiceLocation(location: String?) {
+fun TextView.setOnClickServiceLocationListener(location: String?) {
     this.setOnClickListener {
         val url = "nmap://search?query=%s&%s".format(
             location, BuildConfig.APPLICATION_ID
@@ -36,7 +36,7 @@ fun TextView.onClickServiceLocation(location: String?) {
 }
 
 @BindingAdapter("app:serviceStatusColorForStatus")
-fun TextView.serviceStatusColorForStatus(status: String?) {
+fun TextView.setServiceStatusTextColorForStatus(status: String?) {
     if (status?.contains("중") == true) {
         setTextColor(ContextCompat.getColor(this.context, R.color.main_teal))
     } else {
@@ -45,7 +45,7 @@ fun TextView.serviceStatusColorForStatus(status: String?) {
 }
 
 @BindingAdapter("app:onClickServiceLink")
-fun TextView.onClickServiceLink(url: String?) {
+fun TextView.setOnClickServiceLinkListener(url: String?) {
     this.setOnClickListener {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         context.startActivity(intent)
@@ -53,7 +53,7 @@ fun TextView.onClickServiceLink(url: String?) {
 }
 
 @BindingAdapter("app:onClickServicePhoneNumber")
-fun TextView.onClickServicePhoneNumber(phoneNumber: String?) {
+fun TextView.setOnClickServicePhoneNumberListener(phoneNumber: String?) {
     this.setOnClickListener {
         val formattedPhoneNumber = phoneNumber?.replace("-", "")
         val telUri = "tel:%s".format(formattedPhoneNumber)

@@ -1,12 +1,15 @@
 package com.seoulfitu.android.ui.uimodel
 
-import java.io.Serializable
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class UiSportsService(
     val info: UiSportsServiceInfo = UiSportsServiceInfo(),
     val scrapped: Boolean = false
-):Serializable
+):Parcelable
 
+@Parcelize
 data class UiSportsServiceInfo(
     val title: String = "",
     val place: String = "",
@@ -25,4 +28,4 @@ data class UiSportsServiceInfo(
     val details: String = "",
     val xCoordinate: Double = 0.0,
     val yCoordinate: Double = 0.0,
-) : Serializable
+) :Parcelable
