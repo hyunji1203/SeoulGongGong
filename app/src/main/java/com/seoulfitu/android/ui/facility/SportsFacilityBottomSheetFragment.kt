@@ -41,10 +41,14 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
-        initAdapter()
         setClickListeners()
 
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        initAdapter()
     }
 
     private fun initAdapter() {

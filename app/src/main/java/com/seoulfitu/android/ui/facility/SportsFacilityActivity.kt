@@ -32,13 +32,17 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        viewModel.getAllFacilities()
         initMap()
 
         locationSource = FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
 
         initOpenListObserve()
         initOpenDetailObserve()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.getAllFacilities()
     }
 
     private fun initMap() {
