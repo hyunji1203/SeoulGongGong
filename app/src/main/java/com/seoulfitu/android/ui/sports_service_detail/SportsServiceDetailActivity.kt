@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.seoulfitu.android.databinding.ActivitySportsServiceDetailBinding
+import com.seoulfitu.android.ui.common.bindingadapter.setScrapStatus
 import com.seoulfitu.android.ui.sports_service_detail.viewmodel.SportsServiceDetailViewModel
 import com.seoulfitu.android.ui.uimodel.UiSportsService
 import com.seoulfitu.android.util.getParcelableExtraCompat
@@ -24,6 +25,7 @@ class SportsServiceDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         getIntentExtra()
         observeSportsService()
+        setClickListeners()
     }
 
     @Suppress("DEPRECATION")
@@ -45,6 +47,14 @@ class SportsServiceDetailActivity : AppCompatActivity() {
                     // todo: 로딩화면
                 }
             }
+        }
+    }
+
+    private fun setClickListeners(){
+        binding.ivSportsServiceDetailScrap.setOnClickListener {
+            viewModel.scrapService()
+            if (viewModel.scrapStatue.value == true) binding.ivSportsServiceDetailScrap.setScrapStatus(false)
+            else binding.ivSportsServiceDetailScrap.setScrapStatus(true)
         }
     }
 

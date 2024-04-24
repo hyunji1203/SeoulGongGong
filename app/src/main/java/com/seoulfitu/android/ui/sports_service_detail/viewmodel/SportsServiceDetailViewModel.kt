@@ -1,14 +1,18 @@
 package com.seoulfitu.android.ui.sports_service_detail.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.seoulfitu.android.domain.model.Coordinate
 import com.seoulfitu.android.domain.model.RegionWithCoordinate
 import com.seoulfitu.android.domain.repository.GeocodingRepository
+import com.seoulfitu.android.domain.repository.ServiceScrapRepository
 import com.seoulfitu.android.ui.sports_service_detail.uistate.SportsServiceDetailUiState
 import com.seoulfitu.android.ui.uimodel.UiSportsService
+import com.seoulfitu.android.ui.uimodel.mapper.toDomain
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -16,11 +20,15 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SportsServiceDetailViewModel @Inject constructor(
-    private val geocodingRepository: GeocodingRepository
+    private val geocodingRepository: GeocodingRepository,
+    private val scrapRepository: ServiceScrapRepository,
 ) : ViewModel() {
     private val _sportService: MutableLiveData<SportsServiceDetailUiState> =
         MutableLiveData(SportsServiceDetailUiState())
     val sportsService: MutableLiveData<SportsServiceDetailUiState> = _sportService
+
+    private val _scrapStatus: MutableLiveData<Boolean> = MutableLiveData()
+    val scrapStatue: LiveData<Boolean> = _scrapStatus
 
     fun setSportsService(service: UiSportsService) {
         viewModelScope.launch {
@@ -43,6 +51,20 @@ class SportsServiceDetailViewModel @Inject constructor(
                 _sportService.value = _sportService.value?.copy(
                     errorMessage = it.message.toString()
                 )
+            }
+        }
+    }
+
+    fun scrapService() {
+        viewModelScope.launch(Dispatchers.IO) {
+            if (sportsService.value?.result?.scrapped == true) {
+                scrapRepository.deleteScrap(sportsService.value!!.result.toDomain() )
+                sportsService.value?.result!!.scrapped = false
+                _scrapStatus.postValue(false)
+            } else {
+                scrapRepository.scrap(sportsService.value!!.result.toDomain())
+                sportsService.value?.result!!.scrapped = true
+                _scrapStatus.postValue(true)
             }
         }
     }

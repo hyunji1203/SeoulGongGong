@@ -24,6 +24,10 @@ class SportsServiceListActivity : AppCompatActivity() {
         initBinding()
         observeUiState()
         setUpView()
+    }
+
+    override fun onStart() {
+        super.onStart()
         viewModel.getServices()
     }
 

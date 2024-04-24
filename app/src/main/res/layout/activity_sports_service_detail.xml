@@ -20,13 +20,14 @@
             tools:context="com.seoulfitu.android.ui.sports_service_detail.SportsServiceDetailActivity">
 
             <ImageView
-                app:setScrapStatus="@{service.scrapped}"
-                android:id="@+id/imageView"
+                android:id="@+id/iv_sports_service_detail_scrap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="@dimen/margin_default"
-                android:src="@drawable/ic_heart_filled"
+                android:background="@drawable/ic_heart"
+                android:backgroundTint="@color/gray"
+                app:setScrapStatus="@{service.scrapped}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,7 +38,7 @@
                 android:layout_marginStart="@dimen/margin_default"
                 android:src="@drawable/ic_launcher_background"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                app:layout_constraintTop_toBottomOf="@+id/iv_sports_service_detail_scrap"
                 app:serviceImg="@{service.info.img}" />
 
             <TextView
