@@ -1,6 +1,7 @@
 package com.seoulfitu.android.ui.facility
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,7 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentSportsFacilityBottomSheetBinding? = null
     private val binding get() = _binding!!
     private val viewModel: SportsFacilityViewModel by activityViewModels()
+    private lateinit var adapter: SportsFacilityListAdapter
     private var selectedOptions = emptySelectedOptions
 
     private val sportsFacilityActivityLauncher =
@@ -42,17 +44,13 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
         binding.viewModel = viewModel
 
         setClickListeners()
-
+        initAdapter()
+        subscribe()
         return binding.root
     }
 
-    override fun onStart() {
-        super.onStart()
-        initAdapter()
-    }
-
     private fun initAdapter() {
-        val adapter = SportsFacilityListAdapter(viewModel::openFacilityDetail)
+        adapter = SportsFacilityListAdapter(viewModel::openFacilityDetail)
         adapter.submitList(viewModel.listSportsFacilities.value?.items)
         binding.rvFacilityList.adapter = adapter
     }
@@ -61,6 +59,12 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
         binding.btnFacilityFilter.setOnClickListener {
             val intent = SportsFacilityFilterActivity.getIntent(requireContext(), selectedOptions)
             sportsFacilityActivityLauncher.launch(intent)
+        }
+    }
+
+    private fun subscribe(){
+        viewModel.sportsFacilities.observe(this) {
+            adapter.submitList(it)
         }
     }
 
