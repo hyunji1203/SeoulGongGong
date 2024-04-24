@@ -2,9 +2,9 @@ package com.seoulfitu.android.ui.sports_service_detail
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.seoulfitu.android.databinding.ActivitySportsServiceDetailBinding
 import com.seoulfitu.android.ui.common.bindingadapter.setScrapStatus
 import com.seoulfitu.android.ui.sports_service_detail.viewmodel.SportsServiceDetailViewModel
@@ -22,6 +22,7 @@ class SportsServiceDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySportsServiceDetailBinding.inflate(layoutInflater)
+        binding.lifecycleOwner = this
         setContentView(binding.root)
         getIntentExtra()
         observeSportsService()
@@ -39,6 +40,7 @@ class SportsServiceDetailActivity : AppCompatActivity() {
             when (it.isSuccess) {
                 true -> {
                     binding.service = it.result
+                    setScrapStatue()
                 }
                 false -> {
                     showToast(it.errorMessage)
@@ -53,8 +55,14 @@ class SportsServiceDetailActivity : AppCompatActivity() {
     private fun setClickListeners(){
         binding.ivSportsServiceDetailScrap.setOnClickListener {
             viewModel.scrapService()
-            if (viewModel.scrapStatue.value == true) binding.ivSportsServiceDetailScrap.setScrapStatus(false)
-            else binding.ivSportsServiceDetailScrap.setScrapStatus(true)
+        }
+    }
+
+    private fun setScrapStatue() {
+        if (viewModel.sportsService.value?.result?.scrapped == true) {
+            binding.ivSportsServiceDetailScrap.setScrapStatus(true)
+        } else {
+            binding.ivSportsServiceDetailScrap.setScrapStatus(false)
         }
     }
 

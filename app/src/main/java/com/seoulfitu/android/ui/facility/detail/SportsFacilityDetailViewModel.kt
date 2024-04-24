@@ -54,11 +54,11 @@ class SportsFacilityDetailViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             if (facility.value?.isScrap == true) {
                 facilityScrapRepository.deleteScrap(facility.value!!.toDomain(true))
-                facility.value?.isScrap = false
+                _facility.value?.isScrap = false
                 _scrapStatus.postValue(false)
             } else {
                 facilityScrapRepository.scrap(facility.value!!.toDomain(false))
-                facility.value?.isScrap = true
+                _facility.value?.isScrap = true
                 _scrapStatus.postValue(true)
             }
         }

@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class UiSportsService(
     val info: UiSportsServiceInfo = UiSportsServiceInfo(),
-    var scrapped: Boolean = false
+    val scrapped: Boolean = false
 ):Parcelable
 
 @Parcelize

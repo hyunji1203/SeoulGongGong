@@ -25,10 +25,7 @@ class SportsServiceDetailViewModel @Inject constructor(
 ) : ViewModel() {
     private val _sportService: MutableLiveData<SportsServiceDetailUiState> =
         MutableLiveData(SportsServiceDetailUiState())
-    val sportsService: MutableLiveData<SportsServiceDetailUiState> = _sportService
-
-    private val _scrapStatus: MutableLiveData<Boolean> = MutableLiveData()
-    val scrapStatue: LiveData<Boolean> = _scrapStatus
+    val sportsService: LiveData<SportsServiceDetailUiState> = _sportService
 
     private lateinit var originalServiceInfo: UiSportsService
 
@@ -60,15 +57,17 @@ class SportsServiceDetailViewModel @Inject constructor(
 
     fun scrapService() {
         viewModelScope.launch(Dispatchers.IO) {
-            if (sportsService.value?.result?.scrapped == true) {
+            val result = sportsService.value?.result ?: return@launch
+            if (result.scrapped) {
                 scrapRepository.deleteScrap(originalServiceInfo.toDomain())
-                sportsService.value?.result!!.scrapped = false
-                _scrapStatus.postValue(false)
             } else {
                 scrapRepository.scrap(originalServiceInfo.toDomain())
-                sportsService.value?.result!!.scrapped = true
-                _scrapStatus.postValue(true)
             }
+            _sportService.postValue(
+                _sportService.value?.copy(
+                    result = result.copy(scrapped = !result.scrapped)
+                )
+            )
         }
     }
 
