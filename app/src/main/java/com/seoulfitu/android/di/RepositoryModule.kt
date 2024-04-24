@@ -5,12 +5,14 @@ import com.seoulfitu.android.data.repository.DefaultGeoRepository
 import com.seoulfitu.android.data.repository.DefaultGeocodingRepository
 import com.seoulfitu.android.data.repository.DefaultParticulateMatterRepository
 import com.seoulfitu.android.data.repository.DefaultSportsFacilityRepository
+import com.seoulfitu.android.data.repository.DefaultSportsServiceRepository
 import com.seoulfitu.android.data.repository.DefaultWeatherRepository
 import com.seoulfitu.android.domain.repository.FacilityScrapRepository
 import com.seoulfitu.android.domain.repository.GeoRepository
 import com.seoulfitu.android.domain.repository.GeocodingRepository
 import com.seoulfitu.android.domain.repository.ParticulateMatterRepository
 import com.seoulfitu.android.domain.repository.SportsFacilityRepository
+import com.seoulfitu.android.domain.repository.SportsServiceRepository
 import com.seoulfitu.android.domain.repository.WeatherRepository
 import dagger.Binds
 import dagger.Module
@@ -40,6 +42,10 @@ interface RepositoryModule {
     @Binds
     @Singleton
     fun bindGeoRepository(repository: DefaultGeoRepository): GeoRepository
+
+    @Binds
+    @Singleton
+    fun bindSportsServiceRepository(repository:DefaultSportsServiceRepository): SportsServiceRepository
 
     @Binds
     @Singleton
