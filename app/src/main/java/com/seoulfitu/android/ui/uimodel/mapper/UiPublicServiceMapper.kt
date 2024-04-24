@@ -7,9 +7,9 @@ import com.seoulfitu.android.ui.uimodel.UiSportsServiceInfo
 
 
 fun SportsServices.toUi(): List<UiSportsService> =
-    this.services.map { it.toUi() }
+    this.services.map { it.toUi(false) }
 
-fun SportsService.toUi(): UiSportsService = UiSportsService(
+fun SportsService.toUi(isScraped: Boolean): UiSportsService = UiSportsService(
     info = UiSportsServiceInfo(
         title = serviceName,
         place = place,
@@ -27,6 +27,6 @@ fun SportsService.toUi(): UiSportsService = UiSportsService(
         details = details,
         xCoordinate = xCoordinate,
         yCoordinate = yCoordinate
-    )
-
+    ),
+    isScraped,
 )

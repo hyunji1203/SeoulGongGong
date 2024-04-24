@@ -16,6 +16,8 @@ import com.seoulfitu.android.databinding.ActivityMainBinding
 import com.seoulfitu.android.ui.facility.SportsFacilityActivity
 import com.seoulfitu.android.ui.facility.detail.SportsFacilityDetailActivity.Companion.getIntent
 import com.seoulfitu.android.ui.main.scrap.facility.SportsFacilityScrapAdapter
+import com.seoulfitu.android.ui.main.scrap.service.SportsServiceScrapAdapter
+import com.seoulfitu.android.ui.sports_service_detail.SportsServiceDetailActivity.Companion.start
 import com.seoulfitu.android.ui.sports_service_list.SportsServiceListActivity
 import com.seoulfitu.android.util.openSetting
 import com.seoulfitu.android.util.showToast
@@ -63,8 +65,16 @@ class MainActivity : AppCompatActivity() {
             binding.cvFacilityScrap.setAdapter(scrapedFacilities.isEmpty(), adapter)
             adapter.submitList(scrapedFacilities)
         }
-        viewModel.detailOpenEvent.observe(this) {
+        viewModel.scrapedServices.observe(this) { scrapedServices ->
+            val adapter = SportsServiceScrapAdapter(viewModel::openServiceDetail)
+            binding.cvServiceScrap.setAdapter(scrapedServices.isEmpty(), adapter)
+            adapter.submitList(scrapedServices)
+        }
+        viewModel.facilityDetailOpenEvent.observe(this) {
             startActivity(getIntent(this, it))
+        }
+        viewModel.serviceDetailOpenEvent.observe(this) {
+            start(this, it)
         }
         viewModel.throwable.observe(this) {
             showToast(getString(R.string.network_errer_message))
@@ -101,6 +111,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setScrapList() {
         viewModel.fetchSportsFacilityScrap()
+        viewModel.fetchSportsServiceScrap()
     }
 
     companion object {
