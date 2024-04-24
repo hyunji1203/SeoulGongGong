@@ -57,7 +57,6 @@ playServicesLocation = "21.2.0"
 # OkHttp3 logging interceptor
 loggingInterceptor = "4.11.0"
 
-
 [libraries]
 # AndroidX Libraries
 coreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
