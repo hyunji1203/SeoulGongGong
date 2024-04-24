@@ -9,7 +9,7 @@ import com.seoulfitu.android.databinding.ActivitySportsServiceFilterBinding
 import com.seoulfitu.android.domain.model.Town
 import com.seoulfitu.android.ui.facility.SportsFacilityBottomSheetFragment.Companion.FILTER_KEY
 import com.seoulfitu.android.ui.filter.facility.SportsFacilityFilterActivity
-import com.seoulfitu.android.ui.filter.facility.SportsFacilityFilterActivity.Companion.emptySelectedOptions
+import com.seoulfitu.android.ui.uimodel.UiAvailabilityFilter.Companion.getOptions
 import com.seoulfitu.android.ui.uimodel.UiSelectedOptions
 import com.seoulfitu.android.ui.uimodel.UiSportsFacilityType
 import com.seoulfitu.android.util.getParcelableExtraCompat
@@ -33,14 +33,12 @@ class SportsServiceFilterActivity : AppCompatActivity() {
             val cityOptions = binding.cvServiceFilterCity.getSelectedOptions()
             val typeOptions = binding.cvServiceFilterType.getSelectedOptions()
             val priceOptions = binding.cvServiceFilterPrice.getSelectedOption()
-            val parkingOptions = binding.cvServiceFilterParking.getSelectedOption()
             val statusOptions = binding.cvServiceFilterStatus.getSelectedOptions()
             val uiSelectedOptions =
                 UiSelectedOptions(
                     cities = cityOptions,
                     services = typeOptions,
                     price = priceOptions,
-                    parking = parkingOptions,
                     serviceStatus = statusOptions,
                 )
             setResult(RESULT_OK, getIntent(this, uiSelectedOptions))
@@ -50,7 +48,7 @@ class SportsServiceFilterActivity : AppCompatActivity() {
 
     private fun initFilterOption() {
         val selected =
-            intent.getParcelableExtraCompat<UiSelectedOptions>(FILTER_KEY) ?: emptySelectedOptions
+            intent.getParcelableExtraCompat(FILTER_KEY) ?: UiSelectedOptions()
         binding.cvServiceFilterCity.apply {
             setFilterTitle(getString(R.string.filter_city_option_title))
             addFilterOptionGroup(Town.entries.map { it.townName }, selected.cities)
@@ -61,15 +59,11 @@ class SportsServiceFilterActivity : AppCompatActivity() {
         }
         binding.cvServiceFilterPrice.apply {
             setFilterTitle(getString(R.string.filter_price_option_title))
-            addFilterOptionGroup(options, listOf(selected.price))
-        }
-        binding.cvServiceFilterParking.apply {
-            setFilterTitle(getString(R.string.filter_parking_option_title))
-            addFilterOptionGroup(options, listOf(selected.parking))
+            addFilterOptionGroup(getOptions(), listOf(selected.price))
         }
         binding.cvServiceFilterStatus.apply {
             setFilterTitle(getString(R.string.filter_status_option_title))
-            addFilterOptionGroup(options, selected.serviceStatus)
+            addFilterOptionGroup(getOptions(), selected.serviceStatus)
         }
     }
 
@@ -84,7 +78,6 @@ class SportsServiceFilterActivity : AppCompatActivity() {
     }
 
     companion object {
-        private val options = listOf("가능", "불가능")
 
         fun getIntent(
             context: Context,

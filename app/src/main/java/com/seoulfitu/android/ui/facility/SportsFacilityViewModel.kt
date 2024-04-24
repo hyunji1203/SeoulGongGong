@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.seoulfitu.android.domain.repository.SportsFacilityRepository
+import com.seoulfitu.android.ui.uimodel.UiAvailabilityFilter
 import com.seoulfitu.android.ui.uimodel.UiSelectedOptions
 import com.seoulfitu.android.ui.uimodel.UiSportsFacility
 import com.seoulfitu.android.ui.uimodel.UiSportsFacilityList
@@ -71,64 +72,71 @@ class SportsFacilityViewModel @Inject constructor(
 
     private fun searchFacilityWithOptions(options: UiSelectedOptions?): List<UiSportsFacility> {
         var selectedAnswer: List<UiSportsFacility> = _sportsFacilities.value ?: emptyList()
-
         if (options == null) return selectedAnswer
-        // 자치구
-        if (options.cities.isNotEmpty()) {
-            selectedAnswer = selectedAnswer.filter { facility ->
-                options.cities.any { city ->
-                    facility.address.contains(city)
-                }
-            }
-        }
 
-        // 시설 종류
-        if (options.facilities.isNotEmpty()) {
-            selectedAnswer = selectedAnswer.filter { facility ->
-                options.facilities.any {
-                    facility.type.typeName == it
-                }
-            }
-        }
+        if (options.cities.isNotEmpty())
+            selectedAnswer = checkAddressFilter(selectedAnswer, options)
 
-        // 대관 -> 가능 / 불가능
-        if (options.rent.isNotEmpty()) {
-            when (options.rent) {
-                "가능" -> {
-                    selectedAnswer = selectedAnswer.filter {
-                        it.canRental == "가능"
-                    }
-                }
+        if (options.facilities.isNotEmpty())
+            selectedAnswer = checkFacilityTypeFilter(selectedAnswer, options)
 
-                "불가능" -> {
-                    selectedAnswer = selectedAnswer.filter {
-                        it.canRental == "불가능"
-                    }
-                }
-            }
-        }
+        if (options.rent != null)
+            selectedAnswer = checkRentFilter(selectedAnswer, options)
 
-        // 주차 -> 주차 불가 / 없음
-        if (options.parking.isNotEmpty()) {
-            when (options.parking) {
-                "가능" -> {
-                    selectedAnswer = selectedAnswer.filter {
-                        it.parkingInfo.run {
-                            !(contains("주차 불가") || contains("없음"))
-                        }
-                    }
-                }
-
-                "불가능" -> {
-                    selectedAnswer = selectedAnswer.filter {
-                        it.parkingInfo.run {
-                            (contains("주차 불가") || contains("없음"))
-                        }
-                    }
-                }
-            }
-        }
+        if (options.parking != null)
+            selectedAnswer = checkParkingFilter(selectedAnswer, options)
 
         return selectedAnswer
+    }
+
+    private fun checkAddressFilter(
+        selectedAnswer: List<UiSportsFacility>,
+        options: UiSelectedOptions
+    ): List<UiSportsFacility> = selectedAnswer.filter { facility ->
+        options.cities.any { city ->
+            facility.address.contains(city)
+        }
+    }
+
+    private fun checkFacilityTypeFilter(
+        selectedAnswer: List<UiSportsFacility>,
+        options: UiSelectedOptions
+    ): List<UiSportsFacility> = selectedAnswer.filter { facility ->
+        options.facilities.any {
+            facility.type.typeName == it
+        }
+    }
+
+    private fun checkRentFilter(
+        selectedAnswer: List<UiSportsFacility>,
+        options: UiSelectedOptions
+    ): List<UiSportsFacility> = selectedAnswer.filter {
+        when (options.rent) {
+            UiAvailabilityFilter.POSSIBLE ->
+                it.canRental == UiAvailabilityFilter.POSSIBLE.filterName
+            UiAvailabilityFilter.IMPOSSIBLE ->
+                it.canRental == UiAvailabilityFilter.IMPOSSIBLE.filterName
+            else -> true
+        }
+    }
+
+    private fun checkParkingFilter(
+        selectedAnswer: List<UiSportsFacility>,
+        options: UiSelectedOptions
+    ): List<UiSportsFacility> = selectedAnswer.filter { facility ->
+        when (options.parking) {
+            UiAvailabilityFilter.POSSIBLE ->
+                !facility.parkingInfo.contains(PARKING_IMPOSSIBLE)
+                        && !facility.parkingInfo.contains(NO_PARKING)
+            UiAvailabilityFilter.IMPOSSIBLE ->
+                facility.parkingInfo.contains(PARKING_IMPOSSIBLE)
+                        || facility.parkingInfo.contains(NO_PARKING)
+            else -> true
+        }
+    }
+
+    companion object {
+        private const val PARKING_IMPOSSIBLE = "주차 불가"
+        private const val NO_PARKING = "없음"
     }
 }

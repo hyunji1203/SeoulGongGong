@@ -10,7 +10,6 @@ import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.seoulfitu.android.databinding.FragmentSportsFacilityBottomSheetBinding
 import com.seoulfitu.android.ui.filter.facility.SportsFacilityFilterActivity
-import com.seoulfitu.android.ui.filter.facility.SportsFacilityFilterActivity.Companion.emptySelectedOptions
 import com.seoulfitu.android.ui.uimodel.UiSelectedOptions
 import com.seoulfitu.android.util.getParcelableExtraCompat
 import dagger.hilt.android.AndroidEntryPoint
@@ -59,7 +58,7 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
         binding.btnFacilityFilter.setOnClickListener {
             val intent = SportsFacilityFilterActivity.getIntent(
                 requireContext(),
-                viewModel.selectedOptions.value ?: emptySelectedOptions,
+                viewModel.selectedOptions.value ?: UiSelectedOptions(),
             )
             sportsFacilityActivityLauncher.launch(intent)
         }
