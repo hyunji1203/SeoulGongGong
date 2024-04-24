@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.seoulfitu.android.domain.repository.SportsFacilityRepository
+import com.seoulfitu.android.ui.uimodel.UiSelectedOptions
 import com.seoulfitu.android.ui.uimodel.UiSportsFacility
 import com.seoulfitu.android.ui.uimodel.UiSportsFacilityList
 import com.seoulfitu.android.ui.uimodel.mapper.toUi
@@ -29,6 +30,9 @@ class SportsFacilityViewModel @Inject constructor(
 
     private val _detailOpenEvent: MutableLiveData<UiSportsFacility> = MutableLiveData()
     val detailOpenEvent: LiveData<UiSportsFacility> = _detailOpenEvent
+
+    private val _selectedOptions: MutableLiveData<UiSelectedOptions> = MutableLiveData()
+    val selectedOptions: LiveData<UiSelectedOptions> = _selectedOptions
 
     fun getAllFacilities() {
         viewModelScope.launch {
@@ -57,5 +61,9 @@ class SportsFacilityViewModel @Inject constructor(
 
     fun openFacilityDetail(item: UiSportsFacility) {
         _detailOpenEvent.value = item
+    }
+
+    fun setSelectedOption(options: UiSelectedOptions) {
+        _selectedOptions.value = options
     }
 }
