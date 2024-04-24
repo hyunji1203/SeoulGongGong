@@ -1,6 +1,7 @@
 package com.seoulfitu.android.ui.filter
 
 import android.content.Context
+import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -22,6 +23,16 @@ class FilterCustomView(context: Context, attr: AttributeSet? = null) :
         val inflater = LayoutInflater.from(context)
         binding = CustomFilterBinding.inflate(inflater, this, true)
         chipGroup = binding.cgFilterGroup
+
+        val typedArray = context.obtainStyledAttributes(attr, R.styleable.FilterCustomView)
+        setSingleChipOption(typedArray)
+    }
+
+    private fun setSingleChipOption(filterSingleOption: TypedArray) {
+        chipGroup.isSingleSelection = filterSingleOption.getBoolean(
+            R.styleable.FilterCustomView_single_selection,
+            false,
+        )
     }
 
     fun setFilterTitle(title: String) {
@@ -76,6 +87,12 @@ class FilterCustomView(context: Context, attr: AttributeSet? = null) :
 
     fun getSelectedOptions(): List<String> {
         return chips.filter { it.isChecked }.map { it.text.toString() }
+    }
+
+    fun getSelectedOption(): String {
+        val selectedOption = getSelectedOptions()
+        return if (selectedOption.isEmpty()) ""
+        else selectedOption.first()
     }
 
     fun clearSelection() {

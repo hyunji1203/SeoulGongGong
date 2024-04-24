@@ -32,8 +32,8 @@ class SportsServiceFilterActivity : AppCompatActivity() {
         binding.btnServiceFilterList.setOnClickListener {
             val cityOptions = binding.cvServiceFilterCity.getSelectedOptions()
             val typeOptions = binding.cvServiceFilterType.getSelectedOptions()
-            val priceOptions = binding.cvServiceFilterPrice.getSelectedOptions()
-            val parkingOptions = binding.cvServiceFilterParking.getSelectedOptions()
+            val priceOptions = binding.cvServiceFilterPrice.getSelectedOption()
+            val parkingOptions = binding.cvServiceFilterParking.getSelectedOption()
             val statusOptions = binding.cvServiceFilterStatus.getSelectedOptions()
             val uiSelectedOptions =
                 UiSelectedOptions(
@@ -61,11 +61,11 @@ class SportsServiceFilterActivity : AppCompatActivity() {
         }
         binding.cvServiceFilterPrice.apply {
             setFilterTitle(getString(R.string.filter_price_option_title))
-            addFilterOptionGroup(options, selected.price)
+            addFilterOptionGroup(options, listOf(selected.price))
         }
         binding.cvServiceFilterParking.apply {
             setFilterTitle(getString(R.string.filter_parking_option_title))
-            addFilterOptionGroup(options, selected.parking)
+            addFilterOptionGroup(options, listOf(selected.parking))
         }
         binding.cvServiceFilterStatus.apply {
             setFilterTitle(getString(R.string.filter_status_option_title))

@@ -30,8 +30,8 @@ class SportsFacilityFilterActivity : AppCompatActivity() {
         binding.btnFacilityFilterList.setOnClickListener {
             val cityOptions = binding.cvFacilityFilterCity.getSelectedOptions()
             val typeOptions = binding.cvFacilityFilterType.getSelectedOptions()
-            val rentOptions = binding.cvFacilityFilterRent.getSelectedOptions()
-            val parkingOptions = binding.cvFacilityFilterParking.getSelectedOptions()
+            val rentOptions = binding.cvFacilityFilterRent.getSelectedOption()
+            val parkingOptions = binding.cvFacilityFilterParking.getSelectedOption()
             val uiSelectedOptions =
                 UiSelectedOptions(
                     cities = cityOptions,
@@ -57,11 +57,11 @@ class SportsFacilityFilterActivity : AppCompatActivity() {
         }
         binding.cvFacilityFilterRent.apply {
             setFilterTitle(getString(R.string.filter_rent_option_title))
-            addFilterOptionGroup(options, selected.rent)
+            addFilterOptionGroup(options, listOf(selected.rent))
         }
         binding.cvFacilityFilterParking.apply {
             setFilterTitle(getString(R.string.filter_parking_option_title))
-            addFilterOptionGroup(options, selected.parking)
+            addFilterOptionGroup(options, listOf(selected.parking))
         }
     }
 
@@ -77,7 +77,7 @@ class SportsFacilityFilterActivity : AppCompatActivity() {
     companion object {
         private val options = listOf("가능", "불가능")
         val emptySelectedOptions =
-            UiSelectedOptions(cities = emptyList(), parking = emptyList())
+            UiSelectedOptions(cities = emptyList(), parking = "")
 
         fun getIntent(
             context: Context,
