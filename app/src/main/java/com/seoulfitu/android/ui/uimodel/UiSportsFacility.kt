@@ -21,6 +21,7 @@ data class UiSportsFacility(
     val type: UiSportsFacilityType,
     val isOperating: String,
     val convenience: String,
+    val canRental: String,
 ) : Parcelable
 
 data class UiSportsFacilityList(

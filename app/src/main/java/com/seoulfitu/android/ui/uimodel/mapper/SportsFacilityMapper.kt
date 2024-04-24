@@ -22,6 +22,7 @@ fun SportsFacility.toUi() = UiSportsFacility(
     type = info.type.toUi(),
     isOperating = info.isOperating,
     convenience = info.convenience,
+    canRental = info.canRental,
 )
 
 private fun SportsFacilityType.toUi(): UiSportsFacilityType {

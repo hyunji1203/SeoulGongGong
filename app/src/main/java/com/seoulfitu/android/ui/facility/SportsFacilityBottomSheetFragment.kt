@@ -20,12 +20,14 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentSportsFacilityBottomSheetBinding? = null
     private val binding get() = _binding!!
     private val viewModel: SportsFacilityViewModel by activityViewModels()
+    private lateinit var adapter: SportsFacilityListAdapter
     private val sportsFacilityActivityLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == AppCompatActivity.RESULT_OK) {
                 val uiSelectedOptions =
                     it.data?.getParcelableExtraCompat<UiSelectedOptions>(FILTER_KEY) ?: ""
                 viewModel.setSelectedOption(uiSelectedOptions as UiSelectedOptions)
+                adapter.submitList(viewModel.listSportsFacilities.value?.items)
             }
         }
 
@@ -46,7 +48,7 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     private fun initAdapter() {
-        val adapter = SportsFacilityListAdapter(viewModel::openFacilityDetail)
+        adapter = SportsFacilityListAdapter(viewModel::openFacilityDetail)
         adapter.submitList(viewModel.listSportsFacilities.value?.items)
         binding.rvFacilityList.adapter = adapter
     }
