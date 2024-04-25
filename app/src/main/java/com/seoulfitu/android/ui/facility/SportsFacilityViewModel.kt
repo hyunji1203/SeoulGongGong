@@ -50,6 +50,13 @@ class SportsFacilityViewModel
             }
         }
 
+    private suspend fun isScraped(sportsFacility: SportsFacility): Boolean {
+        return withContext(Dispatchers.IO) {
+            val scrapedFacilities = scrapRepository.getAll()
+            scrapedFacilities.any { it.info.facilityName == sportsFacility.info.facilityName }
+        }
+    }
+
         fun searchFacility() {
             _listSportsFacilities.value =
                 UiSportsFacilityList(
@@ -69,12 +76,5 @@ class SportsFacilityViewModel
 
         fun openFacilityDetail(item: UiSportsFacility) {
             _detailOpenEvent.value = item
-        }
-
-        private suspend fun isScraped(sportsFacility: SportsFacility): Boolean {
-            return withContext(Dispatchers.IO) {
-                val scrapedFacilities = scrapRepository.getAll()
-                scrapedFacilities.any { it.info.facilityName == sportsFacility.info.facilityName }
-            }
         }
     }
