@@ -13,16 +13,6 @@ class ScrapCustomView(context: Context, attr: AttributeSet? = null) :
     private lateinit var scrapBinding: CustomScrapBinding
     private lateinit var emptyBinding: CustomScrapEmptyBinding
 
-    private fun initScrap() {
-        val inflater = LayoutInflater.from(context)
-        scrapBinding = CustomScrapBinding.inflate(inflater, this, true)
-    }
-
-    private fun initEmpty() {
-        val inflater = LayoutInflater.from(context)
-        emptyBinding = CustomScrapEmptyBinding.inflate(inflater, this, true)
-    }
-
     fun setAdapter(isEmpty: Boolean, adapter: ListAdapter<*, *>) {
         removeAllViews()
         if (isEmpty) {
@@ -31,5 +21,15 @@ class ScrapCustomView(context: Context, attr: AttributeSet? = null) :
             initScrap()
             scrapBinding.rvScrapList.adapter = adapter
         }
+    }
+
+    private fun initScrap() {
+        val inflater = LayoutInflater.from(context)
+        scrapBinding = CustomScrapBinding.inflate(inflater, this, true)
+    }
+
+    private fun initEmpty() {
+        val inflater = LayoutInflater.from(context)
+        emptyBinding = CustomScrapEmptyBinding.inflate(inflater, this, true)
     }
 }
