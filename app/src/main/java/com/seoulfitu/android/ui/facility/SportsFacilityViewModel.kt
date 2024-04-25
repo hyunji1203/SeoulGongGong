@@ -53,11 +53,13 @@ class SportsFacilityViewModel @Inject constructor(
     }
 
     private suspend fun searchPosition(sportsFacility: SportsFacility) {
-        geocodingRepository.geocode(sportsFacility.info.address).onSuccess {
-            if (it.values.isNotEmpty()) {
-                val cor = it.values.first().coordinate
-                _facilityWithCoordinate.value =
-                    UiSportsFacilityWithCoordinate(sportsFacility.toUi(), cor.x, cor.y)
+        viewModelScope.launch {
+            geocodingRepository.geocode(sportsFacility.info.address).onSuccess {
+                if (it.values.isNotEmpty()) {
+                    val cor = it.values.first().coordinate
+                    _facilityWithCoordinate.value =
+                        UiSportsFacilityWithCoordinate(sportsFacility.toUi(), cor.x, cor.y)
+                }
             }
         }
     }
