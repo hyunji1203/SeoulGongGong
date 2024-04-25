@@ -36,8 +36,9 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_public_sports_facility)
 
+        viewModel.getAllFacilities()
+        locationSource = FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
         initBinding()
-        initSetting()
         initMap()
         initObserver()
     }
@@ -45,11 +46,6 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun initBinding() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-    }
-
-    private fun initSetting() {
-        viewModel.getAllFacilities()
-        locationSource = FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
     }
 
     private fun initMap() {

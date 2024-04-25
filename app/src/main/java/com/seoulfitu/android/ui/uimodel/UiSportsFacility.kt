@@ -32,6 +32,6 @@ data class UiSportsFacilityWithCoordinate(
     val facility: UiSportsFacility,
 
     // 디폴트 좌표 : 서울 시청
-    var x: Double = 37.5670135,
-    var y: Double = 126.9783740,
+    val x: Double = 37.5670135,
+    val y: Double = 126.9783740,
 )

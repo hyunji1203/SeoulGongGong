@@ -26,7 +26,7 @@ class SportsFacilityViewModel @Inject constructor(
 
     private val _facilityWithCoordinate: MutableLiveData<UiSportsFacilityWithCoordinate?> =
         MutableLiveData()
-    val facilityWithCoordinate: MutableLiveData<UiSportsFacilityWithCoordinate?> =
+    val facilityWithCoordinate: LiveData<UiSportsFacilityWithCoordinate?> =
         _facilityWithCoordinate
 
     val searchWord: MutableLiveData<String> = MutableLiveData("")
