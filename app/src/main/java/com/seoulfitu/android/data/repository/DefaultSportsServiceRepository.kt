@@ -1,6 +1,5 @@
 package com.seoulfitu.android.data.repository
 
-import android.util.Log
 import com.seoulfitu.android.data.ERROR_MESSAGE_FAIL_RESULT
 import com.seoulfitu.android.data.ERROR_MESSAGE_NO_BODY
 import com.seoulfitu.android.data.model.mapper.toDomain
@@ -13,7 +12,6 @@ class DefaultSportsServiceRepository @Inject constructor(private val sportsServi
     SportsServiceRepository {
     override suspend fun getServices():Result<SportsServices>{
         val result = sportsServiceService.getServices()
-        Log.d("hkhk", "getServices: $result")
         if (result.isSuccessful){
             val body = result.body()?.toDomain()
                 ?: return Result.failure(IllegalStateException(ERROR_MESSAGE_NO_BODY))
