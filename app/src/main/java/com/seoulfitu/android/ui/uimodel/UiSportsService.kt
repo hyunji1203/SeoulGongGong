@@ -11,6 +11,7 @@ data class UiSportsService(
 
 @Parcelize
 data class UiSportsServiceInfo(
+    val serviceId: String = "",
     val title: String = "",
     val place: String = "",
     val operatingStartTime: String = "",

@@ -3,7 +3,6 @@ package com.seoulfitu.android.ui.main.scrap.service
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.seoulfitu.android.ui.uimodel.UiSportsFacility
 import com.seoulfitu.android.ui.uimodel.UiSportsService
 
 class SportsServiceScrapAdapter(
@@ -26,7 +25,7 @@ class SportsServiceScrapAdapter(
                     oldItem: UiSportsService,
                     newItem: UiSportsService,
                 ): Boolean {
-                    return oldItem.info.title == newItem.info.title
+                    return oldItem.info.serviceId == newItem.info.serviceId
                 }
 
                 override fun areContentsTheSame(

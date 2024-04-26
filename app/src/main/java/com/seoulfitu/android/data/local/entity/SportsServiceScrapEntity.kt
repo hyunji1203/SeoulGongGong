@@ -6,11 +6,11 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "SportsServiceScrap")
 data class SportsServiceScrapEntity(
     val division: String,
+    @PrimaryKey
     val serviceId: String,
     val mainCategory: String,
     val subCategory: String,
     val serviceStatus: String,
-    @PrimaryKey
     val serviceName: String,
     val payment: String,
     val place: String,

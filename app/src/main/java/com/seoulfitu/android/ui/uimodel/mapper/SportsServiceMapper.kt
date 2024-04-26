@@ -1,16 +1,12 @@
 package com.seoulfitu.android.ui.uimodel.mapper
 
 import com.seoulfitu.android.domain.model.SportsService
-import com.seoulfitu.android.domain.model.SportsServices
 import com.seoulfitu.android.ui.uimodel.UiSportsService
 import com.seoulfitu.android.ui.uimodel.UiSportsServiceInfo
 
-
-fun SportsServices.toUi(): List<UiSportsService> =
-    this.services.map { it.toUi(false) }
-
 fun SportsService.toUi(isScraped: Boolean): UiSportsService = UiSportsService(
     info = UiSportsServiceInfo(
+        serviceId = serviceId,
         title = serviceName,
         place = place,
         operatingStartTime = operatingStartTime,
@@ -34,7 +30,7 @@ fun SportsService.toUi(isScraped: Boolean): UiSportsService = UiSportsService(
 fun UiSportsService.toDomain(): SportsService {
     return SportsService(
         division = "",
-        serviceId = "",
+        serviceId = info.serviceId,
         mainCategory = "",
         subCategory = info.subCategory,
         serviceStatus = info.status,
