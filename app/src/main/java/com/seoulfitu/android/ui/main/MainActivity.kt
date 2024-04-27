@@ -27,6 +27,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModels()
+    private lateinit var serviceScrapAdapter: SportsServiceScrapAdapter
+    private lateinit var facilityScrapAdapter: SportsFacilityScrapAdapter
 
     private val locationPermissionRequest =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
@@ -44,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initViewModel()
+        initAdapter()
         subscribe()
         setClickListeners()
         setForecast()
@@ -59,16 +62,19 @@ class MainActivity : AppCompatActivity() {
         binding.viewmodel = viewModel
     }
 
+    private fun initAdapter() {
+        facilityScrapAdapter = SportsFacilityScrapAdapter(viewModel::openFacilityDetail)
+        serviceScrapAdapter = SportsServiceScrapAdapter(viewModel::openServiceDetail)
+    }
+
     private fun subscribe() {
         viewModel.scrapedFacilities.observe(this) { scrapedFacilities ->
-            val adapter = SportsFacilityScrapAdapter(viewModel::openFacilityDetail)
-            binding.cvFacilityScrap.setAdapter(scrapedFacilities.isEmpty(), adapter)
-            adapter.submitList(scrapedFacilities)
+            binding.cvFacilityScrap.setAdapter(scrapedFacilities.isEmpty(), facilityScrapAdapter)
+            facilityScrapAdapter.submitList(scrapedFacilities)
         }
         viewModel.scrapedServices.observe(this) { scrapedServices ->
-            val adapter = SportsServiceScrapAdapter(viewModel::openServiceDetail)
-            binding.cvServiceScrap.setAdapter(scrapedServices.isEmpty(), adapter)
-            adapter.submitList(scrapedServices)
+            binding.cvServiceScrap.setAdapter(scrapedServices.isEmpty(), serviceScrapAdapter)
+            serviceScrapAdapter.submitList(scrapedServices)
         }
         viewModel.facilityDetailOpenEvent.observe(this) {
             startActivity(getIntent(this, it))
