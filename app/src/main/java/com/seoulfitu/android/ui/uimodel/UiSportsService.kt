@@ -18,6 +18,7 @@ data class UiSportsServiceInfo(
     val img: String = "",
     val status: String = "",
     val subCategory: String = "",
+    val type:UiSportsServiceType = UiSportsServiceType.ETC,
     var address: String = "",
     val url: String = "",
     val phoneNumber: String = "",

@@ -9,6 +9,7 @@ data class SportsService(
     val serviceId: String,
     val mainCategory: String,
     val subCategory: String,
+    val type:SportsServiceType,
     val serviceStatus: String,
     val serviceName: String,
     val payment: String,

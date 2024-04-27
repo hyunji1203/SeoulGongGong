@@ -38,7 +38,7 @@
                 android:src="@drawable/ic_launcher_background"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView"
-                app:serviceImg="@{service.info.img}" />
+                app:serviceIcon = "@{service.info.type}"/>
 
             <TextView
                 android:id="@+id/tv_sports_service_detail_title"
