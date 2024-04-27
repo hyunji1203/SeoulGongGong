@@ -11,7 +11,9 @@ import com.seoulfitu.android.domain.repository.ServiceScrapRepository
 import com.seoulfitu.android.ui.sports_service_detail.uistate.SportsServiceDetailUiState
 import com.seoulfitu.android.ui.uimodel.UiSportsService
 import com.seoulfitu.android.ui.uimodel.mapper.toDomain
+import com.seoulfitu.android.ui.uimodel.mapper.toDomain
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
@@ -23,36 +25,19 @@ class SportsServiceDetailViewModel @Inject constructor(
     private val geocodingRepository: GeocodingRepository,
     private val scrapRepository: ServiceScrapRepository,
 ) : ViewModel() {
-    private val _sportService: MutableLiveData<SportsServiceDetailUiState> =
-        MutableLiveData(SportsServiceDetailUiState())
-    val sportsService: LiveData<SportsServiceDetailUiState> = _sportService
+    private val _service: MutableLiveData<UiSportsService> = MutableLiveData(UiSportsService())
+    val service: LiveData<UiSportsService> = _service
 
     private lateinit var originalServiceInfo: UiSportsService
 
     fun setSportsService(service: UiSportsService) {
-        viewModelScope.launch {
-            val result = geocodingRepository.reverseGeocode(
-                Coordinate(service.info.xCoordinate, service.info.yCoordinate)
+        _service.value = service.copy(
+            info = service.info.copy(
+                registrationStartDate = formatRegistrationDate(service.info.registrationStartDate),
+                registrationEndDate = formatRegistrationDate(service.info.registrationEndDate)
             )
-            result.onSuccess {
-                val regionWithCoordinate = it.values[0]
-                _sportService.value = _sportService.value?.copy(
-                    isSuccess = true,
-                    result = service.copy(
-                        info = service.info.copy(
-                            registrationStartDate = formatRegistrationDate(service.info.registrationStartDate),
-                            registrationEndDate = formatRegistrationDate(service.info.registrationEndDate),
-                            address = formatRegion(regionWithCoordinate)
-                        )
-                    )
-                )
-                originalServiceInfo = service
-            }.onFailure {
-                _sportService.value = _sportService.value?.copy(
-                    errorMessage = it.message.toString()
-                )
-            }
-        }
+        )
+        originalServiceInfo = service
     }
 
     fun scrapService() {
@@ -71,12 +56,6 @@ class SportsServiceDetailViewModel @Inject constructor(
         }
     }
 
-    private fun formatRegion(regionWithCoordinate: RegionWithCoordinate): String {
-        regionWithCoordinate.apply {
-            return "${area1.name} ${area2.name} ${area3.name} ${area4.name}"
-        }
-    }
-
     private fun formatRegistrationDate(date: String): String {
         // 자릿수 통일을 위해 밀리초 제거
         val dateWithoutMills = date.split(".")[0]
@@ -86,7 +65,7 @@ class SportsServiceDetailViewModel @Inject constructor(
         return dateTime.format(stringFormatter)
     }
 
-    companion object{
+    companion object {
         private const val DATE_TIME_PARSING_PATTERN = "yyyy-MM-dd HH:mm:ss"
         private const val DATE_TIME_FORMAT_PATTERN = "yyyy.MM.dd HH:mm"
     }

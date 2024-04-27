@@ -19,6 +19,9 @@
         android:theme="@style/Theme.SeoulGongGong"
         android:usesCleartextTraffic="true"
         tools:targetApi="33">
+        <activity
+            android:name=".ui.facility.detail.SportsFacilityDetailActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
@@ -28,9 +31,6 @@
             android:name=".ui.facility.SportsFacilityActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.facility.detail.SportsFacilityDetailActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.filter.facility.SportsFacilityFilterActivity"
             android:exported="false" />
         <activity
@@ -38,10 +38,12 @@
             android:exported="false" />
         <activity
             android:name=".ui.sports_service_list.SportsServiceListActivity"
-            android:exported="false" />
+            android:exported="false"
+            />
         <activity
             android:name=".ui.sports_service_detail.SportsServiceDetailActivity"
-            android:exported="false" />
+            android:exported="false"
+            />
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true">

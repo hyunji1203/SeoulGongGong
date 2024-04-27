@@ -10,7 +10,6 @@ import com.seoulfitu.android.ui.common.bindingadapter.setScrapStatus
 import com.seoulfitu.android.ui.sports_service_detail.viewmodel.SportsServiceDetailViewModel
 import com.seoulfitu.android.ui.uimodel.UiSportsService
 import com.seoulfitu.android.util.getParcelableExtraCompat
-import com.seoulfitu.android.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,26 +28,15 @@ class SportsServiceDetailActivity : AppCompatActivity() {
         setClickListeners()
     }
 
-    @Suppress("DEPRECATION")
     private fun getIntentExtra() {
         val sportsService = intent.getParcelableExtraCompat(EXTRA_KEY_SPORTS_SERVICE) ?: UiSportsService()
         viewModel.setSportsService(sportsService)
     }
 
     private fun observeSportsService() {
-        viewModel.sportsService.observe(this) {
-            when (it.isSuccess) {
-                true -> {
-                    binding.service = it.result
-                    setScrapStatue()
-                }
-                false -> {
-                    showToast(it.errorMessage)
-                }
-                else -> {
-                    // todo: 로딩화면
-                }
-            }
+        viewModel.service.observe(this) {
+            binding.service = it
+            setScrapStatue()
         }
     }
 
