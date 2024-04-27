@@ -12,7 +12,6 @@ fun SportsServiceResponse.toDomain(): SportsServices = SportsServices(
           division = it.division,
           serviceId = it.serviceId,
           mainCategory = it.mainCategory,
-          subCategory = it.subCategory,
           type = changeServiceCategoryToType(it.subCategory),
           serviceStatus = it.serviceStatus,
           serviceName = it.serviceName,

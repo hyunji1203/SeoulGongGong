@@ -87,7 +87,7 @@ class SportsServiceListViewModel @Inject constructor(
             }
 
             val serviceFit = if (options.services.isEmpty()) true else options.services.any { serviceOption ->
-                service.info.subCategory.contains(serviceOption)
+                service.info.type.typeName.contains(serviceOption)
             }
             val priceFit = if (options.price.isEmpty()) true else options.price.any { price ->
                 service.info.payment.contains(price)

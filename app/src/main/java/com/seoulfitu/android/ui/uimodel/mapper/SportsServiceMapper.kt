@@ -19,7 +19,6 @@ fun SportsService.toUi(): UiSportsService = UiSportsService(
         operatingEndTime = operatingEndTime,
         img = imgUrl,
         status = serviceStatus,
-        subCategory = subCategory,
         type = type.toUi(),
         url = url,
         phoneNumber = phoneNumber,
@@ -46,8 +45,8 @@ private fun SportsServiceType.toUi():UiSportsServiceType{
         SportsServiceType.VOLLEYBALL -> UiSportsServiceType.VOLLEYBALL
         SportsServiceType.BASKETBALL -> UiSportsServiceType.BASKETBALL
         SportsServiceType.GOLF -> UiSportsServiceType.GOLF
-        SportsServiceType.MULTI_PURPOSE_STADIUM,
-        SportsServiceType.EDUCATIONAL_FACILITIES,
+        SportsServiceType.MULTI_PURPOSE_STADIUM -> UiSportsServiceType.MULTI_PURPOSE_STADIUM
+        SportsServiceType.EDUCATIONAL_FACILITIES -> UiSportsServiceType.EDUCATIONAL_FACILITIES
         SportsServiceType.ETC-> UiSportsServiceType.ETC
     }
 }
