@@ -100,7 +100,7 @@ class MainViewModel @Inject constructor(
             runCatching {
                 serviceScrapRepository.getAll()
             }.onSuccess { services ->
-                _scrapedServices.postValue(services.map { it.toUi(true) })
+                _scrapedServices.postValue(services.map { it.toUi() }.map { it.copy(scrapped = true) })
             }.onFailure {
                 _throwable.value = it.message
             }

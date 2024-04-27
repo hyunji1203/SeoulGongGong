@@ -4,7 +4,7 @@ import com.seoulfitu.android.domain.model.SportsService
 import com.seoulfitu.android.ui.uimodel.UiSportsService
 import com.seoulfitu.android.ui.uimodel.UiSportsServiceInfo
 
-fun SportsService.toUi(isScraped: Boolean): UiSportsService = UiSportsService(
+fun SportsService.toUi(): UiSportsService = UiSportsService(
     info = UiSportsServiceInfo(
         serviceId = serviceId,
         title = serviceName,
@@ -23,8 +23,7 @@ fun SportsService.toUi(isScraped: Boolean): UiSportsService = UiSportsService(
         details = details,
         xCoordinate = xCoordinate,
         yCoordinate = yCoordinate
-    ),
-    isScraped,
+    )
 )
 
 fun UiSportsService.toDomain(): SportsService {

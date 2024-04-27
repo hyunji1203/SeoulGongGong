@@ -37,11 +37,13 @@ class SportsServiceListActivity : AppCompatActivity() {
         observeUiState()
         setUpView()
         initServiceList()
+        viewModel.getServices()
+
     }
 
     override fun onStart() {
         super.onStart()
-        viewModel.getServices()
+//        viewModel.getServices()
     }
 
     private fun initBinding() {
@@ -61,6 +63,10 @@ class SportsServiceListActivity : AppCompatActivity() {
         viewModel.uiState.observe(this) {
             when (it.isSuccess) {
                 true -> {
+                    adapter = SportsServiceAdapter { sportsService ->
+                        SportsServiceDetailActivity.start(this, sportsService)
+                    }
+                    binding.rvSportsServiceList.adapter = adapter
                     adapter.submitList(it.result)
                 }
                 false -> {
@@ -79,7 +85,10 @@ class SportsServiceListActivity : AppCompatActivity() {
         }
         binding.onClickSearch = { viewModel.searchData() }
         binding.onClickFilter = {
-            val intent = SportsServiceFilterActivity.getIntent(this, viewModel.uiState.value?.selectedOptions!!)
+            val intent = SportsServiceFilterActivity.getIntent(
+                this,
+                viewModel.uiState.value?.selectedOptions!!
+            )
             getFilterOptions.launch(intent)
         }
     }

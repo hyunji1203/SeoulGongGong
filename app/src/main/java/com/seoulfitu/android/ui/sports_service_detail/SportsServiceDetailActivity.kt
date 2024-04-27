@@ -47,7 +47,7 @@ class SportsServiceDetailActivity : AppCompatActivity() {
     }
 
     private fun setScrapStatue() {
-        if (viewModel.sportsService.value?.result?.scrapped == true) {
+        if (viewModel.service.value?.scrapped == true) {
             binding.ivSportsServiceDetailScrap.setScrapStatus(true)
         } else {
             binding.ivSportsServiceDetailScrap.setScrapStatus(false)

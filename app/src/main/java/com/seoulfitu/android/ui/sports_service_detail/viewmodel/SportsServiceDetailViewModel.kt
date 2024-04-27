@@ -4,16 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.seoulfitu.android.domain.model.Coordinate
-import com.seoulfitu.android.domain.model.RegionWithCoordinate
-import com.seoulfitu.android.domain.repository.GeocodingRepository
 import com.seoulfitu.android.domain.repository.ServiceScrapRepository
-import com.seoulfitu.android.ui.sports_service_detail.uistate.SportsServiceDetailUiState
 import com.seoulfitu.android.ui.uimodel.UiSportsService
 import com.seoulfitu.android.ui.uimodel.mapper.toDomain
-import com.seoulfitu.android.ui.uimodel.mapper.toDomain
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
@@ -22,7 +16,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SportsServiceDetailViewModel @Inject constructor(
-    private val geocodingRepository: GeocodingRepository,
     private val scrapRepository: ServiceScrapRepository,
 ) : ViewModel() {
     private val _service: MutableLiveData<UiSportsService> = MutableLiveData(UiSportsService())
@@ -42,16 +35,14 @@ class SportsServiceDetailViewModel @Inject constructor(
 
     fun scrapService() {
         viewModelScope.launch(Dispatchers.IO) {
-            val result = sportsService.value?.result ?: return@launch
+            val result = service.value ?: return@launch
             if (result.scrapped) {
                 scrapRepository.deleteScrap(originalServiceInfo.toDomain())
             } else {
                 scrapRepository.scrap(originalServiceInfo.toDomain())
             }
-            _sportService.postValue(
-                _sportService.value?.copy(
-                    result = result.copy(scrapped = !result.scrapped)
-                )
+            _service.postValue(
+                _service.value?.copy(scrapped = !result.scrapped)
             )
         }
     }

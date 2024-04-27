@@ -4,11 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.seoulfitu.android.domain.repository.ServiceScrapRepository
 import com.seoulfitu.android.domain.model.Coordinate
 import com.seoulfitu.android.domain.model.RegionsWithCoordinate
 import com.seoulfitu.android.domain.repository.GeocodingRepository
-import com.seoulfitu.android.domain.model.SportsService
+import com.seoulfitu.android.domain.repository.ServiceScrapRepository
 import com.seoulfitu.android.domain.repository.SportsServiceRepository
 import com.seoulfitu.android.ui.sports_service_list.uistate.SportsServiceListUiState
 import com.seoulfitu.android.ui.uimodel.UiSelectedOptions
@@ -38,8 +37,9 @@ class SportsServiceListViewModel @Inject constructor(
     fun getServices() {
         viewModelScope.launch {
             val result = sportsServiceRepository.getServices()
-            result.onSuccess {
-                services = it.services.map { it.toUi(isScraped(it)) })
+            result.onSuccess { sportsService ->
+                services = sportsService.services.map { it.toUi() }
+                    .map { it.copy(scrapped = isScraped(it)) }
                 searchedServices = services
                 _uiState.value = SportsServiceListUiState(
                     isSuccess = true, result = services
@@ -80,9 +80,12 @@ class SportsServiceListViewModel @Inject constructor(
     fun searchData() {
         val results = services.filter { it.info.title.contains(searchKeyword) }
         searchedServices = results
-        _uiState.value = SportsServiceListUiState(
-            isSuccess = true, result = searchedServices
-        )
+        viewModelScope.launch {
+            _uiState.value = SportsServiceListUiState(
+                isSuccess = true,
+                result = searchedServices.map { it.copy(scrapped = isScraped(it)) }
+            )
+        }
     }
 
     fun applyOptions(options: UiSelectedOptions) {
@@ -103,15 +106,19 @@ class SportsServiceListViewModel @Inject constructor(
 
             cityFit and serviceFit and priceFit and serviceStatusFit /*and priceFit and serviceStatusFit*/
         }
-        _uiState.value = SportsServiceListUiState(
-            isSuccess = true, result = results, selectedOptions = options
-        )
+        viewModelScope.launch {
+            _uiState.value = SportsServiceListUiState(
+                isSuccess = true,
+                result = results.map { it.copy(scrapped = isScraped(it)) },
+                selectedOptions = options
+            )
+        }
     }
 
-    private suspend fun isScraped(sportsService: SportsService): Boolean {
+    private suspend fun isScraped(sportsService: UiSportsService): Boolean {
         return withContext(Dispatchers.IO) {
             val scrapedServices = scrapRepository.getAll()
-            scrapedServices.any { it.serviceName == sportsService.serviceName }
+            scrapedServices.any { it.serviceName == sportsService.info.title }
         }
     }
 }
