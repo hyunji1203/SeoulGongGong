@@ -24,16 +24,18 @@ class SportsServiceListViewModel @Inject constructor(
     private val sportsServiceRepository: SportsServiceRepository,
     private val geocodingRepository: GeocodingRepository,
     private val scrapRepository: ServiceScrapRepository,
-) :
-    ViewModel() {
+) : ViewModel() {
     // 전체 서비스
     private var services: List<UiSportsService> = listOf()
 
     // 검색 결과
     private var searchedServices: List<UiSportsService> = listOf()
     private var searchKeyword: String = ""
-    private val _uiState: MutableLiveData<SportsServiceListUiState> = MutableLiveData()
+
+    private val _uiState: MutableLiveData<SportsServiceListUiState> =
+        MutableLiveData(SportsServiceListUiState(isSuccess = true))
     val uiState: LiveData<SportsServiceListUiState> = _uiState
+
     fun getServices() {
         viewModelScope.launch {
             val result = sportsServiceRepository.getServices()
@@ -41,17 +43,22 @@ class SportsServiceListViewModel @Inject constructor(
                 services = sportsService.services.map { it.toUi() }
                     .map { it.copy(scrapped = isScraped(it)) }
                 searchedServices = services
-                _uiState.value = SportsServiceListUiState(
-                    isSuccess = true, result = services
-                )
+                _uiState.value = _uiState.value?.copy( isSuccess = true, result = services)
                 services.forEach { service ->
                     reverseGeocode(service)
                 }
             }.onFailure {
-                _uiState.value = SportsServiceListUiState(
+                _uiState.value = _uiState.value?.copy(
                     isSuccess = false, errorMessage = it.message
                 )
             }
+        }
+    }
+
+    fun getCurrentService() {
+        viewModelScope.launch {
+            val currentServices = _uiState.value?.result?.map { it.copy(scrapped = isScraped(it)) }
+            _uiState.value = _uiState.value?.copy(isSuccess = true, result = currentServices ?: emptyList())
         }
     }
 
@@ -81,7 +88,7 @@ class SportsServiceListViewModel @Inject constructor(
         val results = services.filter { it.info.title.contains(searchKeyword) }
         searchedServices = results
         viewModelScope.launch {
-            _uiState.value = SportsServiceListUiState(
+            _uiState.value = _uiState.value?.copy(
                 isSuccess = true,
                 result = searchedServices.map { it.copy(scrapped = isScraped(it)) }
             )
@@ -107,7 +114,7 @@ class SportsServiceListViewModel @Inject constructor(
             cityFit and serviceFit and priceFit and serviceStatusFit /*and priceFit and serviceStatusFit*/
         }
         viewModelScope.launch {
-            _uiState.value = SportsServiceListUiState(
+            _uiState.value = _uiState.value?.copy(
                 isSuccess = true,
                 result = results.map { it.copy(scrapped = isScraped(it)) },
                 selectedOptions = options

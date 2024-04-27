@@ -20,22 +20,33 @@
             tools:context="com.seoulfitu.android.ui.sports_service_detail.SportsServiceDetailActivity">
 
             <ImageView
+                android:id="@+id/iv_sports_service_detail_back"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_back" />
+
+            <ImageView
                 android:id="@+id/iv_sports_service_detail_scrap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/margin_default"
                 android:layout_marginEnd="@dimen/margin_default"
                 android:background="@drawable/ic_heart"
                 android:backgroundTint="@color/gray"
-                app:setScrapStatus="@{service.scrapped}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:setScrapStatus="@{service.scrapped}" />
 
             <ImageView
                 android:id="@+id/iv_sports_service_detail_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="@dimen/margin_default"
                 android:src="@drawable/ic_launcher_background"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_sports_service_detail_scrap"
@@ -50,7 +61,7 @@
                 android:text="@{service.info.title}"
                 android:textAppearance="@style/subtitle_1"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/iv_sports_service_detail_img"
+                app:layout_constraintStart_toEndOf="@id/iv_sports_service_detail_img"
                 app:layout_constraintTop_toTopOf="@id/iv_sports_service_detail_img"
                 tools:text="반포종합운동장 배드민턴 / 1번 코트 / 24년 4월 / 주말, 공휴일(주간) / 07시~18시" />
 
@@ -62,9 +73,9 @@
                 android:layout_marginEnd="@dimen/margin_default"
                 android:text="@{service.info.subCategory}"
                 android:textAppearance="@style/caption_1"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_sports_service_detail_img"
+                app:layout_constraintBottom_toBottomOf="@id/iv_sports_service_detail_img"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/iv_sports_service_detail_img"
+                app:layout_constraintStart_toEndOf="@id/iv_sports_service_detail_img"
                 tools:text="축구장" />
 
             <TextView
@@ -79,7 +90,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/tv_sports_service_detail_status"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_sports_service_detail_img"
+                app:layout_constraintTop_toBottomOf="@id/iv_sports_service_detail_img"
                 tools:text="서울특별시 산악문화체험센터>난지천인조잔디축구장" />
 
             <TextView
@@ -92,7 +103,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tv_sports_service_detail_place"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_sports_service_detail_place"
-                app:layout_constraintTop_toTopOf="@+id/tv_sports_service_detail_place"
+                app:layout_constraintTop_toTopOf="@id/tv_sports_service_detail_place"
                 app:serviceStatusColorForStatus="@{service.info.status}"
                 tools:text="접수중" />
 

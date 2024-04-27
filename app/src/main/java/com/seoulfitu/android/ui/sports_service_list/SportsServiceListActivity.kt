@@ -31,6 +31,13 @@ class SportsServiceListActivity : AppCompatActivity() {
             }
         }
 
+    private val getScrapOptions =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                viewModel.getCurrentService()
+            }
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initBinding()
@@ -38,12 +45,6 @@ class SportsServiceListActivity : AppCompatActivity() {
         setUpView()
         initServiceList()
         viewModel.getServices()
-
-    }
-
-    override fun onStart() {
-        super.onStart()
-//        viewModel.getServices()
     }
 
     private fun initBinding() {
@@ -54,7 +55,8 @@ class SportsServiceListActivity : AppCompatActivity() {
 
     private fun initServiceList() {
         adapter = SportsServiceAdapter { sportsService ->
-            SportsServiceDetailActivity.start(this, sportsService)
+            val intent = SportsServiceDetailActivity.getIntent(this, sportsService)
+            getScrapOptions.launch(intent)
         }
         binding.rvSportsServiceList.adapter = adapter
     }
@@ -63,10 +65,6 @@ class SportsServiceListActivity : AppCompatActivity() {
         viewModel.uiState.observe(this) {
             when (it.isSuccess) {
                 true -> {
-                    adapter = SportsServiceAdapter { sportsService ->
-                        SportsServiceDetailActivity.start(this, sportsService)
-                    }
-                    binding.rvSportsServiceList.adapter = adapter
                     adapter.submitList(it.result)
                 }
                 false -> {
