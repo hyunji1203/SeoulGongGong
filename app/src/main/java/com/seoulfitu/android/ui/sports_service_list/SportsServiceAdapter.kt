@@ -7,7 +7,7 @@ import com.seoulfitu.android.ui.uimodel.UiSportsService
 
 class SportsServiceAdapter(
     private val onItemClick:(UiSportsService) -> Unit
-) : ListAdapter<UiSportsService, SportsServiceViewHolder>(SportsServiceAdapter.diffUtil) {
+) : ListAdapter<UiSportsService, SportsServiceViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -25,7 +25,7 @@ class SportsServiceAdapter(
                 oldItem: UiSportsService,
                 newItem: UiSportsService,
             ): Boolean {
-                return oldItem.info.title == newItem.info.title
+                return oldItem.info.serviceId == newItem.info.serviceId
             }
 
             override fun areContentsTheSame(
