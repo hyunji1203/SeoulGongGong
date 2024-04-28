@@ -25,7 +25,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
-
     private lateinit var binding: ActivityPublicSportsFacilityBinding
     private lateinit var naverMap: NaverMap
     private lateinit var locationSource: FusedLocationSource
@@ -36,11 +35,16 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_public_sports_facility)
 
-        viewModel.getAllFacilities()
+//        viewModel.getAllFacilities()
         locationSource = FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
         initBinding()
         initMap()
         initObserver()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.getAllFacilities()
     }
 
     private fun initBinding() {

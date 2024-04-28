@@ -20,6 +20,7 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentSportsFacilityBottomSheetBinding? = null
     private val binding get() = _binding!!
     private val viewModel: SportsFacilityViewModel by activityViewModels()
+    private lateinit var adapter: SportsFacilityListAdapter
     private var selectedOptions = emptySelectedOptions
 
     private val sportsFacilityActivityLauncher =
@@ -41,15 +42,14 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
-        initAdapter()
         setClickListeners()
-
+        initAdapter()
+        subscribe()
         return binding.root
     }
 
     private fun initAdapter() {
-        val adapter = SportsFacilityListAdapter(viewModel::openFacilityDetail)
-        adapter.submitList(viewModel.listSportsFacilities.value?.items)
+        adapter = SportsFacilityListAdapter(viewModel::openFacilityDetail)
         binding.rvFacilityList.adapter = adapter
     }
 
@@ -57,6 +57,12 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
         binding.btnFacilityFilter.setOnClickListener {
             val intent = SportsFacilityFilterActivity.getIntent(requireContext(), selectedOptions)
             sportsFacilityActivityLauncher.launch(intent)
+        }
+    }
+
+    private fun subscribe(){
+        viewModel.sportsFacilities.observe(this) {
+            adapter.submitList(it)
         }
     }
 

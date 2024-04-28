@@ -37,6 +37,14 @@
             android:name=".ui.filter.service.SportsServiceFilterActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.sports_service_list.SportsServiceListActivity"
+            android:exported="false"
+            />
+        <activity
+            android:name=".ui.sports_service_detail.SportsServiceDetailActivity"
+            android:exported="false"
+            />
+        <activity
             android:name=".ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
