@@ -2,6 +2,7 @@ package com.seoulfitu.android.data.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.seoulfitu.android.domain.model.SportsServiceType
 
 @Entity(tableName = "SportsServiceScrap")
 data class SportsServiceScrapEntity(
@@ -9,7 +10,6 @@ data class SportsServiceScrapEntity(
     @PrimaryKey
     val serviceId: String,
     val mainCategory: String,
-    val subCategory: String,
     val serviceStatus: String,
     val serviceName: String,
     val payment: String,
@@ -30,4 +30,5 @@ data class SportsServiceScrapEntity(
     val operatingEndTime: String,
     val cancellationCriteria: String,
     val timeLeftForCancellation: Int,
+    val type:SportsServiceType
 )
