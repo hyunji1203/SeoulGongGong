@@ -114,68 +114,50 @@ constructor(
     }
 
     private fun searchFacilityWithOptions(options: UiSelectedOptions?): List<UiSportsFacility> {
-        var selectedAnswer: List<UiSportsFacility> = _sportsFacilities.value ?: emptyList()
+        val selectedAnswer: List<UiSportsFacility> = _sportsFacilities.value ?: emptyList()
         if (options == null) return selectedAnswer
 
-        if (options.cities.isNotEmpty())
-            selectedAnswer = checkAddressFilter(selectedAnswer, options)
+        return selectedAnswer.filter { facility ->
+            val cityFit = if (options.cities.isEmpty()) true else options.cities.any { city ->
+                facility.address.contains(city)
+            }
 
-        if (options.facilities.isNotEmpty())
-            selectedAnswer = checkFacilityTypeFilter(selectedAnswer, options)
+            val typeFit = if (options.facilities.isEmpty()) true else options.facilities.any {
+                facility.type.typeName == it
+            }
 
-        if (options.rent != null)
-            selectedAnswer = checkRentFilter(selectedAnswer, options)
+            val rentFit =
+                if (options.rent == null) true else checkRentFilter(options.rent, facility)
 
-        if (options.parking != null)
-            selectedAnswer = checkParkingFilter(selectedAnswer, options)
+            val parkingFit =
+                if (options.parking == null) true else checkParkingFilter(options.parking, facility)
 
-        return selectedAnswer
-    }
-
-    private fun checkAddressFilter(
-        selectedAnswer: List<UiSportsFacility>,
-        options: UiSelectedOptions
-    ): List<UiSportsFacility> = selectedAnswer.filter { facility ->
-        options.cities.any { city ->
-            facility.address.contains(city)
-        }
-    }
-
-    private fun checkFacilityTypeFilter(
-        selectedAnswer: List<UiSportsFacility>,
-        options: UiSelectedOptions
-    ): List<UiSportsFacility> = selectedAnswer.filter { facility ->
-        options.facilities.any {
-            facility.type.typeName == it
+            cityFit and typeFit and rentFit and parkingFit
         }
     }
 
     private fun checkRentFilter(
-        selectedAnswer: List<UiSportsFacility>,
-        options: UiSelectedOptions
-    ): List<UiSportsFacility> = selectedAnswer.filter {
-        when (options.rent) {
-            UiAvailabilityFilter.POSSIBLE ->
-                it.canRental == UiAvailabilityFilter.POSSIBLE.filterName
-            UiAvailabilityFilter.IMPOSSIBLE ->
-                it.canRental == UiAvailabilityFilter.IMPOSSIBLE.filterName
-            else -> true
-        }
+        rent: UiAvailabilityFilter,
+        facility: UiSportsFacility
+    ) = when (rent) {
+        UiAvailabilityFilter.POSSIBLE ->
+            facility.canRental == UiAvailabilityFilter.POSSIBLE.filterName
+
+        UiAvailabilityFilter.IMPOSSIBLE ->
+            facility.canRental == UiAvailabilityFilter.IMPOSSIBLE.filterName
     }
 
     private fun checkParkingFilter(
-        selectedAnswer: List<UiSportsFacility>,
-        options: UiSelectedOptions
-    ): List<UiSportsFacility> = selectedAnswer.filter { facility ->
-        when (options.parking) {
-            UiAvailabilityFilter.POSSIBLE ->
-                !facility.parkingInfo.contains(PARKING_IMPOSSIBLE)
-                        && !facility.parkingInfo.contains(NO_PARKING)
-            UiAvailabilityFilter.IMPOSSIBLE ->
-                facility.parkingInfo.contains(PARKING_IMPOSSIBLE)
-                        || facility.parkingInfo.contains(NO_PARKING)
-            else -> true
-        }
+        parking: UiAvailabilityFilter,
+        facility: UiSportsFacility
+    ) = when (parking) {
+        UiAvailabilityFilter.POSSIBLE ->
+            !facility.parkingInfo.contains(PARKING_IMPOSSIBLE)
+                    && !facility.parkingInfo.contains(NO_PARKING)
+
+        UiAvailabilityFilter.IMPOSSIBLE ->
+            facility.parkingInfo.contains(PARKING_IMPOSSIBLE)
+                    || facility.parkingInfo.contains(NO_PARKING)
     }
 
     companion object {
