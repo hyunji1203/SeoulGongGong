@@ -8,9 +8,6 @@ import com.seoulfitu.android.R
 import com.seoulfitu.android.databinding.ActivitySportsServiceFilterBinding
 import com.seoulfitu.android.domain.model.Town
 import com.seoulfitu.android.ui.facility.SportsFacilityBottomSheetFragment.Companion.FILTER_KEY
-import com.seoulfitu.android.ui.filter.facility.SportsFacilityFilterActivity.Companion.emptySelectedOptions
-import com.seoulfitu.android.ui.filter.facility.SportsFacilityFilterActivity
-import com.seoulfitu.android.ui.uimodel.UiAvailabilityFilter.Companion.getOptions
 import com.seoulfitu.android.ui.uimodel.UiSelectedOptions
 import com.seoulfitu.android.ui.uimodel.UiSportsFacilityType
 import com.seoulfitu.android.util.getParcelableExtraCompat
@@ -33,7 +30,6 @@ class SportsServiceFilterActivity : AppCompatActivity() {
         binding.btnServiceFilterList.setOnClickListener {
             val cityOptions = binding.cvServiceFilterCity.getSelectedOptions()
             val typeOptions = binding.cvServiceFilterType.getSelectedOptions()
-//            val priceOptions = binding.cvServiceFilterPrice.getSelectedOptions()
             val priceOptions = binding.cvServiceFilterPrice.getSelectedOption()
             val statusOptions = binding.cvServiceFilterStatus.getSelectedOptions()
             val uiSelectedOptions =
@@ -42,7 +38,6 @@ class SportsServiceFilterActivity : AppCompatActivity() {
                     services = typeOptions,
                     price = priceOptions,
                     serviceStatus = statusOptions,
-                    parking = listOf(),
                 )
             setResult(RESULT_OK, getIntent(this, uiSelectedOptions))
             finish()
@@ -62,12 +57,11 @@ class SportsServiceFilterActivity : AppCompatActivity() {
         }
         binding.cvServiceFilterPrice.apply {
             setFilterTitle(getString(R.string.filter_price_option_title))
-            addFilterOptionGroup(getOptions(), listOf(selected.price))
+            addFilterOptionGroup(priceOptions, listOf(selected.price))
         }
         binding.cvServiceFilterStatus.apply {
             setFilterTitle(getString(R.string.filter_status_option_title))
-//            addFilterOptionGroup(statusOptions, selected.serviceStatus)
-            addFilterOptionGroup(getOptions(), selected.serviceStatus)
+            addFilterOptionGroup(statusOptions, selected.serviceStatus)
         }
     }
 

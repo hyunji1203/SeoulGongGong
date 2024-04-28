@@ -20,7 +20,6 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
     private val binding get() = _binding!!
     private val viewModel: SportsFacilityViewModel by activityViewModels()
     private lateinit var adapter: SportsFacilityListAdapter
-    private var selectedOptions = emptySelectedOptions
 
     private val sportsFacilityActivityLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {

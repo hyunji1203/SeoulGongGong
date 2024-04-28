@@ -8,5 +8,5 @@ data class SportsServiceListUiState(
     val isSuccess: Boolean? = null,
     val result: List<UiSportsService> = listOf(),
     val errorMessage: String? = null,
-    val selectedOptions: UiSelectedOptions = UiSelectedOptions(cities = listOf(), parking = listOf())
+    val selectedOptions: UiSelectedOptions = UiSelectedOptions()
 )
