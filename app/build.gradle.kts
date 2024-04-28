@@ -113,4 +113,8 @@ dependencies {
 
     // OkHttp3 logging interceptor
     implementation(libs.logging.interceptor)
+
+    // Room
+    implementation(libs.bundles.room)
+    kapt(libs.room.compiler)
 }
