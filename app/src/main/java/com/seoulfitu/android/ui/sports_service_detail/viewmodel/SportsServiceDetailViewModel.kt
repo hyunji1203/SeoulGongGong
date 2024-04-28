@@ -3,16 +3,25 @@ package com.seoulfitu.android.ui.sports_service_detail.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.seoulfitu.android.domain.repository.ServiceScrapRepository
 import com.seoulfitu.android.ui.uimodel.UiSportsService
+import com.seoulfitu.android.ui.uimodel.mapper.toDomain
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @HiltViewModel
-class SportsServiceDetailViewModel @Inject constructor() : ViewModel() {
+class SportsServiceDetailViewModel @Inject constructor(
+    private val scrapRepository: ServiceScrapRepository,
+) : ViewModel() {
     private val _service: MutableLiveData<UiSportsService> = MutableLiveData(UiSportsService())
     val service: LiveData<UiSportsService> = _service
+
+    private lateinit var originalServiceInfo: UiSportsService
 
     fun setSportsService(service: UiSportsService) {
         _service.value = service.copy(
@@ -21,6 +30,21 @@ class SportsServiceDetailViewModel @Inject constructor() : ViewModel() {
                 registrationEndDate = formatRegistrationDate(service.info.registrationEndDate)
             )
         )
+        originalServiceInfo = service
+    }
+
+    fun scrapService() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val result = service.value ?: return@launch
+            if (result.scrapped) {
+                scrapRepository.deleteScrap(originalServiceInfo.toDomain())
+            } else {
+                scrapRepository.scrap(originalServiceInfo.toDomain())
+            }
+            _service.postValue(
+                _service.value?.copy(scrapped = !result.scrapped)
+            )
+        }
     }
 
     private fun formatRegistrationDate(date: String): String {

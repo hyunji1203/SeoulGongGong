@@ -1,14 +1,18 @@
 package com.seoulfitu.android.di
 
+import com.seoulfitu.android.data.repository.DefaultFacilityScrapRepository
 import com.seoulfitu.android.data.repository.DefaultGeoRepository
 import com.seoulfitu.android.data.repository.DefaultGeocodingRepository
 import com.seoulfitu.android.data.repository.DefaultParticulateMatterRepository
+import com.seoulfitu.android.data.repository.DefaultServiceScrapRepository
 import com.seoulfitu.android.data.repository.DefaultSportsFacilityRepository
 import com.seoulfitu.android.data.repository.DefaultSportsServiceRepository
 import com.seoulfitu.android.data.repository.DefaultWeatherRepository
+import com.seoulfitu.android.domain.repository.FacilityScrapRepository
 import com.seoulfitu.android.domain.repository.GeoRepository
 import com.seoulfitu.android.domain.repository.GeocodingRepository
 import com.seoulfitu.android.domain.repository.ParticulateMatterRepository
+import com.seoulfitu.android.domain.repository.ServiceScrapRepository
 import com.seoulfitu.android.domain.repository.SportsFacilityRepository
 import com.seoulfitu.android.domain.repository.SportsServiceRepository
 import com.seoulfitu.android.domain.repository.WeatherRepository
@@ -44,4 +48,12 @@ interface RepositoryModule {
     @Binds
     @Singleton
     fun bindSportsServiceRepository(repository:DefaultSportsServiceRepository): SportsServiceRepository
+
+    @Binds
+    @Singleton
+    fun bindFacilityScrapRepository(repository: DefaultFacilityScrapRepository): FacilityScrapRepository
+
+    @Binds
+    @Singleton
+    fun bindServiceScrapRepository(repository: DefaultServiceScrapRepository): ServiceScrapRepository
 }

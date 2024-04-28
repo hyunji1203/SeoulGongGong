@@ -94,7 +94,9 @@
                 android:id="@+id/iv_public_service_item_heart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_heart_filled"
+                android:background="@drawable/ic_heart"
+                android:backgroundTint="@color/gray"
+                app:setScrapStatus="@{service.scrapped}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 

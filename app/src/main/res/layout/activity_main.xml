@@ -12,6 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         tools:context=".ui.main.MainActivity">
 
         <ScrollView
@@ -209,6 +210,21 @@
                             app:layout_constraintEnd_toEndOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.seoulfitu.android.ui.main.scrap.ScrapCustomView
+                    android:id="@+id/cv_facility_scrap"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_default"
+                    android:layout_marginTop="@dimen/margin_default" />
+
+                <com.seoulfitu.android.ui.main.scrap.ScrapCustomView
+                    android:id="@+id/cv_service_scrap"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_default"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:layout_marginBottom="40dp"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

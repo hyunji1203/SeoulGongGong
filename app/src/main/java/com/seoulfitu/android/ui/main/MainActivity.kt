@@ -2,8 +2,6 @@ package com.seoulfitu.android.ui.main
 
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
-import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
@@ -16,6 +14,11 @@ import com.google.android.gms.location.LocationServices
 import com.seoulfitu.android.R
 import com.seoulfitu.android.databinding.ActivityMainBinding
 import com.seoulfitu.android.ui.facility.SportsFacilityActivity
+import com.seoulfitu.android.ui.facility.detail.SportsFacilityDetailActivity.Companion.getIntent
+import com.seoulfitu.android.ui.main.scrap.facility.SportsFacilityScrapAdapter
+import com.seoulfitu.android.ui.main.scrap.service.SportsServiceScrapAdapter
+import com.seoulfitu.android.ui.sports_service_detail.SportsServiceDetailActivity
+import com.seoulfitu.android.ui.sports_service_list.SportsServiceListActivity
 import com.seoulfitu.android.util.openSetting
 import com.seoulfitu.android.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,6 +27,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModels()
+    private lateinit var serviceScrapAdapter: SportsServiceScrapAdapter
+    private lateinit var facilityScrapAdapter: SportsFacilityScrapAdapter
 
     private val locationPermissionRequest =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
@@ -41,9 +46,15 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initViewModel()
+        initAdapter()
         subscribe()
         setClickListeners()
         setForecast()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setScrapList()
     }
 
     private fun initViewModel() {
@@ -51,7 +62,26 @@ class MainActivity : AppCompatActivity() {
         binding.viewmodel = viewModel
     }
 
+    private fun initAdapter() {
+        facilityScrapAdapter = SportsFacilityScrapAdapter(viewModel::openFacilityDetail)
+        serviceScrapAdapter = SportsServiceScrapAdapter(viewModel::openServiceDetail)
+    }
+
     private fun subscribe() {
+        viewModel.scrapedFacilities.observe(this) { scrapedFacilities ->
+            binding.cvFacilityScrap.setAdapter(scrapedFacilities.isEmpty(), facilityScrapAdapter)
+            facilityScrapAdapter.submitList(scrapedFacilities)
+        }
+        viewModel.scrapedServices.observe(this) { scrapedServices ->
+            binding.cvServiceScrap.setAdapter(scrapedServices.isEmpty(), serviceScrapAdapter)
+            serviceScrapAdapter.submitList(scrapedServices)
+        }
+        viewModel.facilityDetailOpenEvent.observe(this) {
+            startActivity(getIntent(this, it))
+        }
+        viewModel.serviceDetailOpenEvent.observe(this) {
+            SportsServiceDetailActivity.start(this, it)
+        }
         viewModel.throwable.observe(this) {
             showToast(getString(R.string.network_errer_message))
         }
@@ -62,7 +92,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(SportsFacilityActivity.getIntent(this))
         }
         binding.clMainPublicService.setOnClickListener {
-            // 공공 서비스 이동 intent 넣으면 됨
+            startActivity(SportsServiceListActivity.getIntent(this))
         }
     }
 
@@ -85,15 +115,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun setScrapList() {
+        viewModel.fetchSportsFacilityScrap()
+        viewModel.fetchSportsServiceScrap()
+    }
+
     companion object {
         private val locationPermissions =
             arrayOf(
                 ACCESS_FINE_LOCATION,
                 ACCESS_COARSE_LOCATION,
             )
-
-        fun getIntent(context: Context): Intent {
-            return Intent(context, MainActivity::class.java)
-        }
     }
 }
