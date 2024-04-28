@@ -42,9 +42,9 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
-        setClickListeners()
         initAdapter()
         subscribe()
+        setClickListeners()
         return binding.root
     }
 
@@ -53,16 +53,16 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
         binding.rvFacilityList.adapter = adapter
     }
 
+    private fun subscribe() {
+        viewModel.listSportsFacilities.observe(this) {
+            adapter.submitList(it.items)
+        }
+    }
+
     private fun setClickListeners() {
         binding.btnFacilityFilter.setOnClickListener {
             val intent = SportsFacilityFilterActivity.getIntent(requireContext(), selectedOptions)
             sportsFacilityActivityLauncher.launch(intent)
-        }
-    }
-
-    private fun subscribe(){
-        viewModel.sportsFacilities.observe(this) {
-            adapter.submitList(it)
         }
     }
 

@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.seoulfitu.android.domain.model.SportsFacility
 import com.seoulfitu.android.domain.repository.GeocodingRepository
-import com.seoulfitu.android.domain.model.SportsFacility
 import com.seoulfitu.android.domain.repository.FacilityScrapRepository
 import com.seoulfitu.android.domain.repository.SportsFacilityRepository
 import com.seoulfitu.android.ui.uimodel.UiSportsFacility
@@ -56,8 +55,8 @@ constructor(
                 _listSportsFacilities.value =
                     UiSportsFacilityList(_sportsFacilities.value ?: emptyList())
 
-                facilities.forEach { searchPosition(it) }
-                _facilityWithCoordinate.value = null
+                _sportsFacilities.value?.forEach { searchPosition(it) }
+//                _facilityWithCoordinate.value = null
             }
         }
     }
@@ -69,15 +68,16 @@ constructor(
         }
     }
 
-    private suspend fun searchPosition(sportsFacility: SportsFacility) {
+    private suspend fun searchPosition(sportsFacility: UiSportsFacility) {
         viewModelScope.launch {
-            geocodingRepository.geocode(sportsFacility.info.address).onSuccess {
+            geocodingRepository.geocode(sportsFacility.address).onSuccess {
                 if (it.values.isNotEmpty()) {
                     val cor = it.values.first().coordinate
                     _facilityWithCoordinate.value =
-                        UiSportsFacilityWithCoordinate(sportsFacility.toUi(), cor.x, cor.y)
+                        UiSportsFacilityWithCoordinate(sportsFacility, cor.x, cor.y)
                 }
             }
+            _facilityWithCoordinate.value = null
         }
     }
 
