@@ -57,6 +57,12 @@ playServicesLocation = "21.2.0"
 # OkHttp3 logging interceptor
 loggingInterceptor = "4.11.0"
 
+# Room
+room = "2.5.0"
+
+# lottie
+lottie = "6.4.0"
+
 [libraries]
 # AndroidX Libraries
 coreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
@@ -104,6 +110,14 @@ okhttp3 = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp3" }
 # OkHttp3 logging interceptor
 logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "loggingInterceptor" }
 
+# Room
+room = { module = "androidx.room:room-ktx", version.ref = "room" }
+room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+
+# lottie
+lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
+
 [bundles]
 androidDefault = ["coreKtx", "appcompat", "constraintlayout", "material", "fragment", "activity"]
 test = ["junit"]
@@ -112,5 +126,6 @@ retrofit = ["retrofit", "retrofit2-kotlinx-serialization-converter"]
 naverMap = ["naverMap", "playServicesLocation"]
 lifeCycle = ["viewmodel", "livedata"]
 coroutine = ["kotlinx-coroutines-core", "kotlinx-coroutines-jdk"]
+room = ["room", "room-runtime"]
 
 [plugins]

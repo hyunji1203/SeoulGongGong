@@ -45,4 +45,6 @@
     <string name="sports_service_detail_link">바로가기 링크</string>
     <string name="sports_service_detail_registration_time">접수일시\n%1$s ~ %2$s</string>
     <string name="sports_service_list_toolbar_title">공공 대관 서비스</string>
+    <string name="scrap_sports_facility_list">공공 체육 시설 스크랩</string>
+    <string name="scrap_empty_message">스크랩 목록이 없습니다.</string>
 </resources>

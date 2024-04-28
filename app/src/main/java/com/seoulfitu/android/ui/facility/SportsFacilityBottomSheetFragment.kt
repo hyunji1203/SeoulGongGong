@@ -20,6 +20,8 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
     private val binding get() = _binding!!
     private val viewModel: SportsFacilityViewModel by activityViewModels()
     private lateinit var adapter: SportsFacilityListAdapter
+    private var selectedOptions = emptySelectedOptions
+
     private val sportsFacilityActivityLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == AppCompatActivity.RESULT_OK) {
@@ -43,15 +45,20 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
         binding.viewModel = viewModel
 
         initAdapter()
+        subscribe()
         setClickListeners()
-
         return binding.root
     }
 
     private fun initAdapter() {
         adapter = SportsFacilityListAdapter(viewModel::openFacilityDetail)
-        adapter.submitList(viewModel.listSportsFacilities.value?.items)
         binding.rvFacilityList.adapter = adapter
+    }
+
+    private fun subscribe() {
+        viewModel.listSportsFacilities.observe(this) {
+            adapter.submitList(it.items)
+        }
     }
 
     private fun setClickListeners() {

@@ -8,6 +8,7 @@ import com.seoulfitu.android.R
 import com.seoulfitu.android.databinding.ActivitySportsServiceFilterBinding
 import com.seoulfitu.android.domain.model.Town
 import com.seoulfitu.android.ui.facility.SportsFacilityBottomSheetFragment.Companion.FILTER_KEY
+import com.seoulfitu.android.ui.filter.facility.SportsFacilityFilterActivity.Companion.emptySelectedOptions
 import com.seoulfitu.android.ui.filter.facility.SportsFacilityFilterActivity
 import com.seoulfitu.android.ui.uimodel.UiAvailabilityFilter.Companion.getOptions
 import com.seoulfitu.android.ui.uimodel.UiSelectedOptions
@@ -32,6 +33,7 @@ class SportsServiceFilterActivity : AppCompatActivity() {
         binding.btnServiceFilterList.setOnClickListener {
             val cityOptions = binding.cvServiceFilterCity.getSelectedOptions()
             val typeOptions = binding.cvServiceFilterType.getSelectedOptions()
+//            val priceOptions = binding.cvServiceFilterPrice.getSelectedOptions()
             val priceOptions = binding.cvServiceFilterPrice.getSelectedOption()
             val statusOptions = binding.cvServiceFilterStatus.getSelectedOptions()
             val uiSelectedOptions =
@@ -40,6 +42,7 @@ class SportsServiceFilterActivity : AppCompatActivity() {
                     services = typeOptions,
                     price = priceOptions,
                     serviceStatus = statusOptions,
+                    parking = listOf(),
                 )
             setResult(RESULT_OK, getIntent(this, uiSelectedOptions))
             finish()
@@ -63,6 +66,7 @@ class SportsServiceFilterActivity : AppCompatActivity() {
         }
         binding.cvServiceFilterStatus.apply {
             setFilterTitle(getString(R.string.filter_status_option_title))
+//            addFilterOptionGroup(statusOptions, selected.serviceStatus)
             addFilterOptionGroup(getOptions(), selected.serviceStatus)
         }
     }
@@ -72,18 +76,19 @@ class SportsServiceFilterActivity : AppCompatActivity() {
             cvServiceFilterCity.clearSelection()
             cvServiceFilterType.clearSelection()
             cvServiceFilterPrice.clearSelection()
-            cvServiceFilterParking.clearSelection()
             cvServiceFilterStatus.clearSelection()
         }
     }
 
     companion object {
+        private val priceOptions = listOf("유료", "무료")
+        private val statusOptions = listOf("접수중", "접수 종료", "예약 마감", "예약 일시중지", "안내중")
 
         fun getIntent(
             context: Context,
             uiSelectedOptions: UiSelectedOptions,
         ): Intent {
-            return Intent(context, SportsFacilityFilterActivity::class.java).apply {
+            return Intent(context, SportsServiceFilterActivity::class.java).apply {
                 putExtra(FILTER_KEY, uiSelectedOptions)
             }
         }
