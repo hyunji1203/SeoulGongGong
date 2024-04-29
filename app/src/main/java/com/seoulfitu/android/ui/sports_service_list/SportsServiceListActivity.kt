@@ -80,6 +80,7 @@ class SportsServiceListActivity : AppCompatActivity() {
         binding.etSportsServiceListSearch.doOnTextChanged { text, _, _, _ ->
             viewModel.updateSearchKeyword(text.toString())
         }
+        binding.onClickBack = { finish() }
         binding.onClickSearch = { viewModel.searchData() }
         binding.onClickFilter = {
             val intent = SportsServiceFilterActivity.getIntent(
