@@ -49,6 +49,11 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.refreshFacilities()
+    }
+
     private fun initAdapter() {
         adapter = SportsFacilityListAdapter(viewModel::openFacilityDetail)
         binding.rvFacilityList.adapter = adapter

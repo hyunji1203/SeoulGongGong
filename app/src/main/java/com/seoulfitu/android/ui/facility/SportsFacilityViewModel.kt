@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.seoulfitu.android.domain.model.SportsFacility
 import com.seoulfitu.android.domain.repository.GeocodingRepository
 import com.seoulfitu.android.domain.repository.FacilityScrapRepository
 import com.seoulfitu.android.domain.repository.SportsFacilityRepository
@@ -54,7 +53,7 @@ constructor(
             repository.getSportsFacility().onSuccess { facilities ->
                 _sportsFacilities.value =
                     facilities.map { facility ->
-                        val isFacilityScraped = isScraped(facility)
+                        val isFacilityScraped = isScraped(facility.info.facilityName)
                         facility.toUi(isFacilityScraped)
                     }
                 _listSportsFacilities.value =
@@ -67,10 +66,10 @@ constructor(
         }
     }
 
-    private suspend fun isScraped(sportsFacility: SportsFacility): Boolean {
+    private suspend fun isScraped(facilityName: String): Boolean {
         return withContext(Dispatchers.IO) {
             val scrapedFacilities = scrapRepository.getAll()
-            scrapedFacilities.any { it.info.facilityName == sportsFacility.info.facilityName }
+            scrapedFacilities.any { it.info.facilityName == facilityName }
         }
     }
 
@@ -86,6 +85,15 @@ constructor(
             if (facilityIndex + 1 == sportsFacilities.value?.size) {
                 _facilityWithCoordinate.value = null
             }
+        }
+    }
+
+    fun refreshFacilities() {
+        viewModelScope.launch {
+            val currentFacility = _listSportsFacilities.value?.items?.map {
+                it.copy(isScrap = isScraped(it.facilityName))
+            } ?: emptyList()
+            _listSportsFacilities.value = _listSportsFacilities.value?.copy(items = currentFacility)
         }
     }
 
