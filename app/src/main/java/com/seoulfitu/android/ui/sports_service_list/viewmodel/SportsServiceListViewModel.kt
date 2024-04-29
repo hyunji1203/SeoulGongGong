@@ -43,7 +43,7 @@ class SportsServiceListViewModel @Inject constructor(
                 services = sportsService.services.map { it.toUi() }
                     .map { it.copy(scrapped = isScraped(it)) }
                 searchedServices = services
-                _uiState.value = _uiState.value?.copy( isSuccess = true, result = services)
+                _uiState.value = _uiState.value?.copy(isSuccess = true, result = services)
                 services.forEach { service ->
                     reverseGeocode(service)
                 }
@@ -100,16 +100,16 @@ class SportsServiceListViewModel @Inject constructor(
             val cityFit = if (options.cities.isEmpty()) true else options.cities.any { city ->
                 service.info.address.contains(city)
             }
-
-            val serviceFit = if (options.services.isEmpty()) true else options.services.any { serviceOption ->
-                service.info.subCategory.contains(serviceOption)
-            }
-            val priceFit = if (options.price.isEmpty()) true else options.price.any { price ->
-                service.info.payment.contains(price)
-            }
-            val serviceStatusFit = if (options.serviceStatus.isEmpty()) true else options.serviceStatus.any { status ->
-                service.info.status.replace(" ", "").contains(status.replace(" ", ""))
-            }
+            val serviceFit =
+                if (options.services.isEmpty()) true else options.services.any { serviceOption ->
+                    service.info.subCategory.contains(serviceOption)
+                }
+            val priceFit =
+                if (options.price.isEmpty()) true else service.info.payment.contains(options.price)
+            val serviceStatusFit =
+                if (options.serviceStatus.isEmpty()) true else options.serviceStatus.any { status ->
+                    service.info.status.replace(" ", "").contains(status.replace(" ", ""))
+                }
 
             cityFit and serviceFit and priceFit and serviceStatusFit /*and priceFit and serviceStatusFit*/
         }
