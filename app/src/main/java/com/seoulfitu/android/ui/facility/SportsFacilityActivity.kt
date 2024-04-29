@@ -20,7 +20,7 @@ import com.naver.maps.map.util.MarkerIcons
 import com.seoulfitu.android.R
 import com.seoulfitu.android.databinding.ActivityPublicSportsFacilityBinding
 import com.seoulfitu.android.ui.facility.detail.SportsFacilityDetailActivity
-import com.seoulfitu.android.ui.uimodel.UiSportsFacilityWithCoordinate
+import com.seoulfitu.android.ui.uimodel.UiSportsFacilityMarker
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,6 +29,7 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var naverMap: NaverMap
     private lateinit var locationSource: FusedLocationSource
     private val viewModel: SportsFacilityViewModel by viewModels()
+    private val markers: MutableList<UiSportsFacilityMarker> = mutableListOf()
     private var selectedMarker: Marker? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,9 +43,9 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
         initObserver()
     }
 
-    override fun onStart() {
-        super.onStart()
-//        viewModel.getAllFacilities()
+    override fun onResume() {
+        super.onResume()
+        viewModel.refreshAllFacilities()
     }
 
     private fun initBinding() {
@@ -60,9 +61,20 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun initObserver() {
+        initFacilitiesObserve()
         initOpenListObserve()
         initOpenDetailObserve()
         initMarker()
+    }
+
+    private fun initFacilitiesObserve() {
+        viewModel.sportsFacilities.observe(this) { facilities ->
+            markers.forEach { marker ->
+                facilities.find { it.facilityName == marker.facility.facilityName }
+                    ?.let { marker.facility = it }
+            }
+            selectedMarker?.performClick()
+        }
     }
 
     private fun initOpenListObserve() {
@@ -83,30 +95,28 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun initMarker() {
         viewModel.facilityWithCoordinate.observe(this) { data ->
             if (data != null) {
-                val marker = Marker()
-                setMarkerClickListener(marker, data)
-                marker.apply {
+                val marker = Marker().apply {
                     position = LatLng(data.y, data.x)
                     icon = MarkerIcons.BLACK
                     setMarkerColor()
                     map = naverMap
                 }
+                val facilityMarker = UiSportsFacilityMarker(marker, data.facility)
+                setMarkerClickListener(facilityMarker)
+                markers.add(facilityMarker)
             } else {
                 binding.icLoadingFacility.visibility = View.GONE
             }
         }
     }
 
-    private fun setMarkerClickListener(
-        marker: Marker,
-        data: UiSportsFacilityWithCoordinate
-    ) {
-        marker.setOnClickListener {
+    private fun setMarkerClickListener(facilityMarker: UiSportsFacilityMarker) {
+        facilityMarker.marker.setOnClickListener {
             selectedMarker?.setMarkerColor(isClicked = false)
-            selectedMarker = marker
-            marker.setMarkerColor(isClicked = true)
+            selectedMarker = facilityMarker.marker
+            facilityMarker.marker.setMarkerColor(isClicked = true)
             binding.bottomFacilityInfo.apply {
-                setInfoItem(data.facility)
+                setInfoItem(facilityMarker.facility)
                 setClickEvent(viewModel::openFacilityDetail)
             }
             true

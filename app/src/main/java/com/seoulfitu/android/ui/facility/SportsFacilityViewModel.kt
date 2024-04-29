@@ -88,7 +88,16 @@ constructor(
         }
     }
 
-    fun refreshFacilities() {
+    fun refreshAllFacilities() {
+        viewModelScope.launch {
+            val currentFacility = _sportsFacilities.value?.map {
+                it.copy(isScrap = isScraped(it.facilityName))
+            } ?: emptyList()
+            _sportsFacilities.value = currentFacility.toList()
+        }
+    }
+
+    fun refreshListFacilities() {
         viewModelScope.launch {
             val currentFacility = _listSportsFacilities.value?.items?.map {
                 it.copy(isScrap = isScraped(it.facilityName))

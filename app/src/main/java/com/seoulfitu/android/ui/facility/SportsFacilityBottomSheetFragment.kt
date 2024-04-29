@@ -51,7 +51,7 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.refreshFacilities()
+        viewModel.refreshListFacilities()
     }
 
     private fun initAdapter() {
