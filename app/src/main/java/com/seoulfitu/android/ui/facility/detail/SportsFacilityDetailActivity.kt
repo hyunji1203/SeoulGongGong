@@ -7,7 +7,6 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.seoulfitu.android.BuildConfig
 import com.seoulfitu.android.R
 import com.seoulfitu.android.databinding.ActivitySportsFacilityDetailBinding
 import com.seoulfitu.android.ui.common.bindingadapter.setScrapStatus
@@ -41,32 +40,9 @@ class SportsFacilityDetailActivity : AppCompatActivity() {
     }
 
     private fun initObserve() {
-        initOpenNaverMapObserve()
         initOpenWebPageObserve()
         initOpenPhoneDialObserve()
         initOpenFacilityObserve()
-    }
-
-    private fun initOpenNaverMapObserve() {
-        viewModel.openNaverMap.observe(this) {
-            if (it != null) {
-                openNaverMap(getNaverMapIntent(it))
-            }
-        }
-    }
-
-    private fun getNaverMapIntent(address: String): Intent {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(getNaverMapUrl(address)))
-        intent.addCategory(Intent.CATEGORY_BROWSABLE)
-        return intent
-    }
-
-    private fun openNaverMap(intent: Intent) {
-        runCatching {
-            startActivity(intent)
-        }.onFailure {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(NAVER_MAP_PLAY_STORE_URL)))
-        }
     }
 
     private fun initOpenWebPageObserve() {
@@ -92,7 +68,7 @@ class SportsFacilityDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun setClickListeners(){
+    private fun setClickListeners() {
         binding.btnFacilityDetailScrap.setOnClickListener {
             viewModel.scrapFacility()
         }
@@ -100,9 +76,6 @@ class SportsFacilityDetailActivity : AppCompatActivity() {
 
     companion object {
         private const val FACILITY_KEY = "FACILITY_KEY"
-        private const val NAVER_MAP_PLAY_STORE_URL = "market://details?id=com.nhn.android.nmap"
-        private fun getNaverMapUrl(address: String) =
-            "nmap://search?query=${address}&${BuildConfig.APPLICATION_ID}"
 
         fun getIntent(context: Context, facility: UiSportsFacility): Intent {
             val intent = Intent(context, SportsFacilityDetailActivity::class.java)

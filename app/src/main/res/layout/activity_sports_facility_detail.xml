@@ -116,13 +116,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
-                    android:onClick="@{() -> viewModel.openNaverMap()}"
                     android:text="@{viewModel.facility.address}"
                     android:textAppearance="@style/subtitle_1"
                     android:textColor="@color/link_blue"
                     app:layout_constraintBottom_toBottomOf="@id/iv_facility_detail_location"
                     app:layout_constraintStart_toEndOf="@id/iv_facility_detail_location"
                     app:layout_constraintTop_toTopOf="@id/iv_facility_detail_location"
+                    app:onClickAddress="@{viewModel.facility.address}"
                     tools:text="서울특별시 송파구 방이동 439-8" />
 
                 <ImageView
