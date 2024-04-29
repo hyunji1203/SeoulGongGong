@@ -60,8 +60,9 @@ constructor(
                 _listSportsFacilities.value =
                     UiSportsFacilityList(_sportsFacilities.value ?: emptyList())
 
-                _sportsFacilities.value?.forEach { searchPosition(it) }
-//                _facilityWithCoordinate.value = null
+                _sportsFacilities.value?.forEachIndexed { index, uiSportsFacility ->
+                    searchPosition(index, uiSportsFacility)
+                }
             }
         }
     }
@@ -73,7 +74,7 @@ constructor(
         }
     }
 
-    private suspend fun searchPosition(sportsFacility: UiSportsFacility) {
+    private suspend fun searchPosition(facilityIndex: Int, sportsFacility: UiSportsFacility) {
         viewModelScope.launch {
             geocodingRepository.geocode(sportsFacility.address).onSuccess {
                 if (it.values.isNotEmpty()) {
@@ -82,7 +83,9 @@ constructor(
                         UiSportsFacilityWithCoordinate(sportsFacility, cor.x, cor.y)
                 }
             }
-            _facilityWithCoordinate.value = null
+            if (facilityIndex + 1 == sportsFacilities.value?.size) {
+                _facilityWithCoordinate.value = null
+            }
         }
     }
 
