@@ -31,13 +31,6 @@ class SportsServiceListActivity : AppCompatActivity() {
             }
         }
 
-    private val getScrapOptions =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == RESULT_OK) {
-                viewModel.getCurrentService()
-            }
-        }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initBinding()
@@ -45,6 +38,11 @@ class SportsServiceListActivity : AppCompatActivity() {
         setUpView()
         initServiceList()
         viewModel.getServices()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getCurrentService()
     }
 
     private fun initBinding() {
@@ -55,8 +53,7 @@ class SportsServiceListActivity : AppCompatActivity() {
 
     private fun initServiceList() {
         adapter = SportsServiceAdapter { sportsService ->
-            val intent = SportsServiceDetailActivity.getIntent(this, sportsService)
-            getScrapOptions.launch(intent)
+            SportsServiceDetailActivity.start(this, sportsService)
         }
         binding.rvSportsServiceList.adapter = adapter
     }
@@ -67,9 +64,11 @@ class SportsServiceListActivity : AppCompatActivity() {
                 true -> {
                     adapter.submitList(it.result)
                 }
+
                 false -> {
                     showToast(it.errorMessage ?: ERROR_MESSAGE_FAIL_RESULT)
                 }
+
                 else -> {
                     // todo: 로딩 화면
                 }

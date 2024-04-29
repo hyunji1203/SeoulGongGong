@@ -17,7 +17,6 @@ class SportsServiceDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySportsServiceDetailBinding
     private val viewModel: SportsServiceDetailViewModel by viewModels()
-    private var flag = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +29,8 @@ class SportsServiceDetailActivity : AppCompatActivity() {
     }
 
     private fun getIntentExtra() {
-        val sportsService = intent.getParcelableExtraCompat(EXTRA_KEY_SPORTS_SERVICE) ?: UiSportsService()
+        val sportsService =
+            intent.getParcelableExtraCompat(EXTRA_KEY_SPORTS_SERVICE) ?: UiSportsService()
         viewModel.setSportsService(sportsService)
     }
 
@@ -41,13 +41,11 @@ class SportsServiceDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun setClickListeners(){
+    private fun setClickListeners() {
         binding.ivSportsServiceDetailScrap.setOnClickListener {
             viewModel.scrapService()
-            flag = true
         }
         binding.ivSportsServiceDetailBack.setOnClickListener {
-            if (flag) setResult(RESULT_OK)
             finish()
         }
     }
@@ -62,12 +60,6 @@ class SportsServiceDetailActivity : AppCompatActivity() {
 
     companion object {
         private const val EXTRA_KEY_SPORTS_SERVICE = "SPORTS_SERVICE"
-
-        fun getIntent(context: Context, sportsService: UiSportsService): Intent {
-            return Intent(context, SportsServiceDetailActivity::class.java).apply {
-                putExtra(EXTRA_KEY_SPORTS_SERVICE, sportsService)
-            }
-        }
 
         fun start(context: Context, sportsService: UiSportsService) {
             val intent = Intent(context, SportsServiceDetailActivity::class.java).apply {
