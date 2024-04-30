@@ -11,6 +11,8 @@ import com.seoulfitu.android.ui.sports_service_detail.viewmodel.SportsServiceDet
 import com.seoulfitu.android.ui.uimodel.UiSportsService
 import com.seoulfitu.android.util.getParcelableExtraCompat
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 @AndroidEntryPoint
 class SportsServiceDetailActivity : AppCompatActivity() {
@@ -38,8 +40,8 @@ class SportsServiceDetailActivity : AppCompatActivity() {
         viewModel.service.observe(this) {
             val service = it.copy(
                 info = it.info.copy(
-                    registrationStartDate = viewModel.formatRegistrationDate(it.info.registrationStartDate),
-                    registrationEndDate = viewModel.formatRegistrationDate(it.info.registrationEndDate)
+                    registrationStartDate = formatRegistrationDate(it.info.registrationStartDate),
+                    registrationEndDate = formatRegistrationDate(it.info.registrationEndDate)
                 )
             )
             binding.service = service
@@ -47,7 +49,7 @@ class SportsServiceDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun setClickListeners(){
+    private fun setClickListeners() {
         binding.ivSportsServiceDetailScrap.setOnClickListener {
             viewModel.scrapService()
             flag = true
@@ -66,8 +68,19 @@ class SportsServiceDetailActivity : AppCompatActivity() {
         }
     }
 
+    private fun formatRegistrationDate(date: String): String {
+        // 자릿수 통일을 위해 밀리초 제거
+        val dateWithoutMills = date.split(".")[0]
+        val dateTimeFormatter = DateTimeFormatter.ofPattern(DATE_TIME_PARSING_PATTERN)
+        val dateTime = LocalDateTime.parse(dateWithoutMills, dateTimeFormatter)
+        val stringFormatter = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT_PATTERN)
+        return dateTime.format(stringFormatter)
+    }
+
     companion object {
         private const val EXTRA_KEY_SPORTS_SERVICE = "SPORTS_SERVICE"
+        private const val DATE_TIME_PARSING_PATTERN = "yyyy-MM-dd HH:mm:ss"
+        private const val DATE_TIME_FORMAT_PATTERN = "yyyy.MM.dd HH:mm"
 
         fun getIntent(context: Context, sportsService: UiSportsService): Intent {
             return Intent(context, SportsServiceDetailActivity::class.java).apply {
