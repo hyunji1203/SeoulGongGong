@@ -36,7 +36,13 @@ class SportsServiceDetailActivity : AppCompatActivity() {
 
     private fun observeSportsService() {
         viewModel.service.observe(this) {
-            binding.service = it
+            val service = it.copy(
+                info = it.info.copy(
+                    registrationStartDate = viewModel.formatRegistrationDate(it.info.registrationStartDate),
+                    registrationEndDate = viewModel.formatRegistrationDate(it.info.registrationEndDate)
+                )
+            )
+            binding.service = service
             setScrapStatue()
         }
     }
