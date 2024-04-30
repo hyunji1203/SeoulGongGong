@@ -24,8 +24,8 @@ fun ImageView.setServiceIcon(type: UiSportsServiceType?) {
         UiSportsServiceType.VOLLEYBALL -> R.drawable.ic_volleyball
         UiSportsServiceType.BASKETBALL -> R.drawable.ic_basketball
         UiSportsServiceType.GOLF -> R.drawable.ic_golf
+        UiSportsServiceType.MULTI_PURPOSE_STADIUM -> R.drawable.ic_stadium
         UiSportsServiceType.ETC,
-        UiSportsServiceType.MULTI_PURPOSE_STADIUM,
         UiSportsServiceType.EDUCATIONAL_FACILITIES,
         null -> R.drawable.ic_etc
     }
