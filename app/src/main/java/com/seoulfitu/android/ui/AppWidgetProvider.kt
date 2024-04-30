@@ -8,8 +8,7 @@ import android.content.Intent
 import android.widget.RemoteViews
 import com.seoulfitu.android.R
 import com.seoulfitu.android.ui.facility.SportsFacilityActivity
-import com.seoulfitu.android.ui.main.MainActivity
-
+import com.seoulfitu.android.ui.sports_service_list.SportsServiceListActivity
 
 class AppWidgetProvider : AppWidgetProvider() {
 
@@ -31,7 +30,7 @@ class AppWidgetProvider : AppWidgetProvider() {
             views,
             context,
             R.id.btn_go_service_activity,
-            MainActivity.getIntent(context),
+            SportsServiceListActivity.getIntent(context),
         )
 
         appWidgetManager.updateAppWidget(appWidgetIds, views)
