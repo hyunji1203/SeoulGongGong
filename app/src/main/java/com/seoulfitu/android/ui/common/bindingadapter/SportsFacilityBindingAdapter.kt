@@ -9,7 +9,8 @@ import com.seoulfitu.android.R
 import com.seoulfitu.android.ui.uimodel.UiSportsFacilityType
 
 @BindingAdapter("app:loadFacilityIcon")
-fun ImageView.loadFacilityIcon(facilityType: UiSportsFacilityType) {
+fun ImageView.loadFacilityIcon(facilityType: UiSportsFacilityType?) {
+    if (facilityType == null) return
     val iconSrc = when (facilityType) {
         UiSportsFacilityType.SWIMMING -> R.drawable.ic_swimming
         UiSportsFacilityType.BASEBALL -> R.drawable.ic_baseball
@@ -29,7 +30,8 @@ fun ImageView.loadFacilityIcon(facilityType: UiSportsFacilityType) {
 }
 
 @BindingAdapter("app:setTextColorWithOperatingStatus")
-fun TextView.setTextColorWithOperatingStatus(operatingStatus: String) {
+fun TextView.setTextColorWithOperatingStatus(operatingStatus: String?) {
+    if (operatingStatus == null) return
     if (operatingStatus.contains("운영")) this.setTextColor(
         ContextCompat.getColor(this.context, R.color.main_teal)
     ) else this.setTextColor(

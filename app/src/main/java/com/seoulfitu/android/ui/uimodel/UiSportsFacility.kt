@@ -27,3 +27,11 @@ data class UiSportsFacilityList(
     val items: List<UiSportsFacility>,
     val isEmpty: Boolean = items.isEmpty(),
 )
+
+data class UiSportsFacilityWithCoordinate(
+    val facility: UiSportsFacility,
+
+    // 디폴트 좌표 : 서울 시청
+    val x: Double = 37.5670135,
+    val y: Double = 126.9783740,
+)

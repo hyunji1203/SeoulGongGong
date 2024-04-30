@@ -20,7 +20,7 @@ data class GeocodeMeta(
     @SerialName("totalCount")
     val totalCount: Int,
     @SerialName("page")
-    val page: Int,
+    val page: Int? = null,
     @SerialName("count")
     val count: Int,
 )
