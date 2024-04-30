@@ -2,7 +2,7 @@ package com.seoulfitu.android.ui.main
 
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
-import android.content.pm.PackageManager
+import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.location.Location
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
@@ -10,7 +10,12 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.checkSelfPermission
 import androidx.core.content.ContextCompat
+import com.google.android.gms.location.CurrentLocationRequest
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.Priority
+import com.google.android.gms.tasks.CancellationToken
+import com.google.android.gms.tasks.CancellationTokenSource
+import com.google.android.gms.tasks.OnTokenCanceledListener
 import com.seoulfitu.android.R
 import com.seoulfitu.android.databinding.ActivityMainBinding
 import com.seoulfitu.android.ui.facility.SportsFacilityActivity
@@ -97,7 +102,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkLocationPermission() {
-        if (checkSelfPermission(this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (checkSelfPermission(this, ACCESS_FINE_LOCATION) != PERMISSION_GRANTED) {
             locationPermissionRequest.launch(locationPermissions)
             return
         }
@@ -106,12 +111,16 @@ class MainActivity : AppCompatActivity() {
     private fun setForecast() {
         checkLocationPermission()
         val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        if (ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            fusedLocationClient.lastLocation
-                .addOnSuccessListener { location: Location? ->
-                    location?.let { viewModel.fetchWeather(it.latitude, location.longitude) }
-                    location?.let { viewModel.fetchParticulateMatter(it.latitude, location.longitude) }
-                }
+        if (ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) == PERMISSION_GRANTED) {
+            fusedLocationClient.getCurrentLocation(
+                createCurrentLocationRequest(),
+                createCancellationToken()
+            ).addOnSuccessListener { location: Location? ->
+                location?.let { viewModel.fetchWeather(it.latitude, location.longitude) }
+                location?.let { viewModel.fetchParticulateMatter(it.latitude, location.longitude) }
+            }.addOnCanceledListener {
+                showToast(getString(R.string.main_location_failure_message))
+            }
         }
     }
 
@@ -120,7 +129,26 @@ class MainActivity : AppCompatActivity() {
         viewModel.fetchSportsServiceScrap()
     }
 
+    private fun createCancellationToken(): CancellationToken =
+        object : CancellationToken() {
+            override fun onCanceledRequested(p0: OnTokenCanceledListener): CancellationToken {
+                return CancellationTokenSource().token
+            }
+            override fun isCancellationRequested(): Boolean = false
+        }
+
+    private fun createCurrentLocationRequest(): CurrentLocationRequest {
+        return CurrentLocationRequest.Builder()
+            .setDurationMillis(LIMIT_TIME.toLong())
+            .setMaxUpdateAgeMillis(CACHING_EXPIRES_IN.toLong())
+            .setPriority(Priority.PRIORITY_BALANCED_POWER_ACCURACY)
+            .build()
+    }
+
     companion object {
+        private const val LIMIT_TIME = 50000
+        private const val CACHING_EXPIRES_IN = 3600000
+
         private val locationPermissions =
             arrayOf(
                 ACCESS_FINE_LOCATION,

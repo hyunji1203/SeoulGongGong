@@ -5,7 +5,8 @@
     <string name="main_location_access">위치 권한이 필요합니다</string>
     <string name="main_greeting_message">안녕하세요\n오늘도 건강한 하루 되세요!</string>
     <string name="main_temperature">%d℃</string>
-    <string name="main_particulate_matter">미세먼지 %d㎍/㎥ </string>
+    <string name="main_particulate_matter">미세먼지 %d㎍/㎥ </string>]
+    <string name="main_location_failure_message">기기의 위치 정보를 불러올 수 없습니다</string>
 
     <!--  SportsFacilityActivity  -->
     <string name="facility_title">공공 체육 시설</string>
