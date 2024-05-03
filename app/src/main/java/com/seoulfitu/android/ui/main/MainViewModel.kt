@@ -28,7 +28,7 @@ class MainViewModel @Inject constructor(
     private val facilityScrapRepository: FacilityScrapRepository,
     private val serviceScrapRepository: ServiceScrapRepository,
 ) : ViewModel() {
-    private val _weatherInfo = MutableLiveData<UiWeather>()
+    private val _weatherInfo = MutableLiveData(UiWeather())
     val weatherInfo: LiveData<UiWeather> = _weatherInfo
 
     private val _particulateMatterInfo = MutableLiveData<UiParticulateMatter>()
