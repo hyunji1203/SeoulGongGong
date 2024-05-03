@@ -1,14 +1,12 @@
 package com.seoulfitu.android.ui.main
 
-import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
-import android.content.pm.PackageManager.PERMISSION_GRANTED
+import android.content.pm.PackageManager.PERMISSION_DENIED
 import android.location.Location
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat.checkSelfPermission
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.CurrentLocationRequest
 import com.google.android.gms.location.LocationServices
@@ -34,15 +32,16 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels()
     private lateinit var serviceScrapAdapter: SportsServiceScrapAdapter
     private lateinit var facilityScrapAdapter: SportsFacilityScrapAdapter
+    private var isLocationPermissionGranted: Boolean = false
 
     private val locationPermissionRequest =
-        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
-            permissions.entries.forEach {
-                val isGranted = it.value
-                if (isGranted.not()) {
-                    showToast(getString(R.string.main_location_access))
-                    openSetting()
-                }
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                isLocationPermissionGranted = true
+                setForecast()
+            } else {
+                showToast(getString(R.string.main_location_access))
+                openSetting()
             }
         }
 
@@ -54,7 +53,12 @@ class MainActivity : AppCompatActivity() {
         initAdapter()
         subscribe()
         setClickListeners()
-        setForecast()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (isLocationPermissionGranted) setForecast()
+        else requestLocationPermission()
     }
 
     override fun onResume() {
@@ -101,23 +105,24 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkLocationPermission() {
-        if (checkSelfPermission(this, ACCESS_FINE_LOCATION) != PERMISSION_GRANTED) {
-            locationPermissionRequest.launch(locationPermissions)
-            return
-        }
+    private fun requestLocationPermission() {
+        locationPermissionRequest.launch(ACCESS_FINE_LOCATION)
     }
 
     private fun setForecast() {
-        checkLocationPermission()
+        if (!isLocationPermissionGranted) {
+            requestLocationPermission()
+            return
+        }
         val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        if (ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) == PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PERMISSION_DENIED) {
+            isLocationPermissionGranted = true
             fusedLocationClient.getCurrentLocation(
                 createCurrentLocationRequest(),
                 createCancellationToken()
             ).addOnSuccessListener { location: Location? ->
-                location?.let { viewModel.fetchWeather(it.latitude, location.longitude) }
-                location?.let { viewModel.fetchParticulateMatter(it.latitude, location.longitude) }
+                location?.let { viewModel.fetchWeather(it.latitude, it.longitude) }
+                location?.let { viewModel.fetchParticulateMatter(it.latitude, it.longitude) }
             }.addOnCanceledListener {
                 showToast(getString(R.string.main_location_failure_message))
             }
@@ -148,11 +153,5 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val LIMIT_TIME = 50000
         private const val CACHING_EXPIRES_IN = 3600000
-
-        private val locationPermissions =
-            arrayOf(
-                ACCESS_FINE_LOCATION,
-                ACCESS_COARSE_LOCATION,
-            )
     }
 }
