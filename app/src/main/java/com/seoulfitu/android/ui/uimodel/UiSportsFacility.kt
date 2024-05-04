@@ -1,6 +1,7 @@
 package com.seoulfitu.android.ui.uimodel
 
 import android.os.Parcelable
+import com.naver.maps.map.overlay.Marker
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -21,6 +22,7 @@ data class UiSportsFacility(
     val type: UiSportsFacilityType,
     val isOperating: String,
     val convenience: String,
+    val canRental: String,
 ) : Parcelable
 
 data class UiSportsFacilityList(
@@ -34,4 +36,9 @@ data class UiSportsFacilityWithCoordinate(
     // 디폴트 좌표 : 서울 시청
     val x: Double = 37.5670135,
     val y: Double = 126.9783740,
+)
+
+data class UiSportsFacilityMarker(
+    val marker: Marker,
+    var facility: UiSportsFacility,
 )

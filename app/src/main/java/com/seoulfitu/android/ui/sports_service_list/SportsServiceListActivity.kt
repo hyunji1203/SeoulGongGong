@@ -67,9 +67,11 @@ class SportsServiceListActivity : AppCompatActivity() {
                 true -> {
                     adapter.submitList(it.result)
                 }
+
                 false -> {
                     showToast(it.errorMessage ?: ERROR_MESSAGE_FAIL_RESULT)
                 }
+
                 else -> {
                     // todo: 로딩 화면
                 }

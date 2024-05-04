@@ -24,6 +24,7 @@ fun SportsFacility.toUi(isScraped: Boolean) =
         type = info.type.toUi(),
         isOperating = info.isOperating,
         convenience = info.convenience,
+        canRental = info.canRental,
     )
 
 fun UiSportsFacility.toDomain(isScraped: Boolean) =

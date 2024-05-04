@@ -8,6 +8,8 @@ import com.seoulfitu.android.R
 import com.seoulfitu.android.databinding.ActivitySportsFacilityFilterBinding
 import com.seoulfitu.android.domain.model.Town
 import com.seoulfitu.android.ui.facility.SportsFacilityBottomSheetFragment.Companion.FILTER_KEY
+import com.seoulfitu.android.ui.uimodel.UiAvailabilityFilter.Companion.changeToAvailabilityFilter
+import com.seoulfitu.android.ui.uimodel.UiAvailabilityFilter.Companion.getOptions
 import com.seoulfitu.android.ui.uimodel.UiSelectedOptions
 import com.seoulfitu.android.ui.uimodel.UiSportsFacilityType
 import com.seoulfitu.android.util.getParcelableExtraCompat
@@ -30,14 +32,14 @@ class SportsFacilityFilterActivity : AppCompatActivity() {
         binding.btnFacilityFilterList.setOnClickListener {
             val cityOptions = binding.cvFacilityFilterCity.getSelectedOptions()
             val typeOptions = binding.cvFacilityFilterType.getSelectedOptions()
-            val rentOptions = binding.cvFacilityFilterRent.getSelectedOptions()
-            val parkingOptions = binding.cvFacilityFilterParking.getSelectedOptions()
+            val rentOptions = binding.cvFacilityFilterRent.getSelectedOption()
+            val parkingOptions = binding.cvFacilityFilterParking.getSelectedOption()
             val uiSelectedOptions =
                 UiSelectedOptions(
                     cities = cityOptions,
                     facilities = typeOptions,
-                    rent = rentOptions,
-                    parking = parkingOptions,
+                    rent = changeToAvailabilityFilter(rentOptions),
+                    parking = changeToAvailabilityFilter(parkingOptions),
                 )
             setResult(RESULT_OK, getIntent(this, uiSelectedOptions))
             finish()
@@ -46,7 +48,7 @@ class SportsFacilityFilterActivity : AppCompatActivity() {
 
     private fun initFilterOption() {
         val selected =
-            intent.getParcelableExtraCompat<UiSelectedOptions>(FILTER_KEY) ?: emptySelectedOptions
+            intent.getParcelableExtraCompat(FILTER_KEY) ?: UiSelectedOptions()
         binding.cvFacilityFilterCity.apply {
             setFilterTitle(getString(R.string.filter_city_option_title))
             addFilterOptionGroup(Town.entries.map { it.townName }, selected.cities)
@@ -57,11 +59,11 @@ class SportsFacilityFilterActivity : AppCompatActivity() {
         }
         binding.cvFacilityFilterRent.apply {
             setFilterTitle(getString(R.string.filter_rent_option_title))
-            addFilterOptionGroup(options, selected.rent)
+            addFilterOptionGroup(getOptions(), listOf(selected.rent?.filterName ?: ""))
         }
         binding.cvFacilityFilterParking.apply {
             setFilterTitle(getString(R.string.filter_parking_option_title))
-            addFilterOptionGroup(options, selected.parking)
+            addFilterOptionGroup(getOptions(), listOf(selected.parking?.filterName ?: ""))
         }
     }
 
@@ -75,9 +77,6 @@ class SportsFacilityFilterActivity : AppCompatActivity() {
     }
 
     companion object {
-        private val options = listOf("가능", "불가능")
-        val emptySelectedOptions =
-            UiSelectedOptions(cities = emptyList(), parking = emptyList())
 
         fun getIntent(
             context: Context,

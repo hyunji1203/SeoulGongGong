@@ -10,7 +10,6 @@ import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.seoulfitu.android.databinding.FragmentSportsFacilityBottomSheetBinding
 import com.seoulfitu.android.ui.filter.facility.SportsFacilityFilterActivity
-import com.seoulfitu.android.ui.filter.facility.SportsFacilityFilterActivity.Companion.emptySelectedOptions
 import com.seoulfitu.android.ui.uimodel.UiSelectedOptions
 import com.seoulfitu.android.util.getParcelableExtraCompat
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,14 +20,16 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
     private val binding get() = _binding!!
     private val viewModel: SportsFacilityViewModel by activityViewModels()
     private lateinit var adapter: SportsFacilityListAdapter
-    private var selectedOptions = emptySelectedOptions
 
     private val sportsFacilityActivityLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == AppCompatActivity.RESULT_OK) {
                 val uiSelectedOptions =
                     it.data?.getParcelableExtraCompat<UiSelectedOptions>(FILTER_KEY) ?: ""
-                selectedOptions = uiSelectedOptions as UiSelectedOptions
+                viewModel.setSelectedOption(uiSelectedOptions as UiSelectedOptions)
+                adapter.submitList(viewModel.listSportsFacilities.value?.items) {
+                    binding.rvFacilityList.scrollToPosition(INITIAL_POSITION)
+                }
             }
         }
 
@@ -48,6 +49,11 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.refreshListFacilities()
+    }
+
     private fun initAdapter() {
         adapter = SportsFacilityListAdapter(viewModel::openFacilityDetail)
         binding.rvFacilityList.adapter = adapter
@@ -61,7 +67,10 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun setClickListeners() {
         binding.btnFacilityFilter.setOnClickListener {
-            val intent = SportsFacilityFilterActivity.getIntent(requireContext(), selectedOptions)
+            val intent = SportsFacilityFilterActivity.getIntent(
+                requireContext(),
+                viewModel.selectedOptions.value ?: UiSelectedOptions(),
+            )
             sportsFacilityActivityLauncher.launch(intent)
         }
     }
@@ -73,5 +82,6 @@ class SportsFacilityBottomSheetFragment : BottomSheetDialogFragment() {
 
     companion object {
         const val FILTER_KEY = "filter"
+        private const val INITIAL_POSITION = 0
     }
 }

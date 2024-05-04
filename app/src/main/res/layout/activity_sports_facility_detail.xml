@@ -116,13 +116,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
-                    android:onClick="@{() -> viewModel.openNaverMap()}"
                     android:text="@{viewModel.facility.address}"
                     android:textAppearance="@style/subtitle_1"
                     android:textColor="@color/link_blue"
                     app:layout_constraintBottom_toBottomOf="@id/iv_facility_detail_location"
                     app:layout_constraintStart_toEndOf="@id/iv_facility_detail_location"
                     app:layout_constraintTop_toTopOf="@id/iv_facility_detail_location"
+                    app:onClickAddress="@{viewModel.facility.address}"
                     tools:text="서울특별시 송파구 방이동 439-8" />
 
                 <ImageView
@@ -336,13 +336,47 @@
                     tools:text="샤워실, 탈의실, 개인사물함, 휴게실, 체온조절실, 구내식당, 매점, 스포츠용품점" />
 
                 <ImageView
+                    android:id="@+id/iv_facility_detail_rent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:background="@drawable/ic_rent"
+                    app:layout_constraintStart_toStartOf="@id/iv_facility_detail_location"
+                    app:layout_constraintTop_toBottomOf="@id/tv_facility_detail_convenience" />
+
+                <TextView
+                    android:id="@+id/tv_facility_detail_rent_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/facility_detail_rent_title"
+                    android:textAppearance="@style/subtitle_1"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_facility_detail_rent"
+                    app:layout_constraintStart_toEndOf="@id/iv_facility_detail_rent"
+                    app:layout_constraintTop_toTopOf="@id/iv_facility_detail_rent" />
+
+                <TextView
+                    android:id="@+id/tv_facility_detail_rent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="@{viewModel.facility.canRental}"
+                    android:textAppearance="@style/body2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_facility_detail_rent_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_facility_detail_rent_title"
+                    tools:text="가능" />
+
+                <ImageView
                     android:id="@+id/iv_facility_detail_parking"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_default"
                     android:background="@drawable/ic_parking"
-                    app:layout_constraintStart_toStartOf="@id/iv_facility_detail_location"
-                    app:layout_constraintTop_toBottomOf="@id/tv_facility_detail_convenience" />
+                    app:layout_constraintStart_toStartOf="@id/iv_facility_detail_rent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_facility_detail_rent" />
 
                 <TextView
                     android:id="@+id/tv_facility_detail_parking_title"

@@ -18,6 +18,7 @@
     <string name="facility_detail_operating_holiday_title">공휴일</string>
     <string name="facility_detail_money_title">시설 사용료</string>
     <string name="facility_detail_convenience_title">편의시설</string>
+    <string name="facility_detail_rent_title">시설 대관 여부</string>
     <string name="facility_detail_parking_title">주차정보</string>
 
     <!--    SportsFacilityBottomSheetFragment-->

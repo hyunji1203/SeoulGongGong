@@ -6,7 +6,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
-import com.seoulfitu.android.BuildConfig
 import com.seoulfitu.android.R
 
 @BindingAdapter("app:serviceImg")
@@ -21,18 +20,6 @@ fun ImageView.setServiceImg(url: String?) {
 //        }
 //
 //    })
-}
-
-@BindingAdapter("app:onClickServiceLocation")
-fun TextView.setOnClickServiceLocationListener(location: String?) {
-    this.setOnClickListener {
-        val url = "nmap://search?query=%s&%s".format(
-            location, BuildConfig.APPLICATION_ID
-        )
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        intent.addCategory(Intent.CATEGORY_BROWSABLE)
-        context.startActivity(intent)
-    }
 }
 
 @BindingAdapter("app:serviceStatusColorForStatus")

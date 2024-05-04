@@ -49,7 +49,7 @@ class SportsServiceDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun setClickListeners(){
+    private fun setClickListeners() {
         binding.ivSportsServiceDetailScrap.setOnClickListener {
             viewModel.scrapService()
             flag = true
