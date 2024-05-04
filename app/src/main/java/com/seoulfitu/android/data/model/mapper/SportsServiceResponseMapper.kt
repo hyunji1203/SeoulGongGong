@@ -31,6 +31,6 @@ fun SportsServiceResponse.toDomain(): SportsServices = SportsServices(
           operatingStartTime = it.operatingStartTime,
           operatingEndTime = it.operatingEndTime,
           cancellationCriteria = it.cancellationCriteria,
-          timeLeftForCancellation = it.timeLeftForCancellation
+          timeLeftForCancellation = it.timeLeftForCancellation,
       )
     })

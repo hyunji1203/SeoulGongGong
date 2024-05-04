@@ -28,5 +28,6 @@ data class SportsService(
     val operatingStartTime: String,
     val operatingEndTime: String,
     val cancellationCriteria: String,
-    val timeLeftForCancellation: Int
+    val timeLeftForCancellation: Int,
+    var address:String = ""
 )
