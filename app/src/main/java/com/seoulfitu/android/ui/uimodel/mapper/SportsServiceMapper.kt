@@ -22,7 +22,8 @@ fun SportsService.toUi(): UiSportsService = UiSportsService(
         payment = payment,
         details = details,
         xCoordinate = xCoordinate,
-        yCoordinate = yCoordinate
+        yCoordinate = yCoordinate,
+        address = address
     )
 )
 
@@ -52,5 +53,6 @@ fun UiSportsService.toDomain(): SportsService {
         operatingEndTime = info.operatingEndTime,
         cancellationCriteria = "",
         timeLeftForCancellation = 0,
+        address = info.address
     )
 }

@@ -21,25 +21,19 @@ class SportsServiceDetailViewModel @Inject constructor(
     private val _service: MutableLiveData<UiSportsService> = MutableLiveData(UiSportsService())
     val service: LiveData<UiSportsService> = _service
 
-    private lateinit var originalServiceInfo: UiSportsService
-
     fun setSportsService(service: UiSportsService) {
         _service.value = service.copy(
-            info = service.info.copy(
-                registrationStartDate = formatRegistrationDate(service.info.registrationStartDate),
-                registrationEndDate = formatRegistrationDate(service.info.registrationEndDate)
-            )
+            info = service.info
         )
-        originalServiceInfo = service
     }
 
     fun scrapService() {
         viewModelScope.launch(Dispatchers.IO) {
             val result = service.value ?: return@launch
             if (result.scrapped) {
-                scrapRepository.deleteScrap(originalServiceInfo.toDomain())
+                scrapRepository.deleteScrap(result.toDomain())
             } else {
-                scrapRepository.scrap(originalServiceInfo.toDomain())
+                scrapRepository.scrap(result.toDomain())
             }
             _service.postValue(
                 _service.value?.copy(scrapped = !result.scrapped)
@@ -47,7 +41,7 @@ class SportsServiceDetailViewModel @Inject constructor(
         }
     }
 
-    private fun formatRegistrationDate(date: String): String {
+    fun formatRegistrationDate(date: String): String {
         // 자릿수 통일을 위해 밀리초 제거
         val dateWithoutMills = date.split(".")[0]
         val dateTimeFormatter = DateTimeFormatter.ofPattern(DATE_TIME_PARSING_PATTERN)
