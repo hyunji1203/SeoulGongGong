@@ -110,10 +110,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setForecast() {
-        if (!isLocationPermissionGranted) {
-            requestLocationPermission()
-            return
-        }
         val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         if (ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PERMISSION_DENIED) {
             isLocationPermissionGranted = true
@@ -121,8 +117,10 @@ class MainActivity : AppCompatActivity() {
                 createCurrentLocationRequest(),
                 createCancellationToken()
             ).addOnSuccessListener { location: Location? ->
-                location?.let { viewModel.fetchWeather(it.latitude, it.longitude) }
-                location?.let { viewModel.fetchParticulateMatter(it.latitude, it.longitude) }
+                location?.let {
+                    viewModel.fetchWeather(it.latitude, it.longitude)
+                    viewModel.fetchParticulateMatter(it.latitude, it.longitude)
+                }
             }.addOnCanceledListener {
                 showToast(getString(R.string.main_location_failure_message))
             }
