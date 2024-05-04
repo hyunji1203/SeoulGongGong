@@ -118,7 +118,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_sports_service"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_sports_service"
             tools:itemCount="10"
             tools:listitem="@layout/sports_service_item" />
     </androidx.constraintlayout.widget.ConstraintLayout>

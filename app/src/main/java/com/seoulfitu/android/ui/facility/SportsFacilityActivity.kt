@@ -20,6 +20,7 @@ import com.naver.maps.map.util.MarkerIcons
 import com.seoulfitu.android.R
 import com.seoulfitu.android.databinding.ActivityPublicSportsFacilityBinding
 import com.seoulfitu.android.ui.facility.detail.SportsFacilityDetailActivity
+import com.seoulfitu.android.ui.uimodel.UiSportsFacility
 import com.seoulfitu.android.ui.uimodel.UiSportsFacilityMarker
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -69,11 +70,15 @@ class SportsFacilityActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun initFacilitiesObserve() {
         viewModel.sportsFacilities.observe(this) { facilities ->
-            markers.forEach { marker ->
-                facilities.find { it.facilityName == marker.facility.facilityName }
-                    ?.let { marker.facility = it }
-            }
+            asyncWithMarker(facilities)
             selectedMarker?.performClick()
+        }
+    }
+
+    private fun asyncWithMarker(facilities: List<UiSportsFacility>) {
+        markers.forEach { marker ->
+            facilities.find { it.facilityName == marker.facility.facilityName }
+                ?.let { marker.facility = it }
         }
     }
 

@@ -15,6 +15,8 @@ import com.seoulfitu.android.ui.uimodel.UiSportsFacilityWithCoordinate
 import com.seoulfitu.android.ui.uimodel.mapper.toUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -58,10 +60,7 @@ constructor(
                     }
                 _listSportsFacilities.value =
                     UiSportsFacilityList(_sportsFacilities.value ?: emptyList())
-
-                _sportsFacilities.value?.forEachIndexed { index, uiSportsFacility ->
-                    searchPosition(index, uiSportsFacility)
-                }
+                searchPosition()
             }
         }
     }
@@ -73,18 +72,20 @@ constructor(
         }
     }
 
-    private suspend fun searchPosition(facilityIndex: Int, sportsFacility: UiSportsFacility) {
+    private suspend fun searchPosition() {
         viewModelScope.launch {
-            geocodingRepository.geocode(sportsFacility.address).onSuccess {
-                if (it.values.isNotEmpty()) {
-                    val cor = it.values.first().coordinate
-                    _facilityWithCoordinate.value =
-                        UiSportsFacilityWithCoordinate(sportsFacility, cor.x, cor.y)
+            _sportsFacilities.value?.map { sportsFacility ->
+                async { sportsFacility to geocodingRepository.geocode(sportsFacility.address) }
+            }?.awaitAll()?.forEach { (sportsFacility, addresses) ->
+                addresses.onSuccess { address ->
+                    if (address.values.isNotEmpty()) {
+                        val cor = address.values.first().coordinate
+                        _facilityWithCoordinate.value =
+                            UiSportsFacilityWithCoordinate(sportsFacility, cor.x, cor.y)
+                    }
                 }
             }
-            if (facilityIndex + 1 == sportsFacilities.value?.size) {
-                _facilityWithCoordinate.value = null
-            }
+            _facilityWithCoordinate.value = null
         }
     }
 
@@ -93,7 +94,7 @@ constructor(
             val currentFacility = _sportsFacilities.value?.map {
                 it.copy(isScrap = isScraped(it.facilityName))
             } ?: emptyList()
-            _sportsFacilities.value = currentFacility.toList()
+            _sportsFacilities.value = currentFacility
         }
     }
 
