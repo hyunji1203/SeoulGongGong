@@ -7,6 +7,7 @@ import androidx.databinding.BindingAdapter
 import com.airbnb.lottie.LottieAnimationView
 import com.seoulfitu.android.R
 import com.seoulfitu.android.ui.uimodel.UiWeather
+import com.seoulfitu.android.ui.uimodel.UiWeather.Companion.INIT_VALUE
 import com.seoulfitu.android.ui.uimodel.WeatherStatus
 
 @BindingAdapter("app:setWeatherIcon")
@@ -23,7 +24,7 @@ fun ImageView.setWeatherIcon(weatherStatus: WeatherStatus?) {
 
 @BindingAdapter("app:setWeatherInfoVisibility")
 fun ConstraintLayout.setWeatherInfoVisibility(weather: UiWeather) {
-    if (weather.temperature == -100) {
+    if (weather.temperature == INIT_VALUE) {
         this.visibility = View.GONE
     } else {
         this.visibility = View.VISIBLE
@@ -32,7 +33,7 @@ fun ConstraintLayout.setWeatherInfoVisibility(weather: UiWeather) {
 
 @BindingAdapter("app:setNoWeatherInfoVisibility")
 fun LottieAnimationView.setNoWeatherInfoVisibility(weather: UiWeather) {
-    if (weather.temperature == -100) {
+    if (weather.temperature == INIT_VALUE) {
         this.visibility = View.VISIBLE
     } else {
         this.visibility = View.GONE
