@@ -38,6 +38,15 @@
                     android:textAppearance="@style/title_1M"
                     android:textColor="@color/black" />
 
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/lav_main_weather_skeleton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="260dp"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:setNoWeatherInfoVisibility="@{viewmodel.weatherInfo}"
+                    app:lottie_rawRes="@raw/weather_skeletonview" />
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_main_weather"
                     android:layout_width="match_parent"
@@ -46,6 +55,7 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="@dimen/margin_default"
                     android:layout_marginBottom="24dp"
+                    app:setWeatherInfoVisibility="@{viewmodel.weatherInfo}"
                     android:background="@drawable/rect_white_radius"
                     android:elevation="7dp">
 
@@ -138,7 +148,6 @@
                         tools:text="상일동" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
