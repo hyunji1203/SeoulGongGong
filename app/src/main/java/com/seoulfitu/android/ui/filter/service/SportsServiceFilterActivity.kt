@@ -8,7 +8,6 @@ import com.seoulfitu.android.R
 import com.seoulfitu.android.databinding.ActivitySportsServiceFilterBinding
 import com.seoulfitu.android.domain.model.Town
 import com.seoulfitu.android.ui.facility.SportsFacilityBottomSheetFragment.Companion.FILTER_KEY
-import com.seoulfitu.android.ui.filter.facility.SportsFacilityFilterActivity.Companion.emptySelectedOptions
 import com.seoulfitu.android.ui.uimodel.UiSelectedOptions
 import com.seoulfitu.android.ui.uimodel.UiSportsServiceType
 import com.seoulfitu.android.util.getParcelableExtraCompat
@@ -31,7 +30,7 @@ class SportsServiceFilterActivity : AppCompatActivity() {
         binding.btnServiceFilterList.setOnClickListener {
             val cityOptions = binding.cvServiceFilterCity.getSelectedOptions()
             val typeOptions = binding.cvServiceFilterType.getSelectedOptions()
-            val priceOptions = binding.cvServiceFilterPrice.getSelectedOptions()
+            val priceOptions = binding.cvServiceFilterPrice.getSelectedOption()
             val statusOptions = binding.cvServiceFilterStatus.getSelectedOptions()
             val uiSelectedOptions =
                 UiSelectedOptions(
@@ -39,7 +38,6 @@ class SportsServiceFilterActivity : AppCompatActivity() {
                     services = typeOptions,
                     price = priceOptions,
                     serviceStatus = statusOptions,
-                    parking = listOf()
                 )
             setResult(RESULT_OK, getIntent(this, uiSelectedOptions))
             finish()
@@ -48,7 +46,7 @@ class SportsServiceFilterActivity : AppCompatActivity() {
 
     private fun initFilterOption() {
         val selected =
-            intent.getParcelableExtraCompat(FILTER_KEY) ?: emptySelectedOptions
+            intent.getParcelableExtraCompat(FILTER_KEY) ?: UiSelectedOptions()
         binding.cvServiceFilterCity.apply {
             setFilterTitle(getString(R.string.filter_city_option_title))
             addFilterOptionGroup(Town.entries.map { it.townName }, selected.cities)
@@ -59,7 +57,7 @@ class SportsServiceFilterActivity : AppCompatActivity() {
         }
         binding.cvServiceFilterPrice.apply {
             setFilterTitle(getString(R.string.filter_price_option_title))
-            addFilterOptionGroup(priceOptions, selected.price)
+            addFilterOptionGroup(priceOptions, listOf(selected.price))
         }
         binding.cvServiceFilterStatus.apply {
             setFilterTitle(getString(R.string.filter_status_option_title))

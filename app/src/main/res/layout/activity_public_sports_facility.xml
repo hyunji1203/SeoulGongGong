@@ -8,6 +8,10 @@
         <variable
             name="viewModel"
             type="com.seoulfitu.android.ui.facility.SportsFacilityViewModel" />
+
+        <variable
+            name="onBackClick"
+            type="kotlin.jvm.functions.Function0" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,6 +35,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="24dp"
                 android:background="@drawable/ic_back"
+                android:onClick="@{() -> onBackClick.invoke()}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,8 +67,6 @@
                 android:layout_height="0dp"
                 android:layout_marginEnd="@dimen/margin_default"
                 android:background="@drawable/rect_main_teal_12_stroke"
-                android:inputType="text"
-                android:textAppearance="@style/body_1"
                 app:layout_constraintBottom_toBottomOf="@id/et_search"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/et_search"
@@ -74,7 +77,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:background="#00000000"
+                android:background="@android:color/transparent"
                 android:hint="@android:string/search_go"
                 android:inputType="text"
                 android:padding="@dimen/margin_default"
@@ -113,6 +116,28 @@
             app:navermap_scaleBarEnabled="true"
             app:navermap_tiltGesturesEnabled="false"
             tools:background="@color/main_orange" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/ic_loading_facility"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/fragment_map"
+            app:lottie_autoPlay="true"
+            app:lottie_colorFilter="@color/main_teal"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading" />
+
+        <com.seoulfitu.android.ui.facility.SportsFacilityInfoView
+            android:id="@+id/bottom_facility_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_default"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

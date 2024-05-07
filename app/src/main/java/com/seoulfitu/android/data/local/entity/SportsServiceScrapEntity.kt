@@ -31,4 +31,5 @@ data class SportsServiceScrapEntity(
     val cancellationCriteria: String,
     val timeLeftForCancellation: Int,
     val type:SportsServiceType
+    val address:String
 )

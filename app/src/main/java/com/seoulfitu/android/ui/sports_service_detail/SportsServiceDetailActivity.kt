@@ -3,6 +3,7 @@ package com.seoulfitu.android.ui.sports_service_detail
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.seoulfitu.android.databinding.ActivitySportsServiceDetailBinding
@@ -27,6 +28,7 @@ class SportsServiceDetailActivity : AppCompatActivity() {
         getIntentExtra()
         observeSportsService()
         setClickListeners()
+        addOnBackPressedCallback()
     }
 
     private fun getIntentExtra() {
@@ -36,20 +38,32 @@ class SportsServiceDetailActivity : AppCompatActivity() {
 
     private fun observeSportsService() {
         viewModel.service.observe(this) {
-            binding.service = it
+            val service = it.copy(
+                info = it.info.copy(
+                    registrationStartDate = viewModel.formatRegistrationDate(it.info.registrationStartDate),
+                    registrationEndDate = viewModel.formatRegistrationDate(it.info.registrationEndDate)
+                )
+            )
+            binding.service = service
             setScrapStatue()
         }
     }
 
-    private fun setClickListeners(){
+    private fun setClickListeners() {
         binding.ivSportsServiceDetailScrap.setOnClickListener {
             viewModel.scrapService()
             flag = true
         }
-        binding.ivSportsServiceDetailBack.setOnClickListener {
-            if (flag) setResult(RESULT_OK)
-            finish()
+    }
+
+    private fun addOnBackPressedCallback() {
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (flag) setResult(RESULT_OK)
+                finish()
+            }
         }
+        onBackPressedDispatcher.addCallback(this, callback)
     }
 
     private fun setScrapStatue() {

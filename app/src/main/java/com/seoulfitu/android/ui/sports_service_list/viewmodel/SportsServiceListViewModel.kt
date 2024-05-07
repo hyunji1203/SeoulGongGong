@@ -43,7 +43,7 @@ class SportsServiceListViewModel @Inject constructor(
                 services = sportsService.services.map { it.toUi() }
                     .map { it.copy(scrapped = isScraped(it)) }
                 searchedServices = services
-                _uiState.value = _uiState.value?.copy( isSuccess = true, result = services)
+                _uiState.value = _uiState.value?.copy(isSuccess = true, result = services)
                 services.forEach { service ->
                     reverseGeocode(service)
                 }

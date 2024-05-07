@@ -20,9 +20,6 @@ class SportsFacilityDetailViewModel @Inject constructor(
     private val _facility: MutableLiveData<UiSportsFacility> = MutableLiveData()
     val facility: LiveData<UiSportsFacility> = _facility
 
-    private val _openNaverMap: MutableLiveData<String> = MutableLiveData()
-    val openNaverMap: LiveData<String> = _openNaverMap
-
     private val _openWebPage: MutableLiveData<String> = MutableLiveData()
     val openWebPage: LiveData<String> = _openWebPage
 
@@ -31,10 +28,6 @@ class SportsFacilityDetailViewModel @Inject constructor(
 
     fun setFacilityData(facility: UiSportsFacility) {
         _facility.value = facility
-    }
-
-    fun openNaverMap() {
-        _openNaverMap.value = facility.value?.address
     }
 
     fun openWebPage() {

@@ -20,16 +20,6 @@
             tools:context="com.seoulfitu.android.ui.sports_service_detail.SportsServiceDetailActivity">
 
             <ImageView
-                android:id="@+id/iv_sports_service_detail_back"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginStart="@dimen/margin_default"
-                android:layout_marginTop="20dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_back" />
-
-            <ImageView
                 android:id="@+id/iv_sports_service_detail_scrap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -140,7 +130,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/iv_sports_service_detail_location"
                 app:layout_constraintTop_toTopOf="@id/iv_sports_service_detail_location"
-                app:onClickServiceLocation="@{service.info.address}"
+                app:onClickAddress="@{service.info.address}"
                 tools:text="서울특별시 송파구 방이동 439-8" />
 
             <ImageView

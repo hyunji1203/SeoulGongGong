@@ -6,7 +6,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
-import com.seoulfitu.android.BuildConfig
 import com.seoulfitu.android.R
 import com.seoulfitu.android.ui.uimodel.UiSportsServiceType
 
@@ -30,18 +29,6 @@ fun ImageView.setServiceIcon(type: UiSportsServiceType?) {
         null -> R.drawable.ic_etc
     }
     this.setImageResource(iconSrc)
-}
-
-@BindingAdapter("app:onClickServiceLocation")
-fun TextView.setOnClickServiceLocationListener(location: String?) {
-    this.setOnClickListener {
-        val url = "nmap://search?query=%s&%s".format(
-            location, BuildConfig.APPLICATION_ID
-        )
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        intent.addCategory(Intent.CATEGORY_BROWSABLE)
-        context.startActivity(intent)
-    }
 }
 
 @BindingAdapter("app:serviceStatusColorForStatus")
