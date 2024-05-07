@@ -58,7 +58,7 @@ fun SportsService.toEntity(): SportsServiceScrapEntity {
         operatingEndTime = operatingEndTime,
         cancellationCriteria = cancellationCriteria,
         timeLeftForCancellation = timeLeftForCancellation,
-        type = type
+        type = type,
         address = address
     )
 }

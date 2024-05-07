@@ -91,6 +91,9 @@ class SportsServiceListActivity : AppCompatActivity() {
             )
             getFilterOptions.launch(intent)
         }
+        binding.onClickBack = {
+            onBackPressed()
+        }
     }
 
     companion object {
