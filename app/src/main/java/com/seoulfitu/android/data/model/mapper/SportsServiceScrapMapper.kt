@@ -8,7 +8,7 @@ fun SportsServiceScrapEntity.toDomain(): SportsService {
         division = division,
         serviceId = serviceId,
         mainCategory = mainCategory,
-        subCategory = subCategory,
+        type = type,
         serviceStatus = serviceStatus,
         serviceName = serviceName,
         payment = payment,
@@ -38,7 +38,6 @@ fun SportsService.toEntity(): SportsServiceScrapEntity {
         division = division,
         serviceId = serviceId,
         mainCategory = mainCategory,
-        subCategory = subCategory,
         serviceStatus = serviceStatus,
         serviceName = serviceName,
         payment = payment,
@@ -59,6 +58,7 @@ fun SportsService.toEntity(): SportsServiceScrapEntity {
         operatingEndTime = operatingEndTime,
         cancellationCriteria = cancellationCriteria,
         timeLeftForCancellation = timeLeftForCancellation,
+        type = type,
         address = address
     )
 }

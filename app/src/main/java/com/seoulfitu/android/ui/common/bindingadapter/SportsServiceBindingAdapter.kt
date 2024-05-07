@@ -7,19 +7,28 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.seoulfitu.android.R
+import com.seoulfitu.android.ui.uimodel.UiSportsServiceType
 
-@BindingAdapter("app:serviceImg")
-fun ImageView.setServiceImg(url: String?) {
-//    Glide.with(this).load(url).into(object : CustomTarget<Drawable>() {
-//        override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
-//            this@serviceImg.setImageDrawable(resource)
-//        }
-//
-//        override fun onLoadCleared(placeholder: Drawable?) {
-//            TODO("Not yet implemented")
-//        }
-//
-//    })
+@BindingAdapter("app:serviceIcon")
+fun ImageView.setServiceIcon(type: UiSportsServiceType?) {
+    val iconSrc = when (type) {
+        UiSportsServiceType.FUTSAL -> R.drawable.ic_futsal
+        UiSportsServiceType.TENNIS -> R.drawable.ic_tennis
+        UiSportsServiceType.PING_PONG -> R.drawable.ic_ping_pong
+        UiSportsServiceType.SOCCER -> R.drawable.ic_soccer
+        UiSportsServiceType.GYM -> R.drawable.ic_gym
+        UiSportsServiceType.FOOT_VOLLEYBALL -> R.drawable.ic_foot_volleyball
+        UiSportsServiceType.BASEBALL -> R.drawable.ic_baseball
+        UiSportsServiceType.BADMINTON -> R.drawable.ic_badminton
+        UiSportsServiceType.VOLLEYBALL -> R.drawable.ic_volleyball
+        UiSportsServiceType.BASKETBALL -> R.drawable.ic_basketball
+        UiSportsServiceType.GOLF -> R.drawable.ic_golf
+        UiSportsServiceType.MULTI_PURPOSE_STADIUM -> R.drawable.ic_stadium
+        UiSportsServiceType.ETC,
+        UiSportsServiceType.EDUCATIONAL_FACILITIES,
+        null -> R.drawable.ic_etc
+    }
+    this.setImageResource(iconSrc)
 }
 
 @BindingAdapter("app:serviceStatusColorForStatus")

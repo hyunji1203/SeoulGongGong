@@ -100,16 +100,16 @@ class SportsServiceListViewModel @Inject constructor(
             val cityFit = if (options.cities.isEmpty()) true else options.cities.any { city ->
                 service.info.address.contains(city)
             }
-            val serviceFit =
-                if (options.services.isEmpty()) true else options.services.any { serviceOption ->
-                    service.info.subCategory.contains(serviceOption)
-                }
-            val priceFit =
-                if (options.price.isEmpty()) true else service.info.payment.contains(options.price)
-            val serviceStatusFit =
-                if (options.serviceStatus.isEmpty()) true else options.serviceStatus.any { status ->
-                    service.info.status.replace(" ", "").contains(status.replace(" ", ""))
-                }
+
+            val serviceFit = if (options.services.isEmpty()) true else options.services.any { serviceOption ->
+                service.info.type.typeName.contains(serviceOption)
+            }
+            val priceFit = if (options.price.isEmpty()) true else options.price.any { price ->
+                service.info.payment.contains(price)
+            }
+            val serviceStatusFit = if (options.serviceStatus.isEmpty()) true else options.serviceStatus.any { status ->
+                service.info.status.replace(" ", "").contains(status.replace(" ", ""))
+            }
 
             cityFit and serviceFit and priceFit and serviceStatusFit /*and priceFit and serviceStatusFit*/
         }

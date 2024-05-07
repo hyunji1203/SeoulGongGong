@@ -18,7 +18,6 @@ data class UiSportsServiceInfo(
     val operatingEndTime: String = "",
     val img: String = "",
     val status: String = "",
-    val subCategory: String = "",
     var address: String = "",
     val url: String = "",
     val phoneNumber: String = "",
@@ -29,4 +28,5 @@ data class UiSportsServiceInfo(
     val details: String = "",
     val xCoordinate: Double = 0.0,
     val yCoordinate: Double = 0.0,
+    val type:UiSportsServiceType = UiSportsServiceType.ETC,
 ) :Parcelable

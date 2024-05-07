@@ -9,7 +9,7 @@ import com.seoulfitu.android.databinding.ActivitySportsServiceFilterBinding
 import com.seoulfitu.android.domain.model.Town
 import com.seoulfitu.android.ui.facility.SportsFacilityBottomSheetFragment.Companion.FILTER_KEY
 import com.seoulfitu.android.ui.uimodel.UiSelectedOptions
-import com.seoulfitu.android.ui.uimodel.UiSportsFacilityType
+import com.seoulfitu.android.ui.uimodel.UiSportsServiceType
 import com.seoulfitu.android.util.getParcelableExtraCompat
 
 class SportsServiceFilterActivity : AppCompatActivity() {
@@ -53,7 +53,7 @@ class SportsServiceFilterActivity : AppCompatActivity() {
         }
         binding.cvServiceFilterType.apply {
             setFilterTitle(getString(R.string.filter_service_option_title))
-            addFilterOptionGroup(UiSportsFacilityType.entries.map { it.typeName }, selected.services)
+            addFilterOptionGroup(UiSportsServiceType.entries.map { it.typeName }, selected.services)
         }
         binding.cvServiceFilterPrice.apply {
             setFilterTitle(getString(R.string.filter_price_option_title))

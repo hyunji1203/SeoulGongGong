@@ -40,7 +40,7 @@
                 android:src="@drawable/ic_launcher_background"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_sports_service_detail_scrap"
-                app:serviceImg="@{service.info.img}" />
+                app:serviceIcon = "@{service.info.type}"/>
 
             <TextView
                 android:id="@+id/tv_sports_service_detail_title"
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="@dimen/margin_default"
-                android:text="@{service.info.subCategory}"
+                android:text="@{service.info.type.typeName}"
                 android:textAppearance="@style/caption_1"
                 app:layout_constraintBottom_toBottomOf="@id/iv_sports_service_detail_img"
                 app:layout_constraintEnd_toEndOf="parent"
