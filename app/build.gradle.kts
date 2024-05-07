@@ -19,7 +19,7 @@ val properties = Properties()
 properties.load(FileInputStream(rootProject.file("local.properties")))
 
 android {
-    namespace = "com.seoulfitu.android"
+    namespace = "com.seoulfitu.seoulfitu"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     // BuildConfig 클래스 생성
@@ -28,7 +28,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.seoulfitu.android"
+        applicationId = "com.seoulfitu.seoulfitu"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = libs.versions.versionCode.get().toInt()

@@ -7,7 +7,7 @@
 
         <variable
             name="service"
-            type="com.seoulfitu.android.ui.uimodel.UiSportsService" />
+            type="com.seoulfitu.seoulfitu.ui.uimodel.UiSportsService" />
     </data>
 
     <ScrollView
@@ -17,7 +17,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context="com.seoulfitu.android.ui.sports_service_detail.SportsServiceDetailActivity">
+            tools:context="com.seoulfitu.seoulfitu.ui.sports_service_detail.SportsServiceDetailActivity">
 
             <ImageView
                 android:id="@+id/iv_sports_service_detail_scrap"

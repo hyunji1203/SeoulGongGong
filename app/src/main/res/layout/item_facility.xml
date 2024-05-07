@@ -11,7 +11,7 @@
 
         <variable
             name="facilityItem"
-            type="com.seoulfitu.android.ui.uimodel.UiSportsFacility" />
+            type="com.seoulfitu.seoulfitu.ui.uimodel.UiSportsFacility" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

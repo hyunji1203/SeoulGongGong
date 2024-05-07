@@ -9,7 +9,7 @@
         tools:ignore="SystemPermissionTypo" />
 
     <application
-        android:name="com.seoulfitu.android.SeoulGongGongApplication"
+        android:name="com.seoulfitu.seoulfitu.SeoulGongGongApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"

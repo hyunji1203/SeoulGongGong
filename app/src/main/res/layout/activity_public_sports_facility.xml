@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.seoulfitu.android.ui.facility.SportsFacilityViewModel" />
+            type="com.seoulfitu.seoulfitu.ui.facility.SportsFacilityViewModel" />
 
         <variable
             name="onBackClick"
@@ -129,7 +129,7 @@
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/loading" />
 
-        <com.seoulfitu.android.ui.facility.SportsFacilityInfoView
+        <com.seoulfitu.seoulfitu.ui.facility.SportsFacilityInfoView
             android:id="@+id/bottom_facility_info"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

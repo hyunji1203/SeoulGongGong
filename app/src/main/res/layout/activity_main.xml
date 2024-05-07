@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.seoulfitu.android.ui.main.MainViewModel" />
+            type="com.seoulfitu.seoulfitu.ui.main.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -220,14 +220,14 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <com.seoulfitu.android.ui.main.scrap.ScrapCustomView
+                <com.seoulfitu.seoulfitu.ui.main.scrap.ScrapCustomView
                     android:id="@+id/cv_facility_scrap"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/margin_default"
                     android:layout_marginTop="@dimen/margin_default" />
 
-                <com.seoulfitu.android.ui.main.scrap.ScrapCustomView
+                <com.seoulfitu.seoulfitu.ui.main.scrap.ScrapCustomView
                     android:id="@+id/cv_service_scrap"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

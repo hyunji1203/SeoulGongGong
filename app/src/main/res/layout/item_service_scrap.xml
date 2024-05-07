@@ -10,7 +10,7 @@
 
         <variable
             name="serviceItem"
-            type="com.seoulfitu.android.ui.uimodel.UiSportsService" />
+            type="com.seoulfitu.seoulfitu.ui.uimodel.UiSportsService" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

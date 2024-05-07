@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.seoulfitu.android.ui.facility.SportsFacilityViewModel" />
+            type="com.seoulfitu.seoulfitu.ui.facility.SportsFacilityViewModel" />
     </data>
 
     <LinearLayout

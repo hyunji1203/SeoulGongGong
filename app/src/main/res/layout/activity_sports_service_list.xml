@@ -21,7 +21,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.seoulfitu.android.ui.sports_service_list.SportsServiceListActivity">
+        tools:context="com.seoulfitu.seoulfitu.ui.sports_service_list.SportsServiceListActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/toolbar_sports_service"
