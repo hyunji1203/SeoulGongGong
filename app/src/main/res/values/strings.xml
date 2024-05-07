@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SeoulGongGong</string>
+    <string name="app_name">서울 핏 유</string>
 
     <!-- MainActivity -->
     <string name="main_location_access">위치 권한이 필요합니다</string>
