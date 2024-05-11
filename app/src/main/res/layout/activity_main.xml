@@ -20,8 +20,10 @@
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
@@ -44,8 +46,8 @@
                     android:layout_height="260dp"
                     app:lottie_autoPlay="true"
                     app:lottie_loop="true"
-                    app:setNoWeatherInfoVisibility="@{viewmodel.weatherInfo}"
-                    app:lottie_rawRes="@raw/weather_skeletonview" />
+                    app:lottie_rawRes="@raw/weather_skeletonview"
+                    app:setNoWeatherInfoVisibility="@{viewmodel.weatherInfo}" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_main_weather"
@@ -55,9 +57,9 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="@dimen/margin_default"
                     android:layout_marginBottom="24dp"
-                    app:setWeatherInfoVisibility="@{viewmodel.weatherInfo}"
                     android:background="@drawable/rect_white_radius"
-                    android:elevation="7dp">
+                    android:elevation="7dp"
+                    app:setWeatherInfoVisibility="@{viewmodel.weatherInfo}">
 
                     <TextView
                         android:id="@+id/tv_main_temperature"
@@ -149,21 +151,22 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cl_main_public_facility"
-                        android:layout_width="168dp"
+                        android:layout_width="match_parent"
                         android:layout_height="168dp"
                         android:layout_marginStart="@dimen/margin_default"
+                        android:layout_marginEnd="@dimen/margin_default"
                         android:layout_marginBottom="@dimen/margin_default"
+                        android:layout_weight="1"
                         android:background="@drawable/rect_sub_teal_radius"
-                        android:elevation="7dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        android:elevation="7dp">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -188,15 +191,14 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cl_main_public_service"
-                        android:layout_width="168dp"
+                        android:layout_width="match_parent"
                         android:layout_height="168dp"
+                        android:layout_marginStart="@dimen/margin_default"
                         android:layout_marginEnd="@dimen/margin_default"
                         android:layout_marginBottom="@dimen/margin_default"
+                        android:layout_weight="1"
                         android:background="@drawable/rect_opacity_teal_radius"
-                        android:elevation="7dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        android:elevation="7dp">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -218,7 +220,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
 
                 <com.seoulfitu.seoulfitu.ui.main.scrap.ScrapCustomView
                     android:id="@+id/cv_facility_scrap"
@@ -233,7 +235,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/margin_default"
                     android:layout_marginTop="@dimen/margin_default"
-                    android:layout_marginBottom="40dp"/>
+                    android:layout_marginBottom="40dp" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
