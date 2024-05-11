@@ -1,6 +1,8 @@
 package com.seoulfitu.seoulfitu
 
 import android.app.Application
+import com.seoulfitu.seoulfitu.data.datasource.GeoDataSource
+import com.seoulfitu.seoulfitu.data.datasource.GoogleGeoDataSource
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
@@ -11,11 +13,10 @@ class SeoulGongGongApplication : Application() {
     }
 
     private fun initDataSources() {
-        geoDataSource =
-            com.seoulfitu.seoulfitu.data.datasource.GoogleGeoDataSource(applicationContext)
+        geoDataSource = GoogleGeoDataSource(applicationContext)
     }
 
     companion object DependencyContainer {
-        lateinit var geoDataSource: com.seoulfitu.seoulfitu.data.datasource.GeoDataSource
+        lateinit var geoDataSource: GeoDataSource
     }
 }
