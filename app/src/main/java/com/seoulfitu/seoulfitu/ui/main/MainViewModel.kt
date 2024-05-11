@@ -65,8 +65,6 @@ class MainViewModel @Inject constructor(
                 )
             }.onSuccess { weathers ->
                 _weatherInfo.value = weathers.toUi()
-            }.onFailure {
-                _throwable.value = it.message
             }
         }
     }
@@ -81,8 +79,6 @@ class MainViewModel @Inject constructor(
                 particulateMatterRepository.getParticulateMatter(findTownName(address))
             }.onSuccess { particulateMatterInfo ->
                 _particulateMatterInfo.value = particulateMatterInfo.toUi()
-            }.onFailure {
-                _throwable.value = it.message
             }
         }
     }
