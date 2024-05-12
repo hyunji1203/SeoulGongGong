@@ -5,8 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.seoulfitu.seoulfitu.domain.model.BaseDateTime
+import com.seoulfitu.seoulfitu.domain.model.Coordinate
+import com.seoulfitu.seoulfitu.domain.model.RegionsWithCoordinate
+import com.seoulfitu.seoulfitu.domain.model.Town.Companion.findTownName
 import com.seoulfitu.seoulfitu.domain.repository.FacilityScrapRepository
-import com.seoulfitu.seoulfitu.domain.repository.GeoRepository
+import com.seoulfitu.seoulfitu.domain.repository.GeocodingRepository
 import com.seoulfitu.seoulfitu.domain.repository.ParticulateMatterRepository
 import com.seoulfitu.seoulfitu.domain.repository.ServiceScrapRepository
 import com.seoulfitu.seoulfitu.domain.repository.WeatherRepository
@@ -18,13 +21,14 @@ import com.seoulfitu.seoulfitu.ui.uimodel.mapper.toUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val weatherRepository: WeatherRepository,
     private val particulateMatterRepository: ParticulateMatterRepository,
-    private val geoRepository: GeoRepository,
+    private val geocodingRepository: GeocodingRepository,
     private val facilityScrapRepository: FacilityScrapRepository,
     private val serviceScrapRepository: ServiceScrapRepository,
 ) : ViewModel() {
@@ -61,8 +65,6 @@ class MainViewModel @Inject constructor(
                 )
             }.onSuccess { weathers ->
                 _weatherInfo.value = weathers.toUi()
-            }.onFailure {
-                _throwable.value = it.message
             }
         }
     }
@@ -73,13 +75,27 @@ class MainViewModel @Inject constructor(
     ) {
         viewModelScope.launch {
             runCatching {
-                val address = geoRepository.getCityAddress(latitude, longitude)
-                particulateMatterRepository.getParticulateMatter(address)
+                val address = reverseGeocode(latitude, longitude)
+                particulateMatterRepository.getParticulateMatter(findTownName(address))
             }.onSuccess { particulateMatterInfo ->
                 _particulateMatterInfo.value = particulateMatterInfo.toUi()
-            }.onFailure {
-                _throwable.value = it.message
             }
+        }
+    }
+
+    private suspend fun reverseGeocode(latitude: Double, longitude: Double): String {
+        return withContext(Dispatchers.IO) {
+            val result = geocodingRepository.reverseGeocode(Coordinate(longitude, latitude))
+            result.onSuccess {
+                return@withContext formatRegion(it)
+            }
+            return@withContext ADDRESS_MISSING_VALUE
+        }
+    }
+
+    private fun formatRegion(regionsWithCoordinate: RegionsWithCoordinate): String {
+        regionsWithCoordinate.values[0].apply {
+            return "${area1.name} ${area2.name} ${area3.name} ${area4.name}"
         }
     }
 
@@ -113,5 +129,9 @@ class MainViewModel @Inject constructor(
 
     fun openServiceDetail(item: UiSportsService) {
         _serviceDetailOpenEvent.value = item
+    }
+
+    companion object {
+        private const val ADDRESS_MISSING_VALUE = "Unknown Address"
     }
 }

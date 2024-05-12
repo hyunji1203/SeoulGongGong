@@ -29,7 +29,7 @@ enum class Town(val townName: String) {
 
     companion object {
         fun findTownName(address: String): String {
-            return Town.values().find { town ->
+            return entries.find { town ->
                 address.contains(town.townName)
             }?.townName ?: Joong.townName
         }
