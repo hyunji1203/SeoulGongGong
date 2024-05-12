@@ -65,7 +65,7 @@
                         android:id="@+id/tv_main_temperature"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
+                        android:layout_marginStart="20dp"
                         android:layout_marginTop="20dp"
                         android:text="@{@string/main_temperature(viewmodel.weatherInfo.temperature)}"
                         android:textAppearance="@style/title_0B"
@@ -78,7 +78,7 @@
                         android:id="@+id/tv_main_weather_status"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
+                        android:layout_marginStart="20dp"
                         android:layout_marginTop="12dp"
                         android:text="@{viewmodel.weatherInfo.weatherStatus.currentStatus}"
                         android:textAppearance="@style/title_1B"
@@ -91,7 +91,7 @@
                         android:id="@+id/tv_main_particulate_matter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
+                        android:layout_marginStart="@dimen/margin_default"
                         android:layout_marginTop="48dp"
                         android:paddingBottom="20dp"
                         android:text="@{@string/main_particulate_matter(viewmodel.particulateMatterInfo.particulateMatter)}"
@@ -105,7 +105,7 @@
                         android:id="@+id/tv_main_particulate_matter_status"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="4dp"
                         android:layout_marginTop="48dp"
                         android:paddingBottom="20dp"
                         android:text="@{viewmodel.particulateMatterInfo.particulateMatterStatus}"
@@ -120,7 +120,7 @@
                         android:layout_width="107dp"
                         android:layout_height="107dp"
                         android:layout_marginTop="20dp"
-                        android:layout_marginEnd="24dp"
+                        android:layout_marginEnd="20dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:setWeatherIcon="@{viewmodel.weatherInfo.weatherStatus}"
@@ -140,7 +140,7 @@
                         android:id="@+id/tv_main_town"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="24dp"
+                        android:layout_marginEnd="@dimen/margin_default"
                         android:layout_marginBottom="20dp"
                         android:text="@{viewmodel.particulateMatterInfo.observatory}"
                         android:textAppearance="@style/title_2M"
@@ -182,11 +182,11 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="24dp"
                             android:layout_marginEnd="@dimen/margin_default"
-                            android:layout_marginBottom="24dp"
                             android:src="@drawable/ic_white_arrow"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent" />
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -214,11 +214,11 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="24dp"
                             android:layout_marginEnd="@dimen/margin_default"
-                            android:layout_marginBottom="24dp"
                             android:src="@drawable/ic_teal_arrow"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent" />
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
